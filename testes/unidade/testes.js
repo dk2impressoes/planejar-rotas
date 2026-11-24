@@ -19,6 +19,7 @@ import { interpretarData, interpretarHora, mascararData, mascararHora } from '..
 import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/js/interface/dom.js';
 import { seletorLugar } from '../../site/js/interface/telas.js';
 import { vistaComparacao } from '../../site/js/interface/comparacao.js';
+import { congelarSeTerminou, basesDaViagem, congelamentoValido } from '../../site/js/dominio/congelamento.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
@@ -550,6 +551,55 @@ teste('Busca de endereço: Nominatim fora do ar → usa o Photon', async () => {
     const r = await buscar('Campinas');
     igual(r.length, 1); igual(r[0].uf, 'SP'); igual(r[0].servico, 'Photon');
   } finally { globalThis.fetch = original; }
+});
+// ---------- Congelamento: viagem terminada guarda os valores da época ----------
+function viagemTerminada() {
+  const v = novaViagem();
+  v.datas.ida.data = '2026-03-10'; v.datas.volta.data = '2026-03-12';
+  v.origem = { cidade: 'Campinas', uf: 'SP', lat: -22.9, lon: -47.06 };
+  v.destino = { cidade: 'Santos', uf: 'SP', lat: -23.96, lon: -46.33 };
+  for (const s of ['ida', 'volta']) {
+    v.rotas[s] = { chave: chaveRota(v, s), legs: [{ km: 160, duracao_s: 7200, amostras: [{ c: [-47.06, -22.9], dt: 0 }, { c: [-46.33, -23.96], dt: 7200 }] }] };
+  }
+  return v;
+}
+const basesTeste = () => ({
+  versao: 'antiga',
+  anp: { precos: [{ uf: 'SP', combustivel: 'gasolina', preco: 6 }], precos_municipios: [{ uf: 'SP', chave: 'CAMPINAS', preco: 6.1 }, { uf: 'BA', chave: 'SALVADOR', preco: 6.5 }] },
+  pedagios: { pontos: [{ id: 'perto', coordenadas: { lat: -23.4, lon: -46.7 } }, { id: 'longe', coordenadas: { lat: -12.9, lon: -38.5 } }] },
+});
+teste('Congelamento: viagem terminada guarda o recorte e os totais da época', () => {
+  const v = viagemTerminada();
+  const custos = (_v, b) => ({ km: 320, horas: 4, combustivel: b.anp.precos[0].preco * 10, pedagioConfirmado: 20, pedagioAConfirmar: 0, pracasSemValor: 0, total: b.anp.precos[0].preco * 10 + 20 });
+  verdade(congelarSeTerminou(v, basesTeste(), custos, new Date('2026-11-24T12:00:00Z')), 'congelou');
+  igual(v.congelado.custos.total, 80);
+  igual(v.basesCongeladas.pedagios.pontos.map((p) => p.id).join(), 'perto', 'só praças perto do caminho');
+  igual(v.basesCongeladas.anp.precos_municipios.length, 1, 'só cidades dos estados da viagem');
+  // Dados novos (preço sobe): a viagem terminada continua com o valor antigo.
+  const novas = basesTeste(); novas.anp.precos[0].preco = 9;
+  igual(congelarSeTerminou(v, novas, custos, new Date('2026-12-01T12:00:00Z')), false, 'não recongela');
+  igual(basesDaViagem(v, novas).anp.precos[0].preco, 6);
+  // Mudou o destino depois: o congelamento antigo deixa de valer.
+  v.destino = { cidade: 'Guarujá', uf: 'SP', lat: -23.99, lon: -46.25 };
+  igual(congelamentoValido(v), false);
+  igual(basesDaViagem(v, novas).anp.precos[0].preco, 9);
+});
+teste('Congelamento: viagem futura ou sem caminho não congela', () => {
+  const v = viagemTerminada();
+  v.datas.volta.data = '2027-01-10';
+  igual(congelarSeTerminou(v, basesTeste(), () => ({}), new Date('2026-11-24T12:00:00Z')), false, 'futura');
+  const w = viagemTerminada(); w.rotas.ida = null;
+  igual(congelarSeTerminou(w, basesTeste(), () => ({}), new Date('2026-11-24T12:00:00Z')), false, 'sem caminho');
+});
+teste('Congelamento: viagem importada (sem o recorte) usa os totais guardados no histórico', async () => {
+  const v = viagemTerminada();
+  congelarSeTerminou(v, basesTeste(), () => ({ km: 320, horas: 4, combustivel: 60, pedagioConfirmado: 20, pedagioAConfirmar: 0, pracasSemValor: 0, total: 80 }), new Date('2026-11-24T12:00:00Z'));
+  const texto = await exportar([v]);
+  verdade(!texto.includes('basesCongeladas'), 'recorte fora do arquivo');
+  const imp = await conferirImportacao(texto);
+  const w = imp.viagens[0];
+  igual(w.congelado.custos.total, 80, 'totais vieram no arquivo');
+  igual(custosDaViagem(w, null).total, 80, 'histórico usa os totais guardados');
 });
 teste('Histórico de gastos: só aparecem os meses com viagem', () => {
   const v1 = novaViagem(); v1.datas.ida.data = '2026-03-10'; v1.datas.volta.data = '2026-03-12';

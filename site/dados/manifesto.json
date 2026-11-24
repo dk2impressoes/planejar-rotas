@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
     "versao_conjunto":  "2026.11.24-f870b467875d",
-    "cache_app":  "app-v13.0.0-586cc0319832",
-    "gerado_em":  "2026-11-24T06:42:53Z",
+    "cache_app":  "app-v13.0.0-5f2ab9e7b1e7",
+    "gerado_em":  "2026-11-24T08:04:26Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -157,8 +157,8 @@
                      {
                          "caminho":  "js/app.js",
                          "tipo":  "app",
-                         "tamanho":  39652,
-                         "sha256":  "39f37f5a65632b7419a7a3b0eea04e938ffc57128d570bdd9bde65e53bf0e88e"
+                         "tamanho":  44977,
+                         "sha256":  "4f252c8f939f0c4fadf891aafa285151c2ad2681614770684a6aabf1ef12127c"
                      },
                      {
                          "caminho":  "js/armazenamento/db.js",
@@ -169,8 +169,8 @@
                      {
                          "caminho":  "js/armazenamento/exportacao.js",
                          "tipo":  "app",
-                         "tamanho":  7827,
-                         "sha256":  "75ad98ad1a194c63a5a509b73ddd8275d41493e9265adf7416e05577ec4b3cda"
+                         "tamanho":  8473,
+                         "sha256":  "da0911ff139d8d5f693d8e5c259018b59a390866c50fd5446f5b39b0d278f701"
                      },
                      {
                          "caminho":  "js/dominio/calculo.js",
@@ -187,8 +187,14 @@
                      {
                          "caminho":  "js/dominio/comparacao.js",
                          "tipo":  "app",
-                         "tamanho":  6077,
-                         "sha256":  "b318b04df097379a42c79e71149f03d7f1d3cecbe6baf89e7d1ed20d260c05d2"
+                         "tamanho":  6808,
+                         "sha256":  "73ab64e58df38531870a32b13c17f480451ce375ff38162a357469c81e94f6c2"
+                     },
+                     {
+                         "caminho":  "js/dominio/congelamento.js",
+                         "tipo":  "app",
+                         "tamanho":  3919,
+                         "sha256":  "17cd75c83078d6696b1f8ff2b8323e33ddb3dbc6e3558cf958ede38bb05aa9e3"
                      },
                      {
                          "caminho":  "js/dominio/descanso.js",
@@ -265,8 +271,8 @@
                      {
                          "caminho":  "js/interface/revisao.js",
                          "tipo":  "app",
-                         "tamanho":  43044,
-                         "sha256":  "3c05a0c077c1a3b2eb35de9aa10b044442acf35c90df3629aedbe69b5b9abae2"
+                         "tamanho":  43626,
+                         "sha256":  "233878e2883ce60e9a080e61135c1e88460c8186555ddc93c13196b65ef17ece"
                      },
                      {
                          "caminho":  "js/interface/telas.js",

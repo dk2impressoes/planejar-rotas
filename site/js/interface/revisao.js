@@ -9,6 +9,8 @@ import { situacaoDasBases } from '../servicos/bases.js';
 import { resumoAlternativas } from '../dominio/calculo.js';
 import { reverso } from '../servicos/buscador.js';
 import { online } from '../servicos/http.js';
+import { congelamentoValido } from '../dominio/congelamento.js';
+import { isoParaBr } from './datas.js';
 
 // Aviso curto dos Termos de Uso (topo do roteiro, impressão e exportação).
 import { AVISO_CURTO_TERMOS } from './termos.js';
@@ -598,8 +600,12 @@ export function tela6(ctx) {
   const r = ctx.resultado;
   const v = ctx.v;
   const prep = v.preparacao || {};
+  const congelada = congelamentoValido(v);
   return el('div', { class: 'revisao' },
     el('p', { class: 'aviso-curto' }, AVISO_CURTO),
+    congelada ? el('p', { class: 'destaque-mini' }, v.basesCongeladas
+      ? `🔒 Viagem terminada: valores congelados em ${isoParaBr(v.congelado.em.slice(0, 10))}, com os preços e pedágios daquela época. Atualizações de dados não mudam mais esta viagem.`
+      : `🔒 Viagem terminada: o histórico de gastos guarda os totais de ${isoParaBr(v.congelado.em.slice(0, 10))}. Os detalhes abaixo usam os dados de hoje.`) : null,
     resumoSimples(ctx, r),
     r.combustivel?.simulacao ? el('section', { class: 'onde-abastecer', 'aria-labelledby': 't-abastecer' },
       el('h2', { id: 't-abastecer' }, '⛽ Onde abastecer'),

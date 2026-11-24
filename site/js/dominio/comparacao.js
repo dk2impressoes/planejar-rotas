@@ -3,6 +3,7 @@
 // Tudo é estimativa: usa o mesmo cálculo da revisão (combustível gasto + pedágios) e nunca inventa valor:
 // o que não se sabe fica null e é contado à parte.
 import { calcularViagem } from './calculo.js';
+import { congelamentoValido, basesDaViagem } from './congelamento.js';
 
 const normalizar = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 
@@ -24,8 +25,17 @@ export function nomeDestino(v) {
 /** Números de uma viagem (calcular é opcional nos testes). */
 export function custosDaViagem(v, bases, calcular = calcularViagem) {
   const base = { id: v.id, nome: v.nome || '', data: v.datas?.ida?.data || '', destino: nomeDestino(v), chave: chaveDestino(v), pessoas: (v.viajantes || []).length };
+  // Viagem terminada: os valores do fim dela (atualizações de dados não mudam o histórico).
+  // Com o recorte das bases no aparelho, recalcula com ele (assim uma correção sua ainda vale);
+  // numa viagem importada, sem o recorte, usa os totais guardados.
+  if (v.congelado?.custos && congelamentoValido(v) && !v.basesCongeladas) {
+    const c = v.congelado.custos;
+    return { ...base, ...c, congeladoEm: v.congelado.em,
+      porKm: c.total !== null && c.km ? c.total / c.km : null,
+      porPessoa: c.total !== null && base.pessoas ? c.total / base.pessoas : null };
+  }
   let r;
-  try { r = calcular(v, bases); } catch { return { ...base, semCaminho: true, km: null, horas: null, combustivel: null, pedagioConfirmado: 0, pedagioAConfirmar: 0, pracasSemValor: 0, total: null }; }
+  try { r = calcular(v, basesDaViagem(v, bases)); } catch { return { ...base, semCaminho: true, km: null, horas: null, combustivel: null, pedagioConfirmado: 0, pedagioAConfirmar: 0, pracasSemValor: 0, total: null }; }
   const km = (r.sentidos?.ida?.km || 0) + (r.sentidos?.volta?.km || 0);
   const hIda = r.sentidos?.ida ? horasAoVolante(r.sentidos.ida) : null;
   const hVolta = r.sentidos?.volta ? horasAoVolante(r.sentidos.volta) : null;
@@ -40,7 +50,7 @@ export function custosDaViagem(v, bases, calcular = calcularViagem) {
   const semCaminho = !km;
   const total = semCaminho || combustivel === null ? null : combustivel + pedagioConfirmado + pedagioAConfirmar;
   return {
-    ...base, semCaminho, km: km || null,
+    ...base, semCaminho, km: km || null, congeladoEm: congelamentoValido(v) ? v.congelado.em : null,
     horas: hIda !== null || hVolta !== null ? (hIda || 0) + (hVolta || 0) : null, // tempo ao volante, ida + volta
     combustivel, pedagioConfirmado, pedagioAConfirmar, pracasSemValor, total,
     porKm: total !== null && km ? total / km : null,

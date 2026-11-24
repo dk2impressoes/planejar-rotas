@@ -14,6 +14,8 @@ import { novaViagem, validarTela, registrarAlteracao, chaveRota, pontosDaRota, n
 import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
+import { congelarSeTerminou, basesDaViagem } from './dominio/congelamento.js';
+import { custosDaViagem } from './dominio/comparacao.js';
 import { formatarDataHora } from './dominio/tempo.js';
 import { SITUACAO } from './dominio/situacao.js';
 import { preparar, FUNCIONA_OFFLINE, NAO_FUNCIONA_OFFLINE, VERSAO_APP } from './offline/preparacao.js';
@@ -154,7 +156,7 @@ async function atualizarDados() {
   render();
   let mensagem;
   try {
-    const r = await atualizarBases();
+    const r = await atualizarBasesComCongelamento();
     estado.bases = await carregarBases();
     estado.basesConferidas = true;
     configurarLimites(estado.bases?.regras);
@@ -168,12 +170,29 @@ async function atualizarDados() {
   render();
 }
 
+// ---------- Congelamento: viagem terminada guarda os valores daquela época ----------
+// Roda antes de cada atualização de dados, para a viagem ficar com os preços e pedágios do fim dela.
+async function congelarViagensTerminadas() {
+  const bases = estado.bases || await carregarBases();
+  if (!bases) return;
+  for (const v of await listar('viagens')) {
+    if (!congelarSeTerminou(v, bases, custosDaViagem)) continue;
+    await gravar('viagens', v);
+    if (estado.viagem?.id === v.id) estado.viagem = v;
+  }
+}
+
+async function atualizarBasesComCongelamento(opcoes) {
+  try { await congelarViagensTerminadas(); } catch { /* sem congelar, a atualização segue */ }
+  return atualizarBases(opcoes);
+}
+
 // ---------- Bases ----------
 async function iniciarBases() {
   estado.bases = await carregarBases();
   if (online()) {
     try {
-      await atualizarBases();
+      await atualizarBasesComCongelamento();
       estado.bases = await carregarBases();
       estado.basesConferidas = true;
     } catch (e) {
@@ -289,13 +308,14 @@ function vistaAssistente() {
   const v = estado.viagem;
   const n = v.tela;
   const tentou = estado.tentou[n];
-  const erros = tentou && n < 6 ? { ...validarTela(v, n), ...validarPrecos(v, n, estado.bases) } : {};
+  const bases = basesDaViagem(v, estado.bases); // viagem terminada: dados congelados do fim dela
+  const erros = tentou && n < 6 ? { ...validarTela(v, n), ...validarPrecos(v, n, bases) } : {};
   const ctx = {
-    v, erros, alterar, bases: estado.bases, basesConferidas: estado.basesConferidas,
+    v, erros, alterar, bases, basesConferidas: estado.basesConferidas,
     estadoRota: estado.estadoRota, calcularRotas, cancelarRotas: () => estado.controleRota?.abort(),
     irPara: (t) => abrirAssistente(t), render: (opcoes) => render(opcoes),
     lugaresUsados, salvarAgora: async () => { await salvar(); anunciar('Viagem salva no aparelho.'); },
-    precoAutomatico: (lugar) => precoAutomatico(estado.bases, v.veiculo.combustivel, lugar),
+    precoAutomatico: (lugar) => precoAutomatico(bases, v.veiculo.combustivel, lugar),
     registrarAbastecimento, desfazerAbastecimento,
     atualizarDados, atualizacao: estado.atualizacao,
     ondeEstouNaRota: () => ondeEstouNaRota(ctx.resultado),
@@ -308,14 +328,14 @@ function vistaAssistente() {
     exportar: () => baixarExportacao([v]), preparar: () => { estado.vista = 'preparacao'; render(); iniciarPreparacao(); },
   };
   if (n === 6) {
-    ctx.resultado = calcularViagem(v, estado.bases);
+    ctx.resultado = calcularViagem(v, bases);
     setTimeout(() => buscarCidadesRecomendadas(ctx.resultado), 0);
   }
   const conteudo = TELAS[n - 1](ctx);
   const nav = el('div', { class: 'navegacao nao-imprimir' },
     n > 1 ? botao('← Voltar', () => abrirAssistente(n - 1), { classe: 'secundario' }) : null,
     n < 6 ? botao('Continuar →', () => {
-      const e = { ...validarTela(v, n), ...validarPrecos(v, n, estado.bases) };
+      const e = { ...validarTela(v, n), ...validarPrecos(v, n, bases) };
       if (Object.keys(e).length) {
         estado.tentou[n] = true;
         render();
@@ -356,6 +376,7 @@ function vistaPreparacao() {
 }
 
 async function iniciarPreparacao() {
+  try { await congelarViagensTerminadas(); } catch { /* segue sem congelar */ }
   estado.inventario = [];
   estado.estadoPreparo = 'preparando';
   await salvar();
@@ -529,6 +550,7 @@ function render({ foco, trocaDeTela } = {}) {
       case 'baixar': conteudo = await vistaBaixar(); break;
       case 'menu': conteudo = vistaMenu(); break;
       case 'guia': conteudo = vistaGuia(); break;
+      case 'verificar': conteudo = vistaVerificar(); break;
       default: conteudo = el('p', {}, 'Carregando…');
     }
     limpar(m).append(conteudo);
@@ -549,10 +571,78 @@ const ITENS_MENU = [
   ['Histórico Gastos de Viagens', () => { estado.vista = 'comparar'; }],
   ['Modo online / offline', () => { estado.vista = 'modo'; }],
   ['Instalar aplicativo', () => { estado.vista = 'baixar'; }],
+  ['Verificar atualização', () => { estado.vista = 'verificar'; render({ trocaDeTela: true }); verificarAtualizacoes(); return true; }],
   ['Salvar, Importar ou Restaurar', () => { estado.vista = 'dados'; }],
   ['Sobre e avisos legais', () => { estado.vista = 'sobre'; }],
 ];
 const executarItemMenu = (acao) => { if (!acao()) render({ trocaDeTela: true }); };
+
+// ---------- Verificar atualização (menu): versão do app + dados (preços, pedágios, feriados, regras) ----------
+estado.verificacao = { andamento: false, app: null, dados: null, em: null };
+const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function verificarAtualizacoes() {
+  if (estado.verificacao.andamento) return;
+  if (!online()) {
+    estado.verificacao = { andamento: false, em: Date.now(),
+      app: { ok: false, texto: 'Sem internet agora: não dá para procurar versão nova.' },
+      dados: { ok: false, texto: 'Sem internet agora. O app continua com os dados salvos no aparelho.' } };
+    render();
+    return;
+  }
+  estado.verificacao = { andamento: true, app: { texto: 'Procurando versão nova do app…' }, dados: { texto: 'Esperando…' } };
+  render();
+  // 1. O próprio app (telas, cálculos, textos).
+  let app;
+  try {
+    if (!registroSW) {
+      app = { ok: false, texto: 'Este navegador não permite atualizar o app por aqui. Feche e abra o app de novo.' };
+    } else {
+      await registroSW.update();
+      for (let i = 0; i < 30 && registroSW.installing; i++) await esperar(500); // a versão nova termina de baixar
+      app = registroSW.waiting
+        ? { ok: true, nova: true, texto: '🔄 Há uma versão nova do app, já baixada.' }
+        : { ok: true, texto: `✔ O app já está na versão mais nova (${VERSAO_APP}).` };
+    }
+  } catch (e) {
+    app = { ok: false, texto: `Não foi possível procurar versão nova agora (${e.message}).` };
+  }
+  estado.verificacao = { ...estado.verificacao, app, dados: { texto: 'Procurando dados novos (preços, pedágios, feriados e regras)…' } };
+  render();
+  // 2. Os dados que o robô publica todo dia.
+  let dados;
+  try {
+    const r = await atualizarBasesComCongelamento({ progresso: (t) => { estado.verificacao.dados = { texto: `${t}…` }; render(); } });
+    estado.bases = await carregarBases();
+    estado.basesConferidas = true;
+    configurarLimites(estado.bases?.regras);
+    const p = estado.bases?.anp?.precos?.[0];
+    const semana = p ? ` Preços da ANP da semana de ${isoParaBr(p.periodo_inicio)} a ${isoParaBr(p.periodo_fim)}.` : '';
+    dados = { ok: true, novos: r.atualizado, texto: `${r.atualizado ? '✔ Dados atualizados agora.' : '✔ Os dados já são os mais recentes.'}${semana}` };
+  } catch (e) {
+    dados = { ok: false, texto: `Não foi possível buscar os dados agora (${e.message}). O app continua com os dados salvos.` };
+  }
+  estado.verificacao = { andamento: false, app, dados, em: Date.now() };
+  render();
+}
+
+function vistaVerificar() {
+  const v = estado.verificacao;
+  const preparada = estado.viagem?.preparacao?.estado === 'pronto';
+  const linha = (titulo, r) => el('li', { class: 'cartao' },
+    el('h2', {}, titulo),
+    el('p', { class: r?.ok === false ? 'erro' : '' }, r?.texto || 'Ainda não verificado.'));
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Verificar atualização', 'Procura a versão nova do app e os dados mais recentes: preços dos combustíveis, pedágios, feriados e regras.'),
+    botao(v.andamento ? 'Verificando…' : 'Verificar agora', verificarAtualizacoes, { classe: 'largo', desativado: v.andamento }),
+    el('ul', { class: 'lista-cartoes', 'aria-live': 'polite' },
+      linha('📱 App', v.app),
+      linha('📊 Dados', v.dados)),
+    v.app?.nova ? botao('Atualizar o app agora', () => { if (!aplicarVersaoNova()) location.reload(); }, { classe: 'largo' }) : null,
+    v.app?.nova ? el('p', { class: 'ajuda' }, 'A página recarrega com a versão nova. Suas viagens continuam salvas.') : null,
+    v.dados?.novos && preparada ? el('p', { class: 'aviso' }, '⚠ Os dados mudaram. Se for viajar sem internet, prepare a viagem de novo em "Preparar para viagem".') : null,
+    v.em ? el('p', { class: 'ajuda' }, `Última verificação: ${new Date(v.em).toLocaleString('pt-BR')}.`) : null);
+}
 
 // Tela "Guia": hospedagem, turismo e compras ao longo da rota (em desenvolvimento).
 const AVISO_GUIA = 'Recurso em desenvolvimento: em breve você poderá consultar opções direto na sua rota.';
@@ -609,22 +699,29 @@ function indicadorConexao() {
 
 // Versão nova do app: avisa e deixa a pessoa atualizar quando quiser (Seção 13: nunca no meio do preenchimento
 // sem ela pedir). Sem o aviso, quem deixa a aba aberta continuaria vendo a versão antiga indefinidamente.
+let registroSW = null;
+let pediuAtualizacao = false;
+/** Troca para a versão nova já baixada e recarrega a página (só quando a pessoa pede). */
+function aplicarVersaoNova() {
+  if (!registroSW?.waiting) return false;
+  pediuAtualizacao = true;
+  registroSW.waiting.postMessage('atualizar-agora');
+  return true;
+}
+
 function registrarServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
-  let pediuAtualizacao = false;
-  const aviso = (reg) => {
+  const aviso = () => {
     if (document.getElementById('aviso-versao')) return;
     const caixa = el('div', { id: 'aviso-versao', class: 'aviso-versao nao-imprimir', role: 'status' },
       el('span', {}, '🔄 Há uma versão nova do app.'),
-      botao('Atualizar agora', () => {
-        pediuAtualizacao = true;
-        reg.waiting?.postMessage('atualizar-agora');
-      }, { classe: 'pequeno' }),
+      botao('Atualizar agora', aplicarVersaoNova, { classe: 'pequeno' }),
       botao('Depois', () => caixa.remove(), { classe: 'pequeno secundario' }));
     document.body.append(caixa);
   };
   navigator.serviceWorker.addEventListener('controllerchange', () => { if (pediuAtualizacao) location.reload(); });
   navigator.serviceWorker.register('sw.js').then((reg) => {
+    registroSW = reg;
     if (reg.waiting && navigator.serviceWorker.controller) aviso(reg);
     reg.addEventListener('updatefound', () => {
       const novo = reg.installing;

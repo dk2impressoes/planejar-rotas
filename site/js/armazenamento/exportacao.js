@@ -60,13 +60,23 @@ export const ESQUEMA_VIAGEM = {
     },
     lugaresSugeridos: { type: 'object', additionalProperties: { type: 'object', properties: { cidade: txt(), uf: txt(2), rotulo: txt(300) } } },
     rotas: { type: 'object', properties: { ida: rota, volta: rota } },
+    congelado: {
+      type: ['object', 'null'],
+      properties: {
+        em: txt(40), versao_bases: { type: ['string', 'null'], maxLength: 60 },
+        chaves: { type: 'object', properties: { ida: txt(5000), volta: txt(5000) } },
+        custos: { type: 'object', properties: Object.fromEntries(['km', 'horas', 'combustivel', 'pedagioConfirmado', 'pedagioAConfirmar', 'pracasSemValor', 'total']
+          .map((k) => [k, { type: ['number', 'null'] }]).concat([['semCaminho', { type: 'boolean' }]])) },
+      },
+    },
     preparacao: { type: 'object', properties: { estado: txt(30), preparado_em: { type: ['string', 'null'], maxLength: 40 }, revisao: { type: ['integer', 'null'] }, desatualizada: { type: 'boolean' } } },
   },
 };
 
 export async function exportar(viagensOriginais) {
   // As rotas alternativas não escolhidas ficam fora da cópia (podem ser recalculadas) para caber no limite de 5 MB.
-  const viagens = viagensOriginais.map((v) => ({
+  // O recorte das bases congeladas também fica fora (é grande); os totais congelados vão junto.
+  const viagens = viagensOriginais.map(({ basesCongeladas, ...v }) => ({
     ...v,
     rotas: Object.fromEntries(Object.entries(v.rotas || {}).map(([s, r]) => [s, r ? { ...r, alternativas: [], escolhida: 0 } : r])),
   }));
