@@ -623,6 +623,7 @@ async function iniciar() {
   abertura?.addEventListener('click', fecharAbertura);
   addEventListener('keydown', fecharAbertura, { once: true });
   abertura?.addEventListener('animationend', fecharAbertura);
+  setTimeout(fecharAbertura, 3500); // garantia: a página volta a rolar mesmo se a animação não avisar o fim (aba em segundo plano)
   indicadorConexao();
   registrarServiceWorker();
   try {

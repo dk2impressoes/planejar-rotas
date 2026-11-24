@@ -1,7 +1,7 @@
 // © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Telas 1 a 5 do assistente (Seção 2), em linguagem simples para quem não tem prática com apps:
 // uma pergunta por bloco, valores padrão já preenchidos e o que é opcional ou técnico recolhido.
-import { el, campo, botao, anunciar, escolha, recolhido, explicar, reais } from './dom.js';
+import { el, campo, botao, anunciar, escolha, recolhido, explicar, reais, anexar, escrever } from './dom.js';
 import { derivados, validarVeiculo } from '../dominio/combustivel.js';
 import { novaParada, novoViajante, novoId, modeloListaIndividual, separadorDaLista, TELA } from '../dominio/viagem.js';
 import { FAIXAS, documentosDoViajante, idadeNaViagem, AVISO_FIXO } from '../dominio/documentos.js';
@@ -47,7 +47,7 @@ export function seletorLugar({ id, rotulo, valor, erro, aoEscolher, ctx, comGeol
   const [btExplica, painelExplica] = explicar(id, rotulo, explicacao);
   const caixa = el('div', { class: 'campo seletor-lugar' });
   if (valor) {
-    caixa.append(
+    anexar(caixa, 
       el('p', { class: 'rotulo-campo', id: `${id}-rotulo` }, rotulo),
       el('div', { class: 'lugar-escolhido' }, el('span', {}, `📍 ${valor.rotulo || valor.nome}`),
         botao('Trocar', () => aoEscolher(null), { classe: 'secundario pequeno', rotuloAcessivel: `Trocar: ${rotulo}` })));
@@ -60,14 +60,14 @@ export function seletorLugar({ id, rotulo, valor, erro, aoEscolher, ctx, comGeol
   const mostrar = (res, origem) => {
     lista.replaceChildren();
     if (!res.length) {
-      estado.textContent = origem === 'local' ? 'Sem internet: nenhum lugar já usado confere com o que você digitou.' : 'Não encontramos. Confira o nome ou toque em "Procurar".';
+      escrever(estado, origem === 'local' ? 'Sem internet: nenhum lugar já usado confere com o que você digitou.' : 'Não encontramos. Confira o nome ou toque em "Procurar".');
       return;
     }
-    estado.textContent = temNomeRepetido(res)
+    escrever(estado, temNomeRepetido(res)
       ? 'Atenção: há cidades com o mesmo nome em estados diferentes. Confira a sigla do estado antes de tocar.'
-      : 'Toque no lugar certo:';
+      : 'Toque no lugar certo:');
     for (const r of res) {
-      lista.append(el('li', {}, botao(`📍 ${r.rotulo || r.nome}`, () => { aoEscolher(r); anunciar(`${rotulo} ${r.rotulo}`); }, { classe: 'resultado' })));
+      anexar(lista, el('li', {}, botao(`📍 ${r.rotulo || r.nome}`, () => { aoEscolher(r); anunciar(`${rotulo} ${r.rotulo}`); }, { classe: 'resultado' })));
     }
   };
   const consultar = async (texto, completo) => {
@@ -78,15 +78,15 @@ export function seletorLugar({ id, rotulo, valor, erro, aoEscolher, ctx, comGeol
       return;
     }
     controle = new AbortController();
-    estado.textContent = 'Procurando…';
+    escrever(estado, 'Procurando…');
     try {
       mostrar(completo ? await buscar(texto, { sinal: controle.signal }) : await autocompletar(texto, { sinal: controle.signal }));
     } catch (e) {
-      if (e.codigo !== 'cancelado') estado.textContent = 'A busca não funcionou agora. Toque em "Procurar" para tentar de novo.';
+      if (e.codigo !== 'cancelado') escrever(estado, 'A busca não funcionou agora. Toque em "Procurar" para tentar de novo.');
     }
   };
   const entrada = el('input', {
-    id, type: 'search', autocomplete: 'off', enterkeyhint: 'search', placeholder: 'Digite a cidade ou o endereço',
+    id, type: 'search', autocomplete: 'off', enterkeyhint: 'search', placeholder: 'Cidade ou endereço',
     'aria-describedby': `${id}-ajuda${erro ? ` ${id}-erro` : ''}`, 'aria-invalid': erro ? 'true' : null, 'aria-controls': `${id}-resultados`,
   });
   entrada.addEventListener('input', () => {
@@ -96,18 +96,18 @@ export function seletorLugar({ id, rotulo, valor, erro, aoEscolher, ctx, comGeol
   entrada.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); consultar(entrada.value, true); } });
 
   const geo = comGeolocalizacao ? botao('📍 Usar onde estou agora', async () => {
-    if (!navigator.geolocation) { estado.textContent = 'Este aparelho não informa a localização. Digite o endereço.'; return; }
-    estado.textContent = 'O aparelho vai pedir permissão para usar a sua localização…';
+    if (!navigator.geolocation) { escrever(estado, 'Este aparelho não informa a localização. Digite o endereço.'); return; }
+    escrever(estado, 'O aparelho vai pedir permissão para usar a sua localização…');
     navigator.geolocation.getCurrentPosition(async (pos) => {
       try {
         const l = await reverso(pos.coords.latitude, pos.coords.longitude);
         if (l) mostrar([{ ...l, precisao: `GPS ±${Math.round(pos.coords.accuracy)} m` }]);
-        else estado.textContent = 'Não achamos o endereço. Digite onde você está.';
-      } catch { estado.textContent = 'Não achamos o endereço. Digite onde você está.'; }
-    }, () => { estado.textContent = 'Sem permissão para usar a localização. Sem problema: digite o endereço.'; }, { timeout: 15000, maximumAge: 60000 });
+        else escrever(estado, 'Não achamos o endereço. Digite onde você está.');
+      } catch { escrever(estado, 'Não achamos o endereço. Digite onde você está.'); }
+    }, () => { escrever(estado, 'Sem permissão para usar a localização. Sem problema: digite o endereço.'); }, { timeout: 15000, maximumAge: 60000 });
   }, { classe: 'secundario largo' }) : null;
 
-  caixa.append(
+  anexar(caixa, 
     el('div', { class: 'rotulo-linha' }, el('label', { for: id, class: 'rotulo-grande' }, rotulo), btExplica), painelExplica,
     el('p', { class: 'ajuda', id: `${id}-ajuda` }, online() ? (ajuda || 'Digite pelo menos 3 letras e toque no resultado certo.') : 'Sem internet: só aparecem lugares que você já usou.'),
     geo,

@@ -6,6 +6,32 @@ import { interpretarData, interpretarHora, mascararData, mascararHora, isoParaBr
 let contador = 0;
 export const novoIdDom = (p = 'c') => `${p}-${++contador}`;
 
+/**
+ * Texto seguro para a tela: null, undefined, false e NaN viram texto vazio.
+ * O usuário nunca pode ver "null", "undefined" ou "NaN".
+ */
+export function textoSeguro(valor) {
+  if (valor === null || valor === undefined || valor === false) return '';
+  if (typeof valor === 'number' && !Number.isFinite(valor)) return '';
+  return String(valor);
+}
+
+/** Escreve um texto num elemento (sempre por aqui, nunca textContent com valor solto). */
+export function escrever(no, valor) {
+  if (no) no.textContent = textoSeguro(valor);
+  return no;
+}
+
+/** Acrescenta filhos a um elemento pulando os vazios (o append do navegador escreveria "null"). */
+export function anexar(no, ...filhos) {
+  for (const f of filhos.flat()) {
+    if (f instanceof Node) { no.append(f); continue; }
+    const t = textoSeguro(f);
+    if (t) no.append(document.createTextNode(t));
+  }
+  return no;
+}
+
 /** el('div', { class: 'x', onclick: fn }, 'texto', filho) */
 export function el(tag, attrs = {}, ...filhos) {
   const n = document.createElement(tag);
@@ -17,11 +43,7 @@ export function el(tag, attrs = {}, ...filhos) {
     else if (k === 'checked') n.checked = !!v;
     else n.setAttribute(k, v === true ? '' : String(v));
   }
-  for (const f of filhos.flat()) {
-    if (f === null || f === undefined || f === false) continue;
-    n.append(f instanceof Node ? f : document.createTextNode(String(f)));
-  }
-  return n;
+  return anexar(n, ...filhos);
 }
 
 export function limpar(n) {

@@ -243,9 +243,11 @@ html { font-size: 112.5%; }
 .barras-mes .valor { grid-column: 2; font-size: .9rem; color: var(--suave); }
 
 /* Assinatura do Grupo DK²: abertura ao abrir o app e rodapé em todas as telas */
-.abertura { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+/* Enquanto a abertura está na tela, a página por trás não rola: sem barra de rolagem e logo no centro exato. */
+html:has(#abertura:not(.fechada)) { overflow: hidden; }
+.abertura { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; box-sizing: border-box; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
   background: #ffffff; padding: 16px; animation: abertura-some .6s ease 2.2s forwards; cursor: pointer; }
-.abertura img { width: auto; height: auto; max-width: min(78vw, 420px); max-height: calc(100vh - 80px); object-fit: contain; }
+.abertura img { display: block; margin: 0 auto; width: auto; height: auto; max-width: min(78vw, 420px); max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); object-fit: contain; }
 .abertura-app { margin: 0; font-weight: 700; font-size: 1.2rem; color: #0b3d4f; letter-spacing: .02em; }
 .abertura.fechada { display: none; }
 @keyframes abertura-some { to { opacity: 0; visibility: hidden; } }
@@ -262,3 +264,9 @@ html { font-size: 112.5%; }
 /* Baixar e instalar */
 .baixar h2 { margin-top: .2em; }
 .baixar a.botao { display: block; text-align: center; text-decoration: none; margin: 8px 0; }
+
+/* Mensagens vazias (situação da busca, erros) não ocupam espaço; continuam no lugar para o leitor de tela anunciar. */
+p.ajuda:empty, p.erro:empty, p.aviso:empty, p.resumo:empty { margin: 0; padding: 0; min-height: 0; }
+/* Rodapé da assinatura: quebra a linha certinho no celular e não fica atrás da barra de navegação. */
+.assinatura-dk2 { flex-wrap: nowrap; align-items: flex-start; line-height: 1.4; margin-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); padding-bottom: 8px; }
+.assinatura-dk2 span { flex: 1 1 auto; min-width: 0; overflow-wrap: break-word; }

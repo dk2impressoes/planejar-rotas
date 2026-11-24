@@ -16,7 +16,8 @@ import { retencaoInfantil } from '../../site/js/dominio/documentos.js';
 import { resumoAlternativas } from '../../site/js/dominio/calculo.js';
 import { urlGoogleMaps, urlWaze, linkOficial } from '../../site/js/interface/revisao.js';
 import { interpretarData, interpretarHora, mascararData, mascararHora } from '../../site/js/interface/datas.js';
-import { campo, explicar } from '../../site/js/interface/dom.js';
+import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/js/interface/dom.js';
+import { seletorLugar } from '../../site/js/interface/telas.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome } from '../../site/js/servicos/buscador.js';
@@ -522,6 +523,22 @@ teste('Quem separa: cada um, uma pessoa, sem resposta e responsável removido', 
   v.separacao.responsavelId = 'x';
   igual(separadorDaLista(v, la), null, 'responsável que não está na viagem');
 });
+// ---------- Nunca mostrar null / undefined / NaN (bug da tela 2, 24/11/2026) ----------
+teste('Texto seguro: null, undefined e NaN viram vazio', () => {
+  igual(textoSeguro(null), ''); igual(textoSeguro(undefined), ''); igual(textoSeguro(NaN), ''); igual(textoSeguro(false), '');
+  igual(textoSeguro(0), '0'); igual(textoSeguro('ok'), 'ok');
+  const p = anexar(document.createElement('p'), 'a', null, undefined, NaN, el('b', {}, 'b'));
+  igual(p.textContent, 'ab');
+  igual(escrever(document.createElement('p'), null).textContent, '');
+});
+teste('Tela de lugares vazia (origem e destino) não escreve "null"', () => {
+  const ctx = { lugaresUsados: () => [] };
+  for (const geo of [true, false]) {
+    const n = seletorLugar({ id: `t-${geo}`, rotulo: 'X', valor: null, erro: null, ctx, comGeolocalizacao: geo, aoEscolher: () => {} });
+    verdade(!/\b(null|undefined|NaN)\b/.test(n.textContent), n.textContent);
+  }
+});
+
 // ---------- Preço automático: lugar sem UF ou sem cidade ----------
 const basesPreco = {
   anp: {

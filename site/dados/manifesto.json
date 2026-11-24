@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
     "versao_conjunto":  "2026.11.23-b57e49695b8c",
-    "cache_app":  "app-v13.0.0-fe9704d93fc8",
-    "gerado_em":  "2026-11-24T01:44:56Z",
+    "cache_app":  "app-v13.0.0-08a2b1bc49dc",
+    "gerado_em":  "2026-11-24T02:14:02Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -91,8 +91,8 @@
                      {
                          "caminho":  "estilos.css",
                          "tipo":  "app",
-                         "tamanho":  18776,
-                         "sha256":  "fcb70514e1949bad4b3349aadd6d5fe3ea777456038a6e09e275019261aa6195"
+                         "tamanho":  19703,
+                         "sha256":  "e26348957932e76c12b5bb81e88e6205e94210f96cd03249ba43ee9728a9a571"
                      },
                      {
                          "caminho":  "icons/abertura-dk2.jpg",
@@ -133,8 +133,8 @@
                      {
                          "caminho":  "js/app.js",
                          "tipo":  "app",
-                         "tamanho":  37212,
-                         "sha256":  "6cd65762581c7d3702a4e0b6a97781e27fcf4530671af67208783f7a0e1a7d9f"
+                         "tamanho":  37348,
+                         "sha256":  "efecc19fcf349fe3e06434c22a1474fd186e4728a0d2c08fc038bbcfcaacc463"
                      },
                      {
                          "caminho":  "js/armazenamento/db.js",
@@ -229,8 +229,8 @@
                      {
                          "caminho":  "js/interface/dom.js",
                          "tipo":  "app",
-                         "tamanho":  12350,
-                         "sha256":  "b71cfda1e7ab4b9ccfae88e50b42c1e0a6bc310205fd55b41bfc1f4aecef5121"
+                         "tamanho":  13067,
+                         "sha256":  "009e3ea54f901bc99a0710ad5ae6f5dacdbc6a09f2bf939b3c8ce3a352b47737"
                      },
                      {
                          "caminho":  "js/interface/explicacoes.js",
@@ -247,8 +247,8 @@
                      {
                          "caminho":  "js/interface/telas.js",
                          "tipo":  "app",
-                         "tamanho":  32600,
-                         "sha256":  "5939510d27f03f1646294f7aadee47c0c01f577cff42444b445ef280dde9dc70"
+                         "tamanho":  32583,
+                         "sha256":  "6ab6d11be0a3fcc2531c94fae71b3984c77019aaae1b3674a4d24ff1372d6006"
                      },
                      {
                          "caminho":  "js/offline/preparacao.js",
