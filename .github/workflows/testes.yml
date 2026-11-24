@@ -1,0 +1,25 @@
+name: Testes
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar bases contra os esquemas
+        run: python scripts/validar_dados.py
+      - name: Testes dos coletores
+        run: pip install -r scripts/requirements.txt && python -m unittest discover -s testes/coletores -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar navegador de teste
+        run: npm i --no-save playwright@1.47.2 && npx playwright install --with-deps chromium
+      - name: Testes de unidade
+        run: node testes/executar-ci.mjs
