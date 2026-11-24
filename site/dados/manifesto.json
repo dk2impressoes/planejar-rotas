@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
     "versao_conjunto":  "2026.11.24-f870b467875d",
-    "cache_app":  "app-v13.0.0-5da789421341",
-    "gerado_em":  "2026-11-24T06:24:38Z",
+    "cache_app":  "app-v13.0.0-586cc0319832",
+    "gerado_em":  "2026-11-24T06:42:53Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -91,8 +91,8 @@
                      {
                          "caminho":  "estilos.css",
                          "tipo":  "app",
-                         "tamanho":  21151,
-                         "sha256":  "c1ac514eb8343d61666a5c3e6080b55fcddc71963672ecda2a0f8b81d8ff3e07"
+                         "tamanho":  21355,
+                         "sha256":  "7e800bc09b77deab8783ff4a69f7dec14a0ace3d032e7255f6e38948e2d29bf4"
                      },
                      {
                          "caminho":  "favicon.ico",
@@ -157,8 +157,8 @@
                      {
                          "caminho":  "js/app.js",
                          "tipo":  "app",
-                         "tamanho":  40172,
-                         "sha256":  "0d2fc7fc528405c6f4482b98aef4d6f8aae5ff2b75c86fd4ca9b06ae4bc3117b"
+                         "tamanho":  39652,
+                         "sha256":  "39f37f5a65632b7419a7a3b0eea04e938ffc57128d570bdd9bde65e53bf0e88e"
                      },
                      {
                          "caminho":  "js/armazenamento/db.js",
@@ -265,14 +265,20 @@
                      {
                          "caminho":  "js/interface/revisao.js",
                          "tipo":  "app",
-                         "tamanho":  43112,
-                         "sha256":  "1ccdbd7bd63b34f0b9b76aff7d7dd675a41aff3ceb50aa84766a9a77878acc09"
+                         "tamanho":  43044,
+                         "sha256":  "3c05a0c077c1a3b2eb35de9aa10b044442acf35c90df3629aedbe69b5b9abae2"
                      },
                      {
                          "caminho":  "js/interface/telas.js",
                          "tipo":  "app",
                          "tamanho":  32583,
                          "sha256":  "6ab6d11be0a3fcc2531c94fae71b3984c77019aaae1b3674a4d24ff1372d6006"
+                     },
+                     {
+                         "caminho":  "js/interface/termos.js",
+                         "tipo":  "app",
+                         "tamanho":  13299,
+                         "sha256":  "7dbb2716ce568efee113fcc6a03160a520ff8e2d2203989f1bd25754bb63dc19"
                      },
                      {
                          "caminho":  "js/offline/preparacao.js",

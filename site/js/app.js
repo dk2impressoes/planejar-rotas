@@ -18,8 +18,8 @@ import { formatarDataHora } from './dominio/tempo.js';
 import { SITUACAO } from './dominio/situacao.js';
 import { preparar, FUNCIONA_OFFLINE, NAO_FUNCIONA_OFFLINE, VERSAO_APP } from './offline/preparacao.js';
 
-export const VERSAO_TERMOS = '0.2-rascunho';
-const DATA_TERMOS = '2026-11-23';
+import { VERSAO_TERMOS, DATA_TERMOS, TERMOS, PRIVACIDADE, textoJuridico } from './interface/termos.js';
+export { VERSAO_TERMOS };
 const TITULOS = ['Quando você vai viajar?', 'De onde sai e para onde vai?', 'Sobre o carro', 'Vai parar no caminho?', 'Quem vai viajar?', 'Resumo da viagem'];
 const TELAS = [tela1, tela2, telaCarro, telaParadas, tela5, tela6]; // ordem = TELA em dominio/viagem.js
 
@@ -199,16 +199,17 @@ function vistaTermos() {
     render();
   }, { desativado: true, classe: 'largo' });
   return el('div', { class: 'estreito' },
-    ...cabecalho('Olá! Antes de começar', 'Leia o resumo abaixo. Leva menos de um minuto.'),
+    ...(estado.termosAtualizados
+      ? cabecalho('Os Termos de Uso foram atualizados', 'Leia o resumo abaixo e aceite de novo para continuar. Suas viagens continuam salvas.')
+      : cabecalho('Olá! Antes de começar', 'Leia o resumo abaixo. Leva menos de um minuto.')),
     el('ul', { class: 'cartao termos lista-simples' },
       el('li', {}, '💸 O app é gratuito, não tem anúncios e não vende seus dados.'),
       el('li', {}, '📱 O que você digita sobre a viagem fica guardado só neste aparelho.'),
       el('li', {}, '🗺️ Para achar endereços e calcular o caminho, os lugares que você procura vão para serviços de mapas gratuitos. Seu nome e a placa do carro nunca são enviados.'),
-      el('li', {}, '🧭 Horários, custos, pedágios e avisos são estimativas. Confira as regras e as condições da estrada antes de sair.')),
-    recolhido('r-termos-completo', `Ler o texto completo (versão ${VERSAO_TERMOS}, de ${DATA_TERMOS})`,
-      el('p', {}, 'TEXTO PROVISÓRIO — o texto integral está no documento jurídico do Grupo DK² e deve substituir este resumo antes da publicação.'),
-      el('p', {}, 'O app é gratuito, sem anúncios e sem venda de dados. Os dados da viagem ficam neste aparelho. Para calcular rotas e buscar endereços, as coordenadas e os textos de endereço consultados são enviados a serviços públicos de mapa (OSRM e Valhalla da FOSSGIS; se falharem, o servidor público do projeto OSRM; Photon e Nominatim), que podem ver o seu IP. Nomes, placa, checklists e documentos nunca são enviados. Os botões "Abrir no Google Maps" e "Abrir no Waze" só enviam as coordenadas do caminho a essas empresas quando você toca neles.'),
-      el('p', {}, 'Os resultados são estimativas para planejamento. O aceite não exige renúncia a direitos previstos em lei.')),
+      el('li', {}, '🧭 Horários, custos, pedágios e avisos são estimativas, e os dados de fontes externas não são garantidos. Confira nas fontes oficiais antes de sair.'),
+      el('li', {}, '🚗 Não use o celular enquanto dirige: deixe os ajustes para um passageiro ou para quando o carro estiver parado.')),
+    recolhido('r-termos-completo', `Ler os Termos de Uso completos (versão ${VERSAO_TERMOS}, de ${isoParaBr(DATA_TERMOS)})`, textoJuridico(TERMOS)),
+    recolhido('r-privacidade', 'Ler o Aviso de Privacidade', textoJuridico(PRIVACIDADE)),
     campo({ id: 'aceite', tipo: 'checkbox', rotulo: 'Li e aceito os Termos de Uso e o Aviso de Privacidade', valor: false, aoMudar: (x) => { marcado = x; continuar.disabled = !x; } }),
     continuar);
 }
@@ -449,9 +450,10 @@ async function vistaBaixar() {
 
 function vistaSobre() {
   return el('div', { class: 'estreito' },
-    ...cabecalho('Sobre e avisos legais', `Versão ${VERSAO_APP} · Termos ${VERSAO_TERMOS} (${DATA_TERMOS})`),
+    ...cabecalho('Sobre e avisos legais', `Versão ${VERSAO_APP} · Termos ${VERSAO_TERMOS} (${isoParaBr(DATA_TERMOS)})`),
     el('p', {}, AVISO_CURTO),
-    el('p', {}, 'Cláusula de responsabilidade e Termos de Uso: texto definido no documento jurídico (pendente de inclusão nesta versão).'),
+    recolhido('s-termos', `Termos de Uso e isenção de responsabilidade (versão ${VERSAO_TERMOS})`, textoJuridico(TERMOS)),
+    recolhido('s-privacidade', 'Aviso de Privacidade', textoJuridico(PRIVACIDADE)),
     el('p', {}, 'Gratuito, sem anúncios, sem venda de dados e sem login. Nenhum dado pessoal é enviado a servidores do Grupo DK².'),
     el('h2', {}, 'Dados de fontes externas'),
     el('p', { class: 'aviso' }, 'Preços, tarifas de pedágio, rotas, endereços e regras vêm de fontes externas. O app confere e filtra o que parece errado, mas não garante esses dados e valores: confira na fonte oficial antes de sair.'),
@@ -464,8 +466,6 @@ function vistaSobre() {
       el('li', {}, 'Praças de pedágio: base aberta do Sem Parar (CC BY 4.0), ANTT (dados abertos) e OpenStreetMap (ODbL), que cobre todos os estados. Tarifas: tabelas da ANTT, da ARTESP e das concessionárias; onde não há tabela recente, a tarifa conferida pelos colaboradores do OpenStreetMap.'),
       el('li', {}, 'Preços: ANP. Rodízio: Prefeitura de São Paulo/CET.'),
       el('li', {}, 'Guia (em desenvolvimento): Cadastur, do Ministério do Turismo (hospedagens cadastradas, ODbL); Overture Maps Places (lugares e comércios); Wikipedia e Wikidata (pontos turísticos).')),
-    el('h2', {}, 'Privacidade'),
-    el('p', {}, 'Coordenadas e textos de endereço vão aos serviços de rota e busca, que podem ver o IP. Nomes, checklists, documentos e final da placa ficam só neste aparelho. Os botões do Google Maps e do Waze enviam as coordenadas do caminho a essas empresas apenas quando tocados.'),
     el('h2', {}, 'Autoria'),
     el('div', { class: 'cartao sobre-dk2' },
       el('img', { src: 'icons/abertura-dk2.jpg', alt: 'Logo do Grupo DK².', width: 240, height: 269 }),
@@ -675,7 +675,7 @@ async function iniciar() {
   const idAtual = await meta('viagemAtual');
   if (idAtual) estado.viagem = (await obter('viagens', idAtual)) || null;
   const aceite = await meta('aceite');
-  if (!aceite || aceite.versao !== VERSAO_TERMOS) estado.vista = 'termos';
+  if (!aceite || aceite.versao !== VERSAO_TERMOS) { estado.vista = 'termos'; estado.termosAtualizados = Boolean(aceite); }
   else if (!(await meta('modo'))) estado.vista = 'modo';
   else if (estado.viagem && viagemConcluida(estado.viagem)) estado.vista = 'menu'; // viagem já terminou: abre no Menu
   else if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return; } // rascunho: reabre na mesma tela

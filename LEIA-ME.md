@@ -68,7 +68,7 @@ Testes dos coletores, sem rede: `python -m unittest discover -s testes/coletores
 ## Pendências antes de publicar
 
 1. **Dados**: `centro-expandido.geojson` ainda é aproximado (falta coletor do GeoSampa); tarifas fora de SP e suspensões dependem de curadoria; ANP e ARTESP já foram coletadas das fontes reais (23/11/2026), mas a ANTT não respondeu daqui — rode o workflow manualmente uma vez e confira as *issues*.
-2. **Texto jurídico**: Termos de Uso e Aviso de Privacidade são provisórios (`0.2-rascunho`).
+2. **Texto jurídico**: Termos de Uso e Aviso de Privacidade na versão 1.0 (24/11/2026), em `site/js/interface/termos.js`. Recomendada revisão por advogado; ao mudar o texto, suba `VERSAO_TERMOS` (o app pede novo aceite).
 3. **Licença do código** (`LICENCA.md`): escolha do Grupo DK².
 4. **Mapa de fundo**: falta escolher um provedor autorizado (revisão B1).
 5. **APK (TWA)**: exige domínio, `assetlinks.json` com a impressão digital real da chave e testes em aparelho.

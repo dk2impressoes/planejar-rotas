@@ -10,7 +10,9 @@ import { resumoAlternativas } from '../dominio/calculo.js';
 import { reverso } from '../servicos/buscador.js';
 import { online } from '../servicos/http.js';
 
-export const AVISO_CURTO = 'Planejamento estimado. Horários, custos, pedágios e alertas podem mudar, e os dados de fontes externas não são garantidos pelo app: confira as condições e regras nas fontes oficiais antes e durante a viagem.';
+// Aviso curto dos Termos de Uso (topo do roteiro, impressão e exportação).
+import { AVISO_CURTO_TERMOS } from './termos.js';
+export const AVISO_CURTO = AVISO_CURTO_TERMOS;
 
 function bloco(titulo, tela, ctx, ...conteudo) {
   const id = `b-${titulo.replace(/\W+/g, '-').toLowerCase()}`;

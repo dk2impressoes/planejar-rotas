@@ -276,6 +276,12 @@ p.ajuda:empty, p.erro:empty, p.aviso:empty, p.resumo:empty { margin: 0; padding:
 .menu-tela li { margin: 0; }
 .menu-tela .botao.largo { text-align: left; justify-content: flex-start; }
 
+/* Termos de Uso e Aviso de Privacidade */
+.texto-juridico { font-size: .95rem; }
+.texto-juridico h3 { margin-top: 1em; }
+.texto-juridico ul { padding-left: 20px; }
+.texto-juridico li { margin: 6px 0; }
+
 /* Celular: nada passa da largura da tela (sem rolagem para o lado). */
 main, .menu, .aviso-versao { overflow-wrap: break-word; }
 .selo { white-space: normal; max-width: 100%; }
