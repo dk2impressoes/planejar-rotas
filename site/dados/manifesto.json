@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
-    "versao_conjunto":  "2026.11.23-b57e49695b8c",
-    "cache_app":  "app-v13.0.0-08a2b1bc49dc",
-    "gerado_em":  "2026-11-24T02:14:02Z",
+    "versao_conjunto":  "2026.11.24-f870b467875d",
+    "cache_app":  "app-v13.0.0-6395b5e0db05",
+    "gerado_em":  "2026-11-24T05:47:32Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -28,8 +28,8 @@
                      {
                          "caminho":  "dados/pedagios.json",
                          "tipo":  "dados",
-                         "tamanho":  466621,
-                         "sha256":  "9d319f9a13123a71f7c4f3b324cf38b1ac7dd5a824f12be7887f962ec850ca51",
+                         "tamanho":  834891,
+                         "sha256":  "229d30d33aea90bc6314d78c6956e5406384dba2304f92a96f06d21d7526012f",
                          "esquema":  "esquemas/pedagios.schema.json"
                      },
                      {
@@ -91,8 +91,14 @@
                      {
                          "caminho":  "estilos.css",
                          "tipo":  "app",
-                         "tamanho":  19703,
-                         "sha256":  "e26348957932e76c12b5bb81e88e6205e94210f96cd03249ba43ee9728a9a571"
+                         "tamanho":  21151,
+                         "sha256":  "c1ac514eb8343d61666a5c3e6080b55fcddc71963672ecda2a0f8b81d8ff3e07"
+                     },
+                     {
+                         "caminho":  "favicon.ico",
+                         "tipo":  "app",
+                         "tamanho":  7384,
+                         "sha256":  "c7295d8321dd666001b408c4ef8b2c9b924ae58a1623e9e4dd64487be7bc4fdc"
                      },
                      {
                          "caminho":  "icons/abertura-dk2.jpg",
@@ -103,38 +109,56 @@
                      {
                          "caminho":  "icons/apple-touch-icon-180.png",
                          "tipo":  "app",
-                         "tamanho":  82184,
-                         "sha256":  "cbb1a5658395d1e804736213b7dd13b7cb592db09301ad5523b0c020f9f0a2b1"
+                         "tamanho":  35770,
+                         "sha256":  "5f6b61bb1b3172afb89f0c7f547229cc45091e6e4f30fcf6620c2d9b7241c7ee"
+                     },
+                     {
+                         "caminho":  "icons/favicon-16.png",
+                         "tipo":  "app",
+                         "tamanho":  870,
+                         "sha256":  "84b170cc71f66108422aba6009cec4fc6176b76d383eb5bad59e78d5de3c4465"
+                     },
+                     {
+                         "caminho":  "icons/favicon-32.png",
+                         "tipo":  "app",
+                         "tamanho":  2268,
+                         "sha256":  "f65c822916b9e249e44a4e3521ec2296371a47d79f81cf50f11da51844c55235"
                      },
                      {
                          "caminho":  "icons/icon-192.png",
+                         "tipo":  "app",
+                         "tamanho":  40348,
+                         "sha256":  "2182d7082167f31c22bc4dea04cfaeeaf1026586042539ef9b3ae8dc1154dd93"
+                     },
+                     {
+                         "caminho":  "icons/icon-512.png",
+                         "tipo":  "app",
+                         "tamanho":  281427,
+                         "sha256":  "7e00e4336733723a9b91d59884cfd19da2638d6b70be29adeac8d246f117f216"
+                     },
+                     {
+                         "caminho":  "icons/icon-maskable-512.png",
+                         "tipo":  "app",
+                         "tamanho":  183523,
+                         "sha256":  "5df6aa84e9180aff178240d452d8144e057881f94c1981e095a3ca46003a5f8b"
+                     },
+                     {
+                         "caminho":  "icons/marca-dk2-192.png",
                          "tipo":  "app",
                          "tamanho":  93480,
                          "sha256":  "56a8252ea1a6450a19ed784ce0a8e8f7e91a310c88080944671a6943241a9d5d"
                      },
                      {
-                         "caminho":  "icons/icon-512.png",
-                         "tipo":  "app",
-                         "tamanho":  637189,
-                         "sha256":  "0b80dbd01204717b6e5f9e434229fb84bce3303285a1ca2d326f925566b64348"
-                     },
-                     {
-                         "caminho":  "icons/icon-maskable-512.png",
-                         "tipo":  "app",
-                         "tamanho":  398574,
-                         "sha256":  "1db56376a49ee482c6c736ccc809d62cd189e7f9c676a167edf0bf2a7df8e1c9"
-                     },
-                     {
                          "caminho":  "index.html",
                          "tipo":  "app",
-                         "tamanho":  2511,
-                         "sha256":  "5c0d51ec3da71079e0825c490d3d14495761695a23ad51e978d4b3d71501e661"
+                         "tamanho":  2696,
+                         "sha256":  "79e63b08effd2838d98b6a8f2558632f6f49346ccffeef4430e3b4485d8ef341"
                      },
                      {
                          "caminho":  "js/app.js",
                          "tipo":  "app",
-                         "tamanho":  37348,
-                         "sha256":  "efecc19fcf349fe3e06434c22a1474fd186e4728a0d2c08fc038bbcfcaacc463"
+                         "tamanho":  40172,
+                         "sha256":  "0d2fc7fc528405c6f4482b98aef4d6f8aae5ff2b75c86fd4ca9b06ae4bc3117b"
                      },
                      {
                          "caminho":  "js/armazenamento/db.js",
@@ -187,8 +211,8 @@
                      {
                          "caminho":  "js/dominio/pedagios.js",
                          "tipo":  "app",
-                         "tamanho":  11615,
-                         "sha256":  "845d359557b46fa998a175f9ce9f6c8539309c59b4c17a4c91f53d5221ebaae0"
+                         "tamanho":  11798,
+                         "sha256":  "19d59e3c50110e9ee23774e0f2f3901ea3867331bc6306f395352bd2bfbd558c"
                      },
                      {
                          "caminho":  "js/dominio/rodizio.js",
@@ -211,8 +235,8 @@
                      {
                          "caminho":  "js/dominio/viagem.js",
                          "tipo":  "app",
-                         "tamanho":  9441,
-                         "sha256":  "30d07ac874996295b1aa9b8833ee9d264a8383b2faca8e83c83ff327f466ab95"
+                         "tamanho":  9933,
+                         "sha256":  "68de5ad4fea929dfe4cf61b834575776486ce7a6bef9619823b0db8c17e96695"
                      },
                      {
                          "caminho":  "js/interface/comparacao.js",
@@ -229,8 +253,8 @@
                      {
                          "caminho":  "js/interface/dom.js",
                          "tipo":  "app",
-                         "tamanho":  13067,
-                         "sha256":  "009e3ea54f901bc99a0710ad5ae6f5dacdbc6a09f2bf939b3c8ce3a352b47737"
+                         "tamanho":  13598,
+                         "sha256":  "0a0b9c25cac8ab74088b5ebe111239bb885423640867a157c8e1aeaec6e47c8e"
                      },
                      {
                          "caminho":  "js/interface/explicacoes.js",
@@ -241,8 +265,8 @@
                      {
                          "caminho":  "js/interface/revisao.js",
                          "tipo":  "app",
-                         "tamanho":  43005,
-                         "sha256":  "59b4657f4f382aeb8ca3ad671d399ad2e194f496686aa392f16b992e46ea2d3d"
+                         "tamanho":  43112,
+                         "sha256":  "1ccdbd7bd63b34f0b9b76aff7d7dd675a41aff3ceb50aa84766a9a77878acc09"
                      },
                      {
                          "caminho":  "js/interface/telas.js",
@@ -265,8 +289,8 @@
                      {
                          "caminho":  "js/servicos/buscador.js",
                          "tipo":  "app",
-                         "tamanho":  5495,
-                         "sha256":  "4876a24be2564adb915bcde83aa081df0d30b4acff1a6152e6c120925fdee2cf"
+                         "tamanho":  6765,
+                         "sha256":  "33b564680802698128d591c1eabc8541a5b6b4f7708ffc0a46c8332978716350"
                      },
                      {
                          "caminho":  "js/servicos/esquema.js",
@@ -283,14 +307,14 @@
                      {
                          "caminho":  "js/servicos/roteador.js",
                          "tipo":  "app",
-                         "tamanho":  5169,
-                         "sha256":  "a3c4129db59069d2063c7519edbc85c9fa0fce0ceb4d42ad4acdda470991c401"
+                         "tamanho":  5523,
+                         "sha256":  "d4d72106f4cf1569d728b6f42ad5488a9d763a81f9a73c74ec99bc1be00a2272"
                      },
                      {
                          "caminho":  "manifest.webmanifest",
                          "tipo":  "app",
-                         "tamanho":  615,
-                         "sha256":  "3df6ed603e2e28ffa5ab804bb243d91d5f89b3f62c824969afee30ce4d56941c"
+                         "tamanho":  651,
+                         "sha256":  "c140434aa32bc79fde310bf63bb074abd356a160f7fb6beb344be1def6b936d7"
                      }
                  ]
 }

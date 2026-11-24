@@ -113,6 +113,16 @@ export function partidaUTC(v, sentido) {
   return localParaUTC(d.data, d.hora, fusoDe(lugar));
 }
 
+/** A viagem terminou: o dia da volta já passou (no fuso de onde a pessoa sai e para onde volta). */
+export function viagemConcluida(v, agora = new Date()) {
+  const fim = v?.datas?.volta?.data;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(fim || '')) return false;
+  let hoje;
+  try { hoje = new Intl.DateTimeFormat('en-CA', { timeZone: fusoDe(v.origem), year: 'numeric', month: '2-digit', day: '2-digit' }).format(agora); }
+  catch { hoje = agora.toISOString().slice(0, 10); }
+  return hoje > fim;
+}
+
 // Pontos da rota de um sentido: origem → paradas → destino (a volta não presume o caminho da ida).
 export function pontosDaRota(v, sentido) {
   const inicio = sentido === 'ida' ? v.origem : v.destino;

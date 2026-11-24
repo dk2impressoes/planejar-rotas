@@ -1,11 +1,13 @@
 // © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
-// Adaptador Roteador (Seção 9.1/9.2): OSRM (FOSSGIS) e Valhalla (FOSSGIS) como reserva. Sem chave.
+// Adaptador Roteador (Seção 9.1/9.2): OSRM (FOSSGIS); se falhar, Valhalla (FOSSGIS); se falhar,
+// o servidor público do projeto OSRM (com limite de uso: só é chamado quando os dois primeiros falham). Sem chave.
 import { consultarJSON, disjuntorAberto, ErroServico } from './http.js';
 import { distanciaM } from '../dominio/geo.js';
 
 export const SERVICOS_ROTA = {
   osrm: { nome: 'OSRM (FOSSGIS)', url: 'https://routing.openstreetmap.de/routed-car/route/v1/driving/' },
   valhalla: { nome: 'Valhalla (FOSSGIS)', url: 'https://valhalla1.openstreetmap.de/route' },
+  osrm_publico: { nome: 'OSRM (servidor público do projeto)', url: 'https://router.project-osrm.org/route/v1/driving/' },
 };
 
 const r5 = (n) => Math.round(n * 1e5) / 1e5;
@@ -34,12 +36,12 @@ function viaDe(nome, ref) {
   return [ref, nome].filter(Boolean).join('; ');
 }
 
-async function osrm(pontos, sinal) {
+async function osrm(pontos, sinal, id = 'osrm') {
   const coords = pontos.map((p) => `${p.lon},${p.lat}`).join(';');
   // Rotas alternativas só existem sem paradas intermediárias (limite do OSRM).
   const alt = pontos.length === 2 ? '3' : 'false';
-  const url = `${SERVICOS_ROTA.osrm.url}${coords}?overview=false&steps=true&geometries=geojson&alternatives=${alt}`;
-  const j = await consultarJSON('osrm', url, { sinal });
+  const url = `${SERVICOS_ROTA[id].url}${coords}?overview=false&steps=true&geometries=geojson&alternatives=${alt}`;
+  const j = await consultarJSON(id, url, { sinal });
   if (j.code !== 'Ok' || !j.routes?.length) throw new ErroServico('sem_rota', 'OSRM não encontrou rota.');
   return j.routes.slice(0, 3).map(legsOsrm);
 }
@@ -91,11 +93,12 @@ async function valhalla(pontos, sinal) {
 
 /**
  * Calcula a rota de um sentido. Resposta padronizada (Seção 9.1).
- * Tenta OSRM e depois Valhalla; a rota salva e a entrada manual são tratadas no núcleo (calculo.js).
+ * Tenta OSRM, depois Valhalla, depois o OSRM público; a rota salva e a entrada manual são tratadas no núcleo (calculo.js).
  */
 export async function calcularRota(pontos, { sinal } = {}) {
   const tentativas = [];
-  for (const [id, fn] of [['osrm', osrm], ['valhalla', valhalla]]) {
+  const servicos = [['osrm', osrm], ['valhalla', valhalla], ['osrm_publico', (p, s) => osrm(p, s, 'osrm_publico')]];
+  for (const [id, fn] of servicos) {
     if (disjuntorAberto(id)) { tentativas.push(`${SERVICOS_ROTA[id].nome}: pausado`); continue; }
     try {
       const opcoes = await fn(pontos, sinal);

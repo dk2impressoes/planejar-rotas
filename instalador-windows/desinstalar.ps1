@@ -1,6 +1,6 @@
 ﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 # Planejar Rotas — remove o app deste computador (atalhos, servidor e pasta do programa).
-# As viagens salvas ficam no navegador; para apagá-las, use antes "Menu > Salvar cópia, abrir cópia ou apagar tudo".
+# As viagens salvas ficam no navegador; para apagá-las, use antes "Menu > Salvar, Importar ou Restaurar".
 $pasta = $PSScriptRoot
 Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
   Where-Object { $_.CommandLine -like "*$pasta*servidor.ps1*" } |

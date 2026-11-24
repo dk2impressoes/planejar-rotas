@@ -137,7 +137,9 @@ class Pedagios(unittest.TestCase):
         um = next(p for p in pontos if "um" in p["id"])
         self.assertEqual(um["rodovia"], "BR-116")
         self.assertEqual(um["coordenadas"], {"lat": -23.4, "lon": -46.5})
-        self.assertEqual(um["sentido"], "crescente")  # a ANTT diz "Crescente": cobra só nesse sentido
+        # A ANTT diz "Crescente": cobra só nesse sentido. Sem graus, o app decide pela ordem das praças.
+        self.assertEqual(um["sentido_texto"], "crescente")
+        self.assertEqual(um["sentido"], "ambos")
         self.assertTrue(um["regras_acesso"])  # fica "possível" no app até a conferência do sentido
         self.assertEqual(next(p for p in pontos if "free" in p["id"])["tipo"], "free_flow")
 
@@ -211,7 +213,7 @@ class SemParar(unittest.TestCase):
     def test_antt_nao_duplica_praca(self):
         """Bug do robô em 24/11/2026: a mesma praça entrava duas vezes e o pedágio era somado em dobro."""
         sp = pontos_semparar(csv_semparar(), "u")
-        f = lambda i, rod, lat, lon, sentido: {"id": i, "rodovia": rod, "sentido": sentido,  # noqa: E731
+        f = lambda i, rod, lat, lon, sentido: {"id": i, "rodovia": rod, "sentido": "ambos", "sentido_texto": sentido, "nome": i,  # noqa: E731
                                               "coordenadas": {"lat": lat, "lon": lon}, "fonte": {"origem": "ANTT"}}
         antt = [
             f("antt-cres", "BR-116/SP", -22.9301, -45.3601, "crescente"),     # mesma praça do Sem Parar, rodovia escrita diferente
@@ -224,6 +226,14 @@ class SemParar(unittest.TestCase):
         self.assertNotIn("antt-cres", juntos); self.assertNotIn("antt-decr", juntos)
         self.assertEqual(juntos["semparar-F001"]["coordenadas"], {"lat": -22.9301, "lon": -45.3601})
         self.assertIn("antt-n1", juntos); self.assertIn("antt-n2", juntos); self.assertNotIn("antt-n3", juntos)
+
+    def test_antt_par_ambos_e_um_sentido_nao_cobra_em_dobro(self):
+        """EPR Paraná: 'Rolândia' (crescente/decrescente) e 'Rolândia - Decrescente' no mesmo lugar."""
+        f = lambda i, lat, sentido: {"id": i, "nome": i, "rodovia": "BR-369", "sentido": "ambos", "sentido_texto": sentido,  # noqa: E731
+                                     "coordenadas": {"lat": lat, "lon": -51.4}, "fonte": {"origem": "ANTT"}, "regras_acesso": []}
+        juntos = {p["id"]: p for p in juntar_antt([], [f("rol", -23.30, "ambos"), f("rol-decr", -23.303, "decrescente")])}
+        self.assertEqual(juntos["rol"]["sentido_texto"], "crescente")
+        self.assertEqual(juntos["rol-decr"]["sentido_texto"], "decrescente")
 
     def test_antt_sentido_e_nunca_conferida(self):
         from atualizar_pedagios import sentido_antt
@@ -310,6 +320,149 @@ class PesquisaSobPedido(unittest.TestCase):
         self.assertEqual([s.split(" (")[0] for s in sem], ["SP Agulha", "SP Só prevista"])
         self.assertEqual(len(velhas), 1)
         self.assertIn("2025-01-01", velhas[0])
+
+
+class OpenStreetMap(unittest.TestCase):
+    """Praças e tarifas do país inteiro vindas do OpenStreetMap."""
+
+    def F(self):
+        return __import__("fonte_osm")
+
+    def cabine(self, i, lat, lon, charge="7.10BRL/motorcar;3.55BRL/motorcycle", direcao=None, **extra):
+        t = {"barrier": "toll_booth", "charge": charge, "operator": "Concessionária X", "check_date": "2026-07-10", "note": "Praça X", **extra}
+        if direcao is not None:
+            t["direction"] = str(direcao)
+        return {"type": "node", "id": i, "lat": lat, "lon": lon, "tags": t, "timestamp": "2026-08-01T00:00:00Z"}
+
+    def test_tarifa_de_carro(self):
+        F = self.F()
+        self.assertEqual(F.tarifa_carro("4.20BRL/motorcar;0.00BRL/motorcycle;4.20BRL/hgv/axle"), 4.2)
+        self.assertIsNone(F.tarifa_carro("5.00BRL/hgv/axle"))
+        self.assertIsNone(F.tarifa_carro(""))
+
+    def test_rumo_e_o_oposto_da_direcao_da_cabine(self):
+        # A cabine "olha" para o trânsito: direction=310 quer dizer carro indo para 130°.
+        self.assertEqual(self.F().rumo({"direction": "310"}), 130)
+        self.assertEqual(self.F().rumo({"direction": "N"}), 180)
+        self.assertIsNone(self.F().rumo({}))
+
+    def test_ref_da_rodovia(self):
+        F = self.F()
+        self.assertEqual(F.ref_rodovia("BR-40;MG-030"), "BR-040")
+        self.assertEqual(F.ref_rodovia("RSC-287"), "RSC-287")
+        self.assertIsNone(F.ref_rodovia("Rua A"))
+
+    def test_cabines_dos_dois_lados_viram_uma_praca_ambos(self):
+        F = self.F()
+        dados = {"elements": [self.cabine(1, -10.0, -40.0, direcao=0), self.cabine(2, -10.0004, -40.0, direcao=180)]}
+        g = F.agrupar(F.cabines(dados, {}))
+        self.assertEqual(len(g), 1)
+        self.assertEqual(g[0]["sentido"], "ambos")
+        self.assertEqual(g[0]["valor"], 7.1)
+
+    def test_cabines_de_um_lado_so_cobram_nesse_rumo(self):
+        F = self.F()
+        g = F.agrupar(F.cabines({"elements": [self.cabine(1, -10.0, -40.0, direcao=90), self.cabine(2, -10.0002, -40.0, direcao=80)]}, {}))
+        self.assertEqual(len(g), 1)
+        self.assertAlmostEqual(g[0]["sentido"], 265, delta=1)
+
+    def test_taxa_de_turismo_e_estacionamento_ficam_fora(self):
+        F = self.F()
+        dados = {"elements": [self.cabine(1, -27.1, -48.5, operator="TPA Bombinhas"), self.cabine(2, -23.0, -46.0)]}
+        vias = {2: {"rodovia": None, "estrada": False}}  # cabine 2 numa via de serviço
+        self.assertEqual(F.cabines(dados, vias), [])
+
+    def test_mesma_praca_da_base_so_empresta_a_tarifa(self):
+        F = self.F()
+        base = [{"id": "semparar-1", "coordenadas": {"lat": -10.0, "lon": -40.0}, "tolerancia_m": 150}]
+        perto = F.agrupar(F.cabines({"elements": [self.cabine(1, -10.005, -40.0)]}, {}))  # ~550 m
+        outro_lado = F.agrupar(F.cabines({"elements": [self.cabine(2, -10.018, -40.0, charge="9.00BRL/motorcar")]}, {}))  # ~2 km
+        longe = F.agrupar(F.cabines({"elements": [self.cabine(3, -11.0, -41.0)]}, {}))
+        novos, tarifas, _ = F.juntar(base, perto + outro_lado + longe, None, "2026-11-24")
+        self.assertEqual(tarifas["semparar-1"][0]["categorias"]["automovel"], 7.1)
+        self.assertEqual([n["id"] for n in novos], ["osm-n3"])  # o de 2 km não entra de novo (seria cobrança em dobro)
+        self.assertEqual(tarifas["osm-n3"][0]["tipo_fonte"], "comunidade")
+        self.assertEqual(tarifas["osm-n3"][0]["inicio"], "2026-07-10")
+
+    def test_comunidade_nao_substitui_valor_recente_de_fonte_melhor(self):
+        F = self.F()
+        osm = {"a": [{"inicio": "2026-07-10"}], "b": [{"inicio": "2026-07-10"}]}
+        oficial = {"a": [{"estado": "confirmada", "inicio": "2026-07-01"}], "b": [{"estado": "confirmada", "inicio": "2024-07-01"}]}
+        self.assertEqual(list(F.filtrar_comunidade(osm, [oficial], "2026-11-24")), ["b"])
+
+    def test_praca_da_base_no_lugar_errado_vai_para_a_cabine_do_mapa(self):
+        """Limeira: a base punha a praça da Anhanguera (SP-330) colada à da Bandeirantes (SP-348)."""
+        F = self.F()
+        base = [{"id": "anh", "rodovia": "SP-330", "concessionaria": "AutoBAn", "tolerancia_m": 150, "coordenadas": {"lat": -22.555748, "lon": -47.460231}},
+                {"id": "ban", "rodovia": "SP-348", "concessionaria": "AutoBAn", "tolerancia_m": 150, "coordenadas": {"lat": -22.555836, "lon": -47.460534}}]
+        c1 = self.cabine(1, -22.555836, -47.460534, charge="9.70BRL/motorcar", operator="CCR AutoBAn")
+        c2 = self.cabine(2, -22.50996, -47.397358, charge="9.70BRL/motorcar", operator="CCR AutoBAn")
+        vias = {1: {"rodovia": "SP-348", "estrada": True}, 2: {"rodovia": "SP-330", "estrada": True}}
+        novos, tarifas, coords = F.juntar(base, F.agrupar(F.cabines({"elements": [c1, c2]}, vias)), None, "2026-11-24")
+        self.assertEqual(novos, [])  # nenhuma praça nova: as duas já existiam
+        self.assertEqual(coords["anh"], {"lat": -22.50996, "lon": -47.397358})
+
+    def test_cabine_repetida_no_mapa_fica_so_a_mais_nova(self):
+        F = self.F()
+        velha = self.cabine(1, -21.7, -48.2, charge="0.00BRL/motorcar", direcao=140, check_date="2025-09-19")
+        nova = self.cabine(2, -21.70004, -48.2, charge="4.00BRL/motorcar", direcao=137, check_date="2026-08-13")
+        g = F.agrupar(F.cabines({"elements": [velha, nova]}, {}))
+        self.assertEqual([x["valor"] for x in g], [4.0])
+
+    def test_cabines_auxiliares_iguais_contam_uma_vez(self):
+        ap = __import__("atualizar_pedagios")
+        vig = [{"inicio": "2026-03-06", "estado": "confirmada", "nivel_verificacao": "secundaria", "categorias": {"automovel": 12.8}}]
+        p = lambda i, lat: {"id": i, "rodovia": "BR-369", "concessionaria": "EPR", "sentido": "ambos", "sentido_texto": "ambos",  # noqa: E731
+                            "coordenadas": {"lat": lat, "lon": -49.98}}
+        corpo = ap.montar([p("aux1", -23.1500), p("aux2", -23.1502)], [], {"aux1": vig, "aux2": vig})
+        self.assertEqual([x["id"] for x in corpo["pontos"]], ["aux1"])
+
+    def test_municipio_pela_malha(self):
+        F = self.F()
+        malha = {"features": [{"properties": {"codarea": "3550308"}, "geometry": {"type": "Polygon", "coordinates": [[[-47, -24], [-46, -24], [-46, -23], [-47, -23], [-47, -24]]]}}]}
+        nomes = [{"id": 3550308, "nome": "São Paulo", "microrregiao": {"mesorregiao": {"UF": {"sigla": "SP"}}}}]
+        m = F.Municipios(malha, nomes)
+        self.assertEqual(m.onde(-23.5, -46.6), ("São Paulo", "SP"))
+        self.assertEqual(m.onde(-10, -40), (None, None))
+
+
+class Validacao(unittest.TestCase):
+    """Dados externos não são garantidos: o robô filtra o que não faz sentido antes de publicar."""
+
+    def vig(self, x, inicio="2026-07-01"):
+        return [{"inicio": inicio, "estado": "confirmada", "nivel_verificacao": "secundaria", "categorias": {"automovel": x}}]
+
+    def test_filtra_fora_da_faixa_futuro_e_fora_da_curva(self):
+        ap = __import__("atualizar_pedagios")
+        pontos = [{"id": i, "concessionaria": "EPR", "rodovia": "BR-1"} for i in "abcdef"]
+        comunidade = {"a": self.vig(10), "b": self.vig(11), "c": self.vig(9.5), "d": self.vig(95),
+                      "e": self.vig(150), "f": self.vig(10, "2027-06-01")}
+        oficial = {"d": self.vig(96)}
+        fontes, msgs = ap.filtrar_inconsistencias([("oficial", oficial), ("comunidade", comunidade)], pontos, "2026-11-24")
+        com = dict(fontes)["comunidade"]
+        self.assertEqual(com["a"], self.vig(10))
+        self.assertEqual(com["d"], [])  # 95 é quase 10x a mediana: sai da comunidade
+        self.assertEqual(com["e"], [])  # fora da faixa
+        self.assertEqual(com["f"], [])  # começa no futuro distante
+        self.assertEqual(dict(fontes)["oficial"]["d"], self.vig(96))  # oficial fica, com aviso
+        self.assertTrue(any("Conferir" in m for m in msgs))
+
+    def test_conflito_entre_fontes_recentes(self):
+        ap = __import__("atualizar_pedagios")
+        p = {"id": "x", "nome": "X", "rodovia": "BR-1", "vigencias": [{"estado": "confirmada", "inicio": "2026-07-01", "tipo_fonte": "comunidade", "categorias": {"automovel": 10}}],
+             "alternativas": [{"valor": 14, "inicio": "2026-08-01", "fonte": "pesquisa enviada"}]}
+        self.assertEqual(len(ap.conflitos_recentes([p], "2026-11-24")), 1)
+
+    def test_fecha_aviso_resolvido_so_com_coleta_completa(self):
+        av = __import__("abrir_avisos")
+        abertas = [{"number": 3, "title": "Cobertura de tarifas abaixo de 80% na BR-116", "labels": [{"name": "dados"}]},
+                   {"number": 9, "title": "Tabela da ARTESP ainda é de 01/07/2025", "labels": [{"name": "dados"}]},
+                   {"number": 12, "title": "Outra coisa", "labels": [{"name": "bug"}]}]
+        self.assertEqual([i["number"] for i in av.para_fechar(abertas, {"Tabela da ARTESP ainda é de 01/07/2025"})], [3])
+        estado = {c: {"ultima_execucao": "2026-11-25T09:20:00Z"} for c in av.COLETORES}
+        self.assertTrue(av.coleta_completa_hoje(estado, "2026-11-25"))
+        estado["anp"]["ultima_execucao"] = "2026-11-24T09:20:00Z"
+        self.assertFalse(av.coleta_completa_hoje(estado, "2026-11-25"))
 
 
 class Rodizio(unittest.TestCase):

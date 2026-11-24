@@ -1,5 +1,5 @@
 {
-  "agente": "PlanejarRotas-coletor/13.0 (dados abertos; contato no repositório)",
+  "agente": "PlanejarRotas-coletor/13.0 (dados abertos; contato no repositorio)",
   "espera_s": 60,
   "tentativas": 3,
   "anp": {
@@ -42,6 +42,38 @@
     "distancia_km": 2.5,
     "minimo_linhas": 60,
     "reajuste_anual": "07-01"
+  },
+  "osm": {
+    "overpass": "https://overpass-api.de/api/interpreter",
+    "ibge_malha": "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?intrarregiao=municipio&qualidade=intermediaria&formato=application/vnd.geo%2Bjson",
+    "ibge_nomes": "https://servicodados.ibge.gov.br/api/v1/localidades/municipios",
+    "minimo_pracas": 300,
+    "credito": "© colaboradores do OpenStreetMap (ODbL 1.0)"
+  },
+  "fontes_planejadas": {
+    "_leia": "Fontes do Guia (em desenvolvimento). Ainda não são consultadas. Ver docs/fontes-de-dados.md.",
+    "cadastur_hospedagem": {
+      "url": "https://dados.turismo.gov.br/dataset/meios-de-hospedagem/resource/fed6a353-bcb4-469a-a354-b246d0f52249",
+      "licenca": "ODbL", "frequencia": "trimestral", "uso": "selo Cadastrado no Cadastur no Guia Hospedagem"
+    },
+    "overture_places": {
+      "url": "https://docs.overturemaps.org/guides/places/",
+      "licenca": "CDLA-Permissive-2.0 / ODbL conforme o tema", "frequencia": "mensal (cada versão fica no ar no máximo 60 dias)",
+      "uso": "Guias Hospedagem, Turísticos e Compras; só lugares em funcionamento e com confiança alta"
+    },
+    "wikipedia_geosearch": {
+      "url": "https://pt.wikipedia.org/w/api.php?action=query&list=geosearch",
+      "licenca": "CC BY-SA", "frequencia": "sob demanda", "limite": "raio de 10 a 10000 m",
+      "uso": "Guia Turísticos, primeira opção até 10 km"
+    },
+    "wikidata": {
+      "url": "https://query.wikidata.org/sparql",
+      "licenca": "CC0", "frequencia": "sob demanda", "uso": "Guia Turísticos, acima de 10 km ou quando a Wikipedia não achar nada"
+    }
+  },
+  "validacao_pedagios": {
+    "valor_min": 0, "valor_max": 100, "dias_no_futuro_max": 60,
+    "fator_fora_da_curva": 3, "fator_descartar": 5,"minimo_pracas_para_comparar": 3, "diferenca_entre_fontes_pct": 25
   },
   "semparar": {
     "csv": "https://raw.githubusercontent.com/Sem-Parar/SEM-PARAR-PEDAGIOS/main/dados/pracas-de-pedagio.csv",

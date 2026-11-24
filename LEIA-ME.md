@@ -38,7 +38,9 @@ powershell -ExecutionPolicy Bypass -File scripts\gerar_manifesto.ps1
 | 10–13 | IndexedDB, 3 cópias de segurança, migração, exportação/importação com SHA-256 e esquema, CSP, `textContent`, cache versionado |
 | Do pacote v5 | Rotas alternativas (até 3, sem paradas no meio) com km, tempo e pedágios; sugestão de descanso a cada 2 h; orientação de cadeirinha pela idade na data da viagem; botões Google Maps e Waze (só coordenadas, com aviso); 318 praças do Sem Parar e 211 tarifas |
 
-Testes: 75 testes de unidade (navegador) e 29 testes dos coletores em Python.
+Testes: 89 testes de unidade (navegador) e 44 testes dos coletores em Python.
+
+**Base de pedágios (24/11/2026):** 544 pontos em todos os 17 estados que têm pedágio, 535 com tarifa de carro. Fontes por ordem de preferência: tabela oficial (ARTESP, ANTT em `dados-curados/tarifas-oficiais.json`) → pesquisa enviada → notícia → base anterior → OpenStreetMap; vale sempre a mais recente. Sem valor só os 9 pórticos da pista expressa da Dutra (Guarulhos), cuja tarifa depende do trecho e do horário.
 
 **Pedágios na prática:** como nenhuma fonte aberta confirma via, sentido e acesso, as praças aparecem como "possível pedágio", com valor e soma **à parte** do "total confirmado conhecido". Praças que cobram só no sentido oposto (pela ordem dos km ou pelo rumo do carro, nas praças norte/sul/leste/oeste) saem da soma. O valor de cada praça segue a cadeia de fontes oficial → pesquisa → notícia → base anterior (vale a mais recente); veja [docs/tarifas-pesquisa.md](docs/tarifas-pesquisa.md).
 
@@ -58,7 +60,7 @@ O workflow `atualizar-dados.yml` roda todo dia: coleta, valida, grava, gera o ma
 | :-- | :-- | :-- | :-- |
 | `atualizar_feriados.py` | Regras em `dados-curados/feriados.json` (datas fixas + Páscoa calculada) | Sim | Incluir feriados de outras cidades, se necessário |
 | `atualizar_anp.py` | Página "últimas semanas pesquisadas" da ANP → resumo semanal (estados) + planilha de postos (médias por cidade) | Sim | Ajustar `config_coleta.json` se a ANP mudar o nome do arquivo; aceitar variação grande já conferida (rodar o workflow com `aceitar_variacao = 1`) |
-| `atualizar_pedagios.py` | Base aberta do Sem Parar (CC BY 4.0, base principal) + ANTT (coordenadas oficiais das federais) + `dados-curados/pedagios-manuais.json` + `dados-curados/tarifas.json` + tabela oficial da ARTESP (API de arquivos) + `pesquisa-pedagios.json` + `tarifas-imprensa.json` | Localização e tarifas de SP | **Pesquisa sob pedido** (sem API paga): o robô abre o aviso "Pedir pesquisa de tarifas" com as praças sem valor ou com valor de mais de um ano; importar a planilha com `importar_pesquisa_pedagios.py`. Nenhuma praça é "confirmada" até o mantenedor conferir coordenada, sentido e acessos |
+| `atualizar_pedagios.py` | Base aberta do Sem Parar (CC BY 4.0, base principal) + ANTT (coordenadas oficiais das federais) + **OpenStreetMap** (ODbL; praças e tarifas de todos os estados, em `scripts/fonte_osm.py`, com município e UF pela malha do IBGE; a tarifa da comunidade só vale onde não há valor oficial, de pesquisa ou de notícia com menos de um ano) + `dados-curados/pedagios-manuais.json` + `dados-curados/tarifas.json` + tabela oficial da ARTESP (API de arquivos) + `pesquisa-pedagios.json` + `tarifas-imprensa.json` | Localização e tarifas de SP | **Pesquisa sob pedido** (sem API paga): o robô abre o aviso "Pedir pesquisa de tarifas" com as praças sem valor ou com valor de mais de um ano; importar a planilha com `importar_pesquisa_pedagios.py`. Nenhuma praça é "confirmada" até o mantenedor conferir coordenada, sentido e acessos |
 | `verificar_rodizio.py` | `dados-curados/rodizio-suspensoes.json` | Não há base aberta | Incluir as suspensões anunciadas pela CET; recebe aviso nos períodos sensíveis, para regras perto de `revisar_ate` e para bases vencidas |
 
 Testes dos coletores, sem rede: `python -m unittest discover -s testes/coletores -v` (exige `pip install -r scripts/requirements.txt`).

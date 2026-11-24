@@ -18,9 +18,9 @@ import { urlGoogleMaps, urlWaze, linkOficial } from '../../site/js/interface/rev
 import { interpretarData, interpretarHora, mascararData, mascararHora } from '../../site/js/interface/datas.js';
 import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/js/interface/dom.js';
 import { seletorLugar } from '../../site/js/interface/telas.js';
-import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA } from '../../site/js/dominio/viagem.js';
+import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
-import { dePhoton, ufPorNome } from '../../site/js/servicos/buscador.js';
+import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
 import { custosDaViagem, gruposParaComparar, custosDoAno, anosComViagem, chaveDestino } from '../../site/js/dominio/comparacao.js';
 
 export const testes = [];
@@ -165,6 +165,14 @@ const descendo = (lon = -46.50, t0 = Date.parse('2027-03-15T12:00:00Z'), via = '
   { c: [lon, -23.78], t: t0, via }, { c: [lon, -23.80], t: t0 + 60000, via }, { c: [lon, -23.82], t: t0 + 120000, via }];
 const subindo = (t0) => descendo(-46.50, t0).reverse().map((a, i) => ({ ...a, t: t0 + i * 60000 }));
 const ped = (amostras, pontos, veiculo = veic()) => identificarPedagios({ amostras, base: { pontos, cobertura_completa: true }, parametros: { distancia_m: 150, angulo_graus: 45 }, veiculo });
+teste('Pedágio: sentido em texto (crescente, da ANTT) não some do cálculo', () => {
+  const r = ped(descendo(), [ponto({ sentido: 'crescente', sentido_texto: 'crescente', coordenadas_verificadas: false })]);
+  igual(r.possiveis.length + r.confirmadas.length, 1, 'praça encontrada');
+});
+teste('Pedágio: sentido em graus só conta no rumo certo', () => {
+  igual(ped(subindo(Date.parse('2027-03-15T12:00:00Z')), [ponto()]).confirmadas.length, 0);
+  igual(ped(descendo(), [ponto()]).confirmadas.length, 1);
+});
 teste('Pedágio: via e sentido conferidos = confirmada', () => {
   const r = ped(descendo(), [ponto()]);
   igual(r.confirmadas.length, 1); igual(r.totalConfirmado, 10); igual(r.rotulo, 'Total confirmado conhecido');
@@ -530,6 +538,25 @@ teste('Texto seguro: null, undefined e NaN viram vazio', () => {
   const p = anexar(document.createElement('p'), 'a', null, undefined, NaN, el('b', {}, 'b'));
   igual(p.textContent, 'ab');
   igual(escrever(document.createElement('p'), null).textContent, '');
+});
+teste('Busca de endereço: Nominatim fora do ar → usa o Photon', async () => {
+  const original = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (String(url).includes('nominatim')) return new Response('erro', { status: 503 });
+    return new Response(JSON.stringify({ features: [{ geometry: { coordinates: [-47.06, -22.9] }, properties: { name: 'Campinas', osm_value: 'city', state: 'São Paulo', countrycode: 'BR' } }] }), { status: 200 });
+  };
+  try {
+    const r = await buscar('Campinas');
+    igual(r.length, 1); igual(r[0].uf, 'SP'); igual(r[0].servico, 'Photon');
+  } finally { globalThis.fetch = original; }
+});
+teste('Viagem concluída: só depois que o dia da volta passa', () => {
+  const v = novaViagem();
+  igual(viagemConcluida(v), false, 'sem data');
+  v.datas.volta.data = '2026-11-20';
+  v.origem = { uf: 'SP' };
+  igual(viagemConcluida(v, new Date('2026-11-20T23:00:00-03:00')), false, 'no dia da volta');
+  igual(viagemConcluida(v, new Date('2026-11-21T00:30:00-03:00')), true, 'dia seguinte');
 });
 teste('Tela de lugares vazia (origem e destino) não escreve "null"', () => {
   const ctx = { lugaresUsados: () => [] };

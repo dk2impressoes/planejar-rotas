@@ -22,7 +22,7 @@ sozinho a versão nova e os preços, pedágios e regras mais recentes.
 
 SUAS VIAGENS
 Ficam guardadas no navegador deste computador (não vão para a internet).
-Para levar para outro aparelho: Menu > Salvar cópia, abrir cópia ou apagar tudo.
+Para levar para outro aparelho: Menu > Salvar, Importar ou Restaurar.
 
 REMOVER
 Dê dois cliques em "Desinstalar.cmd", na pasta %LOCALAPPDATA%\PlanejarRotas.

@@ -3,35 +3,28 @@
   "pontos": [
     {
       "id": "manual-imigrantes-free-flow",
-      "tipo": "free_flow",
-      "nome": "Free flow do Sistema Anchieta-Imigrantes (Imigrantes)",
-      "rodovia": "SP-160",
-      "km": 32.381,
-      "concessionaria": "Ecovias dos Imigrantes",
-      "coordenadas": { "lat": -23.820826, "lon": -46.582601 },
-      "coordenadas_verificadas": false,
-      "tolerancia_m": 400,
-      "sentido": "ambos",
-      "sentido_texto": "ambos",
-      "regras_acesso": ["Pórtico previsto no lugar da praça Piratininga; local exato a confirmar."],
-      "canal_pagamento": null,
-      "fonte": { "origem": "Anúncio da concessionária citado na Especificação V13, Seção 5.4", "coletado_em": "2026-11-22" }
+      "remover": true,
+      "_motivo": "Pórticos instalados, mas a cobrança foi adiada (base aberta de Free Flow do Sem Parar, status instalado_aguardando, 24/11/2026); a praça física segue cobrando. Volte a incluir quando a cobrança começar."
     },
     {
       "id": "manual-anchieta-free-flow",
-      "tipo": "free_flow",
-      "nome": "Free flow do Sistema Anchieta-Imigrantes (Anchieta)",
-      "rodovia": "SP-150",
-      "km": 31.106,
-      "concessionaria": "Ecovias dos Imigrantes",
-      "coordenadas": { "lat": -23.789267, "lon": -46.519501 },
-      "coordenadas_verificadas": false,
-      "tolerancia_m": 400,
-      "sentido": "ambos",
-      "sentido_texto": "ambos",
-      "regras_acesso": ["Pórtico previsto no lugar da praça Riacho Grande; local exato a confirmar."],
-      "canal_pagamento": null,
-      "fonte": { "origem": "Anúncio da concessionária citado na Especificação V13, Seção 5.4", "coletado_em": "2026-11-22" }
+      "remover": true,
+      "_motivo": "Pórticos instalados, mas a cobrança foi adiada (base aberta de Free Flow do Sem Parar, status instalado_aguardando, 24/11/2026); a praça física segue cobrando. Volte a incluir quando a cobrança começar."
+    },
+    {
+      "id": "antt-via-campo-pe01-floresta-free-flow-crescente",
+      "remover": true,
+      "_motivo": "Cadastrado pela ANTT, mas a cobrança foi adiada (sem tarifa na tabela da Via Campo em 24/11/2026)."
+    },
+    {
+      "id": "antt-via-campo-pe02-floresta-free-flow-decrescente",
+      "remover": true,
+      "_motivo": "Cadastrado pela ANTT, mas a cobrança foi adiada (sem tarifa na tabela da Via Campo em 24/11/2026)."
+    },
+    {
+      "id": "antt-epr-parana-validador-7012-rolandia-crescente-decrescente",
+      "remover": true,
+      "_motivo": "Validador da EPR Paraná: registra a passagem para o desconto, não cobra tarifa (a tabela da ANTT só tem P5 a P8)."
     }
   ]
 }

@@ -1,8 +1,7 @@
 ﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist
 # Gera a abertura e os ícones do app a partir da logo do Grupo DK² (marca/logo-grupo-dk2.jpg).
 #   site/icons/abertura-dk2.jpg      logo inteira com o lema (tela de abertura e "Sobre")
-#   site/icons/icon-512.png, icon-192.png, apple-touch-icon-180.png   medalhão
-#   site/icons/icon-maskable-512.png medalhão com margem de segurança (Android recorta em círculo)
+#   site/icons/marca-dk2-192.png     medalhão (rodapé da assinatura)
 param([string]$Logo = (Join-Path $PSScriptRoot '..\marca\logo-grupo-dk2.jpg'))
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
@@ -34,8 +33,6 @@ $medalhao = New-Object System.Drawing.Rectangle ([int](377 * $k)), ([int](13 * $
 $inteira = New-Object System.Drawing.Rectangle ([int](368 * $k)), ([int](8 * $k)), ([int](640 * $k)), ([int](716 * $k))
 
 Salvar-Recorte $inteira 480 537 'abertura-dk2.jpg' -formato 'jpg'
-Salvar-Recorte $medalhao 512 512 'icon-512.png'
-Salvar-Recorte $medalhao 192 192 'icon-192.png'
-Salvar-Recorte $medalhao 180 180 'apple-touch-icon-180.png'
-Salvar-Recorte $medalhao 512 512 'icon-maskable-512.png' -escala 0.78
+Salvar-Recorte $medalhao 192 192 'marca-dk2-192.png'
+# Os ícones do app (icon-*.png, favicon) vêm de scripts/gerar_icones.ps1.
 $src.Dispose()

@@ -1,6 +1,6 @@
 // © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Controlador do app: primeira abertura, assistente, rotas, preparação e menu.
-import { el, botao, limpar, anunciar, selo, campo, recolhido } from './interface/dom.js';
+import { el, botao, limpar, rotularTabelas, escrever, anunciar, selo, campo, recolhido } from './interface/dom.js';
 import { isoParaBr } from './interface/datas.js';
 import { tela1, tela2, telaCarro, telaParadas, tela5 } from './interface/telas.js';
 import { tela6, AVISO_CURTO } from './interface/revisao.js';
@@ -10,7 +10,7 @@ import { exportar, conferirImportacao, AVISO_EXPORTACAO } from './armazenamento/
 import { atualizarBases, carregarBases } from './servicos/bases.js';
 import { calcularRota } from './servicos/roteador.js';
 import { configurarLimites, online } from './servicos/http.js';
-import { novaViagem, validarTela, registrarAlteracao, chaveRota, pontosDaRota, novoId } from './dominio/viagem.js';
+import { novaViagem, validarTela, registrarAlteracao, chaveRota, pontosDaRota, novoId, viagemConcluida } from './dominio/viagem.js';
 import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
@@ -207,7 +207,7 @@ function vistaTermos() {
       el('li', {}, '🧭 Horários, custos, pedágios e avisos são estimativas. Confira as regras e as condições da estrada antes de sair.')),
     recolhido('r-termos-completo', `Ler o texto completo (versão ${VERSAO_TERMOS}, de ${DATA_TERMOS})`,
       el('p', {}, 'TEXTO PROVISÓRIO — o texto integral está no documento jurídico do Grupo DK² e deve substituir este resumo antes da publicação.'),
-      el('p', {}, 'O app é gratuito, sem anúncios e sem venda de dados. Os dados da viagem ficam neste aparelho. Para calcular rotas e buscar endereços, as coordenadas e os textos de endereço consultados são enviados a serviços públicos de mapa (OSRM e Valhalla da FOSSGIS, Photon e Nominatim), que podem ver o seu IP. Nomes, placa, checklists e documentos nunca são enviados. Os botões "Abrir no Google Maps" e "Abrir no Waze" só enviam as coordenadas do caminho a essas empresas quando você toca neles.'),
+      el('p', {}, 'O app é gratuito, sem anúncios e sem venda de dados. Os dados da viagem ficam neste aparelho. Para calcular rotas e buscar endereços, as coordenadas e os textos de endereço consultados são enviados a serviços públicos de mapa (OSRM e Valhalla da FOSSGIS; se falharem, o servidor público do projeto OSRM; Photon e Nominatim), que podem ver o seu IP. Nomes, placa, checklists e documentos nunca são enviados. Os botões "Abrir no Google Maps" e "Abrir no Waze" só enviam as coordenadas do caminho a essas empresas quando você toca neles.'),
       el('p', {}, 'Os resultados são estimativas para planejamento. O aceite não exige renúncia a direitos previstos em lei.')),
     campo({ id: 'aceite', tipo: 'checkbox', rotulo: 'Li e aceito os Termos de Uso e o Aviso de Privacidade', valor: false, aoMudar: (x) => { marcado = x; continuar.disabled = !x; } }),
     continuar);
@@ -248,10 +248,10 @@ async function vistaInicio() {
   return el('div', {},
     ...cabecalho(viagens.length ? 'Minhas viagens' : 'Vamos planejar sua viagem de carro'),
     estado.mensagem ? el('p', { class: 'aviso', role: 'status' }, estado.mensagem) : null,
-    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. No Menu, use "Salvar cópia": se o navegador for limpo, as viagens podem ser apagadas.') : null,
+    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. No Menu, use "Salvar, Importar ou Restaurar": se o navegador for limpo, as viagens podem ser apagadas.') : null,
     viagens.length ? null : el('p', { class: 'intro' }, 'São 6 passos curtos: quando, para onde, carro, paradas, pessoas e o resumo com horários, combustível, pedágios e o que levar. Tudo fica salvo enquanto você preenche.'),
     nova,
-    viagens.length >= 2 ? botao('💰 Comparar viagens e custos do ano', () => { estado.vista = 'comparar'; render({ trocaDeTela: true }); }, { classe: 'secundario largo' }) : null,
+    viagens.length >= 2 ? botao('💰 Histórico Gastos de Viagens',() => { estado.vista = 'comparar'; render({ trocaDeTela: true }); }, { classe: 'secundario largo' }) : null,
     viagens.length ? el('ul', { class: 'lista-cartoes' }, ...viagens.map((v) => {
       const p = v.preparacao || {};
       const velha = p.preparado_em && Date.now() - Date.parse(p.preparado_em) > 7 * 86400000;
@@ -276,7 +276,7 @@ async function vistaInicio() {
 async function vistaComparar() {
   const viagens = await listar('viagens');
   return el('div', {},
-    ...cabecalho('Comparar viagens e custos do ano', 'Valores estimados com os mesmos cálculos do resumo de cada viagem.'),
+    ...cabecalho('Histórico Gastos de Viagens', 'Valores estimados com os mesmos cálculos do resumo de cada viagem.'),
     vistaComparacao({
       viagens, bases: estado.bases, render: () => render(),
       abrirViagem: async (id) => { const v = viagens.find((x) => x.id === id); if (!v) return; estado.viagem = v; await meta('viagemAtual', v.id); abrirAssistente(v.tela || 6); },
@@ -379,7 +379,7 @@ function vistaDados() {
     render();
   });
   return el('div', { class: 'estreito' },
-    ...cabecalho('Exportar e importar'),
+    ...cabecalho('Salvar, Importar ou Restaurar'),
     el('p', {}, AVISO_EXPORTACAO, ' O arquivo não é criptografado.'),
     botao('Exportar todas as viagens', async () => baixarExportacao(await listar('viagens'))),
     el('h2', {}, 'Importar'),
@@ -421,7 +421,7 @@ async function vistaBaixar() {
   const link = (arq, nome, texto, classe = 'botao largo') => el('a', { class: classe, href: base + arq, download: noSite ? nome : null, rel: 'noopener' }, texto);
   const instalado = matchMedia('(display-mode: standalone)').matches;
   return el('div', { class: 'estreito' },
-    ...cabecalho('Baixar e instalar o app', 'Escolha o seu aparelho. Tudo gratuito.'),
+    ...cabecalho('Instalar aplicativo', 'Escolha o seu aparelho. Tudo gratuito.'),
     online() ? null : el('p', { class: 'aviso' }, '⚠ Sem internet agora: para baixar, conecte-se e volte aqui.'),
     instalado ? el('p', { class: 'destaque-mini' }, '✔ Este app já está instalado neste aparelho.') : null,
     el('section', { class: 'cartao baixar' },
@@ -453,13 +453,17 @@ function vistaSobre() {
     el('p', {}, AVISO_CURTO),
     el('p', {}, 'Cláusula de responsabilidade e Termos de Uso: texto definido no documento jurídico (pendente de inclusão nesta versão).'),
     el('p', {}, 'Gratuito, sem anúncios, sem venda de dados e sem login. Nenhum dado pessoal é enviado a servidores do Grupo DK².'),
-    el('h2', {}, 'Créditos'),
+    el('h2', {}, 'Dados de fontes externas'),
+    el('p', { class: 'aviso' }, 'Preços, tarifas de pedágio, rotas, endereços e regras vêm de fontes externas. O app confere e filtra o que parece errado, mas não garante esses dados e valores: confira na fonte oficial antes de sair.'),
+    el('p', {}, 'Quando uma fonte não responde ou não encontra o que foi pedido, o app tenta a próxima da lista. As fontes com limite de uso só são consultadas quando as outras falham.'),
+    el('h2', {}, 'Créditos e fontes'),
     el('ul', {},
       el('li', {}, 'Dados de mapa © colaboradores do OpenStreetMap (licença ODbL).'),
-      el('li', {}, 'Rotas: OSRM e Valhalla, servidores públicos da FOSSGIS.'),
-      el('li', {}, 'Busca de endereços: Photon (komoot) e Nominatim (OpenStreetMap).'),
-      el('li', {}, 'Praças de pedágio: base aberta do Sem Parar (CC BY 4.0) e ANTT (dados abertos). Tarifas: tabelas da ANTT, da ARTESP e das concessionárias.'),
-      el('li', {}, 'Preços: ANP. Rodízio: Prefeitura de São Paulo/CET.')),
+      el('li', {}, 'Rotas: OSRM e Valhalla, servidores públicos da FOSSGIS; reserva: servidor público do projeto OSRM.'),
+      el('li', {}, 'Busca de endereços: Photon (komoot) e Nominatim (OpenStreetMap), um como reserva do outro.'),
+      el('li', {}, 'Praças de pedágio: base aberta do Sem Parar (CC BY 4.0), ANTT (dados abertos) e OpenStreetMap (ODbL), que cobre todos os estados. Tarifas: tabelas da ANTT, da ARTESP e das concessionárias; onde não há tabela recente, a tarifa conferida pelos colaboradores do OpenStreetMap.'),
+      el('li', {}, 'Preços: ANP. Rodízio: Prefeitura de São Paulo/CET.'),
+      el('li', {}, 'Guia (em desenvolvimento): Cadastur, do Ministério do Turismo (hospedagens cadastradas, ODbL); Overture Maps Places (lugares e comércios); Wikipedia e Wikidata (pontos turísticos).')),
     el('h2', {}, 'Privacidade'),
     el('p', {}, 'Coordenadas e textos de endereço vão aos serviços de rota e busca, que podem ver o IP. Nomes, checklists, documentos e final da placa ficam só neste aparelho. Os botões do Google Maps e do Waze enviam as coordenadas do caminho a essas empresas apenas quando tocados.'),
     el('h2', {}, 'Autoria'),
@@ -523,33 +527,66 @@ function render({ foco, trocaDeTela } = {}) {
       case 'sobre': conteudo = vistaSobre(); break;
       case 'comparar': conteudo = await vistaComparar(); break;
       case 'baixar': conteudo = await vistaBaixar(); break;
+      case 'menu': conteudo = vistaMenu(); break;
+      case 'guia': conteudo = vistaGuia(); break;
       default: conteudo = el('p', {}, 'Carregando…');
     }
     limpar(m).append(conteudo);
+    rotularTabelas(m);
     if (trocaDeTela) document.getElementById('titulo-vista')?.focus();
     else if (ativo && document.getElementById(ativo)) document.getElementById(ativo).focus();
   }).catch((e) => { principal().replaceChildren(el('p', { class: 'erro' }, `Erro ao exibir a tela: ${e.message}`)); });
   return renderizando;
 }
 
+// Itens do Menu, na ordem em que aparecem (no menu do topo e na tela "Menu").
+// A ação retorna true quando ela mesma já mostrou a tela.
+const ITENS_MENU = [
+  ['Viagem atual', () => { if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return true; } estado.vista = 'inicio'; }],
+  ['Minhas viagens', () => { estado.vista = 'inicio'; estado.mensagem = ''; }],
+  ['Preparar para viagem', () => { if (!estado.viagem) { estado.vista = 'inicio'; estado.mensagem = 'Abra uma viagem primeiro.'; return; } estado.vista = 'preparacao'; setTimeout(iniciarPreparacao); }],
+  ['Guia', () => { estado.vista = 'guia'; estado.avisoGuia = ''; }],
+  ['Histórico Gastos de Viagens', () => { estado.vista = 'comparar'; }],
+  ['Modo online / offline', () => { estado.vista = 'modo'; }],
+  ['Instalar aplicativo', () => { estado.vista = 'baixar'; }],
+  ['Salvar, Importar ou Restaurar', () => { estado.vista = 'dados'; }],
+  ['Sobre e avisos legais', () => { estado.vista = 'sobre'; }],
+];
+const executarItemMenu = (acao) => { if (!acao()) render({ trocaDeTela: true }); };
+
+// Tela "Guia": hospedagem, turismo e compras ao longo da rota (em desenvolvimento).
+const AVISO_GUIA = 'Recurso em desenvolvimento: em breve você poderá consultar opções direto na sua rota.';
+function vistaGuia() {
+  const aviso = el('p', { class: 'aviso', role: 'status', id: 'aviso-guia' }, estado.avisoGuia || '');
+  const escolher = () => {
+    estado.avisoGuia = AVISO_GUIA;
+    escrever(aviso, AVISO_GUIA);
+    anunciar(AVISO_GUIA);
+  };
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Guia', 'Lugares para dormir, passear e comprar no caminho da sua viagem.'),
+    el('ul', { class: 'menu-tela lista-simples' },
+      ...['Guia Hospedagem (em breve)', 'Guia Turísticos (em breve)', 'Guia de Compras'].map((nome) =>
+        el('li', {}, botao(nome, escolher, { classe: 'secundario largo' })))),
+    aviso);
+}
+
+// Tela "Menu": primeira tela quando a viagem aberta já terminou.
+function vistaMenu() {
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Menu', estado.viagem?.nome ? `A viagem "${estado.viagem.nome}" já terminou. Escolha o que fazer agora.` : 'A última viagem já terminou. Escolha o que fazer agora.'),
+    el('ul', { class: 'menu-tela lista-simples' }, ...ITENS_MENU.map(([texto, acao]) =>
+      el('li', {}, botao(texto, () => executarItemMenu(acao), { classe: 'secundario largo' })))));
+}
+
 function montarMenu() {
   const botaoMenu = document.getElementById('menu-botao');
   const menu = document.getElementById('menu');
-  const itens = [
-    ['Minhas viagens', () => { estado.vista = 'inicio'; estado.mensagem = ''; }],
-    ['Viagem atual', () => { if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return true; } estado.vista = 'inicio'; }],
-    ['Preparar para viagem', () => { if (!estado.viagem) { estado.vista = 'inicio'; estado.mensagem = 'Abra uma viagem primeiro.'; return; } estado.vista = 'preparacao'; setTimeout(iniciarPreparacao); }],
-    ['📥 Baixar e instalar o app', () => { estado.vista = 'baixar'; }],
-    ['Comparar viagens e custos do ano', () => { estado.vista = 'comparar'; }],
-    ['Modo de uso (online ou offline)', () => { estado.vista = 'modo'; }],
-    ['Salvar cópia, abrir cópia ou apagar tudo', () => { estado.vista = 'dados'; }],
-    ['Sobre e avisos legais', () => { estado.vista = 'sobre'; }],
-  ];
-  for (const [texto, acao] of itens) {
+  for (const [texto, acao] of ITENS_MENU) {
     menu.append(el('li', {}, botao(texto, () => {
       menu.hidden = true;
       botaoMenu.setAttribute('aria-expanded', 'false');
-      if (!acao()) render({ trocaDeTela: true });
+      executarItemMenu(acao);
     }, { classe: 'item-menu' })));
   }
   botaoMenu.addEventListener('click', () => {
@@ -640,6 +677,7 @@ async function iniciar() {
   const aceite = await meta('aceite');
   if (!aceite || aceite.versao !== VERSAO_TERMOS) estado.vista = 'termos';
   else if (!(await meta('modo'))) estado.vista = 'modo';
+  else if (estado.viagem && viagemConcluida(estado.viagem)) estado.vista = 'menu'; // viagem já terminou: abre no Menu
   else if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return; } // rascunho: reabre na mesma tela
   else estado.vista = 'inicio';
   render({ trocaDeTela: true });

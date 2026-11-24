@@ -202,8 +202,9 @@ def pontos_antt(linhas: list[dict], mapa: dict[str, str], url: str) -> list[dict
             "coordenadas_verificadas": False,
             "tolerancia_m": 150,
             # A ANTT publica uma linha por sentido: cada uma cobra só no seu (pela ordem dos km na rodovia).
-            "sentido": sentido_antt(sentido_txt),
-            "sentido_texto": sentido_txt,
+            # "sentido" em graus não é conhecido; o app usa o texto crescente/decrescente pela ordem das praças.
+            "sentido": "ambos",
+            "sentido_texto": sentido_antt(sentido_txt),
             "regras_acesso": [f"Sentido de cobrança informado pela ANTT: {sentido_txt}. Converter para graus e conferir acessos antes de confirmar."],
             "canal_pagamento": None,
             "fonte": {"origem": f"ANTT — dados abertos, Praça de Pedágio ({url})", "coletado_em": hoje().isoformat(), "licenca": "CC BY"},
@@ -228,7 +229,14 @@ def juntar_antt(semparar: list[dict], antt: list[dict]) -> list[dict]:
     saida = []
     for p in semparar:
         p = dict(p)
-        perto = [a for a in antt if a["id"] not in usados and distancia_m(a["coordenadas"], p["coordenadas"]) <= limite]
+        # Mesma praça: perto no mapa, ou mesma rodovia e mesmo km (a coordenada do Sem Parar às vezes está
+        # 2 km fora, como em Mairiporã, BR-381 km 65,7).
+        def mesma(a):
+            d = distancia_m(a["coordenadas"], p["coordenadas"])
+            mesmo_km = (a.get("rodovia") == p.get("rodovia") and a.get("km") is not None and p.get("km") is not None
+                        and abs(a["km"] - p["km"]) <= 1.0 and d <= 10000)
+            return d <= limite or mesmo_km
+        perto = [a for a in antt if a["id"] not in usados and mesma(a)]
         if perto:
             a = min(perto, key=lambda a: distancia_m(a["coordenadas"], p["coordenadas"]))
             usados.update(x["id"] for x in perto)
@@ -240,9 +248,20 @@ def juntar_antt(semparar: list[dict], antt: list[dict]) -> list[dict]:
     for a in antt:
         if a["id"] in usados:
             continue
-        igual = next((s for s in sobra if s.get("sentido") == a.get("sentido") and distancia_m(s["coordenadas"], a["coordenadas"]) <= 500), None)
+        igual = next((s for s in sobra if s.get("sentido_texto") == a.get("sentido_texto") and distancia_m(s["coordenadas"], a["coordenadas"]) <= 500), None)
         if igual is None:
             sobra.append(a)
+    # Par no mesmo lugar com um ponto "nos dois sentidos" e outro de sentido único (a ANTT às vezes cadastra
+    # assim os dois pórticos de um free flow): o primeiro só pode ser o do outro sentido, senão cobraria em dobro.
+    oposto = {"crescente": "decrescente", "decrescente": "crescente"}
+    for a in sobra:
+        if a.get("sentido_texto") != "ambos":
+            continue
+        par = next((b for b in sobra if b is not a and b.get("sentido_texto") in oposto
+                    and distancia_m(a["coordenadas"], b["coordenadas"]) <= 1000), None)
+        if par:
+            a["sentido_texto"] = oposto[par["sentido_texto"]]
+            a["regras_acesso"] = a.get("regras_acesso", []) + [f"Mesmo lugar de {par['nome']} ({par['sentido_texto']}): tratado como o pórtico do sentido {a['sentido_texto']}."]
     return saida + sobra
 
 
@@ -311,8 +330,9 @@ def juntar_tarifas(curadas: dict[str, list], oficiais: dict[str, list]) -> dict[
 
 
 # Ordem de desempate quando duas fontes têm a mesma data de vigência (1ª opção, 2ª, 3ª…).
-PRIORIDADE = {"oficial": 1, "pesquisa": 2, "imprensa": 3, "curadoria": 4}
-NOME_FONTE = {"oficial": "tabela oficial", "pesquisa": "pesquisa enviada", "imprensa": "notícia", "curadoria": "base anterior (v5)"}
+PRIORIDADE = {"oficial": 1, "pesquisa": 2, "imprensa": 3, "curadoria": 4, "comunidade": 5}
+NOME_FONTE = {"oficial": "tabela oficial", "pesquisa": "pesquisa enviada", "imprensa": "notícia", "curadoria": "base anterior (v5)",
+              "comunidade": "OpenStreetMap"}
 
 
 def escolher_tarifas(fontes: list[tuple[str, dict[str, list]]]) -> tuple[dict[str, list], dict[str, list]]:
@@ -345,6 +365,96 @@ def escolher_tarifas(fontes: list[tuple[str, dict[str, list]]]) -> tuple[dict[st
         if outras:
             alternativas[pid] = outras[:3]
     return escolhidas, alternativas
+
+
+# ---------- Validação: filtra tarifas inconsistentes antes de escolher (dados externos não são garantidos) ----------
+VAL = CONFIG.get("validacao_pedagios", {})
+FONTES_FRACAS = {"comunidade", "imprensa", "curadoria"}
+
+
+def filtrar_inconsistencias(fontes: list[tuple[str, dict[str, list]]], pontos: list[dict], hoje_iso: str) -> tuple[list[tuple[str, dict[str, list]]], list[str]]:
+    """
+    Tira das fontes as tarifas que não fazem sentido e devolve (fontes filtradas, mensagens).
+    1. valor de carro fora da faixa → sai;
+    2. vigência confirmada que começa muito no futuro → sai;
+    3. valor fora da curva da concessionária (3x maior ou menor que a mediana) → aviso para conferir;
+       sai só se for mais de 5x a mediana e vier de fonte fraca (comunidade, notícia, base anterior).
+    """
+    from datetime import date, timedelta
+    from statistics import median
+    vmin, vmax = VAL.get("valor_min", 0), VAL.get("valor_max", 100)
+    futuro = (date.fromisoformat(hoje_iso) + timedelta(days=VAL.get("dias_no_futuro_max", 60))).isoformat()
+    fator, minimo = VAL.get("fator_fora_da_curva", 3), VAL.get("minimo_pracas_para_comparar", 3)
+    empresa = {p["id"]: normalizar(p.get("concessionaria") or "") for p in pontos}
+    nome = {p["id"]: f"{p.get('nome') or p['id']} ({p.get('rodovia')}, {p.get('uf') or '?'})" for p in pontos}
+    msgs: list[str] = []
+
+    def valida(tipo, pid, v):
+        if v.get("estado") != "confirmada":
+            return True
+        x = (v.get("categorias") or {}).get("automovel")
+        if x is None:
+            return True
+        if not (vmin <= x <= vmax):
+            msgs.append(f"Descartada: {nome.get(pid, pid)} — R$ {x:.2f} fora da faixa (fonte: {tipo}).")
+            return False
+        if (v.get("inicio") or "") > futuro:
+            msgs.append(f"Descartada: {nome.get(pid, pid)} — vigência confirmada começando em {v.get('inicio')} (fonte: {tipo}).")
+            return False
+        return True
+    limpas = [(tipo, {pid: [v for v in vigs if valida(tipo, pid, v)] for pid, vigs in (mapa or {}).items()}) for tipo, mapa in fontes]
+
+    # Mediana por concessionária, com o valor mais recente de cada praça (qualquer fonte, só valores > 0).
+    recente: dict[str, tuple[str, float]] = {}
+    for tipo, mapa in limpas:
+        for pid, vigs in mapa.items():
+            for v in vigs:
+                x = (v.get("categorias") or {}).get("automovel")
+                if v.get("estado") == "confirmada" and x and (pid not in recente or (v.get("inicio") or "") > recente[pid][0]):
+                    recente[pid] = (v.get("inicio") or "", x)
+    por_empresa: dict[str, list[float]] = defaultdict(list)
+    for pid, (_, x) in recente.items():
+        if empresa.get(pid):
+            por_empresa[empresa[pid]].append(x)
+    medianas = {e: median(xs) for e, xs in por_empresa.items() if len(xs) >= minimo}
+
+    saida = []
+    for tipo, mapa in limpas:
+        novo = {}
+        for pid, vigs in mapa.items():
+            med = medianas.get(empresa.get(pid, ""))
+            ficam = []
+            for v in vigs:
+                x = (v.get("categorias") or {}).get("automovel")
+                if med and x and v.get("estado") == "confirmada" and (x > med * fator or x < med / fator):
+                    # Valor baixo é comum e verdadeiro (pórtico de free flow fracionado, praça de bloqueio):
+                    # só avisa. Só sai valor absurdamente alto (5x a mediana) de fonte fraca.
+                    if tipo in FONTES_FRACAS and x > med * VAL.get("fator_descartar", 5):
+                        msgs.append(f"Descartada: {nome.get(pid, pid)} — R$ {x:.2f}, fora da curva da concessionária (mediana R$ {med:.2f}; fonte: {tipo}).")
+                        continue
+                    msgs.append(f"Conferir: {nome.get(pid, pid)} — R$ {x:.2f}, fora da curva da concessionária (mediana R$ {med:.2f}; fonte: {tipo}). Mantida.")
+                ficam.append(v)
+            novo[pid] = ficam
+        saida.append((tipo, novo))
+    return saida, msgs
+
+
+def conflitos_recentes(pontos: list[dict], hoje_iso: str) -> list[str]:
+    """Duas fontes recentes (menos de 1 ano) que discordam muito: mantém a escolhida e avisa."""
+    from datetime import date, timedelta
+    limite = (date.fromisoformat(hoje_iso) - timedelta(days=365)).isoformat()
+    pct = VAL.get("diferenca_entre_fontes_pct", 25) / 100
+    msgs = []
+    for p in pontos:
+        v = next((x for x in p.get("vigencias", []) if x.get("estado") == "confirmada"), None)
+        x = (v or {}).get("categorias", {}).get("automovel")
+        if not x:
+            continue
+        for a in p.get("alternativas", []):
+            if (a.get("inicio") or "") >= limite and a.get("valor") and abs(a["valor"] - x) / x > pct and (a.get("inicio") or "") >= (v.get("inicio") or ""):
+                msgs.append(f"{p.get('nome') or p['id']} ({p['rodovia']}): usando R$ {x:.2f} ({v.get('tipo_fonte')}, {v.get('inicio')}); "
+                            f"{a['fonte']} diz R$ {a['valor']:.2f} ({a.get('inicio')}).")
+    return msgs
 
 
 def url_tabela_artesp_dam(listagem: dict) -> str:
@@ -380,6 +490,45 @@ def coletar_artesp(pontos: list[dict]) -> dict[str, list]:
     return oficiais
 
 
+# ---------- OpenStreetMap: praças e tarifas do país inteiro ----------
+OSM = CONFIG["osm"]
+
+
+def _overpass(consulta: str) -> dict:
+    from urllib.parse import quote
+    return json.loads(baixar(f"{OSM['overpass']}?data={quote(consulta)}").decode("utf-8"))
+
+
+def coletar_osm(base: list[dict], anterior: dict) -> tuple[list[dict], dict[str, list], dict[str, dict]]:
+    """Pontos novos (estados sem base aberta), tarifas da comunidade e coordenadas melhores.
+    Sem resposta do OpenStreetMap: mantém os pontos e tarifas da comunidade já publicados."""
+    import fonte_osm as F
+    anteriores = {p["id"]: p for p in anterior.get("pontos", [])}
+    try:
+        dados = _overpass(F.CONSULTA_CABINES)
+        vias = F.rodovias_das_cabines(_overpass(F.CONSULTA_VIAS))
+        perto = F.ViasPerto(_overpass(F.CONSULTA_VIAS_PERTO))
+    except (ConnectionError, ValueError) as e:
+        print(f"⚠ OpenStreetMap indisponível ({e}); mantendo as praças e tarifas da comunidade já publicadas.")
+        novos = [p for p in anterior.get("pontos", []) if p["id"].startswith("osm-")]
+        tarifas = {p["id"]: [v for v in p.get("vigencias", []) if v.get("tipo_fonte") == "comunidade"] for p in anterior.get("pontos", [])}
+        coords = {p["id"]: p["coordenadas"] for p in anterior.get("pontos", [])
+                  if "OpenStreetMap" in str((p.get("fonte") or {}).get("coordenadas", ""))}
+        return novos, {k: v for k, v in tarifas.items() if v}, coords
+    try:
+        municipios = F.Municipios(json.loads(baixar(OSM["ibge_malha"], {"Accept": "application/vnd.geo+json"}).decode("utf-8")),
+                                  json.loads(baixar(OSM["ibge_nomes"]).decode("utf-8")))
+    except (ConnectionError, ValueError, KeyError) as e:
+        print(f"⚠ Malha do IBGE indisponível ({e}); município e UF vêm da base anterior.")
+        municipios = None
+    grupos = F.agrupar(F.cabines(dados, vias, perto))
+    if len(grupos) < OSM["minimo_pracas"]:
+        raise Anomalia(f"OpenStreetMap devolveu só {len(grupos)} praças de pedágio no Brasil.")
+    novos, tarifas, coords = F.juntar(base, grupos, municipios, hoje().isoformat(), anteriores)
+    print(f"OpenStreetMap: {len(grupos)} praças, {len(novos)} novas na base, {len(tarifas)} com tarifa da comunidade.")
+    return novos, tarifas, coords
+
+
 # ---------- montagem ----------
 
 def montar(pontos_base: list[dict], manuais: list[dict], tarifas: dict[str, list]) -> dict:
@@ -395,6 +544,20 @@ def montar(pontos_base: list[dict], manuais: list[dict], tarifas: dict[str, list
         p["vigencias"] = tarifas.get(p["id"], [])
         pontos.append(p)
     pontos.sort(key=lambda p: (p["rodovia"], p.get("km") or 0, p["id"]))
+    # Cabines auxiliares da mesma praça (ex.: "Jacarezinho AUX I" e "AUX II", a 30 m) com a mesma tarifa e o
+    # mesmo sentido: o carro paga uma vez só. Fica a primeira; a outra sai.
+    def valor(p):
+        v = next((x for x in p["vigencias"] if x.get("estado") == "confirmada"), None)
+        return (v or {}).get("categorias", {}).get("automovel")
+    unicos = []
+    for p in pontos:
+        gemeo = next((u for u in unicos if u["rodovia"] == p["rodovia"] and u.get("concessionaria") == p.get("concessionaria")
+                      and u.get("sentido_texto") == p.get("sentido_texto") and u.get("sentido") == p.get("sentido")
+                      and valor(u) is not None and valor(u) == valor(p)
+                      and distancia_m(u["coordenadas"], p["coordenadas"]) <= 60), None)
+        if gemeo is None:
+            unicos.append(p)
+    pontos = unicos
     cobertura = defaultdict(lambda: {"pontos_conhecidos": 0, "pontos_com_tarifa": 0})
     for p in pontos:
         c = cobertura[p["rodovia"]]
@@ -436,11 +599,12 @@ def conferir(novo: dict, anterior: dict) -> None:
     orfas = sorted(set(ler_json(CURADOS / "tarifas.json", {}).get("tarifas", {})) - ids)
     if orfas:
         avisar("Tarifas sem praça correspondente", "Ids em dados-curados/tarifas.json que não existem mais na base: " + ", ".join(orfas[:30]))
+    # Um aviso só para todas as rodovias (antes era um por rodovia, e os avisos se acumulavam).
     limite = CONFIG.get("pedagio_cobertura_min_pct", 80)
-    for c in novo["cobertura"]:
-        if c["pontos_com_tarifa"] and c["pontos_com_tarifa"] / c["pontos_conhecidos"] * 100 < limite:
-            avisar(f"Cobertura de tarifas abaixo de {limite}% na {c['rodovia']}",
-                   f"{c['pontos_com_tarifa']} de {c['pontos_conhecidos']} pontos com tarifa.")
+    baixas = [c for c in novo["cobertura"] if c["pontos_com_tarifa"] / c["pontos_conhecidos"] * 100 < limite]
+    if baixas:
+        avisar(f"Cobertura de tarifas abaixo de {limite}%",
+               "\n".join(f"* {c['rodovia']}: {c['pontos_com_tarifa']} de {c['pontos_conhecidos']} pontos com tarifa." for c in baixas))
     # Variação suspeita de tarifa (Seção 5.6): sinaliza revisão, não prova erro.
     velhas = {p["id"]: p.get("vigencias", []) for p in anterior.get("pontos", [])}
     for p in novo["pontos"]:
@@ -473,6 +637,13 @@ def coletar() -> bool:
     pesquisa = ler_json(CURADOS / "pesquisa-pedagios.json", {}).get("tarifas", {})
     imprensa = ler_json(CURADOS / "tarifas-imprensa.json", {}).get("tarifas", {})
     base = juntar_antt(semparar, antt)
+    novos_osm, comunidade, coords_osm = coletar_osm(base, anterior)
+    for p in base:
+        if p["id"] in coords_osm:
+            p["coordenadas"] = coords_osm[p["id"]]
+            p["tolerancia_m"] = 150
+            p["fonte"] = {**p["fonte"], "coordenadas": f"OpenStreetMap ({CONFIG['osm']['credito']})"}
+    base = base + novos_osm
     try:
         oficiais = coletar_artesp(base)
     except (ConnectionError, Anomalia) as e:
@@ -483,16 +654,29 @@ def coletar() -> bool:
     for vigs in oficiais.values():
         for v in vigs:
             v["tipo_fonte"] = "oficial"
-    tarifas, alternativas = escolher_tarifas([("oficial", oficiais), ("pesquisa", pesquisa), ("imprensa", imprensa), ("curadoria", curadoria)])
+    # Tabelas oficiais copiadas à mão (ANTT) para praças e pórticos que nenhuma fonte automática cobre.
+    for pid, vigs in ler_json(CURADOS / "tarifas-oficiais.json", {}).get("tarifas", {}).items():
+        oficiais.setdefault(pid, []).extend(vigs)
+    import fonte_osm
+    comunidade = fonte_osm.filtrar_comunidade(comunidade, [oficiais, pesquisa, imprensa], hoje().isoformat())
+    fontes, descartes = filtrar_inconsistencias([("oficial", oficiais), ("pesquisa", pesquisa), ("imprensa", imprensa),
+                                                 ("curadoria", curadoria), ("comunidade", comunidade)], base, hoje().isoformat())
+    tarifas, alternativas = escolher_tarifas(fontes)
     corpo = montar(base, manuais, tarifas)
     for p in corpo["pontos"]:
         if p["id"] in alternativas:
             p["alternativas"] = alternativas[p["id"]]
+    suspeitas = descartes + [f"Fontes discordam: {m}" for m in conflitos_recentes(corpo["pontos"], hoje().isoformat())]
+    if suspeitas:
+        avisar("Tarifas descartadas ou suspeitas",
+               "A validação do robô filtrou ou marcou estes valores (dados externos não são garantidos):\n\n"
+               + "\n".join(f"* {m}" for m in suspeitas[:80]) + ("\n* …" if len(suspeitas) > 80 else ""))
+    print(f"Validação: {len(descartes)} tarifa(s) descartada(s) ou marcada(s), {len(suspeitas) - len(descartes)} conflito(s) entre fontes.")
     conferir(corpo, anterior)
-    dados = cabecalho(f"{SP_CFG['credito']}; ANTT (coordenadas das praças federais); curadoria manual de tarifas e pontos",
-                      hoje().isoformat(), CFG["validade_dias"])
+    dados = cabecalho(f"{SP_CFG['credito']}; ANTT (coordenadas das praças federais); OpenStreetMap (praças e tarifas de todo o país, ODbL); "
+                      "curadoria manual de tarifas e pontos", hoje().isoformat(), CFG["validade_dias"])
     dados["cobertura_completa"] = False
-    dados["creditos"] = [SP_CFG["credito"], "ANTT — dados abertos (CC BY)"]
+    dados["creditos"] = [SP_CFG["credito"], "ANTT — dados abertos (CC BY)", CONFIG["osm"]["credito"]]
     dados.update(corpo)
     return gravar_base("pedagios.json", dados)
 

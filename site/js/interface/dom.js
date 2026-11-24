@@ -51,6 +51,18 @@ export function limpar(n) {
   return n;
 }
 
+/** Põe em cada célula o nome da sua coluna (data-rotulo): no celular, a tabela vira cartões sem rolar para o lado. */
+export function rotularTabelas(raiz) {
+  for (const t of raiz.querySelectorAll('table')) {
+    const nomes = [...t.querySelectorAll('thead th')].map((th) => th.textContent.trim());
+    if (!nomes.length) continue;
+    for (const tr of t.querySelectorAll('tbody tr')) {
+      [...tr.children].forEach((c, i) => { if (nomes[i] && c.tagName === 'TD') c.dataset.rotulo = nomes[i]; });
+    }
+  }
+  return raiz;
+}
+
 const regiao = () => document.getElementById('anuncio');
 export function anunciar(texto) {
   const r = regiao();

@@ -57,8 +57,31 @@ function semRepetidos(lista) {
   return lista.filter((l) => !vistos.has(l.rotulo) && vistos.add(l.rotulo));
 }
 
-/** Busca completa, só quando o usuário toca em "Buscar" (política do Nominatim). */
+/**
+ * Busca completa, só quando o usuário toca em "Buscar" (política do Nominatim).
+ * Se o Nominatim falhar ou não achar nada, tenta o Photon (fonte alternativa) antes de desistir.
+ */
 export async function buscar(texto, { sinal } = {}) {
+  let lista = [];
+  let erro = null;
+  try {
+    lista = await buscarNominatim(texto, { sinal });
+  } catch (e) {
+    if (e?.codigo === 'cancelado') throw e;
+    erro = e;
+  }
+  if (lista.length) return lista;
+  try {
+    const alternativa = await autocompletar(texto, { sinal });
+    if (alternativa.length || !erro) return alternativa;
+  } catch (e) {
+    if (e?.codigo === 'cancelado') throw e;
+  }
+  if (erro) throw erro;
+  return [];
+}
+
+async function buscarNominatim(texto, { sinal } = {}) {
   const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&countrycodes=br&limit=8&accept-language=pt-BR&q=${encodeURIComponent(texto.trim())}`;
   const j = await consultarJSON('nominatim', url, { sinal });
   return semRepetidos((j || []).map((r) => {
@@ -77,12 +100,23 @@ export async function buscar(texto, { sinal } = {}) {
   }));
 }
 
-/** Endereço de uma coordenada (geolocalização e sugestão de abastecimento). */
+/** Endereço de uma coordenada (geolocalização e sugestão de abastecimento). Photon; se falhar, Nominatim. */
 export async function reverso(lat, lon, { sinal } = {}) {
-  const url = `https://photon.komoot.io/reverse?lat=${lat}&lon=${lon}&limit=1`;
-  const j = await consultarJSON('photon', url, { sinal });
-  const f = (j.features || [])[0];
-  return f ? { ...dePhoton(f), lat, lon } : null;
+  try {
+    const url = `https://photon.komoot.io/reverse?lat=${lat}&lon=${lon}&limit=1`;
+    const j = await consultarJSON('photon', url, { sinal });
+    const f = (j.features || [])[0];
+    if (f) return { ...dePhoton(f), lat, lon };
+  } catch (e) {
+    if (e?.codigo === 'cancelado') throw e;
+  }
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=14&accept-language=pt-BR&lat=${lat}&lon=${lon}`;
+  const r = await consultarJSON('nominatim', url, { sinal });
+  if (!r || r.error) return null;
+  const a = r.address || {};
+  const iso = a['ISO3166-2-lvl4'] || '';
+  const cidade = a.city || a.town || a.village || a.municipality || '';
+  return lugar({ nome: cidade || r.name || 'Local', cidade, uf: iso.startsWith('BR-') ? iso.slice(3) : ufPorNome(a.state), lat, lon, precisao: r.type || '', servico: 'Nominatim' });
 }
 
 /** Nomes iguais em UFs diferentes exigem que o usuário escolha (Seção 2, tela 2). */

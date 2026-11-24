@@ -10,7 +10,7 @@ import { resumoAlternativas } from '../dominio/calculo.js';
 import { reverso } from '../servicos/buscador.js';
 import { online } from '../servicos/http.js';
 
-export const AVISO_CURTO = 'Planejamento estimado. Horários, custos, pedágios e alertas podem mudar: confira as condições e regras nas fontes oficiais antes e durante a viagem.';
+export const AVISO_CURTO = 'Planejamento estimado. Horários, custos, pedágios e alertas podem mudar, e os dados de fontes externas não são garantidos pelo app: confira as condições e regras nas fontes oficiais antes e durante a viagem.';
 
 function bloco(titulo, tela, ctx, ...conteudo) {
   const id = `b-${titulo.replace(/\W+/g, '-').toLowerCase()}`;
@@ -308,8 +308,8 @@ export function linkOficial(u) {
 }
 
 // Lista simples: nome da praça, estrada e valor, com uma etiqueta curta quando o valor não está confirmado.
-// De onde veio o valor (cadeia de fontes: oficial → pesquisa → notícia → base anterior).
-const NOME_FONTE = { oficial: 'tabela oficial', pesquisa: 'pesquisa enviada', imprensa: 'notícia', curadoria: 'base anterior' };
+// De onde veio o valor (cadeia de fontes: oficial → pesquisa → notícia → base anterior → OpenStreetMap).
+const NOME_FONTE = { oficial: 'tabela oficial', pesquisa: 'pesquisa enviada', imprensa: 'notícia', curadoria: 'base anterior', comunidade: 'OpenStreetMap' };
 const ano = (iso) => (iso ? iso.slice(0, 4) : '');
 
 // Onde conferir quando falta valor: a página oficial da praça (se houver) e duas calculadoras públicas.

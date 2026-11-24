@@ -58,7 +58,9 @@ export function identificarPedagios({ amostras, base, parametros, veiculo, ajust
       const dist = distanciaAoSegmentoM(p, a, b);
       const perto = dist <= raio;
       const r = rumo(a, b);
-      const sentidoOk = ponto.sentido === 'ambos' || diferencaAngular(r, Number(ponto.sentido)) <= limiteAng;
+      // Sentido em graus: só conta passando nesse rumo. Em texto ("ambos", "crescente"…): conta e o
+      // sentido da quilometragem é tratado depois, em aplicarSentidoProvavel.
+      const sentidoOk = typeof ponto.sentido !== 'number' || diferencaAngular(r, ponto.sentido) <= limiteAng;
       if (perto && sentidoOk) {
         if (!passagem) passagem = { t: amostras[i].t, vias: [], sentidoViagem: amostras[i].sentido || '', dist: Infinity, rumo: null };
         if (dist < passagem.dist) { passagem.dist = dist; passagem.rumo = r; } // rumo do carro no ponto mais perto da praça
