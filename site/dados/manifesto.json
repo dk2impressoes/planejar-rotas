@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
     "versao_conjunto":  "2026.11.24-f870b467875d",
-    "cache_app":  "app-v13.0.0-6395b5e0db05",
-    "gerado_em":  "2026-11-24T05:47:32Z",
+    "cache_app":  "app-v13.0.0-5da789421341",
+    "gerado_em":  "2026-11-24T06:24:38Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -241,8 +241,8 @@
                      {
                          "caminho":  "js/interface/comparacao.js",
                          "tipo":  "app",
-                         "tamanho":  7289,
-                         "sha256":  "726e3732e5741afe90e4b5397728f2c4891c01a876d59d8e14bff4ffd32bfc21"
+                         "tamanho":  7385,
+                         "sha256":  "9d121a1db193db1918d6d1882258eb6ed1e65459260e4d566751c16d005f7848"
                      },
                      {
                          "caminho":  "js/interface/datas.js",

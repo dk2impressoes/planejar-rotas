@@ -84,10 +84,11 @@ function parteAno(itens, ctx) {
       el('p', { class: 'ajuda' }, 'Estimativa: combustível gasto (com os preços que você registrou ou a média da ANP) mais pedágios encontrados no caminho. Não inclui hospedagem, comida nem estacionamento.')),
     el('section', { class: 'cartao', 'aria-labelledby': 't-meses' },
       el('h2', { id: 't-meses' }, 'Por mês'),
-      el('ul', { class: 'barras-mes' }, ...c.meses.map((m) => el('li', {},
+      // Só os meses com viagem: mês sem viagem não aparece.
+      el('ul', { class: 'barras-mes' }, ...c.meses.filter((m) => m.viagens > 0).map((m) => el('li', {},
         el('span', { class: 'mes' }, MESES[m.mes - 1]),
         barra(m.total / maiorMes),
-        el('span', { class: 'valor' }, m.viagens ? `${reais(m.total)} · ${m.viagens} ${m.viagens === 1 ? 'viagem' : 'viagens'}` : '—'))))),
+        el('span', { class: 'valor' }, `${m.total ? reais(m.total) : 'sem valor'} · ${m.viagens} ${m.viagens === 1 ? 'viagem' : 'viagens'}`))))),
     el('section', { class: 'cartao', 'aria-labelledby': 't-destinos' },
       el('h2', { id: 't-destinos' }, 'Por destino'),
       el('ul', { class: 'lista-simples' }, ...c.porDestino.map((d) => el('li', {},

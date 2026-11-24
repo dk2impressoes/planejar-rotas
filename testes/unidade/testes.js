@@ -18,6 +18,7 @@ import { urlGoogleMaps, urlWaze, linkOficial } from '../../site/js/interface/rev
 import { interpretarData, interpretarHora, mascararData, mascararHora } from '../../site/js/interface/datas.js';
 import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/js/interface/dom.js';
 import { seletorLugar } from '../../site/js/interface/telas.js';
+import { vistaComparacao } from '../../site/js/interface/comparacao.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
@@ -549,6 +550,14 @@ teste('Busca de endereço: Nominatim fora do ar → usa o Photon', async () => {
     const r = await buscar('Campinas');
     igual(r.length, 1); igual(r[0].uf, 'SP'); igual(r[0].servico, 'Photon');
   } finally { globalThis.fetch = original; }
+});
+teste('Histórico de gastos: só aparecem os meses com viagem', () => {
+  const v1 = novaViagem(); v1.datas.ida.data = '2026-03-10'; v1.datas.volta.data = '2026-03-12';
+  const v2 = novaViagem(); v2.datas.ida.data = '2026-07-05'; v2.datas.volta.data = '2026-07-08';
+  const tela = vistaComparacao({ viagens: [v1, v2], bases: null, abrirViagem: () => {}, render: () => {} });
+  const meses = [...tela.querySelectorAll('.barras-mes .mes')].map((e) => e.textContent);
+  igual(meses.length, 2, 'dois meses');
+  verdade(/mar/i.test(meses[0]) && /jul/i.test(meses[1]), `meses: ${meses.join(', ')}`);
 });
 teste('Viagem concluída: só depois que o dia da volta passa', () => {
   const v = novaViagem();
