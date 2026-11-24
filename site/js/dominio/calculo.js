@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Núcleo único de cálculos (Seção 1.9): junta itinerário, combustível, pedágios, rodízio e documentos.
 // Função pura: recebe a viagem, as bases e "hoje"; não acessa rede nem armazenamento.
 import { calcularItinerario, diasDaViagem, duracaoHoras, localParaUTC } from './tempo.js';

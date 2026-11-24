@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Adaptador Roteador (Seção 9.1/9.2): OSRM (FOSSGIS) e Valhalla (FOSSGIS) como reserva. Sem chave.
 import { consultarJSON, disjuntorAberto, ErroServico } from './http.js';
 import { distanciaM } from '../dominio/geo.js';

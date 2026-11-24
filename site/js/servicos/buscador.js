@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Adaptador Buscador (Seção 9.4): Photon para autocompletar; Nominatim só no botão "Buscar".
 import { consultarJSON } from './http.js';
 import { fusoDaUF } from '../dominio/tempo.js';

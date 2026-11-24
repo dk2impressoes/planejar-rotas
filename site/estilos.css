@@ -1,4 +1,4 @@
-/* © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro. */
+/* © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro. */
 :root {
   --fundo: #ffffff; --texto: #1b1f1e; --suave: #4a5452; --borda: #b9c3c0; --cartao: #f4f7f6;
   --primaria: #0b5d4b; --primaria-texto: #ffffff; --foco: #1a56db;
@@ -258,3 +258,7 @@ html { font-size: 112.5%; }
 @media print { .abertura { display: none !important; } }
 .sobre-dk2 { text-align: center; }
 .sobre-dk2 img { width: min(60vw, 240px); height: auto; }
+
+/* Baixar e instalar */
+.baixar h2 { margin-top: .2em; }
+.baixar a.botao { display: block; text-align: center; text-decoration: none; margin: 8px 0; }

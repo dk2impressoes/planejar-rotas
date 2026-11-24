@@ -1,4 +1,4 @@
-﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 # Planejar Rotas — abre o app (chamado pelo atalho da Área de Trabalho e do menu Iniciar).
 # 1) Se houver internet e o endereço do site estiver configurado, baixa a versão e os dados novos.
 # 2) Liga o servidor local, se ainda não estiver ligado.

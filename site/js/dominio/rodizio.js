@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Rodízio municipal de São Paulo (Seção 6). Nenhum valor fixo: tudo vem de regras.json e das bases.
 import { pontoNaArea, densificar } from './geo.js';
 import { dataLocal, localParaUTC, partesLocais, horaLocal, formatarData } from './tempo.js';

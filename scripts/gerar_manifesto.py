@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Gera site/dados/manifesto.json (Seção 11). Usado pela automação do GitHub Actions."""
 import hashlib
 import json
@@ -18,7 +18,7 @@ def main() -> None:
         if not p.is_file():
             continue
         rel = p.relative_to(SITE).as_posix()
-        if rel in IGNORAR or rel.startswith(".well-known/"):
+        if rel in IGNORAR or rel.startswith((".well-known/", "baixar/")):  # instaladores ficam fora do cache do app
             continue
         dados = p.read_bytes()
         h = hashlib.sha256(dados).hexdigest()

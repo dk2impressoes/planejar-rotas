@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Tempo e itinerário (Seção 3). Instantes em UTC (ISO 8601) + fuso IANA separado.
 
 export const FUSO_PADRAO = 'America/Sao_Paulo';

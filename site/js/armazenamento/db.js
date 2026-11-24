@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // IndexedDB (Seção 10.2), migrações e cópias de segurança (Seção 13).
 import { VERSAO_ESQUEMA, migrarViagem } from '../dominio/viagem.js';
 

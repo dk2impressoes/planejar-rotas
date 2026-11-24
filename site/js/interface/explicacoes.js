@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Textos dos botões "?": explicações curtas, para quem nunca usou um app de viagem.
 // Ficam todos aqui para revisar e corrigir com facilidade.
 

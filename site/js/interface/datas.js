@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Leitura de datas e horas digitadas do jeito que as pessoas escrevem (dd/mm/aaaa, 25/12, 25122026,
 // "hoje", "amanhã", 8, 8h30, 0830...). Guarda sempre no formato interno: AAAA-MM-DD e HH:MM.
 import { dataValida } from '../dominio/tempo.js';

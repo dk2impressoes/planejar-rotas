@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Partes comuns dos coletores (Seção 11.1): download com novas tentativas, validação pelo esquema,
 gravação só de arquivo válido, registro de falhas seguidas e avisos para o mantenedor.
 

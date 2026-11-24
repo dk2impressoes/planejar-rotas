@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Exportação e importação (Seção 10.3) com proteção contra XSS e prototype pollution (Seção 12.4).
 import { validar, sanitizar, parseSeguro, sha256 } from '../servicos/esquema.js';
 import { VERSAO_ESQUEMA, migrarViagem } from '../dominio/viagem.js';

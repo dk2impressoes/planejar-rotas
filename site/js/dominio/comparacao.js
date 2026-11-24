@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Comparação de viagens para o mesmo destino e custos por ano.
 // Tudo é estimativa: usa o mesmo cálculo da revisão (combustível gasto + pedágios) e nunca inventa valor:
 // o que não se sabe fica null e é contado à parte.

@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Botão "Preparar para Viagem" (Seção 8.3). Estados: não preparado → preparando → verificando → pronto | incompleto.
 import { atualizarBases, carregarBases, baixarManifesto } from '../servicos/bases.js';
 import { obter, gravar, meta } from '../armazenamento/db.js';

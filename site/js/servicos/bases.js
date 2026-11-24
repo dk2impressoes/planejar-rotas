@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Atualização automática das bases (Seção 11.1): conjunto completo, conferido e ativado de uma vez.
 import { obter, transacao } from '../armazenamento/db.js';
 import { validar, parseSeguro, sha256 } from './esquema.js';

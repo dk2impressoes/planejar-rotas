@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Testes de unidade do núcleo (Seção 15, "Cálculos"). Rodam no navegador: testes/unidade/index.html
 import { derivados, simularTanque, validarVeiculo, compararFlex, estimativaSimplificada } from '../../site/js/dominio/combustivel.js';
 import { diasDaViagem, localParaUTC, calcularItinerario, formatarDataHora, dataLocal } from '../../site/js/dominio/tempo.js';

@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Verificação diária do rodízio e da saúde das bases (Seções 11, 11.5 e 11.6).
 
 * Publica site/dados/rodizio-suspensoes.json a partir de dados-curados/rodizio-suspensoes.json.

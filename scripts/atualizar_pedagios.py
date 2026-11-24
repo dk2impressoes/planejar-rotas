@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Monta site/dados/pedagios.json (Seção 5) a partir de quatro fontes:
 
 1. Base aberta do Sem Parar (CC BY 4.0, GitHub): praças federais e estaduais, com id estável, sentido em
@@ -168,6 +168,18 @@ def ler_csv(texto: str) -> tuple[list[dict], dict[str, str]]:
     return list(leitor), mapa
 
 
+def sentido_antt(texto: str) -> str:
+    """'crescente' e 'decrescente' cobram só naquele sentido; 'crescente/decrescente' (ou vazio) nos dois."""
+    t = normalizar(texto).lower()
+    tem_cres = "crescente" in t.replace("decrescente", "")
+    tem_decr = "decrescente" in t
+    if tem_cres and not tem_decr:
+        return "crescente"
+    if tem_decr and not tem_cres:
+        return "decrescente"
+    return "ambos"
+
+
 def pontos_antt(linhas: list[dict], mapa: dict[str, str], url: str) -> list[dict]:
     pontos, invalidos = {}, 0
     for l in linhas:
@@ -186,9 +198,11 @@ def pontos_antt(linhas: list[dict], mapa: dict[str, str], url: str) -> list[dict
             "nome": nome, "rodovia": rodovia_padrao(g("rodovia")), "uf": uf_de(g("uf")),
             "km": numero(g("km")), "concessionaria": g("concessionaria"),
             "coordenadas": {"lat": round(lat, 6), "lon": round(lon, 6)},
-            "coordenadas_verificadas": True,
+            # Coordenada oficial, mas sentido em graus e acessos ainda não conferidos: nunca "confirmada" aqui.
+            "coordenadas_verificadas": False,
             "tolerancia_m": 150,
-            "sentido": "ambos",
+            # A ANTT publica uma linha por sentido: cada uma cobra só no seu (pela ordem dos km na rodovia).
+            "sentido": sentido_antt(sentido_txt),
             "sentido_texto": sentido_txt,
             "regras_acesso": [f"Sentido de cobrança informado pela ANTT: {sentido_txt}. Converter para graus e conferir acessos antes de confirmar."],
             "canal_pagamento": None,
@@ -201,21 +215,35 @@ def pontos_antt(linhas: list[dict], mapa: dict[str, str], url: str) -> list[dict
 
 
 def juntar_antt(semparar: list[dict], antt: list[dict]) -> list[dict]:
-    """Coordenadas oficiais da ANTT substituem as do Sem Parar na mesma praça; o resto da ANTT entra à parte."""
+    """
+    A mesma praça não pode entrar duas vezes (o pedágio seria somado em dobro).
+    - Praça da ANTT perto de uma do Sem Parar é a mesma praça, pela distância: o nome da rodovia
+      vem escrito de jeitos diferentes nas duas bases ("BR-116" × "BR-116/SP" × "ACESSO PARA SP-278").
+      A coordenada oficial mais próxima substitui a do Sem Parar; todas as linhas da ANTT dali (uma por
+      sentido) são absorvidas, e o ponto do Sem Parar mantém o seu sentido e as suas tarifas.
+    - Entre as que sobram, linhas da mesma praça com o mesmo sentido viram um ponto só.
+    """
+    limite = CFG["distancia_mesma_praca_m"]
     usados = set()
     saida = []
     for p in semparar:
         p = dict(p)
-        perto = [a for a in antt if a["rodovia"] == p["rodovia"] and a["id"] not in usados
-                 and distancia_m(a["coordenadas"], p["coordenadas"]) <= CFG["distancia_mesma_praca_m"]]
+        perto = [a for a in antt if a["id"] not in usados and distancia_m(a["coordenadas"], p["coordenadas"]) <= limite]
         if perto:
             a = min(perto, key=lambda a: distancia_m(a["coordenadas"], p["coordenadas"]))
-            usados.add(a["id"])
+            usados.update(x["id"] for x in perto)
             p["coordenadas"] = a["coordenadas"]
             p["tolerancia_m"] = 150
             p["fonte"] = {**p["fonte"], "coordenadas": a["fonte"]["origem"]}
         saida.append(p)
-    return saida + [a for a in antt if a["id"] not in usados]
+    sobra = []
+    for a in antt:
+        if a["id"] in usados:
+            continue
+        igual = next((s for s in sobra if s.get("sentido") == a.get("sentido") and distancia_m(s["coordenadas"], a["coordenadas"]) <= 500), None)
+        if igual is None:
+            sobra.append(a)
+    return saida + sobra
 
 
 # ---------- ARTESP: tabela oficial de tarifas das rodovias estaduais de SP ----------

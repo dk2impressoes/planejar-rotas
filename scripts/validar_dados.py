@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Valida cada base contra o esquema e bloqueia anomalias (Seções 11.1 a 11.3).
 Implementa o mesmo subconjunto de JSON Schema de site/js/servicos/esquema.js. Sai com código 1 se algo falhar."""
 import json

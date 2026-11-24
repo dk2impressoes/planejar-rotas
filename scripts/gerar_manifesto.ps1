@@ -1,4 +1,4 @@
-﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 # Gera site/dados/manifesto.json (versão, tamanho e SHA-256 de cada arquivo publicado).
 # Equivalente local de scripts/gerar_manifesto.py, para máquinas sem Python.
 param([string]$Site = (Join-Path $PSScriptRoot '..\site'))
@@ -8,7 +8,7 @@ $arquivos = @()
 $hashDados = ''
 Get-ChildItem -Path $Site -Recurse -File | Sort-Object FullName | ForEach-Object {
   $rel = $_.FullName.Substring($Site.Length + 1).Replace('\', '/')
-  if ($rel -eq 'dados/manifesto.json' -or $rel -eq 'sw.js' -or $rel.StartsWith('.well-known/')) { return }
+  if ($rel -eq 'dados/manifesto.json' -or $rel -eq 'sw.js' -or $rel.StartsWith('.well-known/') -or $rel.StartsWith('baixar/')) { return }  # instaladores ficam fora do cache do app
   $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
   $h = -join ($sha.ComputeHash($bytes) | ForEach-Object { $_.ToString('x2') })
   $tipo = if ($rel.StartsWith('dados/') -or $rel.StartsWith('esquemas/')) { 'dados' } else { 'app' }

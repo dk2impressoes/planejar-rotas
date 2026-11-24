@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Modelo da viagem (Seção 10.1), validação por tela (Seção 2) e chaves de invalidação (Seção 3).
 import { VEICULO_PADRAO, validarVeiculo } from './combustivel.js';
 import { dataValida, horaValida, localParaUTC, fusoDaUF, FUSO_PADRAO } from './tempo.js';

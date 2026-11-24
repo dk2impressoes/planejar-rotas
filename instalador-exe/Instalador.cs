@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Planejar Rotas com Checklist — instalador .exe (sem administrador).
 // O pacote do Windows (app + scripts) vai embutido como recurso "pacote.zip".
 // O .exe extrai numa pasta temporária, roda instalar.ps1 e mostra o resultado.

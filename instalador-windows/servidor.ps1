@@ -1,4 +1,4 @@
-﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 # Planejar Rotas — servidor local (só neste computador: http://localhost:PORTA/).
 # Iniciado escondido pelo atalho. Não precisa de administrador nem de nada instalado além do Windows.
 param(

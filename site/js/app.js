@@ -1,4 +1,4 @@
-// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Controlador do app: primeira abertura, assistente, rotas, preparação e menu.
 import { el, botao, limpar, anunciar, selo, campo, recolhido } from './interface/dom.js';
 import { isoParaBr } from './interface/datas.js';
@@ -407,6 +407,46 @@ function vistaDados() {
     }, { classe: 'perigo' }));
 }
 
+// ---------- Baixar e instalar (para quem não tem prática: um botão por aparelho) ----------
+const SITE_PUBLICADO = 'https://dk2impressoes.github.io/planejar-rotas/';
+let pedidoInstalacao = null; // aviso do navegador "pode instalar este app" (Android/Chrome/Edge)
+addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); pedidoInstalacao = e; if (estado.vista === 'baixar') render(); });
+
+async function vistaBaixar() {
+  // No site os arquivos estão ao lado; no programa do Windows (localhost) vêm do site publicado.
+  const noSite = location.origin + location.pathname.replace(/[^/]*$/, '') === SITE_PUBLICADO;
+  const base = noSite ? 'baixar/' : `${SITE_PUBLICADO}baixar/`;
+  const existe = async (arq) => { try { return (await fetch(base + arq, { method: 'HEAD', cache: 'no-store' })).ok; } catch { return false; } };
+  const temApk = online() && await existe('planejar-rotas-android.apk');
+  const link = (arq, nome, texto, classe = 'botao largo') => el('a', { class: classe, href: base + arq, download: noSite ? nome : null, rel: 'noopener' }, texto);
+  const instalado = matchMedia('(display-mode: standalone)').matches;
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Baixar e instalar o app', 'Escolha o seu aparelho. Tudo gratuito.'),
+    online() ? null : el('p', { class: 'aviso' }, '⚠ Sem internet agora: para baixar, conecte-se e volte aqui.'),
+    instalado ? el('p', { class: 'destaque-mini' }, '✔ Este app já está instalado neste aparelho.') : null,
+    el('section', { class: 'cartao baixar' },
+      el('h2', {}, '📱 Celular Android'),
+      pedidoInstalacao ? botao('📲 Instalar neste celular agora', async () => { pedidoInstalacao.prompt(); await pedidoInstalacao.userChoice; pedidoInstalacao = null; render(); }, { classe: 'largo' }) : null,
+      temApk ? link('planejar-rotas-android.apk', 'Planejar Rotas - INSTALAR no Android.apk', '⬇ Baixar o app para Android (APK)') : null,
+      el('p', { class: 'ajuda' }, temApk
+        ? 'Depois de baixar, toque no arquivo. Se o celular pedir, permita "instalar apps desta fonte".'
+        : 'No Chrome: toque em ⋮ (canto de cima) e depois em "Instalar app" ou "Adicionar à tela inicial".')),
+    el('section', { class: 'cartao baixar' },
+      el('h2', {}, '🍎 iPhone'),
+      el('p', {}, 'No Safari: toque em Compartilhar (quadrado com seta para cima) e depois em "Adicionar à Tela de Início".')),
+    el('section', { class: 'cartao baixar' },
+      el('h2', {}, '💻 Computador Windows'),
+      link('planejar-rotas-windows.exe', 'Planejar Rotas - INSTALAR no Windows.exe', '⬇ Baixar para Windows'),
+      el('p', { class: 'ajuda' }, 'Abra o arquivo baixado e toque em "Sim". Se aparecer "O Windows protegeu o computador": "Mais informações" → "Executar assim mesmo".'),
+      el('p', { class: 'ajuda' }, 'O Windows bloqueou o arquivo? ',
+        link('planejar-rotas-windows.zip', 'Planejar Rotas - INSTALAR no Windows (se o exe for bloqueado).zip', 'Baixe esta versão em .zip', ''),
+        ': extraia e dê dois cliques em "INSTALAR (clique duas vezes)".')),
+    el('section', { class: 'cartao baixar' },
+      el('h2', {}, '📄 Guia simples (PDF)'),
+      link('planejar-rotas-guia.pdf', 'Planejar Rotas - Guia como manter online.pdf', '⬇ Baixar o guia', 'botao secundario largo')),
+    botao('← Minhas viagens', () => { estado.vista = 'inicio'; render({ trocaDeTela: true }); }, { classe: 'secundario' }));
+}
+
 function vistaSobre() {
   return el('div', { class: 'estreito' },
     ...cabecalho('Sobre e avisos legais', `Versão ${VERSAO_APP} · Termos ${VERSAO_TERMOS} (${DATA_TERMOS})`),
@@ -424,9 +464,9 @@ function vistaSobre() {
     el('p', {}, 'Coordenadas e textos de endereço vão aos serviços de rota e busca, que podem ver o IP. Nomes, checklists, documentos e final da placa ficam só neste aparelho. Os botões do Google Maps e do Waze enviam as coordenadas do caminho a essas empresas apenas quando tocados.'),
     el('h2', {}, 'Autoria'),
     el('div', { class: 'cartao sobre-dk2' },
-      el('img', { src: 'icons/abertura-dk2.jpg', alt: 'Logo do Grupo DK²: DK² forjada para programar o futuro.', width: 240, height: 269 }),
+      el('img', { src: 'icons/abertura-dk2.jpg', alt: 'Logo do Grupo DK².', width: 240, height: 269 }),
       el('p', {}, 'Planejar Rotas com Checklist foi idealizado e desenvolvido pelo ', el('strong', {}, 'Grupo DK²'), '.'),
-      el('p', { class: 'assinatura' }, '© 2026 Grupo DK² — DK² forjada para programar o futuro.')));
+      el('p', { class: 'assinatura' }, '© 2026 Grupo DK² — forjada para programar o futuro.')));
 }
 
 function lugaresUsados() {
@@ -482,6 +522,7 @@ function render({ foco, trocaDeTela } = {}) {
       case 'dados': conteudo = vistaDados(); break;
       case 'sobre': conteudo = vistaSobre(); break;
       case 'comparar': conteudo = await vistaComparar(); break;
+      case 'baixar': conteudo = await vistaBaixar(); break;
       default: conteudo = el('p', {}, 'Carregando…');
     }
     limpar(m).append(conteudo);
@@ -498,6 +539,7 @@ function montarMenu() {
     ['Minhas viagens', () => { estado.vista = 'inicio'; estado.mensagem = ''; }],
     ['Viagem atual', () => { if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return true; } estado.vista = 'inicio'; }],
     ['Preparar para viagem', () => { if (!estado.viagem) { estado.vista = 'inicio'; estado.mensagem = 'Abra uma viagem primeiro.'; return; } estado.vista = 'preparacao'; setTimeout(iniciarPreparacao); }],
+    ['📥 Baixar e instalar o app', () => { estado.vista = 'baixar'; }],
     ['Comparar viagens e custos do ano', () => { estado.vista = 'comparar'; }],
     ['Modo de uso (online ou offline)', () => { estado.vista = 'modo'; }],
     ['Salvar cópia, abrir cópia ou apagar tudo', () => { estado.vista = 'dados'; }],

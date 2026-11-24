@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Testes dos coletores sem rede: python -m unittest discover -s testes/coletores -v"""
 import json
 import os
@@ -137,7 +137,7 @@ class Pedagios(unittest.TestCase):
         um = next(p for p in pontos if "um" in p["id"])
         self.assertEqual(um["rodovia"], "BR-116")
         self.assertEqual(um["coordenadas"], {"lat": -23.4, "lon": -46.5})
-        self.assertEqual(um["sentido"], "ambos")
+        self.assertEqual(um["sentido"], "crescente")  # a ANTT diz "Crescente": cobra só nesse sentido
         self.assertTrue(um["regras_acesso"])  # fica "possível" no app até a conferência do sentido
         self.assertEqual(next(p for p in pontos if "free" in p["id"])["tipo"], "free_flow")
 
@@ -207,6 +207,32 @@ class SemParar(unittest.TestCase):
         self.assertEqual(juntos["semparar-F001"]["tolerancia_m"], 150)
         self.assertNotIn("antt-x", juntos)
         self.assertIn("antt-y", juntos)
+
+    def test_antt_nao_duplica_praca(self):
+        """Bug do robô em 24/11/2026: a mesma praça entrava duas vezes e o pedágio era somado em dobro."""
+        sp = pontos_semparar(csv_semparar(), "u")
+        f = lambda i, rod, lat, lon, sentido: {"id": i, "rodovia": rod, "sentido": sentido,  # noqa: E731
+                                              "coordenadas": {"lat": lat, "lon": lon}, "fonte": {"origem": "ANTT"}}
+        antt = [
+            f("antt-cres", "BR-116/SP", -22.9301, -45.3601, "crescente"),     # mesma praça do Sem Parar, rodovia escrita diferente
+            f("antt-decr", "BR-116/SP", -22.9305, -45.3605, "decrescente"),   # mesma praça, outro sentido
+            f("antt-n1", "BR-381", -20.0000, -44.0000, "crescente"),          # praça só da ANTT, um sentido
+            f("antt-n2", "BR-381", -20.0003, -44.0002, "decrescente"),        # ... o outro sentido: fica (cobra só nele)
+            f("antt-n3", "BR-381", -20.0004, -44.0001, "crescente"),          # linha repetida do mesmo sentido: sai
+        ]
+        juntos = {p["id"]: p for p in juntar_antt(sp, antt)}
+        self.assertNotIn("antt-cres", juntos); self.assertNotIn("antt-decr", juntos)
+        self.assertEqual(juntos["semparar-F001"]["coordenadas"], {"lat": -22.9301, "lon": -45.3601})
+        self.assertIn("antt-n1", juntos); self.assertIn("antt-n2", juntos); self.assertNotIn("antt-n3", juntos)
+
+    def test_antt_sentido_e_nunca_conferida(self):
+        from atualizar_pedagios import sentido_antt
+        self.assertEqual(sentido_antt("Crescente"), "crescente")
+        self.assertEqual(sentido_antt("decrescente"), "decrescente")
+        self.assertEqual(sentido_antt("crescente/decrescente"), "ambos")
+        self.assertEqual(sentido_antt(""), "ambos")
+        linhas, mapa = ler_csv(CSV_ANTT)
+        self.assertTrue(all(p["coordenadas_verificadas"] is False for p in pontos_antt(linhas, mapa, "u")))
 
     def test_manual_remove_e_substitui(self):
         sp = pontos_semparar(csv_semparar(), "u")

@@ -1,4 +1,4 @@
-# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 """Importa uma planilha de pesquisa de pedágios (formato "Pedagios_Brasil_carros_e_motos") para
 dados-curados/pesquisa-pedagios.json, ligando cada linha à praça da base pela UF, rodovia e km.
 
