@@ -3,7 +3,7 @@
 // Ao mudar o texto, suba VERSAO_TERMOS: o app pede novo aceite a todos.
 import { el } from './dom.js';
 
-export const VERSAO_TERMOS = '1.0';
+export const VERSAO_TERMOS = '1.1';
 export const DATA_TERMOS = '2026-11-24';
 export const CONTATO = 'https://github.com/dk2impressoes/planejar-rotas/issues';
 
@@ -70,7 +70,7 @@ export const TERMOS = [
 ];
 
 export const PRIVACIDADE = [
-  ['Quem é o responsável', 'Grupo DK², que desenvolve e mantém o Planejar Rotas com Checklist. O aplicativo é gratuito, não tem anúncios, não tem login e não vende dados.'],
+  ['Quem é o responsável', 'Grupo DK², que desenvolve e mantém o Planejar Rotas com Checklist. O aplicativo é gratuito, não tem anúncios, não tem login e o Grupo DK² não tem acesso aos seus dados pessoais.'],
   ['O que fica só no seu aparelho',
     'Viagens, passageiros (nomes e datas de nascimento), veículo, placa, valores, checklists, documentos e cópias de segurança ficam no armazenamento do navegador ou do aparelho. O Grupo DK² não recebe nem guarda esses dados.'],
   ['O que é enviado, e para quem',

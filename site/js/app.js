@@ -15,6 +15,7 @@ import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
 import { congelarSeTerminou, basesDaViagem } from './dominio/congelamento.js';
+import { compartilharRota } from './interface/compartilhar.js';
 import { custosDaViagem } from './dominio/comparacao.js';
 import { formatarDataHora } from './dominio/tempo.js';
 import { SITUACAO } from './dominio/situacao.js';
@@ -222,7 +223,7 @@ function vistaTermos() {
       ? cabecalho('Os Termos de Uso foram atualizados', 'Leia o resumo abaixo e aceite de novo para continuar. Suas viagens continuam salvas.')
       : cabecalho('Olá! Antes de começar', 'Leia o resumo abaixo. Leva menos de um minuto.')),
     el('ul', { class: 'cartao termos lista-simples' },
-      el('li', {}, '💸 O app é gratuito, não tem anúncios e não vende seus dados.'),
+      el('li', {}, '💸 O app é gratuito, não tem anúncios e não tem acesso aos seus dados pessoais.'),
       el('li', {}, '📱 O que você digita sobre a viagem fica guardado só neste aparelho.'),
       el('li', {}, '🗺️ Para achar endereços e calcular o caminho, os lugares que você procura vão para serviços de mapas gratuitos. Seu nome e a placa do carro nunca são enviados.'),
       el('li', {}, '🧭 Horários, custos, pedágios e avisos são estimativas, e os dados de fontes externas não são garantidos. Confira nas fontes oficiais antes de sair.'),
@@ -283,6 +284,11 @@ async function vistaInicio() {
         velha ? el('p', { class: 'aviso' }, '⚠ Preparada há mais de 7 dias: prepare de novo antes de sair.') : null,
         el('div', { class: 'acoes' },
           botao(v.tela >= 6 ? 'Ver resumo' : 'Continuar', async () => { estado.viagem = v; await meta('viagemAtual', v.id); abrirAssistente(v.tela || 1); }, { rotuloAcessivel: `Abrir ${v.nome || 'viagem'}` }),
+          v.origem && v.destino ? botao('📤 Compartilhar rota', async () => {
+            const r = await compartilharRota(v);
+            if (r === 'copiado') anunciar('Rota copiada: cole na conversa ou no e-mail.');
+            else if (r === 'indisponivel') anunciar('Este aparelho não deixou compartilhar nem copiar. Tente pelo celular.');
+          }, { classe: 'secundario', rotuloAcessivel: `Compartilhar a rota de ${v.nome || 'viagem'}` }) : null,
           botao('Apagar', async () => {
             if (!confirm('Apagar esta viagem do aparelho? Uma cópia de segurança interna é feita antes.')) return;
             await copiaDeSeguranca('antes de apagar viagem');
@@ -475,7 +481,7 @@ function vistaSobre() {
     el('p', {}, AVISO_CURTO),
     recolhido('s-termos', `Termos de Uso e isenção de responsabilidade (versão ${VERSAO_TERMOS})`, textoJuridico(TERMOS)),
     recolhido('s-privacidade', 'Aviso de Privacidade', textoJuridico(PRIVACIDADE)),
-    el('p', {}, 'Gratuito, sem anúncios, sem venda de dados e sem login. Nenhum dado pessoal é enviado a servidores do Grupo DK².'),
+    el('p', {}, 'Gratuito, sem anúncios e sem login. O Grupo DK² não tem acesso aos seus dados pessoais: nenhum dado pessoal é enviado a servidores do Grupo DK².'),
     el('h2', {}, 'Dados de fontes externas'),
     el('p', { class: 'aviso' }, 'Preços, tarifas de pedágio, rotas, endereços e regras vêm de fontes externas. O app confere e filtra o que parece errado, mas não garante esses dados e valores: confira na fonte oficial antes de sair.'),
     el('p', {}, 'Quando uma fonte não responde ou não encontra o que foi pedido, o app tenta a próxima da lista. As fontes com limite de uso só são consultadas quando as outras falham.'),

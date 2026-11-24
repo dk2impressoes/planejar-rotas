@@ -20,6 +20,7 @@ import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/j
 import { seletorLugar } from '../../site/js/interface/telas.js';
 import { vistaComparacao } from '../../site/js/interface/comparacao.js';
 import { congelarSeTerminou, basesDaViagem, congelamentoValido } from '../../site/js/dominio/congelamento.js';
+import { textoDaRota } from '../../site/js/interface/compartilhar.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
@@ -600,6 +601,18 @@ teste('Congelamento: viagem importada (sem o recorte) usa os totais guardados no
   const w = imp.viagens[0];
   igual(w.congelado.custos.total, 80, 'totais vieram no arquivo');
   igual(custosDaViagem(w, null).total, 80, 'histórico usa os totais guardados');
+});
+teste('Compartilhar rota: só lugares, datas e link; nunca nomes nem placa', () => {
+  const v = viagemTerminada();
+  v.nome = 'Praia';
+  v.viajantes = [{ id: 'a', nome: 'Maria Teste', nascimento: '1990-01-01' }];
+  v.veiculo.finalPlaca = '7';
+  const { titulo, texto } = textoDaRota(v);
+  igual(titulo, 'Praia');
+  verdade(texto.includes('Campinas/SP → Santos/SP'), 'ida com os lugares');
+  verdade(texto.includes('10/03/2026'), 'data da ida');
+  verdade(texto.includes('https://www.google.com/maps/dir/'), 'link do caminho');
+  verdade(!texto.includes('Maria') && !texto.includes('1990'), 'sem nomes nem nascimento');
 });
 teste('Histórico de gastos: só aparecem os meses com viagem', () => {
   const v1 = novaViagem(); v1.datas.ida.data = '2026-03-10'; v1.datas.volta.data = '2026-03-12';
