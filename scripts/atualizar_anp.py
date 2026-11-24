@@ -1,3 +1,4 @@
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 """Coleta o preço médio semanal por UF do Levantamento de Preços de Combustíveis da ANP (Seção 4.6).
 
 Como a ANP já mudou o nome dos arquivos e o layout das planilhas, o coletor não depende de posições fixas:

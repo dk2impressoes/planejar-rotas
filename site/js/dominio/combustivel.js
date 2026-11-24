@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Combustível e abastecimento (Seção 4). Precisão completa; arredondar só na exibição.
 import { SITUACAO, piorSituacao } from './situacao.js';
 

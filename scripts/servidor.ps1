@@ -1,3 +1,4 @@
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 # Servidor estático local para desenvolvimento (localhost conta como contexto seguro para Service Worker).
 # Uso: powershell -ExecutionPolicy Bypass -File scripts\servidor.ps1 [-Porta 8080]
 # App em http://localhost:8080/site/  ·  Testes em http://localhost:8080/testes/unidade/

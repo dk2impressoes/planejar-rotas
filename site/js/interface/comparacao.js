@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Tela "Comparar viagens e custos do ano": viagens ao mesmo destino lado a lado e o gasto de cada ano.
 import { el, botao, reais, km } from './dom.js';
 import { isoParaBr } from './datas.js';

@@ -1,3 +1,4 @@
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 """Gera site/dados/feriados.json para o ano corrente e os seguintes (Seção 11).
 Não depende de rede: datas fixas e móveis (Páscoa) vêm das regras em dados-curados/feriados.json."""
 from __future__ import annotations

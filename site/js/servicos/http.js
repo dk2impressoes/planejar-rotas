@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Consultas com espera máxima, nova tentativa, intervalo mínimo e disjuntor (Seção 9.3).
 
 const estados = new Map();

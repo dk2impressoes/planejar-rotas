@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Roda os testes de unidade em um Chromium sem tela (GitHub Actions).
 // Uso: node testes/executar-ci.mjs  (requer: npm i -D playwright@1.47.2 && npx playwright install chromium)
 import { chromium } from 'playwright';

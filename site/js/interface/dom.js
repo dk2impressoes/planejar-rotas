@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Componentes acessíveis. Texto do usuário só com textContent (Seção 12.3).
 import { simbolo } from '../dominio/situacao.js';
 import { interpretarData, interpretarHora, mascararData, mascararHora, isoParaBr, dataPorExtenso, EXEMPLO_DATA, EXEMPLO_HORA } from './datas.js';

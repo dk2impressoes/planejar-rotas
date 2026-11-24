@@ -1,3 +1,4 @@
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 # Planejar Rotas — instalador para Windows (sem administrador).
 # Copia o app para a pasta do usuário, cria os atalhos e abre o app.
 param(

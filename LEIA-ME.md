@@ -1,5 +1,9 @@
 # Planejar Rotas com Checklist — V13 (primeira implementação)
 
+![Grupo DK² — DK² forjada para programar o futuro](site/icons/abertura-dk2.jpg)
+
+**Autoria: Grupo DK²** — *DK² forjada para programar o futuro.* © 2026 Grupo DK². Todos os arquivos de código levam essa assinatura no topo; a logo aparece na abertura do app, no rodapé de todas as telas e em "Sobre". Para trocar a logo, substitua `marca/logo-grupo-dk2.jpg` e rode `powershell -ExecutionPolicy Bypass -File scripts\gerar_logo.ps1`.
+
 Site estático e PWA, sem etapa de compilação, que segue a *Especificação Técnica V13*. Grupo DK², 23/11/2026.
 
 **Estado:** funcional para testes. **Não está pronto para publicação**: veja as pendências abaixo e em [docs/revisao-v13.md](docs/revisao-v13.md).

@@ -1,3 +1,4 @@
+/* © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro. */
 :root {
   --fundo: #ffffff; --texto: #1b1f1e; --suave: #4a5452; --borda: #b9c3c0; --cartao: #f4f7f6;
   --primaria: #0b5d4b; --primaria-texto: #ffffff; --foco: #1a56db;
@@ -240,3 +241,20 @@ html { font-size: 112.5%; }
 .barras-mes .mes { font-weight: 700; text-transform: capitalize; }
 .barras-mes .barra { display: block; height: 10px; border-radius: 5px; background: var(--primaria); min-width: 2px; }
 .barras-mes .valor { grid-column: 2; font-size: .9rem; color: var(--suave); }
+
+/* Assinatura do Grupo DK²: abertura ao abrir o app e rodapé em todas as telas */
+.abertura { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  background: #ffffff; padding: 16px; animation: abertura-some .6s ease 2.2s forwards; cursor: pointer; }
+.abertura img { width: auto; height: auto; max-width: min(78vw, 420px); max-height: calc(100vh - 80px); object-fit: contain; }
+.abertura-app { margin: 0; font-weight: 700; font-size: 1.2rem; color: #0b3d4f; letter-spacing: .02em; }
+.abertura.fechada { display: none; }
+@keyframes abertura-some { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .abertura { animation: abertura-some 0s linear 1.6s forwards; } }
+.marca { display: flex; align-items: center; gap: 8px; }
+.marca-logo { border-radius: 50%; }
+.assinatura-dk2 { max-width: 860px; margin: 24px auto 16px; padding: 12px 16px 0; border-top: 1px solid var(--borda);
+  display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--suave); }
+.assinatura-dk2 img { border-radius: 50%; flex: none; }
+@media print { .abertura { display: none !important; } }
+.sobre-dk2 { text-align: center; }
+.sobre-dk2 img { width: min(60vw, 240px); height: auto; }

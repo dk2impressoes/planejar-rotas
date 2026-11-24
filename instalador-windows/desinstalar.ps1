@@ -1,3 +1,4 @@
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 # Planejar Rotas — remove o app deste computador (atalhos, servidor e pasta do programa).
 # As viagens salvas ficam no navegador; para apagá-las, use antes "Menu > Salvar cópia, abrir cópia ou apagar tudo".
 $pasta = $PSScriptRoot

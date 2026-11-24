@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Telas 1 a 5 do assistente (Seção 2), em linguagem simples para quem não tem prática com apps:
 // uma pergunta por bloco, valores padrão já preenchidos e o que é opcional ou técnico recolhido.
 import { el, campo, botao, anunciar, escolha, recolhido, explicar, reais } from './dom.js';

@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Validador de um subconjunto de JSON Schema (type, required, properties, items, enum,
 // minimum, maximum, minLength, maxLength, pattern, maxItems, additionalProperties).
 // O mesmo subconjunto é implementado em scripts/validar_dados.py.

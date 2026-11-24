@@ -1,3 +1,4 @@
+﻿# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 # Gera site/dados/manifesto.json (versão, tamanho e SHA-256 de cada arquivo publicado).
 # Equivalente local de scripts/gerar_manifesto.py, para máquinas sem Python.
 param([string]$Site = (Join-Path $PSScriptRoot '..\site'))

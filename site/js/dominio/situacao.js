@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Situações dos resultados (Seção 1.8) e das bases (Seção 11.2).
 // O símbolo e o texto acompanham sempre a cor (WCAG: nunca só a cor).
 

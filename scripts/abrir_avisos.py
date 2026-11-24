@@ -1,3 +1,4 @@
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 """Abre uma issue no GitHub para cada aviso novo de dados-estado/avisos.md (sem repetir títulos já abertos).
 Usa o GitHub CLI (gh), disponível nos runners do GitHub Actions, com GH_TOKEN no ambiente."""
 import json

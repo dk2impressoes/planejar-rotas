@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Documentos dos viajantes (Seção 7). Orientação, não parecer jurídico.
 import { dataValida } from './tempo.js';
 

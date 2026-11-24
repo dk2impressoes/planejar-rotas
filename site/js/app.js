@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Controlador do app: primeira abertura, assistente, rotas, preparação e menu.
 import { el, botao, limpar, anunciar, selo, campo, recolhido } from './interface/dom.js';
 import { isoParaBr } from './interface/datas.js';
@@ -421,7 +422,11 @@ function vistaSobre() {
       el('li', {}, 'Preços: ANP. Rodízio: Prefeitura de São Paulo/CET.')),
     el('h2', {}, 'Privacidade'),
     el('p', {}, 'Coordenadas e textos de endereço vão aos serviços de rota e busca, que podem ver o IP. Nomes, checklists, documentos e final da placa ficam só neste aparelho. Os botões do Google Maps e do Waze enviam as coordenadas do caminho a essas empresas apenas quando tocados.'),
-    el('p', { class: 'assinatura' }, '© 2026 Grupo DK²'));
+    el('h2', {}, 'Autoria'),
+    el('div', { class: 'cartao sobre-dk2' },
+      el('img', { src: 'icons/abertura-dk2.jpg', alt: 'Logo do Grupo DK²: DK² forjada para programar o futuro.', width: 240, height: 269 }),
+      el('p', {}, 'Planejar Rotas com Checklist foi idealizado e desenvolvido pelo ', el('strong', {}, 'Grupo DK²'), '.'),
+      el('p', { class: 'assinatura' }, '© 2026 Grupo DK² — DK² forjada para programar o futuro.')));
 }
 
 function lugaresUsados() {
@@ -570,6 +575,12 @@ function prepararImpressao() {
 async function iniciar() {
   prepararImpressao();
   montarMenu();
+  // Abertura com a logo do Grupo DK²: some sozinha pelo CSS; tocar ou apertar uma tecla pula.
+  const abertura = document.getElementById('abertura');
+  const fecharAbertura = () => abertura?.classList.add('fechada');
+  abertura?.addEventListener('click', fecharAbertura);
+  addEventListener('keydown', fecharAbertura, { once: true });
+  abertura?.addEventListener('animationend', fecharAbertura);
   indicadorConexao();
   registrarServiceWorker();
   try {

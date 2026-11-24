@@ -1,3 +1,4 @@
+# © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 """Monta site/dados/pedagios.json (Seção 5) a partir de quatro fontes:
 
 1. Base aberta do Sem Parar (CC BY 4.0, GitHub): praças federais e estaduais, com id estável, sentido em

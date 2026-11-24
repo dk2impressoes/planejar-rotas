@@ -1,8 +1,8 @@
 {
     "versao_app":  "13.0.0",
     "versao_conjunto":  "2026.11.23-b57e49695b8c",
-    "cache_app":  "app-v13.0.0-df301f9a1c71",
-    "gerado_em":  "2026-11-24T00:23:02Z",
+    "cache_app":  "app-v13.0.0-fe0d67d7c5ed",
+    "gerado_em":  "2026-11-24T00:48:41Z",
     "arquivos":  [
                      {
                          "caminho":  "dados/anp.json",
@@ -91,194 +91,200 @@
                      {
                          "caminho":  "estilos.css",
                          "tipo":  "app",
-                         "tamanho":  17235,
-                         "sha256":  "2ab913ebad56e11186031ec402fe28ed1752e0d1623c317401b3fa8f3d03ab05"
+                         "tamanho":  18628,
+                         "sha256":  "3316e8a2e9f1d9bb055a64033333b71a5bae52299eba66dcba9236699878bf19"
+                     },
+                     {
+                         "caminho":  "icons/abertura-dk2.jpg",
+                         "tipo":  "app",
+                         "tamanho":  65110,
+                         "sha256":  "d433c6ea1fca998d2be7fbd1b4805bb1527ff7952d75c6b2d65933e929005aa2"
                      },
                      {
                          "caminho":  "icons/apple-touch-icon-180.png",
                          "tipo":  "app",
-                         "tamanho":  4166,
-                         "sha256":  "761bb736d283cde17ca5eb57798b24fc1895552f12823f348f0daea680f49b9b"
+                         "tamanho":  82184,
+                         "sha256":  "cbb1a5658395d1e804736213b7dd13b7cb592db09301ad5523b0c020f9f0a2b1"
                      },
                      {
                          "caminho":  "icons/icon-192.png",
                          "tipo":  "app",
-                         "tamanho":  4458,
-                         "sha256":  "4126a4e29803e6134a3d0f8f0fcf9da1bcb5097110df0c658d703d5d3c91715f"
+                         "tamanho":  93480,
+                         "sha256":  "56a8252ea1a6450a19ed784ce0a8e8f7e91a310c88080944671a6943241a9d5d"
                      },
                      {
                          "caminho":  "icons/icon-512.png",
                          "tipo":  "app",
-                         "tamanho":  13654,
-                         "sha256":  "df903c96bb507467c4121d8334a7920ab3379d15f5ca1cb035add9664a3b59d9"
+                         "tamanho":  637189,
+                         "sha256":  "0b80dbd01204717b6e5f9e434229fb84bce3303285a1ca2d326f925566b64348"
                      },
                      {
                          "caminho":  "icons/icon-maskable-512.png",
                          "tipo":  "app",
-                         "tamanho":  10343,
-                         "sha256":  "79edc0d1525ec25ec1bc4256ab3c72024d3ed720ee07bf1a55180584d8283ba5"
+                         "tamanho":  398574,
+                         "sha256":  "1db56376a49ee482c6c736ccc809d62cd189e7f9c676a167edf0bf2a7df8e1c9"
                      },
                      {
                          "caminho":  "index.html",
                          "tipo":  "app",
-                         "tamanho":  1622,
-                         "sha256":  "2cf78652a8fdaa01c76c19cdd6bdc859da7f52e9fff62a6f1ac473a620e384a4"
+                         "tamanho":  2525,
+                         "sha256":  "7384880bfb5636a962418317c6e800856b29aeb7680a2c4df01f8903ce59e6c8"
                      },
                      {
                          "caminho":  "js/app.js",
                          "tipo":  "app",
-                         "tamanho":  32798,
-                         "sha256":  "f98eaa13280d4af6899495b5dd2204cf9646ca101a86abdc4b01dccf23d6888f"
+                         "tamanho":  33678,
+                         "sha256":  "87e3f7258eeb9f64db0fccc1fe8dc95ccbfda265b56600c275af4f61f706dfc8"
                      },
                      {
                          "caminho":  "js/armazenamento/db.js",
                          "tipo":  "app",
-                         "tamanho":  4178,
-                         "sha256":  "53f59a99968e0fe3781641cc4abb8c7cd7d8e5ecbc9e412ead2768e40600b53e"
+                         "tamanho":  4273,
+                         "sha256":  "dffe1b9525c812fb5e1b422846b8bb6c0ad7864f97045b3b859885b26254c66e"
                      },
                      {
                          "caminho":  "js/armazenamento/exportacao.js",
                          "tipo":  "app",
-                         "tamanho":  7737,
-                         "sha256":  "8c6597c18b2f262978b9399b4ad4910e518a9a55d74cf7e860a71c2cfb580f3a"
+                         "tamanho":  7832,
+                         "sha256":  "ef4681fb541bba67b371dd6ef5707fa8545b17c651e780e5d3648767a5e6539c"
                      },
                      {
                          "caminho":  "js/dominio/calculo.js",
                          "tipo":  "app",
-                         "tamanho":  17906,
-                         "sha256":  "80e9bd0f00ca1aa0e3aae73c78c181f365a3d5b0fcc54576fb0ed775820343b2"
+                         "tamanho":  18001,
+                         "sha256":  "e96ec8913c9362e2948bfbd75cb9c4c0cf275780dd867dcc6c5799861729ce6e"
                      },
                      {
                          "caminho":  "js/dominio/combustivel.js",
                          "tipo":  "app",
-                         "tamanho":  12876,
-                         "sha256":  "92cf4dc6b9f85ca65f3bf72efdb671b30796e8c55a4c738c0b0428e42266396c"
+                         "tamanho":  12971,
+                         "sha256":  "7ec3c88fea278baa9e684b33c9650922efb5dcfc51aa1217a5b9449e80fed927"
                      },
                      {
                          "caminho":  "js/dominio/comparacao.js",
                          "tipo":  "app",
-                         "tamanho":  5987,
-                         "sha256":  "73eac9076e3f4ff9bbbe992dd9aa8422cdadc99400fe351bc03d9267177e8fc8"
+                         "tamanho":  6082,
+                         "sha256":  "620cbee46412baf151d50a66cdb73b587cd8fa7b9072407cdcf2d8be9188ceeb"
                      },
                      {
                          "caminho":  "js/dominio/descanso.js",
                          "tipo":  "app",
-                         "tamanho":  1679,
-                         "sha256":  "cf68bc363e4cf76a33d4bd8c38782b7839e80be69d0daab29e1b764bca7c4b5e"
+                         "tamanho":  1774,
+                         "sha256":  "75635adf22478c6c8cd2d4101e14c05ae191571dc798fe322fbc95a9b106047f"
                      },
                      {
                          "caminho":  "js/dominio/documentos.js",
                          "tipo":  "app",
-                         "tamanho":  5400,
-                         "sha256":  "5439ac772ab07738080a576adcb336387375931676c8db0390b432e8d69f2c61"
+                         "tamanho":  5495,
+                         "sha256":  "c8619e18fecd331104192ab2a1b151792e9d17c8cfad9cb5296c8f618455b5c8"
                      },
                      {
                          "caminho":  "js/dominio/geo.js",
                          "tipo":  "app",
-                         "tamanho":  4881,
-                         "sha256":  "c25cca870904e76cefff46bbf1ff77876467ccb38d6717d168f4e6fe10fb3182"
+                         "tamanho":  4976,
+                         "sha256":  "f52f4dd6fa20a7345ad1763b1c464f63506257453a91a78339a9b695d84dc551"
                      },
                      {
                          "caminho":  "js/dominio/pedagios.js",
                          "tipo":  "app",
-                         "tamanho":  11525,
-                         "sha256":  "05638da2ce5af7cdd2aa8c1fd9c833f318f80553705fd074e8582cdcaab4ed60"
+                         "tamanho":  11620,
+                         "sha256":  "301fc91a8e31293585609868a3cb7a577398d12136bcf1bc5a281c8b112fb192"
                      },
                      {
                          "caminho":  "js/dominio/rodizio.js",
                          "tipo":  "app",
-                         "tamanho":  5732,
-                         "sha256":  "6afa7c6701a721cba8d21ec5a035c3b9dc7e4b184340c986f515290ccd3869ce"
+                         "tamanho":  5827,
+                         "sha256":  "59eb8e4d9b2f4548b46efe87796cc2c3e69efad8fecd34a73f6bea39a51eb880"
                      },
                      {
                          "caminho":  "js/dominio/situacao.js",
                          "tipo":  "app",
-                         "tamanho":  2329,
-                         "sha256":  "9fe5f0fb39d1985cafa47f0d2cabb3fc03cba3010146050b0225231ff24b5d96"
+                         "tamanho":  2424,
+                         "sha256":  "5acb7fa05d8c0293f2434dd742e6fb622fae67a58efe386c584efdc79976024b"
                      },
                      {
                          "caminho":  "js/dominio/tempo.js",
                          "tipo":  "app",
-                         "tamanho":  6220,
-                         "sha256":  "0fe1a904d6d7b51fa8cd173f182a2e4af01dd071562ef70e44b3dfaae867f46d"
+                         "tamanho":  6315,
+                         "sha256":  "5791d40c21cbe4279bc45792b368b63111b4936ed9c656ee106b9f7921847b3b"
                      },
                      {
                          "caminho":  "js/dominio/viagem.js",
                          "tipo":  "app",
-                         "tamanho":  9351,
-                         "sha256":  "6ced750303a8d9251385cf04a939786e59c051f58b2111eee670ac3796319429"
+                         "tamanho":  9446,
+                         "sha256":  "e8c18fc9f66f977cce0272640d3d97b59f495e8bc33f5b53e275d07481eb7249"
                      },
                      {
                          "caminho":  "js/interface/comparacao.js",
                          "tipo":  "app",
-                         "tamanho":  7199,
-                         "sha256":  "1bc9128ffca897e8c9e49fb8fcc1b2fa9fd79aad8168f8f67e7f45266b3df87a"
+                         "tamanho":  7294,
+                         "sha256":  "c59e0fdcc4342836da1d080bd535e8da9ba4f44558754e17fff96e3564902b62"
                      },
                      {
                          "caminho":  "js/interface/datas.js",
                          "tipo":  "app",
-                         "tamanho":  5318,
-                         "sha256":  "d87d927264bbf174d94898076a4c194641507f295fabe6b38a3c5e757a93acb0"
+                         "tamanho":  5413,
+                         "sha256":  "10f29c7a3119a484462ae35f7056f2a37c8a95a367cfdebea85525da223b3c57"
                      },
                      {
                          "caminho":  "js/interface/dom.js",
                          "tipo":  "app",
-                         "tamanho":  12260,
-                         "sha256":  "8d69640bc2849e5e4576237f87a437c28399890a8386fd6f4a57ec90e3209c1e"
+                         "tamanho":  12355,
+                         "sha256":  "ab4a9210ab419465aad468d3a2ca53e4adc441cecc960ea3e57ee5dae036fb25"
                      },
                      {
                          "caminho":  "js/interface/explicacoes.js",
                          "tipo":  "app",
-                         "tamanho":  4230,
-                         "sha256":  "8bd0e86f0a26a2a44d6d654de98b5e189a6e79ef1f7b49dffe5e176a96b60f07"
+                         "tamanho":  4325,
+                         "sha256":  "037ddbb9b756ead94fc2fd68f6927f1305c91bc8376b8b79ac8718a347b83e01"
                      },
                      {
                          "caminho":  "js/interface/revisao.js",
                          "tipo":  "app",
-                         "tamanho":  42915,
-                         "sha256":  "62448b7865be8037fc6e74242711a59b8b9660cf57f9e0a4776c193f07ec91e8"
+                         "tamanho":  43010,
+                         "sha256":  "adb2d6fa443a4d33126688f428111d788ef2a1afa52ec5a5b439a45cf892ccce"
                      },
                      {
                          "caminho":  "js/interface/telas.js",
                          "tipo":  "app",
-                         "tamanho":  32510,
-                         "sha256":  "6345ac47b4b8fc6da5f47c5c61c7701f1e1dbea980a6cf339b34d13681ca8ad1"
+                         "tamanho":  32605,
+                         "sha256":  "1c8e06c41d60c4c7fa46191df8efa1ccb6772257916b9f14b83c326d3fc8a419"
                      },
                      {
                          "caminho":  "js/offline/preparacao.js",
                          "tipo":  "app",
-                         "tamanho":  7433,
-                         "sha256":  "47053a6d0fc12ec45ba0d6b34e04adc34b5c270e9e0df4539c323180b516169f"
+                         "tamanho":  7528,
+                         "sha256":  "b16d4488e32314aee8f62156473b226af39a8158213fe85069b531230334f418"
                      },
                      {
                          "caminho":  "js/servicos/bases.js",
                          "tipo":  "app",
-                         "tamanho":  4345,
-                         "sha256":  "23d792333b1db7bb51377c331ba46d0d22a99de08b5d2c1b3e52862cd4d8de5b"
+                         "tamanho":  4440,
+                         "sha256":  "c6d7139ae246e638052114f7bb52f4d843226f248f80915a034eb58d35549746"
                      },
                      {
                          "caminho":  "js/servicos/buscador.js",
                          "tipo":  "app",
-                         "tamanho":  5405,
-                         "sha256":  "ef36e48a4ae98df905e6adbb8a76b776349db8bd637e7d687350a6affa786213"
+                         "tamanho":  5500,
+                         "sha256":  "ec0e0f8a0b6f48556176c1bcaff0991d0dee3f2cb2c3fcfa22b6fbc0eda38ab2"
                      },
                      {
                          "caminho":  "js/servicos/esquema.js",
                          "tipo":  "app",
-                         "tamanho":  4111,
-                         "sha256":  "f74c542c2d1cfce07608b5cf6a357a343baa850079c963d7a7a069db26cf6aa5"
+                         "tamanho":  4206,
+                         "sha256":  "65002fba98d194b9511f1b8c3d63186abceb64b46f8e59c97f4127aaf1e7dd62"
                      },
                      {
                          "caminho":  "js/servicos/http.js",
                          "tipo":  "app",
-                         "tamanho":  3683,
-                         "sha256":  "2d74c59ef9e3b1c529c7a99d3cba5f06afecac07c37f392eed89232808ba0289"
+                         "tamanho":  3778,
+                         "sha256":  "2593cb8874b77ce604abbe54af78819c4a9239baf6c0c1294e0a88d1c980422b"
                      },
                      {
                          "caminho":  "js/servicos/roteador.js",
                          "tipo":  "app",
-                         "tamanho":  5079,
-                         "sha256":  "95087c46b0e62d38a1b6e9c7d4617054d5c4f8fda5337d36957f71f40e5f468e"
+                         "tamanho":  5174,
+                         "sha256":  "3ce2c9f6df91e887f11131cf2bb65c7a0ef57dbdbe95c761014706ea36f6fe60"
                      },
                      {
                          "caminho":  "manifest.webmanifest",

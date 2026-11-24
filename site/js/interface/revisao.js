@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Tela 6: Revisão (Seção 2) e roteiro impresso.
 import { el, botao, selo, reais, km, litros, campo, recolhido, anunciar } from './dom.js';
 import { formatarDataHora, formatarDuracao } from '../dominio/tempo.js';

@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Pedágios e free flow (Seção 5).
 import { distanciaAoSegmentoM, rumo, diferencaAngular } from './geo.js';
 import { COBRANCA, SITUACAO, situacaoPorNivel, regraVigente } from './situacao.js';

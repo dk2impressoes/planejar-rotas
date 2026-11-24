@@ -1,3 +1,4 @@
+// © 2026 Grupo DK² — Planejar Rotas com Checklist. DK² forjada para programar o futuro.
 // Sugestão de descanso ao volante (trazida do pacote v5). É recomendação de segurança, não regra legal
 // para motorista não profissional: o intervalo e a parada mínima vêm de regras.json.
 
