@@ -1,0 +1,5 @@
+dados-estado/avisos.md
+site/dados/*.tmp
+__pycache__/
+node_modules/
+.claude/
