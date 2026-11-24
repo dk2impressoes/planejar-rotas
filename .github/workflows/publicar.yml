@@ -1,0 +1,45 @@
+name: Publicar no GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:          # chamado por atualizar-dados.yml depois de gravar as bases novas
+    inputs:
+      ref:
+        type: string
+        required: false
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}   # pega o commit novo das bases, não o que disparou
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar bases
+        run: python scripts/validar_dados.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Testes
+        run: npm i --no-save playwright@1.47.2 && npx playwright install --with-deps chromium && node testes/executar-ci.mjs
+      - name: Gerar manifesto (versão do cache e SHA-256)
+        run: python scripts/gerar_manifesto.py site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site   # somente a pasta pública
+      - id: deploy
+        uses: actions/deploy-pages@v4
