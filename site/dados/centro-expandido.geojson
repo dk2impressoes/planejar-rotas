@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "versao": "2026.11.23-aproximado",
+  "atualizado_em": "2026-11-23",
+  "referencia_em": "2026-11-23",
+  "fonte": "Contorno APROXIMADO traçado à mão pelas vias do limite. Substituir pelo polígono oficial do GeoSampa antes de publicar.",
+  "validade": "2026-12-31",
+  "nivel_verificacao": "nao_verificado",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "nome": "Centro Expandido (aproximado)" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-46.7290, -23.5190], [-46.6900, -23.5130], [-46.6500, -23.5100], [-46.6200, -23.5130],
+          [-46.6000, -23.5180], [-46.5810, -23.5280], [-46.5640, -23.5450], [-46.5560, -23.5650],
+          [-46.5570, -23.5850], [-46.5720, -23.6050], [-46.5960, -23.6180], [-46.6220, -23.6200],
+          [-46.6500, -23.6170], [-46.6800, -23.6110], [-46.6990, -23.6050], [-46.7060, -23.5880],
+          [-46.7180, -23.5650], [-46.7320, -23.5420], [-46.7350, -23.5270], [-46.7290, -23.5190]
+        ]]
+      }
+    }
+  ]
+}

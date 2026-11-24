@@ -1,0 +1,61 @@
+{
+  "agente": "PlanejarRotas-coletor/13.0 (dados abertos; contato no repositório)",
+  "espera_s": 60,
+  "tentativas": 3,
+  "anp": {
+    "paginas": [
+      "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas"
+    ],
+    "padrao_arquivo": "resumo[_-]semanal[_-]lpc[_-](\\d{4})[_-](\\d{2})[_-](\\d{2})[_-](\\d{4})[_-](\\d{2})[_-](\\d{2})\\.xlsx",
+    "padrao_postos": "revendas[_-]lpc[_-](\\d{4})[_-](\\d{2})[_-](\\d{2})[_-](\\d{4})[_-](\\d{2})[_-](\\d{2})\\.xlsx",
+    "produtos": {
+      "GASOLINA COMUM": "Gasolina comum",
+      "ETANOL HIDRATADO": "Etanol",
+      "OLEO DIESEL S10": "Diesel S10"
+    },
+    "produtos_postos": {
+      "GASOLINA COMUM": "Gasolina comum",
+      "ETANOL": "Etanol",
+      "ETANOL HIDRATADO": "Etanol",
+      "DIESEL S10": "Diesel S10",
+      "OLEO DIESEL S10": "Diesel S10"
+    },
+    "municipios_minimo": 200,
+    "validade_dias": 10,
+    "variacao_maxima_pct": 25,
+    "preco_min": 2.0,
+    "preco_max": 15.0
+  },
+  "antt": {
+    "ckan": "https://dados.antt.gov.br/api/3/action/package_show?id=praca-de-pedagio",
+    "validade_dias": 45,
+    "perda_maxima_pct": 20,
+    "distancia_mesma_praca_m": 2000
+  },
+  "artesp": {
+    "pagina": "https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+    "texto_link": "Valor Atual das Tarifas",
+    "dam": "https://www.artesp.sp.gov.br/dx/api/dam/v1",
+    "colecao": "aa4b6398-685b-4dba-8fab-8dc3a0fe9c27",
+    "nome_inclui": "tarifa",
+    "nome_exclui": "encerrad|hist|vigentes",
+    "distancia_km": 2.5,
+    "minimo_linhas": 60,
+    "reajuste_anual": "07-01"
+  },
+  "semparar": {
+    "csv": "https://raw.githubusercontent.com/Sem-Parar/SEM-PARAR-PEDAGIOS/main/dados/pracas-de-pedagio.csv",
+    "licenca": "CC BY 4.0",
+    "credito": "Base aberta de praças de pedágio do Sem Parar (CC BY 4.0)"
+  },
+  "feriados": {
+    "anos_a_frente": 1,
+    "validade_dias": 400
+  },
+  "rodizio": {
+    "validade_dias": 7,
+    "periodos_sensiveis": [["12-15", "12-31"], ["01-01", "01-10"]],
+    "dias_antes_de_feriado": 3,
+    "regras_avisar_dias_antes": 30
+  }
+}

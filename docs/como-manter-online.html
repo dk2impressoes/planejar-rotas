@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Planejar Rotas — Como manter online</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm; }
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 12.5pt; line-height: 1.45; color: #1b1f1e; }
+  h1 { font-size: 22pt; color: #0b5d4b; margin: 0 0 4px; }
+  h2 { font-size: 15pt; color: #0b5d4b; border-bottom: 2px solid #0b5d4b; padding-bottom: 3px; margin: 22px 0 8px; break-after: avoid; }
+  .sub { color: #4a5452; margin: 0 0 14px; }
+  ol, ul { padding-left: 22px; margin: 6px 0; }
+  li { margin: 5px 0; }
+  .caixa { border: 2px solid #0b5d4b; border-radius: 8px; padding: 8px 14px; margin: 10px 0; background: #f2f8f6; break-inside: avoid; }
+  .atencao { border-color: #b07d00; background: #fff8e6; }
+  .tres { display: flex; gap: 10px; margin: 8px 0; }
+  .tres div { flex: 1; border: 1px solid #b9c3c0; border-radius: 8px; padding: 8px 10px; background: #fafcfb; }
+  .tres strong { display: block; color: #0b5d4b; font-size: 12.5pt; }
+  b.botao { background: #0b5d4b; color: #fff; padding: 0 6px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
+  code { background: #eef2f1; padding: 0 4px; border-radius: 3px; font-size: 11pt; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 11.5pt; }
+  th, td { border: 1px solid #b9c3c0; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #e8f1ee; }
+  .pagina { break-before: page; }
+  footer { margin-top: 18px; font-size: 10pt; color: #4a5452; border-top: 1px solid #b9c3c0; padding-top: 6px; }
+</style>
+</head>
+<body>
+
+<h1>🧭 Planejar Rotas — Como manter online</h1>
+<p class="sub">Guia simples. Tudo gratuito. Versão de 23/11/2026.</p>
+
+<h2>1. Como funciona, em uma página</h2>
+<div class="tres">
+  <div><strong>🌐 O site</strong>O aplicativo fica num endereço na internet (gratuito, no GitHub). Quem tiver o link usa no celular ou no computador.</div>
+  <div><strong>🤖 O robô</strong>Todo dia, sozinho, ele busca preços de combustível (ANP), pedágios (ARTESP e outras bases), feriados e regras do rodízio, e atualiza o site.</div>
+  <div><strong>📱 Os aparelhos</strong>Ao abrir o app com internet, ele baixa os dados novos sozinho. Sem internet, usa os últimos dados salvos.</div>
+</div>
+<div class="caixa"><b>Resumo:</b> você publica uma vez (passos 2 e 3). Depois disso, o robô mantém tudo atualizado. Você só age quando receber um aviso dele (passo 7).</div>
+
+<h2>2. Publicar o site (uma vez, cerca de 20 minutos)</h2>
+<ol>
+  <li>Crie uma conta gratuita em <b>github.com</b> (botão <b class="botao">Sign up</b>) e confirme o e-mail.</li>
+  <li>Instale o programa gratuito <b>GitHub Desktop</b> (desktop.github.com) e entre com a sua conta.</li>
+  <li>Extraia o arquivo <code>PlanejarRotas-Repositorio.zip</code> numa pasta, por exemplo <code>Documentos\planejar-rotas</code>.</li>
+  <li>No GitHub Desktop: <b>File → Add local repository</b> → escolha a pasta. Se ele perguntar, clique em <b>create a repository</b>.</li>
+  <li>Clique em <b class="botao">Publish repository</b>. Desmarque <b>Keep this code private</b> (o site precisa ser público) e confirme.</li>
+  <li>No site do GitHub, abra o seu repositório → <b>Settings → Pages</b> → em <b>Source</b>, escolha <b>GitHub Actions</b>.</li>
+  <li>Ainda em <b>Settings → Actions → General</b> → em <b>Workflow permissions</b>, marque <b>Read and write permissions</b> → <b class="botao">Save</b>.</li>
+  <li>Abra a aba <b>Actions</b> → <b>Publicar no GitHub Pages</b> → <b class="botao">Run workflow</b>. Em 2 ou 3 minutos aparece um ✓ verde.</li>
+</ol>
+<div class="caixa">O endereço do seu app fica assim: <code>https://SEU-USUARIO.github.io/planejar-rotas/</code><br>
+Está em <b>Settings → Pages</b>. Guarde esse endereço: é ele que você manda para as pessoas.</div>
+<div class="caixa atencao"><b>Por que GitHub Desktop e não “Upload files” no site?</b> O upload pelo site às vezes não envia a pasta <code>.github</code> (onde mora o robô), porque o nome começa com ponto. O GitHub Desktop envia tudo.</div>
+
+<h2>3. Ligar o robô de atualização</h2>
+<ol>
+  <li>Aba <b>Actions</b> → <b>Atualizar dados</b> → <b class="botao">Run workflow</b> (primeira vez, para testar).</li>
+  <li>Quando terminar com ✓, ele publica o site sozinho com os dados novos.</li>
+  <li>A partir daí, ele roda <b>todo dia de manhã</b>, sem você fazer nada.</li>
+</ol>
+<div class="caixa">O robô <b>nunca apaga</b> um dado bom: se uma fonte estiver fora do ar, ele mantém a versão anterior e avisa você.</div>
+
+<h2 class="pagina">4. Instalar no celular (é o “instalador do aplicativo”)</h2>
+<table>
+  <tr><th>Android (Chrome)</th><th>iPhone (Safari)</th></tr>
+  <tr>
+    <td><ol><li>Abra o endereço do app.</li><li>Toque em <b>⋮</b> (canto de cima).</li><li>Toque em <b>Instalar app</b> ou <b>Adicionar à tela inicial</b>.</li></ol></td>
+    <td><ol><li>Abra o endereço do app no Safari.</li><li>Toque em <b>Compartilhar</b> (quadrado com seta).</li><li>Toque em <b>Adicionar à Tela de Início</b>.</li></ol></td>
+  </tr>
+</table>
+<p>O ícone aparece junto com os outros aplicativos. Ele se atualiza sozinho quando há versão nova: o app mostra <b>“Há uma versão nova — Atualizar agora”</b>.</p>
+<div class="caixa"><b>Quer um arquivo APK (Android)?</b> Com o site publicado, entre em <b>pwabuilder.com</b>, cole o endereço do app → <b>Package for stores → Android → Generate</b>. Baixe o pacote, guarde a <b>chave de assinatura</b> em lugar seguro e envie o arquivo <code>assetlinks.json</code> para a pasta <code>site/.well-known/</code> do repositório.</div>
+
+<h2>5. Instalar no Windows</h2>
+<ol>
+  <li>Dois cliques em <b>Instalar-PlanejarRotas.exe</b> → <b class="botao">Sim</b>. Não precisa de administrador.</li>
+  <li>Se aparecer “O Windows protegeu o computador”: <b>Mais informações → Executar assim mesmo</b> (aparece porque o programa não tem assinatura digital paga).</li>
+  <li>Use o atalho <b>Planejar Rotas</b> na Área de Trabalho ou no menu Iniciar.</li>
+  <li>Para remover: <b>Configurações → Aplicativos → Aplicativos instalados → Planejar Rotas → Desinstalar</b>.</li>
+</ol>
+<div class="caixa atencao"><b>Apareceu “Uma política de Controle de Aplicativo bloqueou este arquivo”?</b> É o “Controle Inteligente de Aplicativos” do Windows 11, que só aceita programas com assinatura digital paga. Use o <code>PlanejarRotas-Windows.zip</code>: extraia e dê dois cliques em <b>Instalar.cmd</b>. O resultado é o mesmo.</div>
+<div class="caixa"><b>Para atualizar sozinho:</b> abra no Bloco de Notas o arquivo <code>%LOCALAPPDATA%\PlanejarRotas\config.json</code> e coloque o endereço do app:<br>
+<code>"endereco_site": "https://SEU-USUARIO.github.io/planejar-rotas/"</code><br>
+Toda vez que abrir com internet, ele baixa a versão e os dados novos (e confere cada arquivo antes de trocar).</div>
+
+<h2>6. O que é automático e o que é com você</h2>
+<table>
+  <tr><th>Automático (robô e app)</th><th>Com você (quando receber aviso)</th></tr>
+  <tr>
+    <td><ul>
+      <li>Preço do combustível da ANP, por estado e por cidade (toda semana).</li>
+      <li>Tabela oficial de pedágios da ARTESP.</li>
+      <li>Praças de pedágio (base aberta do Sem Parar).</li>
+      <li>Feriados e verificação das regras do rodízio.</li>
+      <li>App baixa tudo ao abrir; botão <b>🔄 Atualizar</b> para buscar na hora.</li>
+    </ul></td>
+    <td><ul>
+      <li>Responder aos avisos (aba <b>Issues</b> do repositório).</li>
+      <li>Pedir uma <b>pesquisa de tarifas</b> quando o aviso “Pedir pesquisa de tarifas” aparecer (ou enviar uma planilha).</li>
+      <li>Incluir suspensões do rodízio anunciadas pela CET (o robô avisa nas épocas certas).</li>
+    </ul></td>
+  </tr>
+</table>
+
+<h2 class="pagina">7. Pesquisa de tarifas sob pedido</h2>
+<p>Algumas concessionárias não publicam tabelas que o robô consiga ler. Para essas praças:</p>
+<ol>
+  <li>O robô abre um aviso <b>“Pedir pesquisa de tarifas”</b> com a lista das praças sem valor ou com valor de mais de um ano.</li>
+  <li>Você pede a pesquisa (ou faz uma planilha no mesmo formato da “Pedagios_Brasil_carros_e_motos”).</li>
+  <li>A planilha é importada com <code>scripts/importar_pesquisa_pedagios.py</code> e entra na próxima atualização.</li>
+</ol>
+<div class="caixa"><b>Ordem das fontes de cada praça:</b> 1ª tabela oficial → 2ª pesquisa enviada → 3ª notícia da concessionária → 4ª base anterior. Vale o valor mais recente. No app, o usuário sempre pode <b>corrigir o valor</b> e tocar em <b>💾 Salvar valores</b>.</div>
+
+<h2>8. Problemas comuns</h2>
+<table>
+  <tr><th>O que aconteceu</th><th>O que fazer</th></tr>
+  <tr><td>A aba Actions mostra ✗ vermelho</td><td>Clique no ✗ para ver a mensagem. Quase sempre é uma fonte fora do ar: o robô tenta de novo amanhã e mantém os dados anteriores.</td></tr>
+  <tr><td>O app mostra a versão antiga</td><td>Toque em <b>Atualizar agora</b> no aviso, ou feche e abra o app de novo.</td></tr>
+  <tr><td>“Não conseguimos o preço automático”</td><td>Sem internet ou fonte fora do ar. Digite o preço do litro; o app avisa quando o automático voltar.</td></tr>
+  <tr><td>Pedágio “sem valor”</td><td>Use “Pedágios → Ver detalhes e corrigir valores” e peça uma pesquisa (passo 7).</td></tr>
+  <tr><td>Trocou de celular</td><td>No celular antigo: <b>Menu → Salvar cópia</b>. No novo: <b>Menu → abrir cópia</b>.</td></tr>
+</table>
+
+<footer>Planejar Rotas com Checklist — guia para manter o app online. Os valores do app são estimativas: confira sempre as regras e tarifas nas fontes oficiais. © 2026 Grupo DK²</footer>
+</body>
+</html>

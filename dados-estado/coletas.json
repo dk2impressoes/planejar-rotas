@@ -1,0 +1,26 @@
+{
+  "feriados": {
+    "falhas_seguidas": 0,
+    "ultima_execucao": "2026-11-23T06:33:24Z",
+    "ultimo_sucesso": "2026-11-23T06:33:24Z",
+    "ultimo_erro": null
+  },
+  "anp": {
+    "falhas_seguidas": 0,
+    "ultima_execucao": "2026-11-23T07:37:24Z",
+    "ultimo_sucesso": "2026-11-23T07:37:31Z",
+    "ultimo_erro": null
+  },
+  "pedagios": {
+    "falhas_seguidas": 0,
+    "ultima_execucao": "2026-11-23T09:14:33Z",
+    "ultimo_sucesso": "2026-11-23T09:18:10Z",
+    "ultimo_erro": null
+  },
+  "rodizio": {
+    "falhas_seguidas": 0,
+    "ultima_execucao": "2026-11-23T06:36:20Z",
+    "ultimo_sucesso": "2026-11-23T06:36:20Z",
+    "ultimo_erro": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_leia": "Tarifas noticiadas pela imprensa ou pela própria concessionária, com o link da notícia. Entram como 'secundaria' e só valem quando não há valor oficial ou de pesquisa mais recente. Conferir no site da concessionária ou da ARTESP/ANTT antes de elevar a 'primaria'.",
+  "tarifas": {
+    "semparar-S114": [
+      {
+        "inicio": "2026-05-01", "fim": null, "estado": "confirmada", "nivel_verificacao": "secundaria",
+        "categorias": { "automovel": 13.80, "motocicleta": 6.90 },
+        "fonte": "Imprensa: reajuste Ecovias Noroeste Paulista de 01/05/2026 (Agulha, SP-310; motos pagam metade) — https://diariodotransporte.com.br/2026/04/29/tarifas-de-pedagio-nas-rodovias-gerenciadas-pela-ecovias-noroeste-paulista-sofrem-reajuste-a-partir-de-sexta-feira-1o/ ; https://rciararaquara.com.br/desde-ontem-01-05",
+        "tipo_fonte": "imprensa"
+      }
+    ],
+    "semparar-S111": [
+      {
+        "inicio": "2026-06-04", "fim": null, "estado": "confirmada", "nivel_verificacao": "secundaria",
+        "categorias": { "automovel": 11.60 },
+        "fonte": "Imprensa: reajuste Eixo SP de 04/06/2026 (Rio Claro, SP-310) — https://www.ianoticias.jor.br/2026/06/pedagios-da-eixo-sp-terao-reajuste-de.html ; https://www.jornalcidade.net/rc/reajuste-nas-tarifas-de-pedagio/290893/",
+        "tipo_fonte": "imprensa"
+      }
+    ],
+    "semparar-S112": [
+      {
+        "inicio": "2026-06-04", "fim": null, "estado": "confirmada", "nivel_verificacao": "secundaria",
+        "categorias": { "automovel": 7.00 },
+        "fonte": "Imprensa: reajuste Eixo SP de 04/06/2026 (Itirapina, SP-310) — https://www.ianoticias.jor.br/2026/06/pedagios-da-eixo-sp-terao-reajuste-de.html ; https://www.jornalcidade.net/rc/reajuste-nas-tarifas-de-pedagio/290893/",
+        "tipo_fonte": "imprensa"
+      }
+    ]
+  }
+}

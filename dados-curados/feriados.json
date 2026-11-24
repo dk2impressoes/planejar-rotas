@@ -1,0 +1,19 @@
+{
+  "_leia": "Regras de feriados mantidas à mão. O coletor scripts/atualizar_feriados.py gera site/dados/feriados.json a partir delas. 'dia' = MM-DD fixo; 'pascoa' = dias em relação ao Domingo de Páscoa. Para incluir outra cidade ou estado, acrescente regras com a jurisdição no formato 'Cidade/UF' (municipal) ou 'UF' (estadual) e a lei de origem.",
+  "nivel_verificacao": "secundaria",
+  "regras": [
+    { "nome": "Confraternização Universal", "dia": "01-01", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Tiradentes", "dia": "04-21", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Dia do Trabalho", "dia": "05-01", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Independência do Brasil", "dia": "09-07", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Nossa Senhora Aparecida", "dia": "10-12", "jurisdicao": "nacional", "ato": "Lei 6.802/1980" },
+    { "nome": "Finados", "dia": "11-02", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Proclamação da República", "dia": "11-15", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Dia Nacional de Zumbi e da Consciência Negra", "dia": "11-20", "jurisdicao": "nacional", "ato": "Lei 14.759/2023" },
+    { "nome": "Natal", "dia": "12-25", "jurisdicao": "nacional", "ato": "Lei 662/1949" },
+    { "nome": "Paixão de Cristo", "pascoa": -2, "jurisdicao": "nacional", "ato": "Lei 9.093/1995 (feriado religioso; tratado como nacional — conferir)" },
+    { "nome": "Revolução Constitucionalista", "dia": "07-09", "jurisdicao": "SP", "ato": "Lei estadual SP 9.497/1997" },
+    { "nome": "Aniversário de São Paulo", "dia": "01-25", "jurisdicao": "São Paulo/SP", "ato": "Lei municipal de São Paulo (a conferir)" },
+    { "nome": "Corpus Christi", "pascoa": 60, "jurisdicao": "São Paulo/SP", "ato": "Lei municipal de São Paulo (a conferir)" }
+  ]
+}

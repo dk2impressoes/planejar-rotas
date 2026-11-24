@@ -1,0 +1,129 @@
+{
+  "type": "object",
+  "required": [
+    "versao",
+    "atualizado_em",
+    "fonte",
+    "validade",
+    "precos"
+  ],
+  "properties": {
+    "versao": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "atualizado_em": {
+      "type": "string"
+    },
+    "referencia_em": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fonte": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "validade": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "precos": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "required": [
+          "uf",
+          "combustivel",
+          "preco",
+          "unidade",
+          "periodo_inicio",
+          "periodo_fim"
+        ],
+        "properties": {
+          "uf": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "combustivel": {
+            "type": "string",
+            "enum": [
+              "Diesel S10",
+              "Etanol",
+              "Gasolina comum"
+            ]
+          },
+          "preco": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "unidade": {
+            "type": "string"
+          },
+          "periodo_inicio": {
+            "type": "string"
+          },
+          "periodo_fim": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fonte_municipios": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 500
+    },
+    "precos_municipios": {
+      "type": "array",
+      "maxItems": 20000,
+      "items": {
+        "type": "object",
+        "required": [
+          "uf",
+          "municipio",
+          "chave",
+          "combustivel",
+          "preco",
+          "postos"
+        ],
+        "properties": {
+          "uf": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "municipio": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "chave": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "combustivel": {
+            "type": "string",
+            "enum": [
+              "Diesel S10",
+              "Etanol",
+              "Gasolina comum"
+            ]
+          },
+          "preco": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "postos": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

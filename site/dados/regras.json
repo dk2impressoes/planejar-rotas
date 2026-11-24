@@ -1,0 +1,73 @@
+{
+  "versao": "2026.11.23",
+  "atualizado_em": "2026-11-23",
+  "referencia_em": "2026-11-22",
+  "fonte": "Valores citados na Especificação Técnica V13, conferidos em fontes secundárias em 22/11/2026",
+  "validade": "2026-12-31",
+  "rodizio_sp": {
+    "orgao": "Prefeitura de São Paulo / CET",
+    "jurisdicao": "São Paulo/SP",
+    "tipo_ato": "Regra municipal",
+    "numero_ato": "a conferir",
+    "artigo": "a conferir",
+    "url_oficial": "https://www.prefeitura.sp.gov.br/cidade/secretarias/mobilidade/",
+    "consultado_em": "2026-11-22",
+    "vigente_de": "2026-01-01",
+    "vigente_ate": null,
+    "nivel_verificacao": "secundaria",
+    "evidencia": "pendente",
+    "revisar_ate": "2026-12-31",
+    "fuso": "America/Sao_Paulo",
+    "tabela": { "1": [1, 2], "2": [3, 4], "3": [5, 6], "4": [7, 8], "5": [9, 0] },
+    "horarios": [ { "inicio": "07:00", "fim": "10:00" }, { "inicio": "17:00", "fim": "20:00" } ],
+    "margem_min_padrao": 30,
+    "vias_limite": [
+      "Avenida Afonso d'Escragnolle Taunay", "Avenida dos Bandeirantes", "Avenida Professor Luís Inácio de Anhaia Melo",
+      "Avenida Salim Farah Maluf", "Avenida Tancredo Neves", "Complexo Viário Maria Maluf", "Marginal Pinheiros",
+      "Marginal Tietê", "Rua das Juntas Provisórias", "Viaduto Grande São Paulo"
+    ],
+    "penalidade": {
+      "orgao": "CTB", "jurisdicao": "nacional", "tipo_ato": "Lei", "numero_ato": "9.503/1997", "artigo": "a conferir",
+      "url_oficial": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm", "consultado_em": "2026-11-22",
+      "vigente_de": "2026-01-01", "vigente_ate": null, "nivel_verificacao": "secundaria", "evidencia": "pendente",
+      "revisar_ate": "2026-12-31", "descricao": "infração média", "multa_reais": 130.16, "pontos": 4
+    }
+  },
+  "free_flow": {
+    "periodos": [
+      {
+        "orgao": "Contran", "jurisdicao": "nacional", "tipo_ato": "Deliberação", "numero_ato": "277/2026 (referendada pela Resolução 1.028/2026)",
+        "artigo": "a conferir", "url_oficial": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran",
+        "consultado_em": "2026-11-22", "vigente_de": "2026-01-01", "vigente_ate": null,
+        "nivel_verificacao": "secundaria", "evidencia": "pendente", "revisar_ate": "2026-12-31",
+        "prazo_dias": 30, "multa_reais": 195.23, "pontos": 5, "autuacao_suspensa": false,
+        "texto_transicao": "Regime de transição do Contran: confira se as autuações estão suspensas na data da passagem."
+      }
+    ]
+  },
+  "pedagios_identificacao": { "distancia_m": 150, "angulo_graus": 45, "variacao_suspeita_pct": 15 },
+  "servicos": {
+    "orgao": "FOSSGIS", "consultado_em": "2026-11-22", "revisar_ate": "2027-05-22", "nivel_verificacao": "secundaria",
+    "intervalo_minimo_s": 1, "espera_maxima_s": 10, "disjuntor_falhas": 3, "disjuntor_minutos": 5
+  },
+  "descanso": {
+    "intervalo_h": 2,
+    "parada_minima_min": 15,
+    "nivel_verificacao": "secundaria",
+    "texto": "Recomendação de segurança: descanse ao menos 15 minutos a cada 2 horas ao volante. Não é regra legal para motorista não profissional."
+  },
+  "retencao_infantil": {
+    "orgao": "Contran", "jurisdicao": "nacional", "tipo_ato": "Resolução", "numero_ato": "819/2021 (a conferir)",
+    "artigo": "a conferir", "url_oficial": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+    "consultado_em": "2026-11-23", "vigente_de": "2021-04-01", "vigente_ate": null,
+    "nivel_verificacao": "secundaria", "evidencia": "pendente", "revisar_ate": "2027-05-23",
+    "faixas": [
+      { "ate_meses": 12, "texto": "Bebê-conforto (dispositivo voltado para trás), no banco de trás." },
+      { "ate_meses": 48, "texto": "Cadeirinha, no banco de trás." },
+      { "ate_meses": 90, "texto": "Assento de elevação, no banco de trás (até 7 anos e meio)." },
+      { "ate_meses": 120, "texto": "Banco de trás com cinto de segurança (até 10 anos; abaixo de 1,45 m, assento de elevação)." }
+    ]
+  },
+  "indicadores": { "cobertura_pedagio_min_pct": 80, "falhas_coleta_seguidas": 2, "falhas_rota_24h_pct": 20 },
+  "preparacao": { "dias_para_sugerir_nova": 7 }
+}

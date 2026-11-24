@@ -1,0 +1,30 @@
+PLANEJAR ROTAS COM CHECKLIST - Windows
+======================================
+
+INSTALAR
+1. Extraia o arquivo .zip inteiro (botão direito > Extrair tudo).
+2. Abra a pasta extraída e dê dois cliques em "Instalar.cmd".
+   Se o Windows mostrar "O Windows protegeu o computador", clique em
+   "Mais informações" e depois em "Executar assim mesmo".
+3. Pronto: use o atalho "Planejar Rotas" na Área de Trabalho ou no menu Iniciar.
+
+Não precisa de administrador nem de internet para instalar.
+O app abre numa janela própria (Edge ou Chrome).
+
+MANTER ATUALIZADO
+Quando o site do app estiver publicado (veja o PDF "Como manter online"),
+abra o arquivo abaixo no Bloco de Notas e coloque o endereço do site
+entre as aspas de "endereco_site", por exemplo:
+   "endereco_site": "https://seu-usuario.github.io/planejar-rotas/"
+Arquivo: %LOCALAPPDATA%\PlanejarRotas\config.json
+Depois disso, toda vez que você abrir o app com internet, ele baixa
+sozinho a versão nova e os preços, pedágios e regras mais recentes.
+
+SUAS VIAGENS
+Ficam guardadas no navegador deste computador (não vão para a internet).
+Para levar para outro aparelho: Menu > Salvar cópia, abrir cópia ou apagar tudo.
+
+REMOVER
+Dê dois cliques em "Desinstalar.cmd", na pasta %LOCALAPPDATA%\PlanejarRotas.
+
+(c) 2026 Grupo DK2

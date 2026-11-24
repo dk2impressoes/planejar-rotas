@@ -1,0 +1,2776 @@
+{
+  "_leia": "Gerado por scripts/importar_pesquisa_pedagios.py a partir de uma planilha de pesquisa. Não editar à mão: importe de novo.",
+  "data_pesquisa": "2026-11-23",
+  "arquivo": "Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx",
+  "tarifas": {
+    "semparar-F070": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F071": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F072": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F073": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F074": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F075": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F076": [
+      {
+        "inicio": "2026-03-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias Capixaba — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-capixaba/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F150": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F151": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F152": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F153": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F154": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F155": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 15.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F158": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F159": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F160": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F032": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F033": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F034": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F035": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F036": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F037": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F038": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 16.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Cristais — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-cristais/revisoes-e-reajustes/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F039": [
+      {
+        "inicio": "2026-02-09",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Via Mineira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-via-mineira/tarifas-de-pedagios-via-mineira",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F040": [
+      {
+        "inicio": "2026-02-09",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Via Mineira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-via-mineira/tarifas-de-pedagios-via-mineira",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F041": [
+      {
+        "inicio": "2026-02-09",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Via Mineira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-via-mineira/tarifas-de-pedagios-via-mineira",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F046": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F047": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F048": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F049": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F050": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F051": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F052": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F060": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F061": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F062": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F063": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Cerrado — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-do-cerrado/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F064": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F065": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F066": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F067": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F068": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F069": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F126": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F127": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F128": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F129": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F130": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F131": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F132": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F133": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F134": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Pantanal — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-pantanal/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F135": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F136": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F137": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 7.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F138": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F139": [
+      {
+        "inicio": "2026-07-20",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Brasil — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-brasil/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F140": [
+      {
+        "inicio": "2026-07-20",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Brasil — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-brasil/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F141": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 7.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F142": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F143": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F144": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F145": [
+      {
+        "inicio": "2025-09-29",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Rota do Oeste — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/rota-do-oeste/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F077": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F078": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Planalto Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-planalto-sul/tarifas-de-pedagio-autopista-planalto-sul",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F079": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Planalto Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-planalto-sul/tarifas-de-pedagio-autopista-planalto-sul",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F080": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 24.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F081": [
+      {
+        "inicio": "2025-08-27",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Araucária — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-araucaria/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F082": [
+      {
+        "inicio": "2025-08-27",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Araucária — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-araucaria/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F083": [
+      {
+        "inicio": "2025-08-27",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Araucária — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-araucaria/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F090": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F091": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F092": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F095": [
+      {
+        "inicio": "2025-08-27",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Araucária — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-araucaria/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F100": [
+      {
+        "inicio": "2026-10-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Litoral Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-litoral-sul/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F101": [
+      {
+        "inicio": "2025-08-27",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Via Araucária — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/via-araucaria/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F102": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F103": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 7.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F104": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F105": [
+      {
+        "inicio": "2026-03-06",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EPR Litoral Pioneiro — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/epr-litoral-pioneiro/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F020": [
+      {
+        "inicio": "2026-09-04",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Fluminense — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-fluminense/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F021": [
+      {
+        "inicio": "2026-09-04",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Fluminense — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-fluminense/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F022": [
+      {
+        "inicio": "2026-09-04",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Fluminense — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-fluminense/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F023": [
+      {
+        "inicio": "2026-09-04",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Fluminense — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-fluminense/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F024": [
+      {
+        "inicio": "2026-09-04",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Fluminense — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-fluminense/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F025": [
+      {
+        "inicio": "2026-03-19",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecoponte — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoponte/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F026": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 20.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F029": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F030": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 21.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F031": [
+      {
+        "inicio": "2026-03-23",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – EcoRioMinas — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecoriominas/revisoes-e-reajustes/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F119": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F120": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F121": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F122": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F123": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F124": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F125": [
+      {
+        "inicio": "2026-08-28",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaSul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/viasul/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F108": [
+      {
+        "inicio": "2026-10-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Litoral Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-litoral-sul/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F109": [
+      {
+        "inicio": "2026-10-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Litoral Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-litoral-sul/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F110": [
+      {
+        "inicio": "2026-10-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Litoral Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-litoral-sul/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F111": [
+      {
+        "inicio": "2026-10-02",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Litoral Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-litoral-sul/tarifas-de-pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F112": [
+      {
+        "inicio": "2026-03-19",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaCosteira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-viacosteira/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F113": [
+      {
+        "inicio": "2026-03-19",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaCosteira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-viacosteira/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F114": [
+      {
+        "inicio": "2026-03-19",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaCosteira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-viacosteira/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F115": [
+      {
+        "inicio": "2026-03-19",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – ViaCosteira — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-viacosteira/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F116": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Planalto Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-planalto-sul/tarifas-de-pedagio-autopista-planalto-sul",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F117": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Planalto Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-planalto-sul/tarifas-de-pedagio-autopista-planalto-sul",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F118": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Autopista Planalto Sul — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-planalto-sul/tarifas-de-pedagio-autopista-planalto-sul",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F001": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 17.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F002": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F003": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F004": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F005": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F006": [
+      {
+        "inicio": "2026-11-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – RioSP — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ccr-rio-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F007": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F008": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F009": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F010": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F011": [
+      {
+        "inicio": "2026-01-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Régis Bittencourt — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/autopista-regis-bittencourt/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F012": [
+      {
+        "inicio": "2025-05-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Transbrasiliana — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/Transbrasiliana/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F013": [
+      {
+        "inicio": "2025-05-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Transbrasiliana — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/Transbrasiliana/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F014": [
+      {
+        "inicio": "2025-05-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Transbrasiliana — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/Transbrasiliana/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F015": [
+      {
+        "inicio": "2025-05-05",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Transbrasiliana — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/Transbrasiliana/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F016": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F017": [
+      {
+        "inicio": "2026-05-12",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Motiva Minas SP (Fernão Dias) — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/motiva-minas-sp/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S001": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S002": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S003": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S004": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S005": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S006": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S007": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S008": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S016": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 19.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S017": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S022": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S023": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S024": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S025": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S027": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 20.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S028": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 20.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S029": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S030": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S031": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S032": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 7.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S033": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S034": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S035": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 16.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S036": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 16.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S037": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 15.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S038": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S039": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S040": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S041": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 40.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S042": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 3.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S043": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S044": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S045": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 40.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S046": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S047": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S048": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S049": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S053": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S054": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S059": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S062": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 16.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S063": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S064": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S065": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S066": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S067": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S068": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S069": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S070": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S075": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S076": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S077": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 20.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S078": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 20.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S079": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 13.9
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S090": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.1
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S091": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S092": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S093": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S094": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S095": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S096": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S108": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 5.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S109": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S113": [
+      {
+        "inicio": "2026-05-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 22.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): Ecovias Noroeste Paulista – reajuste de 1º/05/2026 (imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S115": [
+      {
+        "inicio": "2026-05-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 19.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): Ecovias Noroeste Paulista – reajuste de 1º/05/2026 (imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S120": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 10.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S121": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S122": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S123": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S124": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S125": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S126": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S140": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S141": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.2
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S142": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S143": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 8.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S144": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.0
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S145": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 4.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S146": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 6.6
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S147": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 7.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S148": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S149": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S150": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 14.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S151": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.8
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S152": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.7
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-S153": [
+      {
+        "inicio": "2026-07-01",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 11.3
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) — https://www.artesp.sp.gov.br/artesp/setor-regulado/rodovia/pedagios",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F161": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 9.5
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ],
+    "semparar-F162": [
+      {
+        "inicio": "2025-09-22",
+        "fim": null,
+        "estado": "confirmada",
+        "nivel_verificacao": "secundaria",
+        "categorias": {
+          "automovel": 12.4
+        },
+        "fonte": "Pesquisa enviada pelo usuário (Pedagios_Brasil_carros_e_motos_2026-11-23.xlsx): ANTT – Ecovias do Araguaia — https://www.gov.br/antt/pt-br/assuntos/rodovias/concessionarias/lista-de-concessoes/ecovias-araguaia/tarifas-de-pedagio",
+        "tipo_fonte": "pesquisa"
+      }
+    ]
+  }
+}

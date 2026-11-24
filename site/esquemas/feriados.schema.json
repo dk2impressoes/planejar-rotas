@@ -1,0 +1,57 @@
+{
+    "type":  "object",
+    "required":  [
+                     "versao",
+                     "atualizado_em",
+                     "fonte",
+                     "validade",
+                     "feriados"
+                 ],
+    "properties":  {
+                       "versao":  {
+                                      "type":  "string",
+                                      "maxLength":  40
+                                  },
+                       "atualizado_em":  {
+                                             "type":  "string"
+                                         },
+                       "referencia_em":  {
+                                             "type":  [
+                                                          "string",
+                                                          "null"
+                                                      ]
+                                         },
+                       "fonte":  {
+                                     "type":  "string",
+                                     "maxLength":  500
+                                 },
+                       "validade":  {
+                                        "type":  "string",
+                                        "pattern":  "^\\d{4}-\\d{2}-\\d{2}$"
+                                    },
+                       "feriados":  {
+                                        "type":  "array",
+                                        "maxItems":  2000,
+                                        "items":  {
+                                                      "type":  "object",
+                                                      "required":  [
+                                                                       "data",
+                                                                       "nome",
+                                                                       "jurisdicao"
+                                                                   ],
+                                                      "properties":  {
+                                                                         "data":  {
+                                                                                      "type":  "string",
+                                                                                      "pattern":  "^\\d{4}-\\d{2}-\\d{2}$"
+                                                                                  },
+                                                                         "nome":  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                         "jurisdicao":  {
+                                                                                            "type":  "string"
+                                                                                        }
+                                                                     }
+                                                  }
+                                    }
+                   }
+}

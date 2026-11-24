@@ -1,0 +1,2561 @@
+{
+    "_leia":  "Tarifas por id do ponto (categoria automovel = carro de passeio de 2 eixos). As tarifas \u0027semparar-*\u0027 vieram do pacote v5 (tabelas ANTT e ARTESP indicadas em cada fonte) e ficam como \u0027secundaria\u0027 até o mantenedor conferir na tabela oficial e guardar a evidência em docs/evidencias/. \u0027estado\u0027 = \u0027confirmada\u0027 só com publicação oficial; anúncio = \u0027prevista\u0027. Outras categorias: motocicleta, automovel_3_eixos, automovel_4_eixos...",
+    "tarifas":  {
+                    "semparar-F001":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  17.1
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F002":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.2
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F003":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.6
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F004":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.6
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F005":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.6
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F006":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.6
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F029":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.7
+                                                             },
+                                              "fonte":  "ANTT – RioSP (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F007":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F008":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F009":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F010":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F011":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F077":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.3
+                                                             },
+                                              "fonte":  "ANTT – Régis Bittencourt (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F012":  [
+                                          {
+                                              "inicio":  "2025-05-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.1
+                                                             },
+                                              "fonte":  "ANTT – Transbrasiliana (tabela de 05/05/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F013":  [
+                                          {
+                                              "inicio":  "2025-05-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.1
+                                                             },
+                                              "fonte":  "ANTT – Transbrasiliana (tabela de 05/05/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F014":  [
+                                          {
+                                              "inicio":  "2025-05-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.1
+                                                             },
+                                              "fonte":  "ANTT – Transbrasiliana (tabela de 05/05/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F015":  [
+                                          {
+                                              "inicio":  "2025-05-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.1
+                                                             },
+                                              "fonte":  "ANTT – Transbrasiliana (tabela de 05/05/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F016":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F017":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F064":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F065":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F066":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F067":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F068":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F069":  [
+                                          {
+                                              "inicio":  "2026-05-12",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Minas SP (Fernão Dias) (tabela de 12/05/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F020":  [
+                                          {
+                                              "inicio":  "2026-09-04",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Autopista Fluminense (tabela de 04/09/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F021":  [
+                                          {
+                                              "inicio":  "2026-09-04",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Autopista Fluminense (tabela de 04/09/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F022":  [
+                                          {
+                                              "inicio":  "2026-09-04",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Autopista Fluminense (tabela de 04/09/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F023":  [
+                                          {
+                                              "inicio":  "2026-09-04",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Autopista Fluminense (tabela de 04/09/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F024":  [
+                                          {
+                                              "inicio":  "2026-09-04",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Autopista Fluminense (tabela de 04/09/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F025":  [
+                                          {
+                                              "inicio":  "2026-03-19",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.6
+                                                             },
+                                              "fonte":  "ANTT – Ecoponte (tabela de 19/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F026":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  20.2
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F030":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  21
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F031":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F046":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.6
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F047":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.2
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F048":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.7
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F049":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.7
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F050":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.8
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F051":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F052":  [
+                                          {
+                                              "inicio":  "2026-03-23",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ANTT – EcoRioMinas (tabela de 23/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F032":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.1
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F033":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.2
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F034":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.4
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F035":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.2
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F036":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.3
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F037":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.5
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F038":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  16.6
+                                                             },
+                                              "fonte":  "ANTT – Via Cristais (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F039":  [
+                                          {
+                                              "inicio":  "2026-02-09",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.6
+                                                             },
+                                              "fonte":  "ANTT – EPR Via Mineira (tabela de 09/02/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F040":  [
+                                          {
+                                              "inicio":  "2026-02-09",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.6
+                                                             },
+                                              "fonte":  "ANTT – EPR Via Mineira (tabela de 09/02/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F041":  [
+                                          {
+                                              "inicio":  "2026-02-09",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.6
+                                                             },
+                                              "fonte":  "ANTT – EPR Via Mineira (tabela de 09/02/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F060":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F061":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F062":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F063":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F158":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F159":  [
+                                          {
+                                              "inicio":  "2026-11-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Cerrado (tabela de 05/11/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F070":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.2
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F071":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.8
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F072":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.4
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F073":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.1
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F074":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F075":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F076":  [
+                                          {
+                                              "inicio":  "2026-03-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias Capixaba (tabela de 02/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F078":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.7
+                                                             },
+                                              "fonte":  "ANTT – Autopista Planalto Sul (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F079":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.7
+                                                             },
+                                              "fonte":  "ANTT – Autopista Planalto Sul (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F116":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.7
+                                                             },
+                                              "fonte":  "ANTT – Autopista Planalto Sul (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F117":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.7
+                                                             },
+                                              "fonte":  "ANTT – Autopista Planalto Sul (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F118":  [
+                                          {
+                                              "inicio":  "2026-01-05",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.7
+                                                             },
+                                              "fonte":  "ANTT – Autopista Planalto Sul (tabela de 05/01/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F080":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  24
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F103":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  7.7
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F090":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F105":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.1
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F104":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F102":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.8
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F091":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F092":  [
+                                          {
+                                              "inicio":  "2026-03-06",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ANTT – EPR Litoral Pioneiro (tabela de 06/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F081":  [
+                                          {
+                                              "inicio":  "2025-08-27",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.3
+                                                             },
+                                              "fonte":  "ANTT – Via Araucária (tabela de 27/08/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F082":  [
+                                          {
+                                              "inicio":  "2025-08-27",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.7
+                                                             },
+                                              "fonte":  "ANTT – Via Araucária (tabela de 27/08/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F083":  [
+                                          {
+                                              "inicio":  "2025-08-27",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.9
+                                                             },
+                                              "fonte":  "ANTT – Via Araucária (tabela de 27/08/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F095":  [
+                                          {
+                                              "inicio":  "2025-08-27",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.7
+                                                             },
+                                              "fonte":  "ANTT – Via Araucária (tabela de 27/08/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F101":  [
+                                          {
+                                              "inicio":  "2025-08-27",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.3
+                                                             },
+                                              "fonte":  "ANTT – Via Araucária (tabela de 27/08/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F100":  [
+                                          {
+                                              "inicio":  "2026-10-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.9
+                                                             },
+                                              "fonte":  "ANTT – Autopista Litoral Sul (tabela de 02/10/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F108":  [
+                                          {
+                                              "inicio":  "2026-10-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.9
+                                                             },
+                                              "fonte":  "ANTT – Autopista Litoral Sul (tabela de 02/10/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F109":  [
+                                          {
+                                              "inicio":  "2026-10-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.9
+                                                             },
+                                              "fonte":  "ANTT – Autopista Litoral Sul (tabela de 02/10/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F110":  [
+                                          {
+                                              "inicio":  "2026-10-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.9
+                                                             },
+                                              "fonte":  "ANTT – Autopista Litoral Sul (tabela de 02/10/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F111":  [
+                                          {
+                                              "inicio":  "2026-10-02",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.9
+                                                             },
+                                              "fonte":  "ANTT – Autopista Litoral Sul (tabela de 02/10/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F112":  [
+                                          {
+                                              "inicio":  "2026-03-19",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3
+                                                             },
+                                              "fonte":  "ANTT – ViaCosteira (tabela de 19/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F113":  [
+                                          {
+                                              "inicio":  "2026-03-19",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3
+                                                             },
+                                              "fonte":  "ANTT – ViaCosteira (tabela de 19/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F114":  [
+                                          {
+                                              "inicio":  "2026-03-19",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3
+                                                             },
+                                              "fonte":  "ANTT – ViaCosteira (tabela de 19/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F115":  [
+                                          {
+                                              "inicio":  "2026-03-19",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3
+                                                             },
+                                              "fonte":  "ANTT – ViaCosteira (tabela de 19/03/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F119":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F120":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F121":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F122":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F123":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F124":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F125":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.9
+                                                             },
+                                              "fonte":  "ANTT – ViaSul (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F126":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.2
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F127":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.5
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F128":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.6
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F129":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F130":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.1
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F131":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.9
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F132":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.7
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F133":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F134":  [
+                                          {
+                                              "inicio":  "2026-08-28",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.3
+                                                             },
+                                              "fonte":  "ANTT – Motiva Pantanal (tabela de 28/08/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F135":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.6
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F141":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  7.5
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F142":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F143":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F144":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.1
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F145":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.7
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F136":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.4
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F137":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  7.1
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F138":  [
+                                          {
+                                              "inicio":  "2025-09-29",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.4
+                                                             },
+                                              "fonte":  "ANTT – Rota do Oeste (tabela de 29/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F139":  [
+                                          {
+                                              "inicio":  "2026-07-20",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Via Brasil (tabela de 20/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F140":  [
+                                          {
+                                              "inicio":  "2026-07-20",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ANTT – Via Brasil (tabela de 20/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F161":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.5
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F162":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.4
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F151":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F152":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.5
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F153":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F154":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F155":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  15.6
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F150":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-F160":  [
+                                          {
+                                              "inicio":  "2025-09-22",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ANTT – Ecovias do Araguaia (tabela de 22/09/2025), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S121":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S122":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S123":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S124":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S148":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S149":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S150":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S151":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S152":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S038":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S039":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S040":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.1
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S046":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S047":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S048":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S049":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S125":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S126":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S140":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S141":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S142":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S143":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S144":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S145":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  4.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S146":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S147":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  7.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S153":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S027":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  20.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S028":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  20.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S033":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S034":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.9
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S075":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S076":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S090":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.1
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S091":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S035":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  16.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S036":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  16.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S037":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  15
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S059":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S062":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  16.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S063":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S064":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S077":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  20.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S078":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  20.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S079":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.9
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S016":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  19.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S017":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S041":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  40.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S042":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S043":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S044":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S045":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  40.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S053":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S054":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S065":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  12.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S066":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13.3
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S067":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.9
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S068":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.9
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S069":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  14.4
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S070":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S120":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S031":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S032":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  7.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S092":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  10.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S093":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S094":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S095":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  9
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S096":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  8.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S108":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.2
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S109":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  11.5
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S022":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.1
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S023":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S024":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.7
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S025":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  5.8
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S029":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  6.1
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S030":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  13
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S001":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S002":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S003":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S004":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S005":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S006":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S007":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "semparar-S008":  [
+                                          {
+                                              "inicio":  "2026-07-01",
+                                              "fim":  null,
+                                              "estado":  "confirmada",
+                                              "nivel_verificacao":  "secundaria",
+                                              "categorias":  {
+                                                                 "automovel":  3.6
+                                                             },
+                                              "fonte":  "ARTESP – reajuste de 1º/07/2026 (tabela publicada na imprensa) (tabela de 01/07/2026), copiada do pacote v5 sem nova conferência"
+                                          }
+                                      ],
+                    "manual-imigrantes-free-flow":  [
+                                                        {
+                                                            "inicio":  "2026-12-01",
+                                                            "fim":  null,
+                                                            "estado":  "prevista",
+                                                            "nivel_verificacao":  "secundaria",
+                                                            "categorias":  {
+                                                                               "automovel":  20.3
+                                                                           },
+                                                            "fonte":  "Anúncio da concessionária (Especificação V13, Seção 5.4)"
+                                                        }
+                                                    ],
+                    "manual-anchieta-free-flow":  [
+                                                      {
+                                                          "inicio":  "2026-12-01",
+                                                          "fim":  null,
+                                                          "estado":  "prevista",
+                                                          "nivel_verificacao":  "secundaria",
+                                                          "categorias":  {
+                                                                             "automovel":  20.3
+                                                                         },
+                                                          "fonte":  "Anúncio da concessionária (Especificação V13, Seção 5.4)"
+                                                      }
+                                                  ]
+                }
+}

@@ -1,0 +1,4 @@
+{
+  "_leia": "Suspensões do rodízio anunciadas pela Prefeitura/CET ou publicadas no Diário Oficial do Município. Não existe base aberta (Seção 11.5): o mantenedor inclui cada anúncio aqui. Exemplo: { \"inicio\": \"2026-12-22\", \"fim\": \"2027-01-09\", \"area\": \"Centro Expandido\", \"fonte\": \"https://... (anúncio da CET)\", \"anunciado_em\": \"2026-12-15\" }",
+  "suspensoes": []
+}

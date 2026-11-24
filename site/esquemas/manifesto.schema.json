@@ -1,0 +1,36 @@
+{
+    "type":  "object",
+    "required":  [
+                     "versao_app",
+                     "versao_conjunto",
+                     "gerado_em",
+                     "arquivos"
+                 ],
+    "properties":  {
+                       "arquivos":  {
+                                        "type":  "array",
+                                        "items":  {
+                                                      "type":  "object",
+                                                      "required":  [
+                                                                       "caminho",
+                                                                       "tipo",
+                                                                       "tamanho",
+                                                                       "sha256"
+                                                                   ],
+                                                      "properties":  {
+                                                                         "tipo":  {
+                                                                                      "type":  "string",
+                                                                                      "enum":  [
+                                                                                                   "app",
+                                                                                                   "dados"
+                                                                                               ]
+                                                                                  },
+                                                                         "sha256":  {
+                                                                                        "type":  "string",
+                                                                                        "pattern":  "^[0-9a-f]{64}$"
+                                                                                    }
+                                                                     }
+                                                  }
+                                    }
+                   }
+}

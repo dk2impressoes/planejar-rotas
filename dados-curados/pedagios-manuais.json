@@ -1,0 +1,37 @@
+{
+  "_leia": "Pontos que não vêm das bases abertas, ou correções de um ponto com o mesmo id (os campos informados aqui substituem os da base; \"remover\": true tira o ponto). Coordenadas só ficam \"coordenadas_verificadas\": true depois de conferidas na fonte oficial, junto com o sentido em graus e as regras de acesso.",
+  "pontos": [
+    {
+      "id": "manual-imigrantes-free-flow",
+      "tipo": "free_flow",
+      "nome": "Free flow do Sistema Anchieta-Imigrantes (Imigrantes)",
+      "rodovia": "SP-160",
+      "km": 32.381,
+      "concessionaria": "Ecovias dos Imigrantes",
+      "coordenadas": { "lat": -23.820826, "lon": -46.582601 },
+      "coordenadas_verificadas": false,
+      "tolerancia_m": 400,
+      "sentido": "ambos",
+      "sentido_texto": "ambos",
+      "regras_acesso": ["Pórtico previsto no lugar da praça Piratininga; local exato a confirmar."],
+      "canal_pagamento": null,
+      "fonte": { "origem": "Anúncio da concessionária citado na Especificação V13, Seção 5.4", "coletado_em": "2026-11-22" }
+    },
+    {
+      "id": "manual-anchieta-free-flow",
+      "tipo": "free_flow",
+      "nome": "Free flow do Sistema Anchieta-Imigrantes (Anchieta)",
+      "rodovia": "SP-150",
+      "km": 31.106,
+      "concessionaria": "Ecovias dos Imigrantes",
+      "coordenadas": { "lat": -23.789267, "lon": -46.519501 },
+      "coordenadas_verificadas": false,
+      "tolerancia_m": 400,
+      "sentido": "ambos",
+      "sentido_texto": "ambos",
+      "regras_acesso": ["Pórtico previsto no lugar da praça Riacho Grande; local exato a confirmar."],
+      "canal_pagamento": null,
+      "fonte": { "origem": "Anúncio da concessionária citado na Especificação V13, Seção 5.4", "coletado_em": "2026-11-22" }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+    "type":  "object",
+    "required":  [
+                     "versao",
+                     "atualizado_em",
+                     "fonte",
+                     "validade",
+                     "rodizio_sp",
+                     "free_flow",
+                     "pedagios_identificacao"
+                 ],
+    "properties":  {
+                       "versao":  {
+                                      "type":  "string",
+                                      "maxLength":  40
+                                  },
+                       "atualizado_em":  {
+                                             "type":  "string"
+                                         },
+                       "referencia_em":  {
+                                             "type":  [
+                                                          "string",
+                                                          "null"
+                                                      ]
+                                         },
+                       "fonte":  {
+                                     "type":  "string",
+                                     "maxLength":  500
+                                 },
+                       "validade":  {
+                                        "type":  "string",
+                                        "pattern":  "^\\d{4}-\\d{2}-\\d{2}$"
+                                    },
+                       "rodizio_sp":  {
+                                          "type":  "object",
+                                          "required":  [
+                                                           "orgao",
+                                                           "jurisdicao",
+                                                           "tipo_ato",
+                                                           "numero_ato",
+                                                           "artigo",
+                                                           "url_oficial",
+                                                           "consultado_em",
+                                                           "vigente_de",
+                                                           "vigente_ate",
+                                                           "nivel_verificacao",
+                                                           "evidencia",
+                                                           "revisar_ate",
+                                                           "fuso",
+                                                           "tabela",
+                                                           "horarios"
+                                                       ],
+                                          "properties":  {
+                                                             "nivel_verificacao":  {
+                                                                                       "type":  "string",
+                                                                                       "enum":  [
+                                                                                                    "primaria",
+                                                                                                    "secundaria",
+                                                                                                    "nao_verificado"
+                                                                                                ]
+                                                                                   },
+                                                             "horarios":  {
+                                                                              "type":  "array",
+                                                                              "items":  {
+                                                                                            "type":  "object",
+                                                                                            "required":  [
+                                                                                                             "inicio",
+                                                                                                             "fim"
+                                                                                                         ]
+                                                                                        }
+                                                                          }
+                                                         }
+                                      },
+                       "free_flow":  {
+                                         "type":  "object",
+                                         "required":  [
+                                                          "periodos"
+                                                      ]
+                                     },
+                       "pedagios_identificacao":  {
+                                                      "type":  "object",
+                                                      "required":  [
+                                                                       "distancia_m",
+                                                                       "angulo_graus"
+                                                                   ],
+                                                      "properties":  {
+                                                                         "distancia_m":  {
+                                                                                             "type":  "number",
+                                                                                             "minimum":  1,
+                                                                                             "maximum":  2000
+                                                                                         },
+                                                                         "angulo_graus":  {
+                                                                                              "type":  "number",
+                                                                                              "minimum":  1,
+                                                                                              "maximum":  180
+                                                                                          }
+                                                                     }
+                                                  }
+                   }
+}
