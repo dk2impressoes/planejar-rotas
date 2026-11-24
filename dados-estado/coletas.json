@@ -1,26 +1,26 @@
 {
   "feriados": {
     "falhas_seguidas": 0,
-    "ultima_execucao": "2026-11-23T06:33:24Z",
-    "ultimo_sucesso": "2026-11-23T06:33:24Z",
+    "ultima_execucao": "2026-11-24T10:21:40Z",
+    "ultimo_sucesso": "2026-11-24T10:21:40Z",
     "ultimo_erro": null
   },
   "anp": {
-    "falhas_seguidas": 0,
-    "ultima_execucao": "2026-11-23T07:37:24Z",
+    "falhas_seguidas": 1,
+    "ultima_execucao": "2026-11-24T10:21:40Z",
     "ultimo_sucesso": "2026-11-23T07:37:31Z",
-    "ultimo_erro": null
+    "ultimo_erro": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas: <urlopen error [Errno 104] Connection reset by peer>"
   },
   "pedagios": {
     "falhas_seguidas": 0,
-    "ultima_execucao": "2026-11-24T05:44:34Z",
-    "ultimo_sucesso": "2026-11-24T05:47:05Z",
+    "ultima_execucao": "2026-11-24T10:22:47Z",
+    "ultimo_sucesso": "2026-11-24T10:25:57Z",
     "ultimo_erro": null
   },
   "rodizio": {
     "falhas_seguidas": 0,
-    "ultima_execucao": "2026-11-23T06:36:20Z",
-    "ultimo_sucesso": "2026-11-23T06:36:20Z",
+    "ultima_execucao": "2026-11-24T10:25:57Z",
+    "ultimo_sucesso": "2026-11-24T10:25:57Z",
     "ultimo_erro": null
   }
 }
