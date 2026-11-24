@@ -1,0 +1,70 @@
+name: Atualizar dados
+on:
+  schedule:
+    - cron: '17 9 * * *'   # todo dia, 06:17 em Brasília
+  workflow_dispatch:
+    inputs:
+      aceitar_variacao:
+        description: 'Aceitar variação grande de preço da ANP já conferida (1 = sim)'
+        required: false
+        default: '0'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: false
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    outputs:
+      mudou: ${{ steps.commit.outputs.mudou }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/requirements.txt
+      - name: Testes dos coletores
+        run: python -m unittest discover -s testes/coletores -v
+      - name: Coletar (cada coletor mantém a versão anterior se falhar)
+        env:
+          ACEITAR_VARIACAO: ${{ inputs.aceitar_variacao }}
+        run: |
+          rm -f dados-estado/avisos.md
+          python scripts/atualizar_feriados.py
+          python scripts/atualizar_anp.py
+          python scripts/atualizar_pedagios.py
+          python scripts/verificar_rodizio.py
+      - name: Validar o conjunto inteiro
+        run: python scripts/validar_dados.py
+      - name: Gerar manifesto e gravar
+        id: commit
+        run: |
+          if git diff --quiet -- site/dados; then
+            echo "mudou=0" >> "$GITHUB_OUTPUT"
+          else
+            python scripts/gerar_manifesto.py site
+            echo "mudou=1" >> "$GITHUB_OUTPUT"
+          fi
+          git config user.name "automacao-dados"
+          git config user.email "automacao-dados@users.noreply.github.com"
+          git add site dados-estado/coletas.json
+          git diff --cached --quiet || git commit -m "Atualiza bases de dados ($(date -u +%F))"
+          git push
+      - name: Abrir avisos para o mantenedor
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/abrir_avisos.py
+
+  publicar:
+    needs: coletar
+    if: needs.coletar.outputs.mudou == '1'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/publicar.yml
+    with:
+      ref: main
