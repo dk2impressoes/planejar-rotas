@@ -1,338 +1,338 @@
 {
-    "versao_app":  "13.0.0",
-    "versao_conjunto":  "2026.11.24-9d9a6ad59320",
-    "cache_app":  "app-v13.0.0-d4917ebd469a",
-    "gerado_em":  "2026-11-24T19:51:37Z",
-    "arquivos":  [
-                     {
-                         "caminho":  "dados/anp.json",
-                         "tipo":  "dados",
-                         "tamanho":  237717,
-                         "sha256":  "a6b43a524c800603ff7cc4d3c81c3da488e549a642ed1bd84c7f7799e9ac4560",
-                         "esquema":  "esquemas/anp.schema.json"
-                     },
-                     {
-                         "caminho":  "dados/centro-expandido.geojson",
-                         "tipo":  "dados",
-                         "tamanho":  1048,
-                         "sha256":  "1413978749c877fd9d79dcdff2c7ca770b23eed592f95c3dc6374d1cbe7fd39a",
-                         "esquema":  "esquemas/centro-expandido.schema.json"
-                     },
-                     {
-                         "caminho":  "dados/feriados.json",
-                         "tipo":  "dados",
-                         "tamanho":  3291,
-                         "sha256":  "cfb00ddf3f4005308d61638873bfdc26fdf115fc50a4c8ea2620006e2aa0e6e6",
-                         "esquema":  "esquemas/feriados.schema.json"
-                     },
-                     {
-                         "caminho":  "dados/pedagios.json",
-                         "tipo":  "dados",
-                         "tamanho":  834891,
-                         "sha256":  "229d30d33aea90bc6314d78c6956e5406384dba2304f92a96f06d21d7526012f",
-                         "esquema":  "esquemas/pedagios.schema.json"
-                     },
-                     {
-                         "caminho":  "dados/regras.json",
-                         "tipo":  "dados",
-                         "tamanho":  4155,
-                         "sha256":  "d87e863e505926fe4fb7d41df64ceb9a0c266cebf15becc88f93d9c4a8c62892",
-                         "esquema":  "esquemas/regras.schema.json"
-                     },
-                     {
-                         "caminho":  "dados/rodizio-suspensoes.json",
-                         "tipo":  "dados",
-                         "tamanho":  254,
-                         "sha256":  "7dfd034b19f3cf29e88a9b6544e372839476b2180035f01e4aea344198771fba",
-                         "esquema":  "esquemas/rodizio-suspensoes.schema.json"
-                     },
-                     {
-                         "caminho":  "esquemas/anp.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  2687,
-                         "sha256":  "7953608736e5c269bb889106a4b5e16689b7217938829143ff8c81365c34d537"
-                     },
-                     {
-                         "caminho":  "esquemas/centro-expandido.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  5303,
-                         "sha256":  "eac1be9031a00f5033cc324afee425dd3eb68f1e7d9761614cdcf1328851bd06"
-                     },
-                     {
-                         "caminho":  "esquemas/feriados.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  3242,
-                         "sha256":  "b84ca8461df81388873a68b7b3cf8bf7a87fd2194ffea908c87a21c2109e1e11"
-                     },
-                     {
-                         "caminho":  "esquemas/manifesto.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  2275,
-                         "sha256":  "55646af502c478df56762d567e30075a0e12160ee7ed59dae9fb3988c6579c65"
-                     },
-                     {
-                         "caminho":  "esquemas/pedagios.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  12869,
-                         "sha256":  "89da2b50c53cca818284ea756f056cb42ea2d683486b5f08a617fe1a151d546c"
-                     },
-                     {
-                         "caminho":  "esquemas/regras.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  6755,
-                         "sha256":  "8e46afbc92e3e0affc7b2227b1ff75e144cdc504566c18f5dae2b94adec7069c"
-                     },
-                     {
-                         "caminho":  "esquemas/rodizio-suspensoes.schema.json",
-                         "tipo":  "dados",
-                         "tamanho":  3057,
-                         "sha256":  "911dc87d0f61432441e3c9e27272df337b6f72e6baf54483e498a5c33ab76c00"
-                     },
-                     {
-                         "caminho":  "estilos.css",
-                         "tipo":  "app",
-                         "tamanho":  21355,
-                         "sha256":  "7e800bc09b77deab8783ff4a69f7dec14a0ace3d032e7255f6e38948e2d29bf4"
-                     },
-                     {
-                         "caminho":  "favicon.ico",
-                         "tipo":  "app",
-                         "tamanho":  7384,
-                         "sha256":  "c7295d8321dd666001b408c4ef8b2c9b924ae58a1623e9e4dd64487be7bc4fdc"
-                     },
-                     {
-                         "caminho":  "icons/abertura-dk2.jpg",
-                         "tipo":  "app",
-                         "tamanho":  65110,
-                         "sha256":  "d433c6ea1fca998d2be7fbd1b4805bb1527ff7952d75c6b2d65933e929005aa2"
-                     },
-                     {
-                         "caminho":  "icons/apple-touch-icon-180.png",
-                         "tipo":  "app",
-                         "tamanho":  35770,
-                         "sha256":  "5f6b61bb1b3172afb89f0c7f547229cc45091e6e4f30fcf6620c2d9b7241c7ee"
-                     },
-                     {
-                         "caminho":  "icons/favicon-16.png",
-                         "tipo":  "app",
-                         "tamanho":  870,
-                         "sha256":  "84b170cc71f66108422aba6009cec4fc6176b76d383eb5bad59e78d5de3c4465"
-                     },
-                     {
-                         "caminho":  "icons/favicon-32.png",
-                         "tipo":  "app",
-                         "tamanho":  2268,
-                         "sha256":  "f65c822916b9e249e44a4e3521ec2296371a47d79f81cf50f11da51844c55235"
-                     },
-                     {
-                         "caminho":  "icons/icon-192.png",
-                         "tipo":  "app",
-                         "tamanho":  40348,
-                         "sha256":  "2182d7082167f31c22bc4dea04cfaeeaf1026586042539ef9b3ae8dc1154dd93"
-                     },
-                     {
-                         "caminho":  "icons/icon-512.png",
-                         "tipo":  "app",
-                         "tamanho":  281427,
-                         "sha256":  "7e00e4336733723a9b91d59884cfd19da2638d6b70be29adeac8d246f117f216"
-                     },
-                     {
-                         "caminho":  "icons/icon-maskable-512.png",
-                         "tipo":  "app",
-                         "tamanho":  183523,
-                         "sha256":  "5df6aa84e9180aff178240d452d8144e057881f94c1981e095a3ca46003a5f8b"
-                     },
-                     {
-                         "caminho":  "icons/marca-dk2-192.png",
-                         "tipo":  "app",
-                         "tamanho":  93480,
-                         "sha256":  "56a8252ea1a6450a19ed784ce0a8e8f7e91a310c88080944671a6943241a9d5d"
-                     },
-                     {
-                         "caminho":  "index.html",
-                         "tipo":  "app",
-                         "tamanho":  2696,
-                         "sha256":  "79e63b08effd2838d98b6a8f2558632f6f49346ccffeef4430e3b4485d8ef341"
-                     },
-                     {
-                         "caminho":  "js/app.js",
-                         "tipo":  "app",
-                         "tamanho":  45552,
-                         "sha256":  "5cf4011844f970ce3b91870d2852acb9d0b51bcc6a6a15f4380b36e1370ed649"
-                     },
-                     {
-                         "caminho":  "js/armazenamento/db.js",
-                         "tipo":  "app",
-                         "tamanho":  4268,
-                         "sha256":  "98cf23f0311b05901a01bf1eb33d3af0d36b1471793836549fb67c970d819514"
-                     },
-                     {
-                         "caminho":  "js/armazenamento/exportacao.js",
-                         "tipo":  "app",
-                         "tamanho":  8473,
-                         "sha256":  "da0911ff139d8d5f693d8e5c259018b59a390866c50fd5446f5b39b0d278f701"
-                     },
-                     {
-                         "caminho":  "js/dominio/calculo.js",
-                         "tipo":  "app",
-                         "tamanho":  17996,
-                         "sha256":  "294fd3faea2eb6762ea3b090d697285a83205c2b7caf6c40850ebfbf0c852b33"
-                     },
-                     {
-                         "caminho":  "js/dominio/combustivel.js",
-                         "tipo":  "app",
-                         "tamanho":  12966,
-                         "sha256":  "485700955a2c3f2e9020257ccb1d4ae51436c2e59bb31727c58abc87bfd7ceea"
-                     },
-                     {
-                         "caminho":  "js/dominio/comparacao.js",
-                         "tipo":  "app",
-                         "tamanho":  6808,
-                         "sha256":  "73ab64e58df38531870a32b13c17f480451ce375ff38162a357469c81e94f6c2"
-                     },
-                     {
-                         "caminho":  "js/dominio/congelamento.js",
-                         "tipo":  "app",
-                         "tamanho":  3919,
-                         "sha256":  "17cd75c83078d6696b1f8ff2b8323e33ddb3dbc6e3558cf958ede38bb05aa9e3"
-                     },
-                     {
-                         "caminho":  "js/dominio/descanso.js",
-                         "tipo":  "app",
-                         "tamanho":  1769,
-                         "sha256":  "8047fe9be263700e356ec78074ae224abe1e87b83be39388442c4d8d2d3f2bc9"
-                     },
-                     {
-                         "caminho":  "js/dominio/documentos.js",
-                         "tipo":  "app",
-                         "tamanho":  5490,
-                         "sha256":  "f1f12b08fa9bd10404342d3f133f5e7613eacaaf3d7cdde0eebdbd48f7e8f106"
-                     },
-                     {
-                         "caminho":  "js/dominio/geo.js",
-                         "tipo":  "app",
-                         "tamanho":  4971,
-                         "sha256":  "3eaca8c0886e1c15290b19397596b33f5a67c6fd25f3ed63ec940e7e23acf5dc"
-                     },
-                     {
-                         "caminho":  "js/dominio/pedagios.js",
-                         "tipo":  "app",
-                         "tamanho":  11798,
-                         "sha256":  "19d59e3c50110e9ee23774e0f2f3901ea3867331bc6306f395352bd2bfbd558c"
-                     },
-                     {
-                         "caminho":  "js/dominio/rodizio.js",
-                         "tipo":  "app",
-                         "tamanho":  5822,
-                         "sha256":  "84328d35b0e87c134b395c6041d6b638afb9e07714bac22de1964cbd9ab76349"
-                     },
-                     {
-                         "caminho":  "js/dominio/situacao.js",
-                         "tipo":  "app",
-                         "tamanho":  2419,
-                         "sha256":  "042a440d15dfde1605f5423067f8423e7c2fc06d1a32779691529d5f6a2c6c14"
-                     },
-                     {
-                         "caminho":  "js/dominio/tempo.js",
-                         "tipo":  "app",
-                         "tamanho":  6310,
-                         "sha256":  "3e241981d459467f690063102b6daace34c15cc69749182874da5c67f4e4c2c6"
-                     },
-                     {
-                         "caminho":  "js/dominio/viagem.js",
-                         "tipo":  "app",
-                         "tamanho":  9933,
-                         "sha256":  "68de5ad4fea929dfe4cf61b834575776486ce7a6bef9619823b0db8c17e96695"
-                     },
-                     {
-                         "caminho":  "js/interface/comparacao.js",
-                         "tipo":  "app",
-                         "tamanho":  7385,
-                         "sha256":  "9d121a1db193db1918d6d1882258eb6ed1e65459260e4d566751c16d005f7848"
-                     },
-                     {
-                         "caminho":  "js/interface/compartilhar.js",
-                         "tipo":  "app",
-                         "tamanho":  1998,
-                         "sha256":  "166631c49365a943a06122ebc16098bc40a4da7488249f50fe1a0a7fb9fbfe79"
-                     },
-                     {
-                         "caminho":  "js/interface/datas.js",
-                         "tipo":  "app",
-                         "tamanho":  5408,
-                         "sha256":  "f35612f3f15d2f014039b9f999233ca50d07d5ec587490bfdbb00cdb2e1b96d1"
-                     },
-                     {
-                         "caminho":  "js/interface/dom.js",
-                         "tipo":  "app",
-                         "tamanho":  13598,
-                         "sha256":  "0a0b9c25cac8ab74088b5ebe111239bb885423640867a157c8e1aeaec6e47c8e"
-                     },
-                     {
-                         "caminho":  "js/interface/explicacoes.js",
-                         "tipo":  "app",
-                         "tamanho":  4320,
-                         "sha256":  "2cc8d8cce4fa2f065f15a5fc453eabed3d9b262c1f6db8539daef139fa89c2cd"
-                     },
-                     {
-                         "caminho":  "js/interface/revisao.js",
-                         "tipo":  "app",
-                         "tamanho":  43626,
-                         "sha256":  "233878e2883ce60e9a080e61135c1e88460c8186555ddc93c13196b65ef17ece"
-                     },
-                     {
-                         "caminho":  "js/interface/telas.js",
-                         "tipo":  "app",
-                         "tamanho":  32583,
-                         "sha256":  "6ab6d11be0a3fcc2531c94fae71b3984c77019aaae1b3674a4d24ff1372d6006"
-                     },
-                     {
-                         "caminho":  "js/interface/termos.js",
-                         "tipo":  "app",
-                         "tamanho":  13335,
-                         "sha256":  "b55bddf400a631a8fd168dca58ff9fbfc3baa368ffd9c1eaf150313b882f1295"
-                     },
-                     {
-                         "caminho":  "js/offline/preparacao.js",
-                         "tipo":  "app",
-                         "tamanho":  7523,
-                         "sha256":  "7f30e8ce04abd4d165d7d7e75c7b423edf1395f26dc5f9c25b27c5cb00414a70"
-                     },
-                     {
-                         "caminho":  "js/servicos/bases.js",
-                         "tipo":  "app",
-                         "tamanho":  4435,
-                         "sha256":  "525499ea8ad82ebd61dbd841d904d5631c6277e8beeee017e5552e9cc70d8f5c"
-                     },
-                     {
-                         "caminho":  "js/servicos/buscador.js",
-                         "tipo":  "app",
-                         "tamanho":  6765,
-                         "sha256":  "33b564680802698128d591c1eabc8541a5b6b4f7708ffc0a46c8332978716350"
-                     },
-                     {
-                         "caminho":  "js/servicos/esquema.js",
-                         "tipo":  "app",
-                         "tamanho":  4201,
-                         "sha256":  "1c5e60245f86e2520c44061b3d7bd0b0b0f53c7a06dea20b66069af2e1baaad6"
-                     },
-                     {
-                         "caminho":  "js/servicos/http.js",
-                         "tipo":  "app",
-                         "tamanho":  3773,
-                         "sha256":  "a04f99073bc40f87cf7e7e781c83786895f6769bc299615557cf5d08a7308e0c"
-                     },
-                     {
-                         "caminho":  "js/servicos/roteador.js",
-                         "tipo":  "app",
-                         "tamanho":  5523,
-                         "sha256":  "d4d72106f4cf1569d728b6f42ad5488a9d763a81f9a73c74ec99bc1be00a2272"
-                     },
-                     {
-                         "caminho":  "manifest.webmanifest",
-                         "tipo":  "app",
-                         "tamanho":  651,
-                         "sha256":  "c140434aa32bc79fde310bf63bb074abd356a160f7fb6beb344be1def6b936d7"
-                     }
-                 ]
+  "versao_app": "13.0.0",
+  "versao_conjunto": "2026.11.25-9ae215380f8f",
+  "cache_app": "app-v13.0.0-d4917ebd469a",
+  "gerado_em": "2026-11-25T10:27:52Z",
+  "arquivos": [
+    {
+      "caminho": "dados/anp.json",
+      "tipo": "dados",
+      "tamanho": 237717,
+      "sha256": "a6b43a524c800603ff7cc4d3c81c3da488e549a642ed1bd84c7f7799e9ac4560",
+      "esquema": "esquemas/anp.schema.json"
+    },
+    {
+      "caminho": "dados/centro-expandido.geojson",
+      "tipo": "dados",
+      "tamanho": 1048,
+      "sha256": "1413978749c877fd9d79dcdff2c7ca770b23eed592f95c3dc6374d1cbe7fd39a",
+      "esquema": "esquemas/centro-expandido.schema.json"
+    },
+    {
+      "caminho": "dados/feriados.json",
+      "tipo": "dados",
+      "tamanho": 3291,
+      "sha256": "46556b72d7e534b4c4cbd99458db860ee926bd46aecb159a216328a6e23b3138",
+      "esquema": "esquemas/feriados.schema.json"
+    },
+    {
+      "caminho": "dados/pedagios.json",
+      "tipo": "dados",
+      "tamanho": 811370,
+      "sha256": "a080a7034828dcb04ae1acb7890795cdc4a87e338481161217cc51ef4aef3e9a",
+      "esquema": "esquemas/pedagios.schema.json"
+    },
+    {
+      "caminho": "dados/regras.json",
+      "tipo": "dados",
+      "tamanho": 4155,
+      "sha256": "d87e863e505926fe4fb7d41df64ceb9a0c266cebf15becc88f93d9c4a8c62892",
+      "esquema": "esquemas/regras.schema.json"
+    },
+    {
+      "caminho": "dados/rodizio-suspensoes.json",
+      "tipo": "dados",
+      "tamanho": 254,
+      "sha256": "6f02373964893215cd42d9504b604a53a7293a6b50197d9592482288c8342de3",
+      "esquema": "esquemas/rodizio-suspensoes.schema.json"
+    },
+    {
+      "caminho": "esquemas/anp.schema.json",
+      "tipo": "dados",
+      "tamanho": 2687,
+      "sha256": "7953608736e5c269bb889106a4b5e16689b7217938829143ff8c81365c34d537"
+    },
+    {
+      "caminho": "esquemas/centro-expandido.schema.json",
+      "tipo": "dados",
+      "tamanho": 5303,
+      "sha256": "eac1be9031a00f5033cc324afee425dd3eb68f1e7d9761614cdcf1328851bd06"
+    },
+    {
+      "caminho": "esquemas/feriados.schema.json",
+      "tipo": "dados",
+      "tamanho": 3242,
+      "sha256": "b84ca8461df81388873a68b7b3cf8bf7a87fd2194ffea908c87a21c2109e1e11"
+    },
+    {
+      "caminho": "esquemas/manifesto.schema.json",
+      "tipo": "dados",
+      "tamanho": 2275,
+      "sha256": "55646af502c478df56762d567e30075a0e12160ee7ed59dae9fb3988c6579c65"
+    },
+    {
+      "caminho": "esquemas/pedagios.schema.json",
+      "tipo": "dados",
+      "tamanho": 12869,
+      "sha256": "89da2b50c53cca818284ea756f056cb42ea2d683486b5f08a617fe1a151d546c"
+    },
+    {
+      "caminho": "esquemas/regras.schema.json",
+      "tipo": "dados",
+      "tamanho": 6755,
+      "sha256": "8e46afbc92e3e0affc7b2227b1ff75e144cdc504566c18f5dae2b94adec7069c"
+    },
+    {
+      "caminho": "esquemas/rodizio-suspensoes.schema.json",
+      "tipo": "dados",
+      "tamanho": 3057,
+      "sha256": "911dc87d0f61432441e3c9e27272df337b6f72e6baf54483e498a5c33ab76c00"
+    },
+    {
+      "caminho": "estilos.css",
+      "tipo": "app",
+      "tamanho": 21355,
+      "sha256": "7e800bc09b77deab8783ff4a69f7dec14a0ace3d032e7255f6e38948e2d29bf4"
+    },
+    {
+      "caminho": "favicon.ico",
+      "tipo": "app",
+      "tamanho": 7384,
+      "sha256": "c7295d8321dd666001b408c4ef8b2c9b924ae58a1623e9e4dd64487be7bc4fdc"
+    },
+    {
+      "caminho": "icons/abertura-dk2.jpg",
+      "tipo": "app",
+      "tamanho": 65110,
+      "sha256": "d433c6ea1fca998d2be7fbd1b4805bb1527ff7952d75c6b2d65933e929005aa2"
+    },
+    {
+      "caminho": "icons/apple-touch-icon-180.png",
+      "tipo": "app",
+      "tamanho": 35770,
+      "sha256": "5f6b61bb1b3172afb89f0c7f547229cc45091e6e4f30fcf6620c2d9b7241c7ee"
+    },
+    {
+      "caminho": "icons/favicon-16.png",
+      "tipo": "app",
+      "tamanho": 870,
+      "sha256": "84b170cc71f66108422aba6009cec4fc6176b76d383eb5bad59e78d5de3c4465"
+    },
+    {
+      "caminho": "icons/favicon-32.png",
+      "tipo": "app",
+      "tamanho": 2268,
+      "sha256": "f65c822916b9e249e44a4e3521ec2296371a47d79f81cf50f11da51844c55235"
+    },
+    {
+      "caminho": "icons/icon-192.png",
+      "tipo": "app",
+      "tamanho": 40348,
+      "sha256": "2182d7082167f31c22bc4dea04cfaeeaf1026586042539ef9b3ae8dc1154dd93"
+    },
+    {
+      "caminho": "icons/icon-512.png",
+      "tipo": "app",
+      "tamanho": 281427,
+      "sha256": "7e00e4336733723a9b91d59884cfd19da2638d6b70be29adeac8d246f117f216"
+    },
+    {
+      "caminho": "icons/icon-maskable-512.png",
+      "tipo": "app",
+      "tamanho": 183523,
+      "sha256": "5df6aa84e9180aff178240d452d8144e057881f94c1981e095a3ca46003a5f8b"
+    },
+    {
+      "caminho": "icons/marca-dk2-192.png",
+      "tipo": "app",
+      "tamanho": 93480,
+      "sha256": "56a8252ea1a6450a19ed784ce0a8e8f7e91a310c88080944671a6943241a9d5d"
+    },
+    {
+      "caminho": "index.html",
+      "tipo": "app",
+      "tamanho": 2696,
+      "sha256": "79e63b08effd2838d98b6a8f2558632f6f49346ccffeef4430e3b4485d8ef341"
+    },
+    {
+      "caminho": "js/app.js",
+      "tipo": "app",
+      "tamanho": 45552,
+      "sha256": "5cf4011844f970ce3b91870d2852acb9d0b51bcc6a6a15f4380b36e1370ed649"
+    },
+    {
+      "caminho": "js/armazenamento/db.js",
+      "tipo": "app",
+      "tamanho": 4268,
+      "sha256": "98cf23f0311b05901a01bf1eb33d3af0d36b1471793836549fb67c970d819514"
+    },
+    {
+      "caminho": "js/armazenamento/exportacao.js",
+      "tipo": "app",
+      "tamanho": 8473,
+      "sha256": "da0911ff139d8d5f693d8e5c259018b59a390866c50fd5446f5b39b0d278f701"
+    },
+    {
+      "caminho": "js/dominio/calculo.js",
+      "tipo": "app",
+      "tamanho": 17996,
+      "sha256": "294fd3faea2eb6762ea3b090d697285a83205c2b7caf6c40850ebfbf0c852b33"
+    },
+    {
+      "caminho": "js/dominio/combustivel.js",
+      "tipo": "app",
+      "tamanho": 12966,
+      "sha256": "485700955a2c3f2e9020257ccb1d4ae51436c2e59bb31727c58abc87bfd7ceea"
+    },
+    {
+      "caminho": "js/dominio/comparacao.js",
+      "tipo": "app",
+      "tamanho": 6808,
+      "sha256": "73ab64e58df38531870a32b13c17f480451ce375ff38162a357469c81e94f6c2"
+    },
+    {
+      "caminho": "js/dominio/congelamento.js",
+      "tipo": "app",
+      "tamanho": 3919,
+      "sha256": "17cd75c83078d6696b1f8ff2b8323e33ddb3dbc6e3558cf958ede38bb05aa9e3"
+    },
+    {
+      "caminho": "js/dominio/descanso.js",
+      "tipo": "app",
+      "tamanho": 1769,
+      "sha256": "8047fe9be263700e356ec78074ae224abe1e87b83be39388442c4d8d2d3f2bc9"
+    },
+    {
+      "caminho": "js/dominio/documentos.js",
+      "tipo": "app",
+      "tamanho": 5490,
+      "sha256": "f1f12b08fa9bd10404342d3f133f5e7613eacaaf3d7cdde0eebdbd48f7e8f106"
+    },
+    {
+      "caminho": "js/dominio/geo.js",
+      "tipo": "app",
+      "tamanho": 4971,
+      "sha256": "3eaca8c0886e1c15290b19397596b33f5a67c6fd25f3ed63ec940e7e23acf5dc"
+    },
+    {
+      "caminho": "js/dominio/pedagios.js",
+      "tipo": "app",
+      "tamanho": 11798,
+      "sha256": "19d59e3c50110e9ee23774e0f2f3901ea3867331bc6306f395352bd2bfbd558c"
+    },
+    {
+      "caminho": "js/dominio/rodizio.js",
+      "tipo": "app",
+      "tamanho": 5822,
+      "sha256": "84328d35b0e87c134b395c6041d6b638afb9e07714bac22de1964cbd9ab76349"
+    },
+    {
+      "caminho": "js/dominio/situacao.js",
+      "tipo": "app",
+      "tamanho": 2419,
+      "sha256": "042a440d15dfde1605f5423067f8423e7c2fc06d1a32779691529d5f6a2c6c14"
+    },
+    {
+      "caminho": "js/dominio/tempo.js",
+      "tipo": "app",
+      "tamanho": 6310,
+      "sha256": "3e241981d459467f690063102b6daace34c15cc69749182874da5c67f4e4c2c6"
+    },
+    {
+      "caminho": "js/dominio/viagem.js",
+      "tipo": "app",
+      "tamanho": 9933,
+      "sha256": "68de5ad4fea929dfe4cf61b834575776486ce7a6bef9619823b0db8c17e96695"
+    },
+    {
+      "caminho": "js/interface/comparacao.js",
+      "tipo": "app",
+      "tamanho": 7385,
+      "sha256": "9d121a1db193db1918d6d1882258eb6ed1e65459260e4d566751c16d005f7848"
+    },
+    {
+      "caminho": "js/interface/compartilhar.js",
+      "tipo": "app",
+      "tamanho": 1998,
+      "sha256": "166631c49365a943a06122ebc16098bc40a4da7488249f50fe1a0a7fb9fbfe79"
+    },
+    {
+      "caminho": "js/interface/datas.js",
+      "tipo": "app",
+      "tamanho": 5408,
+      "sha256": "f35612f3f15d2f014039b9f999233ca50d07d5ec587490bfdbb00cdb2e1b96d1"
+    },
+    {
+      "caminho": "js/interface/dom.js",
+      "tipo": "app",
+      "tamanho": 13598,
+      "sha256": "0a0b9c25cac8ab74088b5ebe111239bb885423640867a157c8e1aeaec6e47c8e"
+    },
+    {
+      "caminho": "js/interface/explicacoes.js",
+      "tipo": "app",
+      "tamanho": 4320,
+      "sha256": "2cc8d8cce4fa2f065f15a5fc453eabed3d9b262c1f6db8539daef139fa89c2cd"
+    },
+    {
+      "caminho": "js/interface/revisao.js",
+      "tipo": "app",
+      "tamanho": 43626,
+      "sha256": "233878e2883ce60e9a080e61135c1e88460c8186555ddc93c13196b65ef17ece"
+    },
+    {
+      "caminho": "js/interface/telas.js",
+      "tipo": "app",
+      "tamanho": 32583,
+      "sha256": "6ab6d11be0a3fcc2531c94fae71b3984c77019aaae1b3674a4d24ff1372d6006"
+    },
+    {
+      "caminho": "js/interface/termos.js",
+      "tipo": "app",
+      "tamanho": 13335,
+      "sha256": "b55bddf400a631a8fd168dca58ff9fbfc3baa368ffd9c1eaf150313b882f1295"
+    },
+    {
+      "caminho": "js/offline/preparacao.js",
+      "tipo": "app",
+      "tamanho": 7523,
+      "sha256": "7f30e8ce04abd4d165d7d7e75c7b423edf1395f26dc5f9c25b27c5cb00414a70"
+    },
+    {
+      "caminho": "js/servicos/bases.js",
+      "tipo": "app",
+      "tamanho": 4435,
+      "sha256": "525499ea8ad82ebd61dbd841d904d5631c6277e8beeee017e5552e9cc70d8f5c"
+    },
+    {
+      "caminho": "js/servicos/buscador.js",
+      "tipo": "app",
+      "tamanho": 6765,
+      "sha256": "33b564680802698128d591c1eabc8541a5b6b4f7708ffc0a46c8332978716350"
+    },
+    {
+      "caminho": "js/servicos/esquema.js",
+      "tipo": "app",
+      "tamanho": 4201,
+      "sha256": "1c5e60245f86e2520c44061b3d7bd0b0b0f53c7a06dea20b66069af2e1baaad6"
+    },
+    {
+      "caminho": "js/servicos/http.js",
+      "tipo": "app",
+      "tamanho": 3773,
+      "sha256": "a04f99073bc40f87cf7e7e781c83786895f6769bc299615557cf5d08a7308e0c"
+    },
+    {
+      "caminho": "js/servicos/roteador.js",
+      "tipo": "app",
+      "tamanho": 5523,
+      "sha256": "d4d72106f4cf1569d728b6f42ad5488a9d763a81f9a73c74ec99bc1be00a2272"
+    },
+    {
+      "caminho": "manifest.webmanifest",
+      "tipo": "app",
+      "tamanho": 651,
+      "sha256": "c140434aa32bc79fde310bf63bb074abd356a160f7fb6beb344be1def6b936d7"
+    }
+  ]
 }
