@@ -15,7 +15,7 @@ import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
 import { congelarSeTerminou, basesDaViagem } from './dominio/congelamento.js';
-import { compartilharRota, compartilharViagemCompleta, lerRotaCompartilhada, PREFIXO_ROTA } from './interface/compartilhar.js';
+import { compartilharRota, compartilharViagemCompleta, lerViagemCompartilhada, lerRotaCompartilhada, PREFIXO_VIAGEM, PREFIXO_ROTA, LINK_IMPORTAR } from './interface/compartilhar.js';
 import { podeDirigirNaSaida } from './dominio/documentos.js';
 import { custosDaViagem } from './dominio/comparacao.js';
 import { formatarDataHora } from './dominio/tempo.js';
@@ -233,6 +233,62 @@ function vistaRotaCompartilhada() {
     el('p', {}, el('a', { href: '?inicio=1', class: 'botao' }, 'Abrir minhas viagens')));
 }
 
+const ehImportacaoDireta = (hash) => hash === '#importar' || hash.startsWith(PREFIXO_VIAGEM);
+
+function vistaImportacaoDireta() {
+  let viagem = estado.viagemRecebida;
+  const status = el('p', { class: 'ajuda', role: 'status' }, estado.erroViagemRecebida || '');
+  const salvarRecebida = botao('Importar viagem', async () => {
+    if (!viagem) return;
+    salvarRecebida.disabled = true;
+    entrada.disabled = true;
+    try {
+      const copia = { ...viagem, id: novoId(), preparacao: { estado: 'não preparado', preparado_em: null, revisao: null } };
+      const modo = (await meta('modo')) || 'online';
+      await transacao([
+        { store: 'viagens', valor: copia },
+        { store: 'meta', valor: { chave: 'viagemAtual', valor: copia.id } },
+        { store: 'meta', valor: { chave: 'modo', valor: modo } },
+      ]);
+      estado.viagem = copia;
+      estado.tentou = {};
+      estado.estadoRota = {};
+      history.replaceState(null, '', location.pathname + location.search);
+      abrirAssistente(copia.tela || 1);
+      anunciar('Viagem importada e salva neste aparelho.');
+    } catch {
+      status.textContent = 'Não foi possível salvar a viagem. Tente novamente.';
+      salvarRecebida.disabled = false;
+      entrada.disabled = false;
+    }
+  }, { classe: 'largo', desativado: !viagem });
+  const entrada = el('input', { id: 'arquivo-recebido', type: 'file', accept: '.json,application/json' });
+  entrada.addEventListener('change', async () => {
+    const arquivo = entrada.files[0];
+    if (!arquivo) return;
+    viagem = null;
+    salvarRecebida.disabled = true;
+    entrada.disabled = true;
+    try {
+      if (arquivo.size > 5 * 1024 * 1024) throw new Error('O arquivo ultrapassa o limite de 5 MB.');
+      const { viagens } = await conferirImportacao(await arquivo.text());
+      if (viagens.length !== 1) throw new Error('Selecione o arquivo de uma única viagem.');
+      viagem = viagens[0];
+      status.textContent = (viagem.nome || 'Viagem recebida') + ' está pronta para importar.';
+      salvarRecebida.disabled = false;
+    } catch (e) {
+      status.textContent = e.message;
+    } finally {
+      entrada.disabled = false;
+    }
+  });
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Importar viagem recebida', viagem ? (viagem.nome || 'Roteiro recebido') : 'Selecione o arquivo recebido pelo WhatsApp.'),
+    el('p', {}, 'A viagem será guardada neste aparelho como uma cópia.'),
+    viagem ? null : el('div', { class: 'campo' }, el('label', { for: entrada.id }, 'Arquivo da viagem'), entrada),
+    salvarRecebida, status, el('p', {}, el('a', { href: '?inicio=1', class: 'botao secundario' }, 'Voltar às minhas viagens')));
+}
+
 function abrirCompartilhamento(v) {
   const estado = el('p', { class: 'ajuda', role: 'status' });
   const enviar = async (acao) => {
@@ -241,14 +297,15 @@ function abrirCompartilhamento(v) {
       const r = await acao(v);
       if (r === 'compartilhado') { janela.close(); return; }
       const mensagens = {
-        copiado: 'Link e roteiro copiados. Cole na conversa do WhatsApp.',
-        baixado: 'Arquivo baixado. Anexe-o no WhatsApp. Quem receber pode importar pelo menu Configurações.',
+        copiado: 'Link copiado. Cole na conversa do WhatsApp.',
+        baixado: 'Arquivo baixado. Anexe-o no WhatsApp e envie também o link de importação.',
         'rota-invalida': 'Confira a origem, o destino e todas as paradas.',
         'baixado-roteiro': 'O roteiro completo foi baixado em texto. Anexe-o no WhatsApp.',
         'arquivo-grande': 'O arquivo ultrapassa o limite de 5 MB para importação.',
         indisponivel: 'O navegador não conseguiu compartilhar nem copiar o roteiro.',
       };
       estado.textContent = mensagens[r] || '';
+      if (r === 'baixado') estado.append(' ', el('a', { href: LINK_IMPORTAR }, 'Link para importar o arquivo'));
     } catch {
       estado.textContent = 'Não foi possível preparar o compartilhamento. Tente novamente.';
     } finally {
@@ -261,7 +318,7 @@ function abrirCompartilhamento(v) {
   const janela = el('dialog', { class: 'aviso-versao nao-imprimir', 'aria-labelledby': 'titulo-compartilhar' },
     el('h2', { id: 'titulo-compartilhar' }, 'Compartilhar viagem'),
     trecho, el('p', {}, 'Link para abrir a ida, a volta e todas as paradas no app.'),
-    completo, el('p', {}, 'Arquivo para importar, com checklist, custos, veículo e dados dos viajantes. Envie apenas a quem deve receber esses dados.'),
+    completo, el('p', {}, 'Link para importar checklist, custos, veículo e dados dos viajantes. Viagens maiores seguem em arquivo. Envie só a quem deve receber esses dados.'),
     estado, botao('Fechar', () => janela.close(), { classe: 'secundario' }));
   janela.addEventListener('close', () => janela.remove(), { once: true });
   document.body.append(janela);
@@ -273,6 +330,7 @@ function vistaTermos() {
   const continuar = botao('Aceitar e começar', async () => {
     if (!marcado) { anunciar('Marque a caixa para continuar.'); return; }
     await meta('aceite', { versao: VERSAO_TERMOS, aceito_em: new Date().toISOString() });
+    if (ehImportacaoDireta(location.hash)) { estado.vista = 'importacao-direta'; render({ trocaDeTela: true }); return; }
     if (!(await meta('modo'))) { estado.vista = 'modo'; render(); return; }
     if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return; } // rascunho: reabre na mesma tela
     estado.vista = 'inicio';
@@ -632,6 +690,7 @@ function render({ foco, trocaDeTela } = {}) {
       case 'assistente': conteudo = vistaAssistente(); break;
       case 'preparacao': conteudo = vistaPreparacao(); break;
       case 'configuracoes': conteudo = vistaConfiguracoes(); break;
+      case 'importacao-direta': conteudo = vistaImportacaoDireta(); break;
       case 'dados': conteudo = vistaDados(); break;
       case 'sobre': conteudo = vistaSobre(); break;
       case 'comparar': conteudo = await vistaComparar(); break;
@@ -893,7 +952,7 @@ async function iniciar() {
   indicadorConexao();
   registrarServiceWorker();
   addEventListener('hashchange', () => {
-    if (location.hash.startsWith(PREFIXO_ROTA)) location.reload();
+    if (location.hash.startsWith(PREFIXO_ROTA) || ehImportacaoDireta(location.hash)) location.reload();
   });
   if (location.hash.startsWith(PREFIXO_ROTA)) {
     document.getElementById('menu-botao').hidden = true;
@@ -914,8 +973,13 @@ async function iniciar() {
   await iniciarBases();
   const idAtual = await meta('viagemAtual');
   if (idAtual) estado.viagem = (await obter('viagens', idAtual)) || null;
+  if (location.hash.startsWith(PREFIXO_VIAGEM)) {
+    try { estado.viagemRecebida = await lerViagemCompartilhada(location.hash); }
+    catch { estado.erroViagemRecebida = 'Não foi possível abrir o link. Se você recebeu um arquivo, escolha-o abaixo.'; }
+  }
   const aceite = await meta('aceite');
   if (!aceite || aceite.versao !== VERSAO_TERMOS) { estado.vista = 'termos'; estado.termosAtualizados = Boolean(aceite); }
+  else if (ehImportacaoDireta(location.hash)) estado.vista = 'importacao-direta';
   else if (!(await meta('modo'))) estado.vista = 'modo';
   else if (estado.viagem && viagemConcluida(estado.viagem)) estado.vista = 'menu'; // viagem já terminou: abre no Menu
   else if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return; } // rascunho: reabre na mesma tela
