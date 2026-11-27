@@ -15,7 +15,7 @@ import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
 import { congelarSeTerminou, basesDaViagem } from './dominio/congelamento.js';
-import { compartilharRota, lerRotaCompartilhada, PREFIXO_ROTA } from './interface/compartilhar.js';
+import { compartilharRota, compartilharViagemCompleta, lerRotaCompartilhada, PREFIXO_ROTA } from './interface/compartilhar.js';
 import { podeDirigirNaSaida } from './dominio/documentos.js';
 import { custosDaViagem } from './dominio/comparacao.js';
 import { formatarDataHora } from './dominio/tempo.js';
@@ -223,10 +223,49 @@ function vistaRotaCompartilhada() {
     rota ? rota.rotas.map(({ sentido, data, hora, lugares, mapa }) => el('section', { class: 'cartao' },
       el('h2', {}, sentido === 'ida' ? 'Ida' : 'Volta'),
       data ? el('p', {}, isoParaBr(data), hora ? ' às ' + hora : '') : null,
-      el('ol', {}, ...lugares.map(({ nome }) => el('li', {}, nome))),
+      el('ol', {}, ...lugares.map(({ nome, parada }, i) => el('li', {},
+        nome, el('small', { class: 'linha-menor' }, parada
+          ? parada.tipo + (parada.data ? ' · saída ' + isoParaBr(parada.data) + (parada.hora ? ' às ' + parada.hora : '')
+            : parada.duracao !== null ? ' · ' + parada.duracao + ' min' : '')
+          : i === 0 ? 'Origem' : 'Destino')))),
       el('a', { href: mapa, class: 'botao secundario', target: '_blank', rel: 'noopener noreferrer' }, 'Abrir no Google Maps')))
       : el('p', { class: 'aviso', role: 'alert' }, 'Este link de roteiro está incompleto ou não é válido. Peça um novo link a quem enviou.'),
     el('p', {}, el('a', { href: '?inicio=1', class: 'botao' }, 'Abrir minhas viagens')));
+}
+
+function abrirCompartilhamento(v) {
+  const estado = el('p', { class: 'ajuda', role: 'status' });
+  const enviar = async (acao) => {
+    trecho.disabled = completo.disabled = true;
+    try {
+      const r = await acao(v);
+      if (r === 'compartilhado') { janela.close(); return; }
+      const mensagens = {
+        copiado: 'Link e roteiro copiados. Cole na conversa do WhatsApp.',
+        baixado: 'Arquivo baixado. Anexe-o no WhatsApp. Quem receber pode importar pelo menu Configurações.',
+        'rota-invalida': 'Confira a origem, o destino e todas as paradas.',
+        'baixado-roteiro': 'O roteiro completo foi baixado em texto. Anexe-o no WhatsApp.',
+        'arquivo-grande': 'O arquivo ultrapassa o limite de 5 MB para importação.',
+        indisponivel: 'O navegador não conseguiu compartilhar nem copiar o roteiro.',
+      };
+      estado.textContent = mensagens[r] || '';
+    } catch {
+      estado.textContent = 'Não foi possível preparar o compartilhamento. Tente novamente.';
+    } finally {
+      trecho.disabled = !(v.origem && v.destino);
+      completo.disabled = false;
+    }
+  };
+  const trecho = botao('Rotas e paradas', () => enviar(compartilharRota), { classe: 'largo', desativado: !(v.origem && v.destino) });
+  const completo = botao('Viagem completa', () => enviar(compartilharViagemCompleta), { classe: 'largo' });
+  const janela = el('dialog', { class: 'aviso-versao nao-imprimir', 'aria-labelledby': 'titulo-compartilhar' },
+    el('h2', { id: 'titulo-compartilhar' }, 'Compartilhar viagem'),
+    trecho, el('p', {}, 'Link para abrir a ida, a volta e todas as paradas no app.'),
+    completo, el('p', {}, 'Arquivo para importar, com checklist, custos, veículo e dados dos viajantes. Envie apenas a quem deve receber esses dados.'),
+    estado, botao('Fechar', () => janela.close(), { classe: 'secundario' }));
+  janela.addEventListener('close', () => janela.remove(), { once: true });
+  document.body.append(janela);
+  janela.showModal();
 }
 
 function vistaTermos() {
@@ -267,7 +306,7 @@ function vistaModo() {
     render();
   };
   return el('div', { class: 'estreito' },
-    ...cabecalho('Você vai ter internet durante a viagem?', 'Pode mudar depois em Configurações e dados.'),
+    ...cabecalho('Você vai ter internet durante a viagem?', 'Pode mudar depois em Configurações.'),
     estado.modoPelasConfiguracoes ? voltarConfiguracoes() : null,
     el('div', { class: 'cartao' },
       el('h2', {}, '📶 Sim, vou ter internet'),
@@ -291,7 +330,7 @@ async function vistaInicio() {
   return el('div', {},
     ...cabecalho(viagens.length ? 'Minhas viagens' : 'Vamos planejar sua viagem de carro'),
     estado.mensagem ? el('p', { class: 'aviso', role: 'status' }, estado.mensagem) : null,
-    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. Em Configurações e dados, use "Salvar, Importar ou Restaurar": se o navegador for limpo, as viagens podem ser apagadas.') : null,
+    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. Em Configurações, use "Salvar, Importar ou Restaurar": se o navegador for limpo, as viagens podem ser apagadas.') : null,
     viagens.length ? null : el('p', { class: 'intro' }, 'São 6 passos curtos: quando, para onde, carro, paradas, pessoas e o resumo com horários, combustível, pedágios e o que levar. Tudo fica salvo enquanto você preenche.'),
     nova,
     viagens.length >= 2 ? botao('💰 Histórico Gastos de Viagens',() => { estado.vista = 'comparar'; render({ trocaDeTela: true }); }, { classe: 'secundario largo' }) : null,
@@ -306,12 +345,7 @@ async function vistaInicio() {
         velha ? el('p', { class: 'aviso' }, '⚠ Preparada há mais de 7 dias: prepare de novo antes de sair.') : null,
         el('div', { class: 'acoes' },
           botao(v.tela >= 6 ? 'Ver resumo' : 'Continuar', async () => { estado.viagem = v; await meta('viagemAtual', v.id); abrirAssistente(v.tela || 1); }, { rotuloAcessivel: `Abrir ${v.nome || 'viagem'}` }),
-          v.origem && v.destino ? botao('📤 Compartilhar rota', async () => {
-            const r = await compartilharRota(v);
-            if (r === 'copiado') anunciar('Rota copiada: cole na conversa ou no e-mail.');
-            else if (r === 'rota-invalida') anunciar('Não foi possível gerar o link. Confira os locais e as paradas da viagem.');
-            else if (r === 'indisponivel') anunciar('Este aparelho não deixou compartilhar nem copiar. Tente pelo celular.');
-          }, { classe: 'secundario', rotuloAcessivel: `Compartilhar a rota de ${v.nome || 'viagem'}` }) : null,
+          botao('📤 Compartilhar', () => abrirCompartilhamento(v), { classe: 'secundario', rotuloAcessivel: `Compartilhar ${v.nome || 'viagem'}` }),
           botao('Apagar', async () => {
             if (!confirm('Apagar esta viagem do aparelho? Uma cópia de segurança interna é feita antes.')) return;
             await copiaDeSeguranca('antes de apagar viagem');
@@ -359,6 +393,7 @@ function vistaAssistente() {
       r.legs = r.alternativas[i].legs;
       r.escolhida = i;
     }, { render: true }),
+    compartilhar: () => abrirCompartilhamento(v),
     exportar: () => baixarExportacao([v]), preparar: () => { estado.vista = 'preparacao'; render(); iniciarPreparacao(); },
   };
   if (n === 6) {
@@ -620,14 +655,14 @@ const ITENS_MENU = [
   ['Viagem atual', () => { if (estado.viagem) { abrirAssistente(estado.viagem.tela || 1); return true; } estado.vista = 'inicio'; }],
   ['Minhas viagens', () => { estado.vista = 'inicio'; estado.mensagem = ''; }],
   ['Preparar para viagem', () => { if (!estado.viagem) { estado.vista = 'inicio'; estado.mensagem = 'Abra uma viagem primeiro.'; return; } estado.vista = 'preparacao'; setTimeout(iniciarPreparacao); }],
-  ['Guia', () => { estado.vista = 'guia'; estado.avisoGuia = ''; }],
+  ['Configurações', () => { estado.vista = 'configuracoes'; }],
   ['Histórico Gastos de Viagens', () => { estado.vista = 'comparar'; }],
-  ['Configurações e dados', () => { estado.vista = 'configuracoes'; }],
   ['Sobre e avisos legais', () => { estado.vista = 'sobre'; }],
 ];
 const executarItemMenu = (acao) => { if (!acao()) render({ trocaDeTela: true }); };
 
 const ITENS_CONFIGURACOES = [
+  ['Guia', () => { estado.vista = 'guia'; estado.avisoGuia = ''; }],
   ['Modo online / offline', () => { estado.modoPelasConfiguracoes = true; estado.vista = 'modo'; }],
   ['Instalar aplicativo', () => { estado.vista = 'baixar'; }],
   ['Verificar atualização', () => { estado.vista = 'verificar'; render({ trocaDeTela: true }); verificarAtualizacoes(); return true; }],
@@ -636,13 +671,13 @@ const ITENS_CONFIGURACOES = [
 
 function vistaConfiguracoes() {
   return el('div', { class: 'estreito' },
-    ...cabecalho('Configurações e dados'),
+    ...cabecalho('Configurações'),
     el('ul', { class: 'menu-tela lista-simples' }, ...ITENS_CONFIGURACOES.map(([texto, acao]) =>
       el('li', {}, botao(texto, () => executarItemMenu(acao), { classe: 'secundario largo' })))));
 }
 
 function voltarConfiguracoes() {
-  return botao('← Configurações e dados', () => {
+  return botao('← Configurações', () => {
     estado.vista = 'configuracoes';
     render({ trocaDeTela: true });
   }, { classe: 'secundario' });
@@ -727,6 +762,7 @@ function vistaGuia() {
   };
   return el('div', { class: 'estreito' },
     ...cabecalho('Guia', 'Lugares para dormir, passear e comprar no caminho da sua viagem.'),
+    voltarConfiguracoes(),
     el('ul', { class: 'menu-tela lista-simples' },
       ...['Guia Hospedagem (em breve)', 'Guia Turísticos (em breve)', 'Guia de Compras'].map((nome) =>
         el('li', {}, botao(nome, escolher, { classe: 'secundario largo' })))),

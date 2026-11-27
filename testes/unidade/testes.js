@@ -670,6 +670,21 @@ teste('Compartilhar rota: só lugares, datas e link; nunca nomes nem placa', () 
   igual(lerRotaCompartilhada('#rota=invalido'), null);
   verdade(!texto.includes('Maria') && !texto.includes('1990'), 'sem nomes nem nascimento');
 });
+teste('Link mantém endereço, ordem das paradas e pernoite nos dois sentidos', () => {
+  const v = viagemTerminada();
+  v.paradas.ida = [{ tipo: 'Pernoite', lugar: { ...v.origem, rotulo: 'Hotel na Rua A' },
+    saidaAgendada: { data: '2026-03-11', hora: '07:00' }, duracaoMin: 15 }];
+  v.paradas.volta = [{ tipo: 'Parada rápida', lugar: { ...v.destino, rotulo: 'Posto na Rodovia B' }, duracaoMin: 25 }];
+  const { url } = textoDaRota(v);
+  const roteiro = lerRotaCompartilhada(new URL(url).hash);
+  igual(roteiro.rotas[0].lugares.map(p => p.nome).join(' | '), 'Campinas/SP | Hotel na Rua A | Santos/SP');
+  igual(roteiro.rotas[0].lugares[1].parada.tipo, 'Pernoite');
+  igual(roteiro.rotas[0].lugares[1].parada.hora, '07:00');
+  igual(roteiro.rotas[1].lugares.map(p => p.nome).join(' | '), 'Santos/SP | Posto na Rodovia B | Campinas/SP');
+  igual(roteiro.rotas[1].lugares[1].parada.duracao, 25);
+  v.paradas.volta[0].lugar = null;
+  igual(textoDaRota(v).texto, '', 'evita compartilhar uma volta incompleta');
+});
 teste('Histórico de gastos: só aparecem os meses com viagem', () => {
   const v1 = novaViagem(); v1.datas.ida.data = '2026-03-10'; v1.datas.volta.data = '2026-03-12';
   const v2 = novaViagem(); v2.datas.ida.data = '2026-07-05'; v2.datas.volta.data = '2026-07-08';
