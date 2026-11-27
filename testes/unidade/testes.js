@@ -23,7 +23,7 @@ import { congelarSeTerminou, basesDaViagem, congelamentoValido } from '../../sit
 import { textoDaRota, lerRotaCompartilhada } from '../../site/js/interface/compartilhar.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
-import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
+import { dePhoton, ufPorNome, buscar, reverso } from '../../site/js/servicos/buscador.js';
 import { custosDaViagem, gruposParaComparar, custosDoAno, anosComViagem, chaveDestino } from '../../site/js/dominio/comparacao.js';
 
 export const testes = [];
@@ -592,6 +592,31 @@ teste('Texto seguro: null, undefined e NaN viram vazio', () => {
   const p = anexar(document.createElement('p'), 'a', null, undefined, NaN, el('b', {}, 'b'));
   igual(p.textContent, 'ab');
   igual(escrever(document.createElement('p'), null).textContent, '');
+});
+teste('GPS preserva rua, número, bairro e CEP e mantém as coordenadas capturadas', async () => {
+  const photon = { geometry: { coordinates: [-47.06, -22.9] }, properties: {
+    street: 'Rua das Flores', housenumber: '52', district: 'Centro', city: 'Campinas', state: 'São Paulo', postcode: '13010100',
+  } };
+  const esperado = 'Rua das Flores, 52, Centro, Campinas — SP · CEP 13010-100';
+  igual(dePhoton(photon).rotulo, esperado);
+  const fetchOriginal = globalThis.fetch;
+  delete photon.properties.housenumber;
+  globalThis.fetch = async (endereco) => {
+    const url = new URL(endereco);
+    if (url.hostname === 'photon.komoot.io') return new Response(JSON.stringify({ features: [photon] }));
+    igual(url.searchParams.get('zoom'), '18');
+    return new Response(JSON.stringify({ lat: '-22.901', lon: '-47.061', address: {
+      road: 'Rua das Flores', house_number: '52', suburb: 'Centro', city: 'Campinas',
+      'ISO3166-2-lvl4': 'BR-SP', postcode: '13010-100',
+    } }));
+  };
+  try {
+    const gps = await reverso(-22.9, -47.06, { enderecoCompleto: true });
+    igual(gps.rotulo, esperado);
+    igual(gps.numero, '52');
+    igual(gps.lat, -22.9);
+    igual(gps.lon, -47.06);
+  } finally { globalThis.fetch = fetchOriginal; }
 });
 teste('Busca de endereço: Nominatim fora do ar → usa o Photon', async () => {
   const original = globalThis.fetch;

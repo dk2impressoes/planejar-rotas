@@ -1,8 +1,8 @@
 {
   "versao_app": "13.0.0",
   "versao_conjunto": "2026.11.27-7c82376ce4a2",
-  "cache_app": "app-v13.0.0-74276c91209b",
-  "gerado_em": "2026-11-27T18:31:58Z",
+  "cache_app": "app-v13.0.0-9e103beb08f1",
+  "gerado_em": "2026-11-27T18:53:37Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
@@ -169,8 +169,8 @@
     {
       "caminho": "js/armazenamento/exportacao.js",
       "tipo": "app",
-      "tamanho": 8540,
-      "sha256": "32913ba5dd5106703b17696c4ce264106e213e59d223abda6987ab447f8008fc"
+      "tamanho": 8597,
+      "sha256": "9b1811ce48719fe7a6a566476af3855f6b6f370aeeaabe62fc1bac7290beecae"
     },
     {
       "caminho": "js/dominio/calculo.js",
@@ -283,8 +283,8 @@
     {
       "caminho": "js/interface/telas.js",
       "tipo": "app",
-      "tamanho": 33979,
-      "sha256": "2283fae12eb6ef1b3ef9fe8e1da0313377a5d1464178c983ac1602f4cd8fc4ca"
+      "tamanho": 34389,
+      "sha256": "06a78fdf61041066e6f59f94849ee1215166b5f360885aa83fc8ccaaa51a98d7"
     },
     {
       "caminho": "js/interface/termos.js",
@@ -307,8 +307,8 @@
     {
       "caminho": "js/servicos/buscador.js",
       "tipo": "app",
-      "tamanho": 6765,
-      "sha256": "33b564680802698128d591c1eabc8541a5b6b4f7708ffc0a46c8332978716350"
+      "tamanho": 7720,
+      "sha256": "bf0b5b233a190d907d180f97ee94ee5bf1c6d781f8feea26dbc59825df0ac196"
     },
     {
       "caminho": "js/servicos/esquema.js",

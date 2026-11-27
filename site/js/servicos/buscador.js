@@ -20,9 +20,18 @@ export function ufPorNome(nome) {
   return UF_SEM_ACENTO[t] || null;
 }
 
-function lugar({ nome, cidade, uf, lat, lon, precisao, servico }) {
-  const partes = [nome, cidade && cidade !== nome ? cidade : null].filter(Boolean).join(', ');
-  return { nome: nome || cidade || 'Local', cidade: cidade || '', uf: uf || '', lat, lon, fuso: fusoDaUF(uf), precisao, servico, rotulo: uf ? `${partes} — ${uf}` : partes };
+function lugar({ nome, cidade, uf, lat, lon, precisao, servico, rua, numero, bairro, cep }) {
+  const logradouro = [rua, numero].filter(Boolean).join(', ');
+  const partes = [nome, logradouro, bairro, cidade].filter(Boolean);
+  const vistos = new Set();
+  const endereco = partes.filter((p) => !vistos.has(semAcento(p)) && vistos.add(semAcento(p))).join(', ');
+  const digitos = String(cep || '').replace(/\D/g, '');
+  const codPostal = digitos.length === 8 ? digitos.slice(0, 5) + '-' + digitos.slice(5) : '';
+  return {
+    nome: String(nome || rua || cidade || 'Local').slice(0, 200), cidade: cidade || '', uf: uf || '', lat, lon,
+    fuso: fusoDaUF(uf), precisao, servico, rua: rua || '', numero: numero || '', bairro: bairro || '', cep: codPostal,
+    rotulo: (endereco + (uf ? ' — ' + uf : '') + (codPostal ? ' · CEP ' + codPostal : '')).slice(0, 300),
+  };
 }
 
 export function dePhoton(f) {
@@ -37,7 +46,7 @@ export function dePhoton(f) {
   }
   // Uma cidade vem sem "city" (ela é a cidade): o nome é a cidade.
   const ehCidade = ['city', 'town', 'village', 'municipality'].includes(p.osm_value) || p.type === 'city';
-  return lugar({ nome: p.name || p.street, cidade: p.city || p.town || p.village || (ehCidade ? p.name : '') || p.county || '', uf: ufPorNome(p.state), lat, lon, precisao: p.osm_value || p.type || '', servico: 'Photon' });
+  return lugar({ nome: semAcento(p.name) === semAcento(p.street) ? '' : p.name, rua: p.street, numero: p.housenumber, bairro: p.district || p.locality, cep: p.postcode, cidade: p.city || p.town || p.village || (ehCidade ? p.name : '') || p.county || '', uf: ufPorNome(p.state), lat, lon, precisao: p.osm_value || p.type || '', servico: 'Photon' });
 }
 
 /** Autocompletar a partir de 3 caracteres (a espera de 300 ms fica na interface). */
@@ -84,39 +93,52 @@ export async function buscar(texto, { sinal } = {}) {
 async function buscarNominatim(texto, { sinal } = {}) {
   const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&countrycodes=br&limit=8&accept-language=pt-BR&q=${encodeURIComponent(texto.trim())}`;
   const j = await consultarJSON('nominatim', url, { sinal });
-  return semRepetidos((j || []).map((r) => {
-    const a = r.address || {};
-    const iso = a['ISO3166-2-lvl4'] || '';
-    if (r.addresstype === 'state') {
-      const uf = iso.startsWith('BR-') ? iso.slice(3) : ufPorNome(r.name);
-      return { ...lugar({ nome: `Estado de ${r.name}`, cidade: '', uf, lat: Number(r.lat), lon: Number(r.lon), precisao: 'state', servico: 'Nominatim' }), estado: true,
-        rotulo: `Estado de ${r.name} (o estado inteiro, não a cidade)${uf ? ` — ${uf}` : ''}` };
-    }
-    return lugar({
-      nome: r.name || a.road || a.city || a.town, cidade: a.city || a.town || a.village || a.municipality || '',
-      uf: iso.startsWith('BR-') ? iso.slice(3) : ufPorNome(a.state), lat: Number(r.lat), lon: Number(r.lon),
-      precisao: r.type || '', servico: 'Nominatim',
-    });
-  }));
+  return semRepetidos((j || []).map(deNominatim));
+}
+
+function deNominatim(r) {
+  const a = r.address || {};
+  const iso = a['ISO3166-2-lvl4'] || '';
+  const uf = iso.startsWith('BR-') ? iso.slice(3) : ufPorNome(a.state || (r.addresstype === 'state' ? r.name : ''));
+  const pos = { lat: Number(r.lat), lon: Number(r.lon), servico: 'Nominatim' };
+  if (r.addresstype === 'state') {
+    return { ...lugar({ ...pos, nome: 'Estado de ' + r.name, uf, precisao: 'state' }), estado: true,
+      rotulo: 'Estado de ' + r.name + ' (o estado inteiro, não a cidade)' + (uf ? ' — ' + uf : '') };
+  }
+  const rua = a.road || a.pedestrian || a.residential || a.street;
+  return lugar({ ...pos, nome: semAcento(r.name) === semAcento(rua) ? '' : r.name,
+    cidade: a.city || a.town || a.village || a.municipality || '', uf, rua, numero: a.house_number,
+    bairro: a.suburb || a.city_district || a.neighbourhood || a.quarter, cep: a.postcode,
+    precisao: r.addresstype || r.type || '' });
 }
 
 /** Endereço de uma coordenada (geolocalização e sugestão de abastecimento). Photon; se falhar, Nominatim. */
-export async function reverso(lat, lon, { sinal } = {}) {
+export async function reverso(lat, lon, { sinal, enderecoCompleto = false } = {}) {
+  let candidato = null;
   try {
     const url = `https://photon.komoot.io/reverse?lat=${lat}&lon=${lon}&limit=1`;
     const j = await consultarJSON('photon', url, { sinal });
     const f = (j.features || [])[0];
-    if (f) return { ...dePhoton(f), lat, lon };
+    if (f) {
+      candidato = { ...dePhoton(f), lat, lon };
+      if (!enderecoCompleto || (candidato.rua && candidato.numero)) return candidato;
+    }
   } catch (e) {
     if (e?.codigo === 'cancelado') throw e;
   }
-  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=14&accept-language=pt-BR&lat=${lat}&lon=${lon}`;
-  const r = await consultarJSON('nominatim', url, { sinal });
-  if (!r || r.error) return null;
-  const a = r.address || {};
-  const iso = a['ISO3166-2-lvl4'] || '';
-  const cidade = a.city || a.town || a.village || a.municipality || '';
-  return lugar({ nome: cidade || r.name || 'Local', cidade, uf: iso.startsWith('BR-') ? iso.slice(3) : ufPorNome(a.state), lat, lon, precisao: r.type || '', servico: 'Nominatim' });
+  const zoom = enderecoCompleto ? 18 : 14;
+  const url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=' + zoom
+    + '&accept-language=pt-BR&lat=' + lat + '&lon=' + lon;
+  try {
+    const r = await consultarJSON('nominatim', url, { sinal });
+    if (!r || r.error) return candidato;
+    const local = { ...deNominatim(r), lat, lon };
+    if (candidato?.rua && !local.rua) return candidato;
+    return local;
+  } catch (e) {
+    if (!candidato || e?.codigo === 'cancelado') throw e;
+    return candidato;
+  }
 }
 
 /** Nomes iguais em UFs diferentes exigem que o usuário escolha (Seção 2, tela 2). */
