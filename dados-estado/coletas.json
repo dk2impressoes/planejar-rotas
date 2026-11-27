@@ -6,10 +6,10 @@
     "ultimo_erro": null
   },
   "anp": {
-    "falhas_seguidas": 4,
-    "ultima_execucao": "2026-11-27T10:19:12Z",
-    "ultimo_sucesso": "2026-11-23T07:37:31Z",
-    "ultimo_erro": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas: <urlopen error [Errno 104] Connection reset by peer>"
+    "falhas_seguidas": 0,
+    "ultima_execucao": "2026-11-27T16:08:29Z",
+    "ultimo_sucesso": "2026-11-27T16:08:38Z",
+    "ultimo_erro": null
   },
   "pedagios": {
     "falhas_seguidas": 0,

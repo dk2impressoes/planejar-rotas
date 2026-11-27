@@ -189,15 +189,25 @@ def conferir_variacao(novos: list[dict], anteriores: list[dict]) -> None:
 
 
 def coletar() -> bool:
-    links, links_postos = [], []
+    links, links_postos, falhas = [], [], []
     for pagina in CFG["paginas"]:
-        texto = baixar(pagina).decode("utf-8", "replace")
-        links += achar_links(texto, pagina)
-        links_postos += achar_links(texto, pagina, PADRAO_POSTOS)
+        try:
+            texto = baixar(pagina).decode("utf-8", "replace")
+        except ConnectionError as e:
+            falhas.append(str(e))
+            continue
+        links = achar_links(texto, pagina)
+        links_postos = achar_links(texto, pagina, PADRAO_POSTOS)
+        if links:
+            break
+    if not links and falhas:
+        raise ConnectionError("; ".join(falhas))
     if not links:
         raise Anomalia("Nenhum link de resumo semanal encontrado na página da ANP (o nome do arquivo pode ter mudado; ajuste 'padrao_arquivo').")
     inicio, fim, url = max(links, key=lambda x: x[1])
     anterior = ler_json(DADOS / "anp.json", {})
+    if (anterior.get("referencia_em") or "") > fim.isoformat():
+        raise Anomalia("A página da ANP retornou uma semana anterior à que já está salva.")
     if anterior.get("referencia_em") == fim.isoformat() and anterior.get("precos") and anterior.get("precos_municipios"):
         return False
     precos = extrair_precos(ler_planilha(baixar(url)), inicio, fim, url)

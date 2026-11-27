@@ -35,9 +35,16 @@ const principal = () => document.getElementById('principal');
 
 // ---------- Persistência ----------
 let filaGravacao = Promise.resolve();
+let gravacaoFalhou = false;
 function salvar() {
   const copia = structuredClone(estado.viagem);
-  filaGravacao = filaGravacao.then(() => gravar('viagens', copia)).catch(() => anunciar('Não foi possível salvar no aparelho. Verifique o espaço livre.'));
+  filaGravacao = filaGravacao.then(async () => {
+    await gravar('viagens', copia);
+    gravacaoFalhou = false;
+  }).catch(() => {
+    gravacaoFalhou = true;
+    anunciar('Não foi possível salvar no aparelho. Verifique o espaço livre.');
+  });
   return filaGravacao;
 }
 
@@ -703,7 +710,7 @@ function vistaVerificar() {
     el('ul', { class: 'lista-cartoes', 'aria-live': 'polite' },
       linha('📱 App', v.app),
       linha('📊 Dados', v.dados)),
-    v.app?.nova ? botao('Atualizar o app agora', () => { if (!aplicarVersaoNova()) location.reload(); }, { classe: 'largo' }) : null,
+    v.app?.nova ? botao('Atualizar o app agora', aplicarVersaoNova, { classe: 'largo' }) : null,
     v.app?.nova ? el('p', { class: 'ajuda' }, 'A página recarrega com a versão nova. Suas viagens continuam salvas.') : null,
     v.dados?.novos && preparada ? el('p', { class: 'aviso' }, '⚠ Os dados mudaram. Se for viajar sem internet, prepare a viagem de novo em "Preparar para viagem".') : null,
     v.em ? el('p', { class: 'ajuda' }, `Última verificação: ${new Date(v.em).toLocaleString('pt-BR')}.`) : null);
@@ -766,23 +773,48 @@ function indicadorConexao() {
 // sem ela pedir). Sem o aviso, quem deixa a aba aberta continuaria vendo a versão antiga indefinidamente.
 let registroSW = null;
 let pediuAtualizacao = false;
-/** Troca para a versão nova já baixada e recarrega a página (só quando a pessoa pede). */
-function aplicarVersaoNova() {
-  if (!registroSW?.waiting) return false;
+let versaoAdiada = null;
+
+/** Aguarda a gravação do rascunho antes de ativar a nova versão. */
+async function aplicarVersaoNova() {
+  if (pediuAtualizacao) return;
+  const nova = registroSW?.waiting;
+  if (!nova) {
+    anunciar('A versão já mudou em outra janela. Verifique novamente.');
+    return;
+  }
   pediuAtualizacao = true;
-  registroSW.waiting.postMessage('atualizar-agora');
-  return true;
+  await filaGravacao;
+  if (gravacaoFalhou) {
+    pediuAtualizacao = false;
+    const texto = 'A viagem ainda não foi salva. Volte, salve o rascunho e tente atualizar novamente.';
+    const mensagem = document.getElementById('estado-atualizacao-app');
+    if (mensagem) mensagem.textContent = texto;
+    anunciar(texto);
+    return;
+  }
+  const mensagem = document.getElementById('estado-atualizacao-app');
+  if (mensagem) mensagem.textContent = 'Aplicando a atualização…';
+  nova.postMessage('atualizar-agora');
 }
 
 function registrarServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
-  const aviso = () => {
-    if (document.getElementById('aviso-versao')) return;
-    const caixa = el('div', { id: 'aviso-versao', class: 'aviso-versao nao-imprimir', role: 'status' },
-      el('span', {}, '🔄 Há uma versão nova do app.'),
-      botao('Atualizar agora', aplicarVersaoNova, { classe: 'pequeno' }),
-      botao('Depois', () => caixa.remove(), { classe: 'pequeno secundario' }));
+  const aviso = (reg) => {
+    const nova = reg.waiting;
+    if (!nova || nova === versaoAdiada || document.getElementById('aviso-versao')) return;
+    const caixa = el('dialog', { id: 'aviso-versao', class: 'aviso-versao nao-imprimir', 'aria-labelledby': 'titulo-atualizacao-app' },
+      el('h2', { id: 'titulo-atualizacao-app' }, 'Atualização disponível'),
+      el('p', { id: 'estado-atualizacao-app', role: 'status' }, 'A nova versão já foi baixada. Atualize para usar as melhorias.'),
+      el('div', { class: 'aviso-versao-acoes' },
+        botao('Atualizar agora', aplicarVersaoNova, { classe: 'largo' }),
+        botao('Agora não', () => caixa.close(), { classe: 'secundario' })));
+    caixa.addEventListener('close', () => {
+      versaoAdiada = nova;
+      caixa.remove();
+    }, { once: true });
     document.body.append(caixa);
+    caixa.showModal();
   };
   navigator.serviceWorker.addEventListener('controllerchange', () => { if (pediuAtualizacao) location.reload(); });
   navigator.serviceWorker.register('sw.js').then((reg) => {

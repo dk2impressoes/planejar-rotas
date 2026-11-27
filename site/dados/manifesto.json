@@ -1,14 +1,14 @@
 {
   "versao_app": "13.0.0",
-  "versao_conjunto": "2026.11.27-fbd125e92494",
-  "cache_app": "app-v13.0.0-48006c002ab6",
-  "gerado_em": "2026-11-27T16:01:16Z",
+  "versao_conjunto": "2026.11.27-4d378476030c",
+  "cache_app": "app-v13.0.0-018726f86e87",
+  "gerado_em": "2026-11-27T16:09:52Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
       "tipo": "dados",
-      "tamanho": 237717,
-      "sha256": "a6b43a524c800603ff7cc4d3c81c3da488e549a642ed1bd84c7f7799e9ac4560",
+      "tamanho": 242268,
+      "sha256": "2fe7fea1e05994c96ec8d8976e90c468f35b7a3dfdd03762ba45bcda7bff8f90",
       "esquema": "esquemas/anp.schema.json"
     },
     {
@@ -91,8 +91,8 @@
     {
       "caminho": "estilos.css",
       "tipo": "app",
-      "tamanho": 22339,
-      "sha256": "a9c37adf1e51ae95c313010b2c8d6c0fc83846178e1d870d275aecae3548c498"
+      "tamanho": 22584,
+      "sha256": "ebfccf84c69b69b1cb0f580183019e2e8eb5bd46bca73b6e3b330bd0bb6aaa2a"
     },
     {
       "caminho": "favicon.ico",
@@ -157,8 +157,8 @@
     {
       "caminho": "js/app.js",
       "tipo": "app",
-      "tamanho": 49772,
-      "sha256": "b2f17dca8ca45260ff42dc0f48272a60c85956a8375d5fed0988d88f626696b2"
+      "tamanho": 50914,
+      "sha256": "5a049bbeca513a23575688bdd2926add18f0f20c427a09052730d9363d02f833"
     },
     {
       "caminho": "js/armazenamento/db.js",
@@ -277,8 +277,8 @@
     {
       "caminho": "js/interface/revisao.js",
       "tipo": "app",
-      "tamanho": 46185,
-      "sha256": "f7bae6152076c56362493c40d4cdf6f0e9b4fa4aee456267cf7d927551224f71"
+      "tamanho": 46577,
+      "sha256": "df60993ad89d3f41822687cb98d1f7eff47ca08d6711a621af90f93d17e76142"
     },
     {
       "caminho": "js/interface/telas.js",

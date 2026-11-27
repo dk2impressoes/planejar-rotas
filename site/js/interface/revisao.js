@@ -556,6 +556,9 @@ function resumoSimples(ctx, r) {
   const c = r.combustivel;
   const sim = c?.simulacao;
   const p = r.pedagios;
+  const referenciaANP = ctx.bases?.anp?.referencia_em;
+  const anpDesatualizada = !(v.basesCongeladas && congelamentoValido(v))
+    && Date.now() - Date.parse(referenciaANP) >= 11 * 86400000;
   // Duas perguntas diferentes, respondidas separadamente (Seção 4.3: os números nunca são somados):
   // quanto sai do bolso nos postos durante a viagem, e quanto combustível a viagem gasta no total.
   let gasolina;
@@ -597,7 +600,9 @@ function resumoSimples(ctx, r) {
       el('dt', {}, '📅 Duração'), el('dd', {}, r.dias ? `${r.dias} ${r.dias === 1 ? 'dia' : 'dias'}` : '—'),
       el('dt', {}, '📏 Distância total'), el('dd', {}, r.sentidos.ida.km + r.sentidos.volta.km ? km(r.sentidos.ida.km + r.sentidos.volta.km) : '—'),
       el('dt', {}, '⛽ Combustível'), el('dd', {}, gasolina,
-        c?.precoOrigem ? el('small', { class: 'linha-menor' }, 'Referência na origem: ', c.precoOrigem.premissa) : null),
+        c?.precoOrigem ? el('small', { class: 'linha-menor' }, 'Referência na origem: ', c.precoOrigem.premissa) : null,
+        c?.precoOrigem && anpDesatualizada ? el('small', { class: 'linha-menor aviso' },
+          'Pesquisa da ANP desatualizada. Confira o preço do posto para melhorar a estimativa.') : null),
       el('dt', {}, '🚧 Pedágios'), el('dd', {}, pedagio)),
     el('p', { class: 'ajuda' }, 'Valores aproximados, sem trânsito em tempo real. Confira as regras e os preços antes de sair.'));
 }
