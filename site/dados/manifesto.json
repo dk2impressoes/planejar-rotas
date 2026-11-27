@@ -1,8 +1,8 @@
 {
   "versao_app": "13.0.0",
   "versao_conjunto": "2026.11.27-7c82376ce4a2",
-  "cache_app": "app-v13.0.0-9e103beb08f1",
-  "gerado_em": "2026-11-27T18:53:37Z",
+  "cache_app": "app-v13.0.0-79e216efa8f3",
+  "gerado_em": "2026-11-27T20:50:25Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
@@ -157,8 +157,8 @@
     {
       "caminho": "js/app.js",
       "tipo": "app",
-      "tamanho": 51946,
-      "sha256": "9b2c550769c0e9cc696dac24396dcebbffe4502ed72f7e3da865a83956dc9d51"
+      "tamanho": 55366,
+      "sha256": "53e8409603f88ce55fbf20ef075e32a9677ca9539b973b76bc0cb114891f0f4f"
     },
     {
       "caminho": "js/armazenamento/db.js",
@@ -253,8 +253,8 @@
     {
       "caminho": "js/interface/compartilhar.js",
       "tipo": "app",
-      "tamanho": 6794,
-      "sha256": "ab684458c2ebc3cd0aa8b7e5c6c996ef9f067e21ea86ac95df342721998d3598"
+      "tamanho": 9016,
+      "sha256": "3ddff09357a49b6a98157a35c9280cbad90643a3827a06718930e6f6183a5cfa"
     },
     {
       "caminho": "js/interface/datas.js",
@@ -277,8 +277,8 @@
     {
       "caminho": "js/interface/revisao.js",
       "tipo": "app",
-      "tamanho": 46029,
-      "sha256": "342ab947b0b6f7b79cd009cf052b47cfd7eb6e646d6fe029153cc19fe9e2a6eb"
+      "tamanho": 46535,
+      "sha256": "3db731034324039781610b5c7246cd6d0691a7d625ba937c32fc5219ab2b23c5"
     },
     {
       "caminho": "js/interface/telas.js",
