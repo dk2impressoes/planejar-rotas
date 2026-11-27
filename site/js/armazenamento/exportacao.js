@@ -11,7 +11,7 @@ const numOuNulo = { type: ['number', 'null', 'string'], maxLength: 20 };
 const dataHora = { type: 'object', properties: { data: txt(10), hora: txt(5) } };
 const lugar = {
   type: ['object', 'null'],
-  properties: { nome: txt(), cidade: txt(), uf: txt(2), lat: { type: 'number', minimum: -90, maximum: 90 }, lon: { type: 'number', minimum: -180, maximum: 180 }, fuso: txt(40), precisao: txt(40), servico: txt(40), rotulo: txt(300) },
+  properties: { nome: txt(), cidade: txt(), uf: txt(2), lat: { type: 'number', minimum: -90, maximum: 90 }, lon: { type: 'number', minimum: -180, maximum: 180 }, fuso: txt(40), precisao: txt(40), servico: txt(40), rotulo: txt(300), rua: txt(), numero: txt(40), bairro: txt(), cep: txt(9) },
 };
 const parada = {
   type: 'object', required: ['id', 'tipo'],
