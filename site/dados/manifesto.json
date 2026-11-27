@@ -1,8 +1,8 @@
 {
   "versao_app": "13.0.0",
-  "versao_conjunto": "2026.11.27-c3510b3feec0",
-  "cache_app": "app-v13.0.0-d4917ebd469a",
-  "gerado_em": "2026-11-27T10:27:17Z",
+  "versao_conjunto": "2026.11.27-fbd125e92494",
+  "cache_app": "app-v13.0.0-48006c002ab6",
+  "gerado_em": "2026-11-27T16:01:16Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
@@ -14,36 +14,36 @@
     {
       "caminho": "dados/centro-expandido.geojson",
       "tipo": "dados",
-      "tamanho": 1048,
-      "sha256": "1413978749c877fd9d79dcdff2c7ca770b23eed592f95c3dc6374d1cbe7fd39a",
+      "tamanho": 1073,
+      "sha256": "576fb13ff6b211512e69855261cf8b17162b739b35102b079c1b2778df1af639",
       "esquema": "esquemas/centro-expandido.schema.json"
     },
     {
       "caminho": "dados/feriados.json",
       "tipo": "dados",
-      "tamanho": 3291,
-      "sha256": "b68f0b89a0f3c24010ed56d78507480d24b833ae692a15cc3f6cea42f1cdea2a",
+      "tamanho": 3431,
+      "sha256": "cfab55813785aecd5fb8511f5ac2e5d4891025ae7e57fc0069ce3d9911a255e9",
       "esquema": "esquemas/feriados.schema.json"
     },
     {
       "caminho": "dados/pedagios.json",
       "tipo": "dados",
-      "tamanho": 811230,
-      "sha256": "17d8e3fa92741ece210f1e05c0cbf80422b7a6829f58e8039689fbaf2fe18eac",
+      "tamanho": 834751,
+      "sha256": "de7eafb7b5c25cb8c44d02886c876b4648aef69c9fbf2f669b689de6b090675f",
       "esquema": "esquemas/pedagios.schema.json"
     },
     {
       "caminho": "dados/regras.json",
       "tipo": "dados",
-      "tamanho": 4155,
-      "sha256": "d87e863e505926fe4fb7d41df64ceb9a0c266cebf15becc88f93d9c4a8c62892",
+      "tamanho": 4228,
+      "sha256": "35b36ed0386ebe63bdf580606b3be130fa127a5b6ea1c127a342c8c86a1bd73f",
       "esquema": "esquemas/regras.schema.json"
     },
     {
       "caminho": "dados/rodizio-suspensoes.json",
       "tipo": "dados",
-      "tamanho": 254,
-      "sha256": "4b520cefe8fdf5bd180cc6b8f2b3bebbe1cfb186cfff1a05fd1fa58f2cd6a212",
+      "tamanho": 262,
+      "sha256": "f7348e56d35b3859c8b4372095b415ac87dd1ab5db3622824d64093dcab5716f",
       "esquema": "esquemas/rodizio-suspensoes.schema.json"
     },
     {
@@ -91,8 +91,8 @@
     {
       "caminho": "estilos.css",
       "tipo": "app",
-      "tamanho": 21355,
-      "sha256": "7e800bc09b77deab8783ff4a69f7dec14a0ace3d032e7255f6e38948e2d29bf4"
+      "tamanho": 22339,
+      "sha256": "a9c37adf1e51ae95c313010b2c8d6c0fc83846178e1d870d275aecae3548c498"
     },
     {
       "caminho": "favicon.ico",
@@ -151,14 +151,14 @@
     {
       "caminho": "index.html",
       "tipo": "app",
-      "tamanho": 2696,
-      "sha256": "79e63b08effd2838d98b6a8f2558632f6f49346ccffeef4430e3b4485d8ef341"
+      "tamanho": 2742,
+      "sha256": "0b3cb46ed4302000f8c918defaaf68832f30f198837059d0f549b7f59248d481"
     },
     {
       "caminho": "js/app.js",
       "tipo": "app",
-      "tamanho": 45552,
-      "sha256": "5cf4011844f970ce3b91870d2852acb9d0b51bcc6a6a15f4380b36e1370ed649"
+      "tamanho": 49772,
+      "sha256": "b2f17dca8ca45260ff42dc0f48272a60c85956a8375d5fed0988d88f626696b2"
     },
     {
       "caminho": "js/armazenamento/db.js",
@@ -169,8 +169,8 @@
     {
       "caminho": "js/armazenamento/exportacao.js",
       "tipo": "app",
-      "tamanho": 8473,
-      "sha256": "da0911ff139d8d5f693d8e5c259018b59a390866c50fd5446f5b39b0d278f701"
+      "tamanho": 8655,
+      "sha256": "9b88dee7c3f9241ba608ed220caf3c70c32b4259bc379295e79e8f236b6cdcc4"
     },
     {
       "caminho": "js/dominio/calculo.js",
@@ -187,14 +187,14 @@
     {
       "caminho": "js/dominio/comparacao.js",
       "tipo": "app",
-      "tamanho": 6808,
-      "sha256": "73ab64e58df38531870a32b13c17f480451ce375ff38162a357469c81e94f6c2"
+      "tamanho": 6929,
+      "sha256": "8630de656e1721fa9df5d1aaee178306470131eea30f55c0fbb6abd47bbb8b51"
     },
     {
       "caminho": "js/dominio/congelamento.js",
       "tipo": "app",
-      "tamanho": 3919,
-      "sha256": "17cd75c83078d6696b1f8ff2b8323e33ddb3dbc6e3558cf958ede38bb05aa9e3"
+      "tamanho": 3990,
+      "sha256": "0e9941192f278d69670d4fb3a19c1eaa1030c80d4b879ca8ca4865120d8c89ab"
     },
     {
       "caminho": "js/dominio/descanso.js",
@@ -205,8 +205,8 @@
     {
       "caminho": "js/dominio/documentos.js",
       "tipo": "app",
-      "tamanho": 5490,
-      "sha256": "f1f12b08fa9bd10404342d3f133f5e7613eacaaf3d7cdde0eebdbd48f7e8f106"
+      "tamanho": 5876,
+      "sha256": "2796fc6064949b0e72781acba023187e802591a64c180e427689bae4e1b923c9"
     },
     {
       "caminho": "js/dominio/geo.js",
@@ -217,8 +217,8 @@
     {
       "caminho": "js/dominio/pedagios.js",
       "tipo": "app",
-      "tamanho": 11798,
-      "sha256": "19d59e3c50110e9ee23774e0f2f3901ea3867331bc6306f395352bd2bfbd558c"
+      "tamanho": 12099,
+      "sha256": "31eb9abde3ae657710438a18819622a2aff4baedb40c1e93100f319d6c2e5e30"
     },
     {
       "caminho": "js/dominio/rodizio.js",
@@ -241,20 +241,20 @@
     {
       "caminho": "js/dominio/viagem.js",
       "tipo": "app",
-      "tamanho": 9933,
-      "sha256": "68de5ad4fea929dfe4cf61b834575776486ce7a6bef9619823b0db8c17e96695"
+      "tamanho": 11762,
+      "sha256": "9c4e3d63545a2dc1d159f1e804da6f787490e01fa61841793faef9cf23a0a6d3"
     },
     {
       "caminho": "js/interface/comparacao.js",
       "tipo": "app",
-      "tamanho": 7385,
-      "sha256": "9d121a1db193db1918d6d1882258eb6ed1e65459260e4d566751c16d005f7848"
+      "tamanho": 7497,
+      "sha256": "01bce5ce35079e565df3adbd183476dbb0e80fcac2de64f5f887706be231706e"
     },
     {
       "caminho": "js/interface/compartilhar.js",
       "tipo": "app",
-      "tamanho": 1998,
-      "sha256": "166631c49365a943a06122ebc16098bc40a4da7488249f50fe1a0a7fb9fbfe79"
+      "tamanho": 3942,
+      "sha256": "765026f9b7c4567bde3fabb80bff06bf2168492f1403ef9b36207374253eceae"
     },
     {
       "caminho": "js/interface/datas.js",
@@ -265,8 +265,8 @@
     {
       "caminho": "js/interface/dom.js",
       "tipo": "app",
-      "tamanho": 13598,
-      "sha256": "0a0b9c25cac8ab74088b5ebe111239bb885423640867a157c8e1aeaec6e47c8e"
+      "tamanho": 15167,
+      "sha256": "b89bdd1ade82a7ddcb65875264410bbe84f9f0dff3a4a11a668865251b6dc4e1"
     },
     {
       "caminho": "js/interface/explicacoes.js",
@@ -277,20 +277,20 @@
     {
       "caminho": "js/interface/revisao.js",
       "tipo": "app",
-      "tamanho": 43626,
-      "sha256": "233878e2883ce60e9a080e61135c1e88460c8186555ddc93c13196b65ef17ece"
+      "tamanho": 46185,
+      "sha256": "f7bae6152076c56362493c40d4cdf6f0e9b4fa4aee456267cf7d927551224f71"
     },
     {
       "caminho": "js/interface/telas.js",
       "tipo": "app",
-      "tamanho": 32583,
-      "sha256": "6ab6d11be0a3fcc2531c94fae71b3984c77019aaae1b3674a4d24ff1372d6006"
+      "tamanho": 33979,
+      "sha256": "2283fae12eb6ef1b3ef9fe8e1da0313377a5d1464178c983ac1602f4cd8fc4ca"
     },
     {
       "caminho": "js/interface/termos.js",
       "tipo": "app",
-      "tamanho": 13335,
-      "sha256": "b55bddf400a631a8fd168dca58ff9fbfc3baa368ffd9c1eaf150313b882f1295"
+      "tamanho": 13427,
+      "sha256": "8caa10cc4ad4bd5d4c98c4d47d5d7964a8d25659cac507a69da49e1d0de38d5b"
     },
     {
       "caminho": "js/offline/preparacao.js",
@@ -307,8 +307,8 @@
     {
       "caminho": "js/servicos/buscador.js",
       "tipo": "app",
-      "tamanho": 6765,
-      "sha256": "33b564680802698128d591c1eabc8541a5b6b4f7708ffc0a46c8332978716350"
+      "tamanho": 6896,
+      "sha256": "a16f8f6ae0a853554a06963cfb9624b8d01e343c739c5336c3e635387bb57070"
     },
     {
       "caminho": "js/servicos/esquema.js",
@@ -325,14 +325,14 @@
     {
       "caminho": "js/servicos/roteador.js",
       "tipo": "app",
-      "tamanho": 5523,
-      "sha256": "d4d72106f4cf1569d728b6f42ad5488a9d763a81f9a73c74ec99bc1be00a2272"
+      "tamanho": 5640,
+      "sha256": "535499e837530ec6d1f281d985cba0c24286ace0d92678d2b5e8f36ba6bb61e7"
     },
     {
       "caminho": "manifest.webmanifest",
       "tipo": "app",
-      "tamanho": 651,
-      "sha256": "c140434aa32bc79fde310bf63bb074abd356a160f7fb6beb344be1def6b936d7"
+      "tamanho": 667,
+      "sha256": "a208224d0dcae8f4d8d734ad9a9d97a6bef95199373bc9a55d6b98aeec3beb64"
     }
   ]
 }

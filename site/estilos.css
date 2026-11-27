@@ -227,6 +227,22 @@ html { font-size: 112.5%; }
   details > * { display: block; }
 }
 
+.folha-checklist { display: none; }
+@media print {
+  body.imprimindo-checklist > :not(.folha-checklist) { display: none !important; }
+  body.imprimindo-checklist > .folha-checklist { display: block; }
+  .folha-checklist ul { list-style: none; margin: 0; padding: 0; }
+  .folha-checklist li {
+    display: grid; grid-template-columns: max-content 1fr max-content; gap: 8pt;
+    align-items: baseline; padding: 6pt 0; border-bottom: 1px solid #bbb; break-inside: avoid;
+  }
+  .marca-checklist {
+    width: 12pt; height: 12pt; border: 1px solid #000;
+    display: inline-grid; place-items: center; line-height: 1;
+  }
+  .quantidade-checklist { white-space: nowrap; }
+}
+
 /* Comparar viagens e custos do ano */
 .tabela-rolagem { overflow-x: auto; margin: 8px 0; }
 .tabela-comparar { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .95rem; }

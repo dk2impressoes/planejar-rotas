@@ -3,8 +3,8 @@
 // uma pergunta por bloco, valores padrão já preenchidos e o que é opcional ou técnico recolhido.
 import { el, campo, botao, anunciar, escolha, recolhido, explicar, reais, anexar, escrever } from './dom.js';
 import { derivados, validarVeiculo } from '../dominio/combustivel.js';
-import { novaParada, novoViajante, novoId, modeloListaIndividual, separadorDaLista, TELA } from '../dominio/viagem.js';
-import { FAIXAS, documentosDoViajante, idadeNaViagem, AVISO_FIXO } from '../dominio/documentos.js';
+import { novaParada, novoViajante, novoId, modeloListaIndividual, separadorDaLista, chaveItemLista, TELA } from '../dominio/viagem.js';
+import { FAIXAS, documentosDoViajante, idadeNaViagem, podeDirigirNaSaida, AVISO_FIXO } from '../dominio/documentos.js';
 import { EXPLICA } from './explicacoes.js';
 import { diasDaViagem, localParaUTC, dataValida, horaValida } from '../dominio/tempo.js';
 import { autocompletar, buscar, reverso, temNomeRepetido } from '../servicos/buscador.js';
@@ -156,7 +156,7 @@ function blocoParada(ctx, sentido, p, i, total) {
       campo({ id: `${k}.parcial`, rotulo: 'Não vou completar: vou pôr só alguns litros', tipo: 'checkbox', valor: p.abastecer.modo === 'parcial', aoMudar: (x) => mudar((pp) => { pp.abastecer = { modo: x ? 'parcial' : 'completar', litros: pp.abastecer?.litros ?? null }; }, true) }),
       p.abastecer.modo === 'parcial' ? campo({ id: `${k}.litros`, rotulo: 'Quantos litros?', tipo: 'number', valor: p.abastecer.litros, erro: erros[`${k}.litros`], aoMudar: (x) => mudar((pp) => { pp.abastecer.litros = x; }) }) : null,
       p.lugar && ctx.precoAutomatico(p.lugar)
-        ? campo({ id: `${k}.preco`, rotulo: 'Vai pagar outro preço? Informe (R$ por litro)', tipo: 'number', valor: p.preco, erro: erros[`${k}.preco`], ajuda: 'Deixe em branco para usar o preço automático.', aoMudar: (x) => mudar((pp) => { pp.preco = x; }) })
+        ? campo({ id: `${k}.preco`, rotulo: 'Vai pagar outro preço? Informe (R$ por litro)', tipo: 'dinheiro', valor: p.preco, erro: erros[`${k}.preco`], ajuda: 'Deixe em branco para usar o preço automático.', aoMudar: (x) => mudar((pp) => { pp.preco = x; }) })
         : null) : null,
     erros[`${k}.litros`] && !p.abastecer ? null : null,
     el('div', { class: 'acoes' },
@@ -174,7 +174,7 @@ function precoDaParada(ctx, p, k, mudar) {
   }
   return el('div', { class: 'preco-manual' },
     el('p', { class: 'aviso' }, '⚠ Não há preço automático para esta cidade. Informe o preço do litro.'),
-    campo({ id: `${k}.preco`, rotulo: 'Preço do litro (R$)', tipo: 'number', valor: p.preco, erro: ctx.erros[`${k}.preco`], ajuda: 'Exemplo: 6,29.', aoMudar: (x) => mudar((pp) => { pp.preco = x; }) }));
+    campo({ id: `${k}.preco`, rotulo: 'Preço do litro (R$)', tipo: 'dinheiro', valor: p.preco, erro: ctx.erros[`${k}.preco`], ajuda: 'Exemplo: 6,29.', aoMudar: (x) => mudar((pp) => { pp.preco = x; }) }));
 }
 
 function trocar(lista, a, b) {
@@ -259,7 +259,7 @@ function campoPrecoUltimo(ctx, mudar, obrigatorio) {
   return campo({
     id: 'v.precoUltimo', explicacao: EXPLICA.precoUltimo,
     rotulo: obrigatorio ? 'Preço do litro (R$)' : 'Preço que pagou no último abastecimento (R$ por litro)',
-    tipo: 'number', valor: ve.precoUltimo, erro: ctx.erros.precoUltimo,
+    tipo: 'dinheiro', valor: ve.precoUltimo, erro: ctx.erros.precoUltimo,
     ajuda: obrigatorio ? 'O último que você pagou ou o que espera pagar. Exemplo: 6,29.' : 'Opcional. Ajuda a calcular o custo do combustível que já está no tanque.',
     aoMudar: mudar('precoUltimo'),
   });
@@ -282,7 +282,6 @@ function blocoPrecoCarro(ctx, mudar) {
 // ---------- Tela 5: Pessoas e listas (duas partes na mesma tela) ----------
 // Parte "Quem vai": só a pessoa em edição fica aberta; as outras viram uma linha com "Editar".
 // Parte "O que levar": as listas, separadas do cadastro para a tela não ficar comprida.
-let parteTela5 = 'pessoas';
 let pessoaAberta = null;
 
 function resumoPessoa(p, docs, conf) {
@@ -290,16 +289,15 @@ function resumoPessoa(p, docs, conf) {
   if (docs.idade?.idadeMin !== undefined && docs.idade.idadeMin !== null) {
     partes.push(p.nascimento ? `${docs.idade.idadeMin} ${docs.idade.idadeMin === 1 ? 'ano' : 'anos'}` : p.faixa);
   } else if (p.faixa) partes.push(p.faixa);
-  if (p.condutor) partes.push('🚗 dirige');
+  if (p.condutor && docs.idade?.idadeMin >= 18) partes.push('🚗 dirige');
   const exigidos = docs.itens.filter((x) => x.obrigatorio);
   if (exigidos.length) partes.push(`documentos ${exigidos.filter((x) => conf[x.id]).length} de ${exigidos.length}`);
   return partes.join(' · ');
 }
 
 export function tela5(ctx) {
-  const { v, erros } = ctx;
+  const { v, erros, parteTela5 } = ctx;
   const comErro = v.viajantes.findIndex((_, i) => Object.keys(erros).some((k) => k.startsWith(`viajante.${i}.`)));
-  if (Object.keys(erros).length) parteTela5 = 'pessoas';
   if (comErro >= 0) pessoaAberta = v.viajantes[comErro].id;
   // Ao entrar na tela: abre a última pessoa (ou nenhuma, se a pessoa tocou em "Pronto").
   if (pessoaAberta !== '__nenhuma__' && !v.viajantes.some((p) => p.id === pessoaAberta)) {
@@ -307,8 +305,8 @@ export function tela5(ctx) {
   }
 
   const abas = el('div', { class: 'abas', role: 'group', 'aria-label': 'Partes desta tela' },
-    botao(`👨‍👩‍👧 Quem vai (${v.viajantes.length})`, () => { parteTela5 = 'pessoas'; ctx.render(); }, { classe: parteTela5 === 'pessoas' ? 'aba ativa' : 'aba' }),
-    botao('🧳 O que levar', () => { parteTela5 = 'listas'; ctx.render(); }, { classe: parteTela5 === 'listas' ? 'aba ativa' : 'aba' }));
+    botao(`👨‍👩‍👧 Quem vai (${v.viajantes.length})`, () => ctx.selecionarParteTela5('pessoas'), { classe: parteTela5 === 'pessoas' ? 'aba ativa' : 'aba' }),
+    botao('🧳 O que levar', () => ctx.selecionarParteTela5('listas'), { classe: parteTela5 === 'listas' ? 'aba ativa' : 'aba' }));
   abas.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String((i === 0) === (parteTela5 === 'pessoas'))));
   return el('div', {}, abas, parteTela5 === 'pessoas' ? parteQuemVai(ctx) : parteOQueLevar(ctx));
 }
@@ -332,7 +330,7 @@ function parteQuemVai(ctx) {
       campo({ id: `p.${p.id}.nasc`, explicacao: EXPLICA.nascimento, rotulo: 'Data de nascimento', tipo: 'data', passado: true, valor: p.nascimento, erro: erros[`viajante.${i}.nascimento`] || (p.nascimento ? null : erros[`viajante.${i}.faixa`]), ajuda: 'Serve para saber quais documentos e cadeirinha levar. Fica só neste aparelho.', aoMudar: mudar('nascimento', true) }),
       p.nascimento ? null : recolhido(`r-faixa-${p.id}`, 'Prefere não informar a data? Escolha a idade aproximada',
         campo({ id: `p.${p.id}.faixa`, explicacao: EXPLICA.faixa, rotulo: 'Idade aproximada', tipo: 'select', lista: FAIXAS, valor: p.faixa, aoMudar: mudar('faixa', true) })),
-      campo({ id: `p.${p.id}.condutor`, explicacao: EXPLICA.condutor, rotulo: '🚗 Esta pessoa vai dirigir', tipo: 'checkbox', valor: p.condutor, aoMudar: mudar('condutor', true) }),
+      podeDirigirNaSaida(p, inicio) ? campo({ id: `p.${p.id}.condutor`, explicacao: EXPLICA.condutor, rotulo: '🚗 Esta pessoa vai dirigir', tipo: 'checkbox', valor: p.condutor, aoMudar: mudar('condutor', true) }) : null,
       docs.pendencia ? el('p', { class: 'aviso' }, `⚠ ${docs.pendencia}`) : null,
       ...docs.erros.map((x) => el('p', { class: 'erro' }, `✖ ${x}`)),
       docs.itens.length ? el('div', { class: 'docs' },
@@ -358,14 +356,13 @@ function parteQuemVai(ctx) {
     botao(v.viajantes.length ? '+ Adicionar outra pessoa' : '+ Adicionar pessoa', () => {
       const nova = novoViajante();
       ctx.alterar((vv) => {
-        if (!vv.viajantes.length) nova.condutor = true; // a primeira pessoa costuma ser quem dirige
         vv.viajantes.push(nova);
       });
       pessoaAberta = nova.id; // só a nova fica aberta; as outras ficam compactas
       ctx.render({ foco: `p.${nova.id}.nome` });
     }, { classe: 'largo' }),
     el('p', { class: 'ajuda' }, `Nunca pedimos CPF, número ou foto de documento. ${AVISO_FIXO}`),
-    v.viajantes.length ? botao('Próximo: o que levar →', () => { parteTela5 = 'listas'; ctx.render(); }, { classe: 'secundario largo' }) : null);
+    v.viajantes.length ? botao('Próximo: o que levar →', () => ctx.selecionarParteTela5('listas'), { classe: 'secundario largo' }) : null);
 }
 
 // Pergunta "quem separa": cada um a sua lista, ou uma pessoa para todos (com a escolha do responsável).
@@ -396,15 +393,15 @@ function perguntaQuemSepara(ctx) {
 function parteOQueLevar(ctx) {
   const { v } = ctx;
   return el('section', { 'aria-labelledby': 't-listas', class: 'secao' },
-    el('h2', { id: 't-listas' }, '🧳 O que levar'),
+    el('h2', { id: 't-listas', tabindex: '-1' }, '🧳 O que levar'),
     perguntaQuemSepara(ctx),
-    el('p', { class: 'ajuda' }, 'Marque o que já separou. Em "Qtd." anote quantos vai levar, se quiser. Dá para apagar e acrescentar itens.'),
+    el('p', { class: 'ajuda' }, 'Revise a lista e escolha se quer usá-la ou ignorá-la. Você pode marcar os itens depois.'),
     ...v.listas.map((l, li) => blocoLista(ctx, l, li)),
     // Uma lista por pessoa, já com o básico. Quem já tem lista não ganha outra (evita duplicar).
     ...v.viajantes.filter((p) => !v.listas.some((l) => l.viajanteId === p.id)).map((p) => botao(
       `🧳 Criar a lista de ${p.nome || 'pessoa sem nome'} (já vem com o básico)`,
       () => criarListaIndividual(ctx, p.id), { classe: 'secundario largo' })),
-    botao('← Voltar para quem vai', () => { parteTela5 = 'pessoas'; ctx.render(); }, { classe: 'secundario' }));
+    botao('← Voltar para quem vai', () => ctx.selecionarParteTela5('pessoas'), { classe: 'secundario' }));
 }
 
 function diasDaViagemSimples(v) {
@@ -422,11 +419,42 @@ function criarListaIndividual(ctx, viajanteId) {
   }, { render: true });
 }
 
+export function imprimirListaIndividual(v, lista) {
+  const pessoa = v.viajantes.find((p) => p.id === lista.viajanteId);
+  const folha = el('section', { class: 'folha-checklist' },
+    el('h1', {}, pessoa?.nome ? 'Checklist de ' + pessoa.nome : lista.titulo),
+    v.nome ? el('p', {}, v.nome) : null,
+    lista.itens.length ? el('ul', {}, ...lista.itens.map((item) => el('li', {},
+      el('span', { class: 'marca-checklist' }, item.feito ? '✓' : ''),
+      el('span', {}, item.texto),
+      item.quantidade ? el('span', { class: 'quantidade-checklist' }, 'Qtd. ' + item.quantidade) : null)))
+      : el('p', {}, 'Nenhum item nesta lista.'));
+  document.body.append(folha);
+  document.body.classList.add('imprimindo-checklist');
+  const limpar = () => {
+    folha.remove();
+    document.body.classList.remove('imprimindo-checklist');
+  };
+  addEventListener('afterprint', limpar, { once: true });
+  try {
+    window.print();
+  } catch (e) {
+    removeEventListener('afterprint', limpar);
+    limpar();
+    throw e;
+  }
+}
+
 export function blocoLista(ctx, l, li) {
   const nova = el('input', { id: `lista.${l.id}.novo`, type: 'text', maxlength: 300, autocomplete: 'off', placeholder: 'Ex.: protetor solar', enterkeyhint: 'done' });
   const adicionar = () => {
     const t = nova.value.trim();
     if (!t) return;
+    if (l.itens.some((i) => chaveItemLista(i.texto) === chaveItemLista(t))) {
+      anunciar('Este item já está na lista. Ajuste a quantidade se precisar.');
+      nova.focus();
+      return;
+    }
     ctx.alterar((vv) => { vv.listas[li].itens.push({ id: novoId(), texto: t, feito: false }); }, { render: true, foco: `lista.${l.id}.novo` });
   };
   nova.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); adicionar(); } });
@@ -435,6 +463,8 @@ export function blocoLista(ctx, l, li) {
   return el('div', { class: 'cartao' },
     el('h3', {}, `${l.titulo} — ${feitos} de ${l.itens.length} separados`),
     quem ? el('p', { class: 'ajuda' }, `👤 Quem separa: ${quem}`) : null,
+    l.escopo === 'individual' ? botao('Imprimir checklist', () => imprimirListaIndividual(ctx.v, l),
+      { classe: 'secundario pequeno nao-imprimir', rotuloAcessivel: 'Imprimir checklist: ' + l.titulo }) : null,
     el('ul', { class: 'checklist' }, ...l.itens.map((item, ii) => {
       // Quantidade opcional ("5", "2 pares"…), salva enquanto a pessoa digita.
       const qtd = el('input', {

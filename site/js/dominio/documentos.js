@@ -18,6 +18,16 @@ export function idadeNaData(nascimento, data) {
   return idade;
 }
 
+/** True para adulto na ida, false para menor e null enquanto faltam dados. */
+export function podeDirigirNaSaida(viajante, saida) {
+  if (viajante.nascimento) {
+    const idade = idadeNaData(viajante.nascimento, saida);
+    return idade === null ? null : idade >= 18;
+  }
+  if (!FAIXAS.includes(viajante.faixa)) return null;
+  return viajante.faixa === '18 anos ou mais';
+}
+
 /**
  * Idade (ou faixa) válida em todos os dias da viagem.
  * Retorna { idadeMin, idadeMax } ou { precisaNascimento: true }.

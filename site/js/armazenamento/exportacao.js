@@ -50,6 +50,7 @@ export const ESQUEMA_VIAGEM = {
     },
     viajantes: { type: 'array', maxItems: 50, items: { type: 'object', properties: { id: txt(60), nome: txt(80), nascimento: txt(10), faixa: txt(30), condutor: { type: 'boolean' } } } },
     listas: { type: 'array', maxItems: 100, items: { type: 'object', properties: { id: txt(60), escopo: { type: 'string', enum: ['geral', 'individual'] }, viajanteId: { type: ['string', 'null'], maxLength: 60 }, titulo: txt(80), itens: { type: 'array', maxItems: 300, items: item } } } },
+    escolhaLista: { type: 'string', enum: ['usada', 'ignorada'] },
     separacao: { type: 'object', properties: { modo: { type: 'string', enum: ['', 'cada_um', 'uma_pessoa'] }, responsavelId: { type: ['string', 'null'], maxLength: 60 } } },
     documentosConfirmados: { type: 'object', additionalProperties: { type: 'object', additionalProperties: { type: 'boolean' } } },
     manual: { type: 'object', properties: { ida: { type: 'array', maxItems: 50, items: { type: 'object', properties: { km: numOuNulo, horas: numOuNulo } } }, volta: { type: 'array', maxItems: 50, items: { type: 'object', properties: { km: numOuNulo, horas: numOuNulo } } } } },

@@ -112,6 +112,7 @@ function avaliar(ponto, passagem, categoria, ajustes) {
   const base = {
     chave, chaveAntiga, id: ponto.id, tipo: ponto.tipo, nome: ponto.nome || null, rodovia: ponto.rodovia, km: ponto.km,
     concessionaria: ponto.concessionaria, t: passagem.t, fonte: ponto.fonte,
+    coordenadas: ponto.coordenadas, coordenadas_verificadas: ponto.coordenadas_verificadas,
     canal_pagamento: ponto.canal_pagamento || null, url_tarifa_oficial: ponto.url_tarifa_oficial || null,
     regras_acesso: ponto.regras_acesso || [], sentido_texto: ponto.sentido_texto || null,
     alternativas: ponto.alternativas || [], tipoFonte: null,

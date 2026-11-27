@@ -105,6 +105,7 @@ export function explicar(id, rotulo, texto) {
  */
 export function campo({ rotulo, tipo = 'text', valor = '', aoMudar, erro, ajuda, attrs = {}, lista, id = novoIdDom('f'), passado = false, explicacao }) {
   if (tipo === 'data' || tipo === 'hora') return campoDataHora({ rotulo, tipo, valor, aoMudar, erro, ajuda, id, passado, explicacao });
+  if (tipo === 'dinheiro') ajuda = [ajuda, 'Digite 629 ou 6,29 para informar R$ 6,29.'].filter(Boolean).join(' ');
   const [btExplica, painelExplica] = explicar(id, rotulo, explicacao);
   const idErro = `${id}-erro`, idAjuda = `${id}-ajuda`;
   const descr = [ajuda ? idAjuda : null, erro ? idErro : null].filter(Boolean).join(' ') || null;
@@ -122,12 +123,14 @@ export function campo({ rotulo, tipo = 'text', valor = '', aoMudar, erro, ajuda,
       ajuda ? el('p', { class: 'ajuda', id: idAjuda }, ajuda) : null,
       erro ? el('p', { class: 'erro', id: idErro, role: 'alert' }, `✖ ${erro}`) : null);
   } else {
-    const numerico = tipo === 'number';
+    const monetario = tipo === 'dinheiro';
+    const numerico = tipo === 'number' || monetario;
     entrada = el('input', {
-      ...comum, type: numerico ? 'text' : tipo, value: valor ?? '',
+      ...comum, type: numerico ? 'text' : tipo, value: monetario ? formatarDinheiro(valor, 3) : (valor ?? ''),
       inputmode: numerico ? 'decimal' : attrs.inputmode, autocomplete: attrs.autocomplete || 'off',
     });
-    entrada.addEventListener('input', () => aoMudar(numerico ? lerNumero(entrada.value) : entrada.value));
+    if (monetario) configurarCampoDinheiro(entrada, 3, aoMudar);
+    else entrada.addEventListener('input', () => aoMudar(numerico ? lerNumero(entrada.value) : entrada.value));
   }
   return el('div', { class: 'campo' }, el('div', { class: 'rotulo-linha' }, el('label', { for: id }, rotulo), btExplica), painelExplica,
     ajuda ? el('p', { class: 'ajuda', id: idAjuda }, ajuda) : null,
@@ -250,6 +253,33 @@ export function recolhido(id, titulo, ...conteudo) {
     el('summary', {}, titulo), el('div', { class: 'recolhido-corpo' }, ...conteudo));
   d.addEventListener('toggle', () => { if (d.open) abertos.add(id); else abertos.delete(id); });
   return d;
+}
+
+export function lerDinheiro(texto, casas = 2) {
+  const t = String(texto ?? '').trim();
+  if (!t) return null;
+  if (/^\d+$/.test(t)) {
+    const valor = Number(t) / 100;
+    return Number.isFinite(valor) ? valor : t;
+  }
+  const simples = new RegExp('^\\d*[,.]\\d{1,' + casas + '}$');
+  const agrupado = new RegExp('^\\d{1,3}(?:\\.\\d{3})+,\\d{1,' + casas + '}$');
+  if (simples.test(t) || agrupado.test(t)) return lerNumero(t);
+  return t;
+}
+
+export function formatarDinheiro(valor, casas = 2) {
+  return Number.isFinite(valor) ? valor.toLocaleString('pt-BR', {
+    useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: casas,
+  }) : (valor ?? '');
+}
+
+export function configurarCampoDinheiro(entrada, casas = 2, aoMudar) {
+  entrada.addEventListener('input', () => aoMudar?.(lerDinheiro(entrada.value, casas)));
+  entrada.addEventListener('blur', () => {
+    const valor = lerDinheiro(entrada.value, casas);
+    entrada.value = formatarDinheiro(valor, casas);
+  });
 }
 
 export function lerNumero(texto) {

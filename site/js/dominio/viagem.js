@@ -2,9 +2,9 @@
 // Modelo da viagem (Seção 10.1), validação por tela (Seção 2) e chaves de invalidação (Seção 3).
 import { VEICULO_PADRAO, validarVeiculo } from './combustivel.js';
 import { dataValida, horaValida, localParaUTC, fusoDaUF, FUSO_PADRAO } from './tempo.js';
-import { FAIXAS } from './documentos.js';
+import { FAIXAS, podeDirigirNaSaida } from './documentos.js';
 
-export const VERSAO_ESQUEMA = 2;
+export const VERSAO_ESQUEMA = 3;
 
 // Ordem das telas do assistente. Na versão 2 o carro passou para antes das paradas
 // (o combustível escolhido no carro define o preço pedido nas paradas para abastecer).
@@ -14,6 +14,7 @@ export const TELA = { QUANDO: 1, LUGARES: 2, CARRO: 3, PARADAS: 4, PESSOAS: 5, R
 const MIGRACOES = {
   // 2: carro e paradas trocaram de lugar; quem tinha parado no passo 3 (paradas) vai para o 4, e vice-versa.
   2: (v) => ({ ...v, versao_esquema: 2, tela: v.tela === 3 ? 4 : v.tela === 4 ? 3 : v.tela }),
+  3: migrarListas,
 };
 
 /** Leva uma viagem de qualquer versão anterior até a atual. */
@@ -22,6 +23,34 @@ export function migrarViagem(v) {
   for (let n = (v.versao_esquema || 1) + 1; n <= VERSAO_ESQUEMA; n++) x = MIGRACOES[n] ? MIGRACOES[n](x) : { ...x, versao_esquema: n };
   return x;
 }
+export const chaveItemLista = (texto) => String(texto ?? '').normalize('NFC').trim().toLocaleLowerCase('pt-BR').replace(/\s+/g, ' ');
+
+function migrarListas(v) {
+  if (!v.listas) return { ...v, versao_esquema: 3 };
+  const temItem = (escopo, texto) => v.listas.some((l) => l.escopo === escopo && l.itens?.some((i) => chaveItemLista(i.texto) === texto));
+  const carregadorIndividual = temItem('individual', 'carregador do celular');
+  const lancheColetivo = temItem('geral', 'água e lanches');
+  const listas = v.listas.map((l) => {
+    const itens = [];
+    for (const item of l.itens || []) {
+      const chave = chaveItemLista(item.texto);
+      const quantidade = item.quantidade?.trim();
+      if (!item.feito && !quantidade && (
+        (carregadorIndividual && l.escopo === 'geral' && chave === 'carregador de celular')
+        || (lancheColetivo && l.escopo === 'individual' && chave === 'lanche e água à mão no carro')
+      )) continue;
+      const repetido = chave && itens.find((i) => chaveItemLista(i.texto) === chave
+        && (!i.quantidade?.trim() || !quantidade || i.quantidade.trim() === quantidade));
+      if (repetido) {
+        repetido.feito ||= item.feito;
+        if (!repetido.quantidade?.trim() && quantidade) repetido.quantidade = item.quantidade;
+      } else itens.push({ ...item });
+    }
+    return { ...l, itens };
+  });
+  return { ...v, versao_esquema: 3, listas };
+}
+
 export const TIPOS_PARADA = ['Parada rápida', 'Pernoite'];
 
 export function novoId() {
@@ -73,7 +102,7 @@ export function modeloListaIndividual(viajante, idadeAnos = null, dias = null) {
     'Escova e pasta de dente', 'Sabonete, xampu e desodorante', 'Remédios de uso pessoal', 'Óculos, se usar', 'Carregador do celular',
   ];
   const crianca = idadeAnos !== null && idadeAnos < 12
-    ? ['Brinquedo ou livro para a viagem', 'Lanche e água à mão no carro', 'Uma muda de roupa à mão no carro'] : [];
+    ? ['Brinquedo ou livro para a viagem', 'Uma muda de roupa à mão no carro'] : [];
   const bebe = idadeAnos !== null && idadeAnos < 3 ? ['Fraldas e lenços umedecidos', 'Mamadeira ou chupeta'] : [];
   return {
     id: novoId(), escopo: 'individual', viajanteId: viajante.id,
@@ -98,7 +127,7 @@ function modelosDeLista() {
   const item = (texto) => ({ id: novoId(), texto, feito: false });
   return [{
     id: novoId(), escopo: 'geral', viajanteId: null, titulo: 'Lista coletiva',
-    itens: [item('Carregador de celular'), item('Estepe, macaco e triângulo'), item('Kit de primeiros socorros'), item('Água e lanches')],
+    itens: [item('Estepe, macaco e triângulo'), item('Kit de primeiros socorros'), item('Água e lanches')],
   }];
 }
 
@@ -139,6 +168,9 @@ export function chaveRota(v, sentido) {
 
 /** Registra uma alteração: sobe a revisão e marca a preparação offline como desatualizada. */
 export function registrarAlteracao(v) {
+  for (const p of v.viajantes || []) {
+    if (p.condutor && podeDirigirNaSaida(p, v.datas?.ida?.data) === false) p.condutor = false;
+  }
   v.revisao = (v.revisao || 0) + 1;
   v.atualizado_em = new Date().toISOString();
   if (v.preparacao?.estado === 'pronto' && v.preparacao.revisao !== v.revisao) {
@@ -194,7 +226,7 @@ export function validarTela(v, tela) {
       if (p.nascimento && !dataValida(p.nascimento)) e[`viajante.${i}.nascimento`] = 'Data de nascimento inválida.';
       if (!p.nascimento && !FAIXAS.includes(p.faixa)) e[`viajante.${i}.faixa`] = 'Informe a data de nascimento ou a faixa etária.';
     });
-    if (v.viajantes.length && !v.viajantes.some((p) => p.condutor)) e.condutor = 'Marque pelo menos um condutor.';
+    if (v.viajantes.length && !v.viajantes.some((p) => p.condutor && podeDirigirNaSaida(p, v.datas.ida.data))) e.condutor = 'Marque pelo menos um condutor com 18 anos ou mais na data da ida.';
   }
   return e;
 }

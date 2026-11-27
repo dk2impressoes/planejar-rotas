@@ -1,6 +1,6 @@
 // © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
 // Tela 6: Revisão (Seção 2) e roteiro impresso.
-import { el, botao, selo, reais, km, litros, campo, recolhido, anunciar } from './dom.js';
+import { el, botao, selo, reais, km, litros, campo, recolhido, anunciar, lerDinheiro, formatarDinheiro, configurarCampoDinheiro } from './dom.js';
 import { formatarDataHora, formatarDuracao } from '../dominio/tempo.js';
 import { SITUACAO, COBRANCA } from '../dominio/situacao.js';
 import { pontosDaRota, separadorDaLista, TELA } from '../dominio/viagem.js';
@@ -11,6 +11,7 @@ import { reverso } from '../servicos/buscador.js';
 import { online } from '../servicos/http.js';
 import { congelamentoValido } from '../dominio/congelamento.js';
 import { isoParaBr } from './datas.js';
+import { imprimirListaIndividual } from './telas.js';
 
 // Aviso curto dos Termos de Uso (topo do roteiro, impressão e exportação).
 import { AVISO_CURTO_TERMOS } from './termos.js';
@@ -203,7 +204,7 @@ function formAbasteci(ctx, onde, fechar, sugestao) {
   const id = `ab-${Math.random().toString(36).slice(2, 8)}`;
   let completou = false, litrosInf = null;
   const temAuto = sugestao && Number.isFinite(sugestao.preco);
-  let preco = temAuto ? Number(sugestao.preco.toFixed(2)) : null;
+  let preco = temAuto ? Number(sugestao.preco.toFixed(3)) : null;
   const erroForm = el('p', { class: 'erro', role: 'alert', hidden: true });
   const campoLitros = campo({ id: `${id}-l`, rotulo: 'Quantos litros você colocou?', tipo: 'number', valor: '', ajuda: 'Está no recibo ou no visor da bomba.', aoMudar: (x) => { litrosInf = x; } });
   return el('div', { class: 'form-abasteci' },
@@ -211,7 +212,7 @@ function formAbasteci(ctx, onde, fechar, sugestao) {
     campo({ id: `${id}-c`, rotulo: 'Completei o tanque (não sei os litros)', tipo: 'checkbox', valor: false, aoMudar: (x) => { completou = x; campoLitros.hidden = x; } }),
     campo({
       id: `${id}-p`, rotulo: temAuto ? 'Preço do litro (R$) — já preenchido' : 'Preço do litro (R$) — obrigatório',
-      tipo: 'number', valor: temAuto ? String(preco).replace('.', ',') : '',
+      tipo: 'dinheiro', valor: preco,
       ajuda: temAuto ? `Preço automático: ${sugestao.origemPreco}. Se pagou outro valor, corrija.` : 'Não conseguimos o preço automático aqui. Informe quanto pagou por litro (está no recibo).',
       aoMudar: (x) => { preco = x; },
     }),
@@ -316,12 +317,30 @@ export function linkOficial(u) {
 const NOME_FONTE = { oficial: 'tabela oficial', pesquisa: 'pesquisa enviada', imprensa: 'notícia', curadoria: 'base anterior', comunidade: 'OpenStreetMap' };
 const ano = (iso) => (iso ? iso.slice(0, 4) : '');
 
-// Onde conferir quando falta valor: a página oficial da praça (se houver) e duas calculadoras públicas.
-function linksConsultar(c) {
+function linksConsultar(v, c) {
   const a = (href, texto) => el('a', { href, target: '_blank', rel: 'noopener noreferrer', class: 'fonte' }, texto);
+  const oficial = linkOficial(c.url_tarifa_oficial);
+  const mapa = new URL('https://www.google.com/maps/search/');
+  const { lat, lon } = c.coordenadas || {};
+  const temLocal = Number.isFinite(lat) && Math.abs(lat) <= 90 && Number.isFinite(lon) && Math.abs(lon) <= 180;
+  mapa.searchParams.set('api', '1');
+  if (temLocal) mapa.searchParams.set('query', lat + ',' + lon);
+
+  const viacusto = new URL('https://viacusto.com.br/');
+  const cidade = (l) => l?.cidade && l.uf ? l.cidade + ', ' + l.uf : '';
+  const volta = c.sentidoViagem === 'volta';
+  const origem = cidade(volta ? v.destino : v.origem);
+  const destino = cidade(volta ? v.origem : v.destino);
+  if (origem && destino) {
+    viacusto.searchParams.set('origin', origem);
+    viacusto.searchParams.set('destination', destino);
+  }
+
   return el('span', { class: 'consultar nao-imprimir' }, ' Consultar: ',
-    linkOficial(c.url_tarifa_oficial) ? [a(linkOficial(c.url_tarifa_oficial), 'tabela oficial'), ' · '] : null,
-    a('https://pedagiometro.webrota.com.br/', 'Pedagiômetro'), ' · ', a('https://viacusto.com.br/', 'ViaCusto'));
+    temLocal ? [a(mapa.href, c.coordenadas_verificadas ? 'Local no mapa' : 'Local da base no mapa'), ' · '] : null,
+    oficial ? [a(oficial, 'tabela oficial'), ' · '] : null,
+    a('https://pedagiometro.webrota.com.br/', 'Pedagiômetro'), ' · ',
+    a(viacusto.href, origem && destino ? (volta ? 'ViaCusto (cidades da volta)' : 'ViaCusto (cidades da ida)') : 'ViaCusto'));
 }
 
 const ETIQUETA = {
@@ -377,16 +396,17 @@ function formCorrigirPedagios(ctx, p) {
     const atual = ctx.v.ajustesPedagio[c.chave] ?? ctx.v.ajustesPedagio[c.chaveAntiga];
     const inp = el('input', {
       id, type: 'text', inputmode: 'decimal', class: 'valor-pedagio', autocomplete: 'off',
-      value: atual !== undefined && atual !== null ? String(atual).replace('.', ',') : '',
+      value: formatarDinheiro(atual),
       placeholder: c.valor !== null && c.situacao !== 'manual' ? String(c.valor.toFixed(2)).replace('.', ',') : 'R$',
     });
+    configurarCampoDinheiro(inp);
     entradas.set(c.chave, { inp, antiga: c.chaveAntiga });
     const outras = (c.alternativas || []).map((o) => `${reais(o.valor)} (${o.fonte}, ${ano(o.inicio)})`).join(' · ');
     return el('li', { class: c.valor === null ? 'sem-valor' : null },
       el('label', { for: id }, `${c.nome || 'Praça'} (${c.rodovia}) · ${c.sentidoViagem === 'volta' ? 'volta' : 'ida'}`,
         el('small', {}, c.situacao === 'manual' ? ` corrigido por você: ${reais(c.valor)}` : c.valor === null ? ' sem valor na base' : ` usado: ${reais(c.valor)} — ${NOME_FONTE[c.tipoFonte] || 'base'}${c.valorAntigo ? ` (${c.valorAntigo})` : ''}`),
         outras ? el('small', {}, ` outras estimativas: ${outras}`) : null,
-        c.valor === null ? el('small', {}, linksConsultar(c)) : null),
+        c.valor === null ? el('small', {}, linksConsultar(ctx.v, c)) : null),
       inp);
   });
   const salvar = botao('💾 Salvar valores', () => {
@@ -395,10 +415,10 @@ function formCorrigirPedagios(ctx, p) {
     for (const [chave, { inp }] of entradas) {
       const t = inp.value.trim();
       if (!t) continue;
-      const num = Number(t.replace(/\./g, '').replace(',', '.'));
+      const num = lerDinheiro(t);
       if (Number.isFinite(num) && num >= 0 && num < 1000) { novos[chave] = num; n++; } else invalidos++;
     }
-    if (invalidos) { aviso.textContent = `✖ ${invalidos} valor(es) inválido(s). Use números, por exemplo 14,50.`; return; }
+    if (invalidos) { aviso.textContent = `✖ ${invalidos} valor(es) inválido(s). Use 1450, 14,50 ou 14.50 para informar R$ 14,50.`; return; }
     ctx.alterar((vv) => {
       for (const [chave, { antiga }] of entradas) { delete vv.ajustesPedagio[chave]; delete vv.ajustesPedagio[antiga]; }
       Object.assign(vv.ajustesPedagio, novos);
@@ -408,7 +428,7 @@ function formCorrigirPedagios(ctx, p) {
   salvar.id = 'salvar-pedagios';
   return el('div', { class: 'corrigir-pedagios nao-imprimir' },
     el('h3', {}, 'Corrigir valores (só nesta viagem)'),
-    el('p', { class: 'ajuda' }, 'Digite o valor que você sabe e toque em "Salvar valores" no final. Deixe em branco para usar o valor da base.'),
+    el('p', { class: 'ajuda' }, 'Digite 1450 ou 14,50 para informar R$ 14,50 e toque em "Salvar valores". Deixe em branco para usar o valor da base.'),
     el('ul', { class: 'lista-corrigir' }, ...linhas),
     salvar, aviso);
 }
@@ -463,6 +483,7 @@ function blocoDocumentos(ctx, r) {
 
 function blocoListas(ctx) {
   const { v } = ctx;
+  if (v.escolhaLista === 'ignorada') return bloco('O que levar', 5, ctx, el('p', {}, 'Lista ignorada nesta viagem.'));
   const s = v.separacao || {};
   const responsavel = s.modo === 'uma_pessoa' ? v.viajantes.find((p) => p.id === s.responsavelId) : null;
   const topo = s.modo === 'cada_um' ? 'Cada pessoa separa as próprias coisas.'
@@ -472,7 +493,9 @@ function blocoListas(ctx) {
     topo ? el('p', {}, `👤 ${topo}`) : null,
     el('ul', {}, ...v.listas.map((l) => {
       const quem = s.modo === 'cada_um' ? separadorDaLista(v, l) : null; // com uma pessoa só, o nome já está no topo
-      return el('li', {}, `${l.titulo}${quem ? ` (separa: ${quem})` : ''}: ${l.itens.filter((i) => i.feito).length} de ${l.itens.length}`);
+      return el('li', {}, `${l.titulo}${quem ? ` (separa: ${quem})` : ''}: ${l.itens.filter((i) => i.feito).length} de ${l.itens.length}`,
+        l.escopo === 'individual' ? [' ', botao('Imprimir checklist', () => imprimirListaIndividual(v, l),
+          { classe: 'secundario pequeno nao-imprimir', rotuloAcessivel: 'Imprimir checklist: ' + l.titulo })] : null);
     })));
 }
 
@@ -546,15 +569,25 @@ function resumoSimples(ctx, r) {
       sim.custoConsumido !== null ? el('small', { class: 'linha-menor' }, `A viagem gasta ${litros(sim.passos.reduce((t, p) => t + p.consumidos, 0))} de combustível, que custam cerca de ${reais(sim.custoConsumido)} — contando o que já estava no tanque na saída.`) : null);
   } else if (c?.simplificada?.valor !== null && c?.simplificada?.valor !== undefined) gasolina = `cerca de ${reais(c.simplificada.valor)}`;
   else gasolina = 'aparece depois que o caminho for calculado';
-  const confirmado = (p?.totalConfirmado || 0) + (p?.totalManual || 0);
-  const semValor = p?.desconhecidas?.length || 0;
-  const faltam = semValor ? ` + ${semValor} ${semValor === 1 ? 'praça' : 'praças'} sem valor conhecido (o total real é maior)` : '';
   let pedagio;
-  if (p?.indisponivel) pedagio = 'aparece depois que o caminho for calculado';
-  else if (confirmado > 0) pedagio = `${reais(confirmado)} confirmados${p.totalPossivel ? ` + cerca de ${reais(p.totalPossivel)} a confirmar` : ''}${faltam}`;
-  else if (p?.totalPossivel) pedagio = `cerca de ${reais(p.totalPossivel)} (valores a confirmar)${faltam}`;
-  else if (semValor) pedagio = `${semValor} ${semValor === 1 ? 'praça' : 'praças'} no caminho, sem valor conhecido`;
-  else pedagio = 'nenhum encontrado no caminho (a base não cobre todas as estradas)';
+  if (!p || p.indisponivel) {
+    pedagio = 'disponível após o cálculo do traçado';
+  } else {
+    const semTarifa = p.desconhecidas.length;
+    const temPassagens = p.confirmadas.length || p.manuais.length || p.possiveis.length || semTarifa;
+    pedagio = el('div', {},
+      temPassagens ? el('span', {},
+        'Cobranças confirmadas: ',
+        p.confirmadas.length ? el('strong', {}, reais(p.totalConfirmado)) : 'nenhuma identificada',
+        p.confirmadas.length && p.situacao === SITUACAO.ESTIMADO ? ' (valor estimado)' : null)
+        : 'Nenhum pedágio identificado na base para este traçado.',
+      p.manuais.length ? el('span', { class: 'linha-menor' }, 'Valores informados por você: ', el('strong', {}, reais(p.totalManual))) : null,
+      p.possiveis.length ? el('span', { class: 'linha-menor' }, 'Possíveis cobranças: ', el('strong', {}, reais(p.totalPossivel)), ' a confirmar') : null,
+      semTarifa ? el('span', { class: 'linha-menor' },
+        el('strong', {}, semTarifa + (semTarifa === 1 ? ' ponto sem tarifa conhecida' : ' pontos sem tarifa conhecida')),
+        '. O custo de pedágio está incompleto.') : null,
+      p.coberturaParcial ? el('small', { class: 'linha-menor' }, 'Cobertura parcial. Pode haver outras cobranças.') : null);
+  }
   return el('section', { class: 'resumo-cartao', 'aria-labelledby': 't-resumo' },
     el('h2', { id: 't-resumo' }, v.nome || `${v.origem?.cidade || v.origem?.nome || '?'} → ${v.destino?.cidade || v.destino?.nome || '?'}`),
     ctx.estadoRota.calculando ? el('p', { class: 'aviso', role: 'status' }, '⏳ Calculando o caminho… aguarde alguns segundos.') : null,
@@ -563,7 +596,8 @@ function resumoSimples(ctx, r) {
     el('dl', { class: 'resumo-numeros' },
       el('dt', {}, '📅 Duração'), el('dd', {}, r.dias ? `${r.dias} ${r.dias === 1 ? 'dia' : 'dias'}` : '—'),
       el('dt', {}, '📏 Distância total'), el('dd', {}, r.sentidos.ida.km + r.sentidos.volta.km ? km(r.sentidos.ida.km + r.sentidos.volta.km) : '—'),
-      el('dt', {}, '⛽ Combustível'), el('dd', {}, gasolina),
+      el('dt', {}, '⛽ Combustível'), el('dd', {}, gasolina,
+        c?.precoOrigem ? el('small', { class: 'linha-menor' }, 'Referência na origem: ', c.precoOrigem.premissa) : null),
       el('dt', {}, '🚧 Pedágios'), el('dd', {}, pedagio)),
     el('p', { class: 'ajuda' }, 'Valores aproximados, sem trânsito em tempo real. Confira as regras e os preços antes de sair.'));
 }
@@ -581,8 +615,8 @@ function oQueConferir(ctx, r) {
   for (const pend of r.documentos.pendencias) add(false, pend, 5);
   if (r.documentos.total && !r.documentos.concluida) add(false, `Documentos: ${r.documentos.feitos} de ${r.documentos.total} separados.`, 5);
   const listas = v.listas.reduce((s, l) => [s[0] + l.itens.filter((i) => i.feito).length, s[1] + l.itens.length], [0, 0]);
-  if (listas[1] && listas[0] < listas[1]) add(false, `O que levar: ${listas[0]} de ${listas[1]} itens separados.`, 5);
-  if (v.separacao?.modo === 'uma_pessoa' && !v.viajantes.some((p) => p.id === v.separacao.responsavelId)) add(false, 'O que levar: escolha quem vai separar as coisas de todos.', 5);
+  if (v.escolhaLista !== 'ignorada' && listas[1] && listas[0] < listas[1]) add(false, `O que levar: ${listas[0]} de ${listas[1]} itens separados.`, 5);
+  if (v.escolhaLista !== 'ignorada' && v.separacao?.modo === 'uma_pessoa' && !v.viajantes.some((p) => p.id === v.separacao.responsavelId)) add(false, 'O que levar: escolha quem vai separar as coisas de todos.', 5);
   const semValor = r.pedagios?.desconhecidas?.length || 0;
   if (semValor) add(false, `Pedágios: ${semValor} ${semValor === 1 ? 'praça' : 'praças'} no caminho sem valor na base, então o total de pedágios está incompleto. Se souber o valor, informe em "Pedágios → Ver detalhes e corrigir valores".`, null);
   if (v.preparacao?.desatualizada) add(false, 'Você mudou a viagem depois de preparar para usar sem internet: prepare de novo.', null);

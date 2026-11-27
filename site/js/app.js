@@ -15,7 +15,8 @@ import { localizarNaRota } from './dominio/geo.js';
 import { reverso } from './servicos/buscador.js';
 import { calcularViagem, validarPrecos, precoAutomatico } from './dominio/calculo.js';
 import { congelarSeTerminou, basesDaViagem } from './dominio/congelamento.js';
-import { compartilharRota } from './interface/compartilhar.js';
+import { compartilharRota, lerRotaCompartilhada, PREFIXO_ROTA } from './interface/compartilhar.js';
+import { podeDirigirNaSaida } from './dominio/documentos.js';
 import { custosDaViagem } from './dominio/comparacao.js';
 import { formatarDataHora } from './dominio/tempo.js';
 import { SITUACAO } from './dominio/situacao.js';
@@ -28,7 +29,7 @@ const TELAS = [tela1, tela2, telaCarro, telaParadas, tela5, tela6]; // ordem = T
 
 const estado = {
   vista: 'carregando', viagem: null, bases: null, basesConferidas: false, tentou: {},
-  estadoRota: {}, controleRota: null, inventario: null, estadoPreparo: null, importacao: null, mensagem: '',
+  parteTela5: 'pessoas', estadoRota: {}, controleRota: null, inventario: null, estadoPreparo: null, importacao: null, mensagem: '',
 };
 const principal = () => document.getElementById('principal');
 
@@ -208,6 +209,19 @@ function cabecalho(titulo, sub) {
   return [el('h1', { tabindex: '-1', id: 'titulo-vista' }, titulo), sub ? el('p', { class: 'ajuda' }, sub) : null];
 }
 
+function vistaRotaCompartilhada() {
+  const rota = lerRotaCompartilhada(location.hash);
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Roteiro compartilhado', rota?.titulo),
+    rota ? rota.rotas.map(({ sentido, data, hora, lugares, mapa }) => el('section', { class: 'cartao' },
+      el('h2', {}, sentido === 'ida' ? 'Ida' : 'Volta'),
+      data ? el('p', {}, isoParaBr(data), hora ? ' às ' + hora : '') : null,
+      el('ol', {}, ...lugares.map(({ nome }) => el('li', {}, nome))),
+      el('a', { href: mapa, class: 'botao secundario', target: '_blank', rel: 'noopener noreferrer' }, 'Abrir no Google Maps')))
+      : el('p', { class: 'aviso', role: 'alert' }, 'Este link de roteiro está incompleto ou não é válido. Peça um novo link a quem enviou.'),
+    el('p', {}, el('a', { href: '?inicio=1', class: 'botao' }, 'Abrir minhas viagens')));
+}
+
 function vistaTermos() {
   let marcado = false;
   const continuar = botao('Aceitar e começar', async () => {
@@ -246,7 +260,8 @@ function vistaModo() {
     render();
   };
   return el('div', { class: 'estreito' },
-    ...cabecalho('Você vai ter internet durante a viagem?', 'Pode mudar depois, no Menu.'),
+    ...cabecalho('Você vai ter internet durante a viagem?', 'Pode mudar depois em Configurações e dados.'),
+    estado.modoPelasConfiguracoes ? voltarConfiguracoes() : null,
     el('div', { class: 'cartao' },
       el('h2', {}, '📶 Sim, vou ter internet'),
       el('p', {}, 'O app calcula o caminho e procura os endereços na hora. É o jeito mais simples.'),
@@ -269,7 +284,7 @@ async function vistaInicio() {
   return el('div', {},
     ...cabecalho(viagens.length ? 'Minhas viagens' : 'Vamos planejar sua viagem de carro'),
     estado.mensagem ? el('p', { class: 'aviso', role: 'status' }, estado.mensagem) : null,
-    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. No Menu, use "Salvar, Importar ou Restaurar": se o navegador for limpo, as viagens podem ser apagadas.') : null,
+    precisaBackup ? el('p', { class: 'aviso' }, '⚠ Faz mais de 30 dias que você não salva uma cópia. Em Configurações e dados, use "Salvar, Importar ou Restaurar": se o navegador for limpo, as viagens podem ser apagadas.') : null,
     viagens.length ? null : el('p', { class: 'intro' }, 'São 6 passos curtos: quando, para onde, carro, paradas, pessoas e o resumo com horários, combustível, pedágios e o que levar. Tudo fica salvo enquanto você preenche.'),
     nova,
     viagens.length >= 2 ? botao('💰 Histórico Gastos de Viagens',() => { estado.vista = 'comparar'; render({ trocaDeTela: true }); }, { classe: 'secundario largo' }) : null,
@@ -287,6 +302,7 @@ async function vistaInicio() {
           v.origem && v.destino ? botao('📤 Compartilhar rota', async () => {
             const r = await compartilharRota(v);
             if (r === 'copiado') anunciar('Rota copiada: cole na conversa ou no e-mail.');
+            else if (r === 'rota-invalida') anunciar('Não foi possível gerar o link. Confira os locais e as paradas da viagem.');
             else if (r === 'indisponivel') anunciar('Este aparelho não deixou compartilhar nem copiar. Tente pelo celular.');
           }, { classe: 'secundario', rotuloAcessivel: `Compartilhar a rota de ${v.nome || 'viagem'}` }) : null,
           botao('Apagar', async () => {
@@ -318,6 +334,11 @@ function vistaAssistente() {
   const erros = tentou && n < 6 ? { ...validarTela(v, n), ...validarPrecos(v, n, bases) } : {};
   const ctx = {
     v, erros, alterar, bases, basesConferidas: estado.basesConferidas,
+    parteTela5: estado.parteTela5,
+    selecionarParteTela5: (parte) => {
+      estado.parteTela5 = parte;
+      render({ foco: parte === 'listas' ? 't-listas' : 'titulo-vista' });
+    },
     estadoRota: estado.estadoRota, calcularRotas, cancelarRotas: () => estado.controleRota?.abort(),
     irPara: (t) => abrirAssistente(t), render: (opcoes) => render(opcoes),
     lugaresUsados, salvarAgora: async () => { await salvar(); anunciar('Viagem salva no aparelho.'); },
@@ -340,18 +361,30 @@ function vistaAssistente() {
   const conteudo = TELAS[n - 1](ctx);
   const nav = el('div', { class: 'navegacao nao-imprimir' },
     n > 1 ? botao('← Voltar', () => abrirAssistente(n - 1), { classe: 'secundario' }) : null,
-    n < 6 ? botao('Continuar →', () => {
-      const e = { ...validarTela(v, n), ...validarPrecos(v, n, bases) };
-      if (Object.keys(e).length) {
-        estado.tentou[n] = true;
-        render();
-        const primeiro = document.querySelector('[aria-invalid="true"]');
-        primeiro?.focus();
-        anunciar(`Corrija ${Object.keys(e).length} campo(s) antes de avançar.`);
-        return;
-      }
-      abrirAssistente(n + 1);
-    }) : null);
+    n === 5 && estado.parteTela5 === 'listas' ? botao('Ignorar a lista e continuar', () => avancar('ignorada'), { classe: 'secundario' }) : null,
+    n < 6 ? botao(n === 5 ? (estado.parteTela5 === 'listas' ? 'Usar a lista e continuar →' : 'Ver o que levar →') : 'Continuar →',
+      () => avancar('usada')) : null);
+  function avancar(escolha) {
+    const e = { ...validarTela(v, n), ...validarPrecos(v, n, bases) };
+    if (Object.keys(e).length) {
+      estado.tentou[n] = true;
+      if (n === 5) estado.parteTela5 = 'pessoas';
+      render();
+      const primeiro = document.querySelector('[aria-invalid="true"]');
+      primeiro?.focus();
+      anunciar(`Corrija ${Object.keys(e).length} campo(s) antes de avançar.`);
+      return;
+    }
+    if (n === 5 && estado.parteTela5 === 'pessoas') {
+      ctx.selecionarParteTela5('listas');
+      return;
+    }
+    if (n === 5 && v.escolhaLista !== escolha) {
+      v.escolhaLista = escolha;
+      registrarAlteracao(v);
+    }
+    abrirAssistente(n + 1);
+  }
   // Depois de uma tentativa de avançar, os erros são refeitos quando um campo perde o foco.
   const raiz = el('div', {},
     el('p', { class: 'progresso nao-imprimir' }, `Tela ${n} de 6`),
@@ -408,6 +441,7 @@ function vistaDados() {
   });
   return el('div', { class: 'estreito' },
     ...cabecalho('Salvar, Importar ou Restaurar'),
+    voltarConfiguracoes(),
     el('p', {}, AVISO_EXPORTACAO, ' O arquivo não é criptografado.'),
     botao('Exportar todas as viagens', async () => baixarExportacao(await listar('viagens'))),
     el('h2', {}, 'Importar'),
@@ -450,6 +484,7 @@ async function vistaBaixar() {
   const instalado = matchMedia('(display-mode: standalone)').matches;
   return el('div', { class: 'estreito' },
     ...cabecalho('Instalar aplicativo', 'Escolha o seu aparelho. Tudo gratuito.'),
+    voltarConfiguracoes(),
     online() ? null : el('p', { class: 'aviso' }, '⚠ Sem internet agora: para baixar, conecte-se e volte aqui.'),
     instalado ? el('p', { class: 'destaque-mini' }, '✔ Este app já está instalado neste aparelho.') : null,
     el('section', { class: 'cartao baixar' },
@@ -528,8 +563,12 @@ async function novaViagemAtual() {
 }
 
 function abrirAssistente(tela) {
+  if (tela === 5) estado.parteTela5 = 'pessoas';
   estado.vista = 'assistente';
   estado.viagem.tela = tela;
+  if (estado.viagem.viajantes?.some((p) => p.condutor && podeDirigirNaSaida(p, estado.viagem.datas?.ida?.data) === false)) {
+    registrarAlteracao(estado.viagem);
+  }
   salvar();
   render({ trocaDeTela: true });
   if (tela === 6 && online() && ['ida', 'volta'].some((s) => estado.viagem.rotas[s]?.chave !== chaveRota(estado.viagem, s)) && !estado.estadoRota.calculando) {
@@ -550,6 +589,7 @@ function render({ foco, trocaDeTela } = {}) {
       case 'inicio': conteudo = await vistaInicio(); break;
       case 'assistente': conteudo = vistaAssistente(); break;
       case 'preparacao': conteudo = vistaPreparacao(); break;
+      case 'configuracoes': conteudo = vistaConfiguracoes(); break;
       case 'dados': conteudo = vistaDados(); break;
       case 'sobre': conteudo = vistaSobre(); break;
       case 'comparar': conteudo = await vistaComparar(); break;
@@ -575,13 +615,31 @@ const ITENS_MENU = [
   ['Preparar para viagem', () => { if (!estado.viagem) { estado.vista = 'inicio'; estado.mensagem = 'Abra uma viagem primeiro.'; return; } estado.vista = 'preparacao'; setTimeout(iniciarPreparacao); }],
   ['Guia', () => { estado.vista = 'guia'; estado.avisoGuia = ''; }],
   ['Histórico Gastos de Viagens', () => { estado.vista = 'comparar'; }],
-  ['Modo online / offline', () => { estado.vista = 'modo'; }],
-  ['Instalar aplicativo', () => { estado.vista = 'baixar'; }],
-  ['Verificar atualização', () => { estado.vista = 'verificar'; render({ trocaDeTela: true }); verificarAtualizacoes(); return true; }],
-  ['Salvar, Importar ou Restaurar', () => { estado.vista = 'dados'; }],
+  ['Configurações e dados', () => { estado.vista = 'configuracoes'; }],
   ['Sobre e avisos legais', () => { estado.vista = 'sobre'; }],
 ];
 const executarItemMenu = (acao) => { if (!acao()) render({ trocaDeTela: true }); };
+
+const ITENS_CONFIGURACOES = [
+  ['Modo online / offline', () => { estado.modoPelasConfiguracoes = true; estado.vista = 'modo'; }],
+  ['Instalar aplicativo', () => { estado.vista = 'baixar'; }],
+  ['Verificar atualização', () => { estado.vista = 'verificar'; render({ trocaDeTela: true }); verificarAtualizacoes(); return true; }],
+  ['Salvar, Importar ou Restaurar', () => { estado.vista = 'dados'; }],
+];
+
+function vistaConfiguracoes() {
+  return el('div', { class: 'estreito' },
+    ...cabecalho('Configurações e dados'),
+    el('ul', { class: 'menu-tela lista-simples' }, ...ITENS_CONFIGURACOES.map(([texto, acao]) =>
+      el('li', {}, botao(texto, () => executarItemMenu(acao), { classe: 'secundario largo' })))));
+}
+
+function voltarConfiguracoes() {
+  return botao('← Configurações e dados', () => {
+    estado.vista = 'configuracoes';
+    render({ trocaDeTela: true });
+  }, { classe: 'secundario' });
+}
 
 // ---------- Verificar atualização (menu): versão do app + dados (preços, pedágios, feriados, regras) ----------
 estado.verificacao = { andamento: false, app: null, dados: null, em: null };
@@ -640,6 +698,7 @@ function vistaVerificar() {
     el('p', { class: r?.ok === false ? 'erro' : '' }, r?.texto || 'Ainda não verificado.'));
   return el('div', { class: 'estreito' },
     ...cabecalho('Verificar atualização', 'Procura a versão nova do app e os dados mais recentes: preços dos combustíveis, pedágios, feriados e regras.'),
+    voltarConfiguracoes(),
     botao(v.andamento ? 'Verificando…' : 'Verificar agora', verificarAtualizacoes, { classe: 'largo', desativado: v.andamento }),
     el('ul', { class: 'lista-cartoes', 'aria-live': 'polite' },
       linha('📱 App', v.app),
@@ -756,7 +815,6 @@ function prepararImpressao() {
 
 async function iniciar() {
   prepararImpressao();
-  montarMenu();
   // Abertura com a logo do Grupo DK²: some sozinha pelo CSS; tocar ou apertar uma tecla pula.
   const abertura = document.getElementById('abertura');
   const fecharAbertura = () => abertura?.classList.add('fechada');
@@ -766,6 +824,17 @@ async function iniciar() {
   setTimeout(fecharAbertura, 3500); // garantia: a página volta a rolar mesmo se a animação não avisar o fim (aba em segundo plano)
   indicadorConexao();
   registrarServiceWorker();
+  addEventListener('hashchange', () => {
+    if (location.hash.startsWith(PREFIXO_ROTA)) location.reload();
+  });
+  if (location.hash.startsWith(PREFIXO_ROTA)) {
+    document.getElementById('menu-botao').hidden = true;
+    fecharAbertura();
+    principal().replaceChildren(vistaRotaCompartilhada());
+    document.getElementById('titulo-vista')?.focus();
+    return;
+  }
+  montarMenu();
   try {
     await abrir();
     await migrar();

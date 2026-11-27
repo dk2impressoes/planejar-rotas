@@ -4,7 +4,7 @@ import { derivados, simularTanque, validarVeiculo, compararFlex, estimativaSimpl
 import { diasDaViagem, localParaUTC, calcularItinerario, formatarDataHora, dataLocal } from '../../site/js/dominio/tempo.js';
 import { verificarRodizio } from '../../site/js/dominio/rodizio.js';
 import { identificarPedagios, avisosFreeFlow, aplicarSentidoProvavel } from '../../site/js/dominio/pedagios.js';
-import { documentosDoViajante, idadeNaViagem, situacaoDocumentos } from '../../site/js/dominio/documentos.js';
+import { documentosDoViajante, idadeNaViagem, podeDirigirNaSaida, situacaoDocumentos } from '../../site/js/dominio/documentos.js';
 import { regraVigente, SITUACAO, COBRANCA } from '../../site/js/dominio/situacao.js';
 import { novaViagem, chaveRota, validarTela, novaParada, registrarAlteracao } from '../../site/js/dominio/viagem.js';
 import { calcularViagem } from '../../site/js/dominio/calculo.js';
@@ -16,11 +16,11 @@ import { retencaoInfantil } from '../../site/js/dominio/documentos.js';
 import { resumoAlternativas } from '../../site/js/dominio/calculo.js';
 import { urlGoogleMaps, urlWaze, linkOficial } from '../../site/js/interface/revisao.js';
 import { interpretarData, interpretarHora, mascararData, mascararHora } from '../../site/js/interface/datas.js';
-import { campo, explicar, el, anexar, escrever, textoSeguro } from '../../site/js/interface/dom.js';
+import { campo, explicar, el, anexar, escrever, textoSeguro, lerDinheiro, formatarDinheiro, configurarCampoDinheiro } from '../../site/js/interface/dom.js';
 import { seletorLugar } from '../../site/js/interface/telas.js';
 import { vistaComparacao } from '../../site/js/interface/comparacao.js';
 import { congelarSeTerminou, basesDaViagem, congelamentoValido } from '../../site/js/dominio/congelamento.js';
-import { textoDaRota } from '../../site/js/interface/compartilhar.js';
+import { textoDaRota, lerRotaCompartilhada } from '../../site/js/interface/compartilhar.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome, buscar } from '../../site/js/servicos/buscador.js';
@@ -212,6 +212,22 @@ teste('Free flow: regra de regras.json muda o aviso; vencida dá texto genérico
 });
 
 // ---------- Documentos ----------
+teste('Condutor precisa ter 18 anos na data da ida', () => {
+  const v = novaViagem();
+  v.datas.ida.data = '2027-04-10';
+  const p = { nome: 'Pessoa de teste', nascimento: '2009-04-11', condutor: true };
+  v.viajantes = [p];
+  igual(podeDirigirNaSaida(p, v.datas.ida.data), false);
+  verdade(validarTela(v, TELA.PESSOAS).condutor);
+  registrarAlteracao(v);
+  igual(p.condutor, false);
+  igual(podeDirigirNaSaida(p, '2027-04-11'), true);
+  igual(podeDirigirNaSaida({ faixa: '15 anos' }, v.datas.ida.data), false);
+  igual(podeDirigirNaSaida({ faixa: '16 ou 17 anos' }, v.datas.ida.data), false);
+  igual(podeDirigirNaSaida({ faixa: '18 anos ou mais' }, v.datas.ida.data), true);
+  igual(podeDirigirNaSaida({}, v.datas.ida.data), null);
+});
+
 teste('Faixa "15 anos" pede a data de nascimento', () => verdade(idadeNaViagem({ faixa: '15 anos' }, '2027-01-10', '2027-01-20').precisaNascimento));
 teste('Faz 16 durante a viagem: autorização exigida na ida', () => {
   const r = documentosDoViajante({ nome: 'A', nascimento: '2011-01-15' }, '2027-01-10', '2027-01-20');
@@ -433,6 +449,41 @@ teste('Lista individual já vem com o básico; criança ganha itens a mais', () 
   const bebe = modeloListaIndividual({ id: 'b', nome: 'Bia' }, 1);
   verdade(bebe.itens.some((i) => i.texto.includes('Fraldas')) && bebe.itens.length > adulto.itens.length);
 });
+teste('Migração das listas remove duplicatas sem perder marcações e quantidades', () => {
+  const v = novaViagem();
+  v.versao_esquema = 2;
+  v.listas[0].itens.push({ texto: 'Carregador de celular', feito: false });
+  const l = modeloListaIndividual({ id: 'a', nome: 'Ana' }, 1);
+  l.itens.push({ texto: 'Lanche e água à mão no carro', feito: false }, { texto: '  escova e pasta de dente ', feito: true, quantidade: '2' });
+  v.listas.push(l);
+  const revisada = migrarViagem(v);
+  verdade(!revisada.listas[0].itens.some((i) => i.texto === 'Carregador de celular'));
+  verdade(!revisada.listas[1].itens.some((i) => i.texto === 'Lanche e água à mão no carro'));
+  const escova = revisada.listas[1].itens.find((i) => i.texto === 'Escova e pasta de dente');
+  igual(escova.feito, true);
+  igual(escova.quantidade, '2');
+  igual(revisada.listas[1].itens.length, l.itens.length - 2);
+  igual(l.itens.find((i) => i.texto === 'Escova e pasta de dente').feito, false);
+});
+
+teste('Entrada de dinheiro insere a vírgula e aceita precisão por litro', () => {
+  igual(lerDinheiro('1450'), 14.5);
+  igual(lerDinheiro('14.50'), 14.5);
+  igual(lerDinheiro('14,50'), 14.5);
+  igual(lerDinheiro('0'), 0);
+  igual(lerDinheiro(''), null);
+  igual(lerDinheiro('6,259', 3), 6.259);
+  igual(formatarDinheiro(6.259, 3), '6,259');
+  const entrada = new EventTarget();
+  entrada.value = '1450';
+  let salvo;
+  configurarCampoDinheiro(entrada, 2, (v) => { salvo = v; });
+  entrada.dispatchEvent(new Event('input'));
+  entrada.dispatchEvent(new Event('blur'));
+  igual(salvo, 14.5);
+  igual(entrada.value, '14,50');
+});
+
 teste('Lista individual: roupas vêm com a quantidade de dias', () => {
   const l = modeloListaIndividual({ id: 'a', nome: 'Ana' }, 35, 4);
   igual(l.itens.find((i) => i.texto.startsWith('Roupas para')).quantidade, '4');
@@ -607,11 +658,16 @@ teste('Compartilhar rota: só lugares, datas e link; nunca nomes nem placa', () 
   v.nome = 'Praia';
   v.viajantes = [{ id: 'a', nome: 'Maria Teste', nascimento: '1990-01-01' }];
   v.veiculo.finalPlaca = '7';
-  const { titulo, texto } = textoDaRota(v);
+  const { titulo, texto, url } = textoDaRota(v);
   igual(titulo, 'Praia');
   verdade(texto.includes('Campinas/SP → Santos/SP'), 'ida com os lugares');
   verdade(texto.includes('10/03/2026'), 'data da ida');
-  verdade(texto.includes('https://www.google.com/maps/dir/'), 'link do caminho');
+  verdade(texto.includes(url), 'link direto do roteiro');
+  const roteiro = lerRotaCompartilhada(new URL(url).hash);
+  igual(roteiro.titulo, 'Praia');
+  igual(roteiro.rotas[0].lugares.map((l) => l.nome).join(' → '), 'Campinas/SP → Santos/SP');
+  verdade(roteiro.rotas[0].mapa.startsWith('https://www.google.com/maps/dir/'));
+  igual(lerRotaCompartilhada('#rota=invalido'), null);
   verdade(!texto.includes('Maria') && !texto.includes('1990'), 'sem nomes nem nascimento');
 });
 teste('Histórico de gastos: só aparecem os meses com viagem', () => {
@@ -684,7 +740,7 @@ teste('Ordem das telas: carro é a 3, paradas a 4, e cada uma valida o seu', () 
 teste('Migração v1 → v2: quem parou nas paradas (3) vai para a 4 e no carro (4) para a 3', async () => {
   const antiga = (tela) => ({ ...novaViagem(), versao_esquema: 1, tela });
   igual(migrarViagem(antiga(3)).tela, 4); igual(migrarViagem(antiga(4)).tela, 3);
-  igual(migrarViagem(antiga(5)).tela, 5); igual(migrarViagem(antiga(3)).versao_esquema, 2);
+  igual(migrarViagem(antiga(5)).tela, 5); igual(migrarViagem(antiga(3)).versao_esquema, 3);
   igual(migrarViagem({ ...novaViagem(), tela: 3 }).tela, 3, 'viagem nova não muda');
   // Cópia exportada pela versão antiga também chega migrada.
   const txt = await exportar([antiga(3)]);
