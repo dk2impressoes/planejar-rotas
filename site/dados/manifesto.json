@@ -1,8 +1,8 @@
 {
   "versao_app": "13.0.0",
-  "versao_conjunto": "2026.11.26-a0d6bf792308",
+  "versao_conjunto": "2026.11.27-c3510b3feec0",
   "cache_app": "app-v13.0.0-d4917ebd469a",
-  "gerado_em": "2026-11-26T10:26:02Z",
+  "gerado_em": "2026-11-27T10:27:17Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
@@ -22,14 +22,14 @@
       "caminho": "dados/feriados.json",
       "tipo": "dados",
       "tamanho": 3291,
-      "sha256": "fade7686e73e30f42d9cb7a1e067d15847a4da22cff406b32767921843c06839",
+      "sha256": "b68f0b89a0f3c24010ed56d78507480d24b833ae692a15cc3f6cea42f1cdea2a",
       "esquema": "esquemas/feriados.schema.json"
     },
     {
       "caminho": "dados/pedagios.json",
       "tipo": "dados",
-      "tamanho": 708284,
-      "sha256": "8de1a551431cd799589ce9a5253d8037526edb62435313238c89d386c1428c2e",
+      "tamanho": 811230,
+      "sha256": "17d8e3fa92741ece210f1e05c0cbf80422b7a6829f58e8039689fbaf2fe18eac",
       "esquema": "esquemas/pedagios.schema.json"
     },
     {
@@ -43,7 +43,7 @@
       "caminho": "dados/rodizio-suspensoes.json",
       "tipo": "dados",
       "tamanho": 254,
-      "sha256": "c63e44f4f53260b2438cbf111ae66ad34384561d0a23a82d3dfe941f67f41e35",
+      "sha256": "4b520cefe8fdf5bd180cc6b8f2b3bebbe1cfb186cfff1a05fd1fa58f2cd6a212",
       "esquema": "esquemas/rodizio-suspensoes.schema.json"
     },
     {
