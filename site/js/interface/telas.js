@@ -100,16 +100,21 @@ export function seletorLugar({ id, rotulo, valor, erro, aoEscolher, ctx, comGeol
     escrever(estado, 'O aparelho vai pedir permissão para usar a sua localização…');
     navigator.geolocation.getCurrentPosition(async (pos) => {
       try {
-        const l = await reverso(pos.coords.latitude, pos.coords.longitude);
-        if (l) mostrar([{ ...l, precisao: `GPS ±${Math.round(pos.coords.accuracy)} m` }]);
+        const l = await reverso(pos.coords.latitude, pos.coords.longitude, { enderecoCompleto: true });
+        if (l) {
+          const margem = Math.round(pos.coords.accuracy);
+          mostrar([{ ...l, precisao: 'GPS ±' + margem + ' m' }]);
+          escrever(estado, 'GPS com margem de aproximadamente ' + margem + ' m. '
+            + (l.rua && l.numero ? 'Confira a rua e o número antes de selecionar.' : 'A base não encontrou rua e número completos. Você pode digitá-los na busca.'));
+        }
         else escrever(estado, 'Não achamos o endereço. Digite onde você está.');
       } catch { escrever(estado, 'Não achamos o endereço. Digite onde você está.'); }
-    }, () => { escrever(estado, 'Sem permissão para usar a localização. Sem problema: digite o endereço.'); }, { timeout: 15000, maximumAge: 60000 });
+    }, () => { escrever(estado, 'Sem permissão para usar a localização. Sem problema: digite o endereço.'); }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 });
   }, { classe: 'secundario largo' }) : null;
 
   anexar(caixa, 
     el('div', { class: 'rotulo-linha' }, el('label', { for: id, class: 'rotulo-grande' }, rotulo), btExplica), painelExplica,
-    el('p', { class: 'ajuda', id: `${id}-ajuda` }, online() ? (ajuda || 'Digite pelo menos 3 letras e toque no resultado certo.') : 'Sem internet: só aparecem lugares que você já usou.'),
+    el('p', { class: 'ajuda', id: `${id}-ajuda` }, online() ? (ajuda || 'Para obter o endereço completo, procure por rua, número, bairro, cidade e UF ou CEP.') : 'Sem internet: só aparecem lugares que você já usou.'),
     geo,
     el('div', { class: 'linha-busca' }, entrada, botao('Procurar', () => entrada.value.trim() && consultar(entrada.value, true))),
     estado, lista,
@@ -143,7 +148,7 @@ function blocoParada(ctx, sentido, p, i, total) {
       pp.tipo = x;
       pp.saidaAgendada = x === 'Pernoite' ? (pp.saidaAgendada || { data: '', hora: '08:00' }) : null;
     }, true) }),
-    seletorLugar({ id: `${k}.lugar`, explicacao: EXPLICA.lugarParada, rotulo: 'Em qual cidade?', valor: p.lugar, erro: erros[`${k}.lugar`], ctx, aoEscolher: (l) => mudar((pp) => { pp.lugar = l; }, true) }),
+    seletorLugar({ id: `${k}.lugar`, explicacao: EXPLICA.lugarParada, rotulo: 'Qual é o endereço da parada?', valor: p.lugar, erro: erros[`${k}.lugar`], ctx, aoEscolher: (l) => mudar((pp) => { pp.lugar = l; }, true) }),
     pernoite && p.saidaAgendada
       ? el('fieldset', { class: 'grupo' }, el('legend', {}, 'Quando vai seguir viagem?'),
         el('div', { class: 'linha' },
