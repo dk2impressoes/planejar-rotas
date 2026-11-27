@@ -646,6 +646,7 @@ export function tela6(ctx) {
       ? `🔒 Viagem terminada: valores congelados em ${isoParaBr(v.congelado.em.slice(0, 10))}, com os preços e pedágios daquela época. Atualizações de dados não mudam mais esta viagem.`
       : `🔒 Viagem terminada: o histórico de gastos guarda os totais de ${isoParaBr(v.congelado.em.slice(0, 10))}. Os detalhes abaixo usam os dados de hoje.`) : null,
     resumoSimples(ctx, r),
+    ctx.compartilhar ? botao('📤 Compartilhar viagem', ctx.compartilhar, { classe: 'largo secundario nao-imprimir' }) : null,
     r.combustivel?.simulacao ? el('section', { class: 'onde-abastecer', 'aria-labelledby': 't-abastecer' },
       el('h2', { id: 't-abastecer' }, '⛽ Onde abastecer'),
       blocoAbastecer(ctx, r, { resumo: true }),
