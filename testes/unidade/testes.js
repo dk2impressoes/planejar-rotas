@@ -20,7 +20,7 @@ import { campo, explicar, el, anexar, escrever, textoSeguro, lerDinheiro, format
 import { seletorLugar } from '../../site/js/interface/telas.js';
 import { vistaComparacao } from '../../site/js/interface/comparacao.js';
 import { congelarSeTerminou, basesDaViagem, congelamentoValido } from '../../site/js/dominio/congelamento.js';
-import { textoDaRota, lerRotaCompartilhada } from '../../site/js/interface/compartilhar.js';
+import { textoDaRota, lerRotaCompartilhada, linkViagemCompleta, lerViagemCompartilhada } from '../../site/js/interface/compartilhar.js';
 import { modeloListaIndividual, separadorDaLista, migrarViagem, TELA, viagemConcluida } from '../../site/js/dominio/viagem.js';
 import { precoAutomatico, ondeFica } from '../../site/js/dominio/calculo.js';
 import { dePhoton, ufPorNome, buscar, reverso } from '../../site/js/servicos/buscador.js';
@@ -709,6 +709,20 @@ teste('Link mantém endereço, ordem das paradas e pernoite nos dois sentidos', 
   igual(roteiro.rotas[1].lugares[1].parada.duracao, 25);
   v.paradas.volta[0].lugar = null;
   igual(textoDaRota(v).texto, '', 'evita compartilhar uma volta incompleta');
+});
+teste('Viagem completa abre por link e preserva o checklist e as paradas', async () => {
+  const v = viagemTerminada();
+  v.paradas.ida.push({ ...novaParada(), lugar: { ...v.origem, rotulo: 'Parada no Centro' } });
+  v.listas[0].itens[0].feito = true;
+  const arquivo = new Blob([await exportar([v])], { type: 'application/json' });
+  const link = await linkViagemCompleta(arquivo);
+  verdade(link.includes('#viagem='));
+  const recebida = await lerViagemCompartilhada(new URL(link).hash);
+  igual(recebida.paradas.ida[0].lugar.rotulo, 'Parada no Centro');
+  igual(recebida.listas[0].itens[0].feito, true);
+  let rejeitou = false;
+  try { await lerViagemCompartilhada('#viagem=incompleto'); } catch { rejeitou = true; }
+  verdade(rejeitou);
 });
 teste('Histórico de gastos: só aparecem os meses com viagem', () => {
   const v1 = novaViagem(); v1.datas.ida.data = '2026-03-10'; v1.datas.volta.data = '2026-03-12';

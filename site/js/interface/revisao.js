@@ -168,9 +168,19 @@ function blocoDescansos(r) {
   return el('div', {},
     el('h3', {}, 'Sugestões de descanso'),
     r.descansoTexto ? el('p', { class: 'ajuda' }, r.descansoTexto) : null,
-    // Só o sentido e o horário: simples de ler na estrada.
-    el('ul', {}, ...lista.map((d) => el('li', {}, `${d.s === 'ida' ? 'Ida' : 'Volta'}: ${quando(new Date(d.t).toISOString(), d.fuso)}`))),
-    el('p', { class: 'ajuda' }, 'Para descansar em outro lugar, adicione uma parada na tela 4: os horários são refeitos.'));
+    el('ul', {}, ...lista.map((d) => {
+      const [lon, lat] = d.c || [];
+      let link = null;
+      if (Number.isFinite(lat) && Math.abs(lat) <= 90 && Number.isFinite(lon) && Math.abs(lon) <= 180) {
+        const mapa = new URL('https://www.google.com/maps/search/');
+        mapa.searchParams.set('api', '1');
+        mapa.searchParams.set('query', lat + ',' + lon);
+        link = el('a', { href: mapa.href, target: '_blank', rel: 'noopener noreferrer', class: 'fonte nao-imprimir' }, 'Ver ponto aproximado no mapa');
+      }
+      return el('li', {}, (d.s === 'ida' ? 'Ida' : 'Volta') + ': ' + quando(new Date(d.t).toISOString(), d.fuso),
+        link ? [' · ', link] : null);
+    })),
+    el('p', { class: 'ajuda' }, 'Escolha um local adequado nas proximidades e adicione a parada na tela 4 para recalcular os horários.'));
 }
 
 /** Botão "🔄 Buscar … atualizados" com a data dos dados em uso e o resultado da última busca. */

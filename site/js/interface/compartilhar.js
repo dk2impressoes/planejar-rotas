@@ -1,11 +1,14 @@
 // © 2026 Grupo DK² — Planejar Rotas com Checklist. Forjada para programar o futuro.
-import { exportar, LIMITE_BYTES } from '../armazenamento/exportacao.js';
+import { exportar, conferirImportacao, LIMITE_BYTES } from '../armazenamento/exportacao.js';
 import { pontosDaRota } from '../dominio/viagem.js';
 import { urlGoogleMaps } from './revisao.js';
 import { isoParaBr } from './datas.js';
 
 export const SITE_APP = 'https://dk2impressoes.github.io/planejar-rotas/';
 export const PREFIXO_ROTA = '#rota=';
+export const PREFIXO_VIAGEM = '#viagem=';
+export const LINK_IMPORTAR = SITE_APP + '#importar';
+const LIMITE_LINK_VIAGEM = 6000;
 const MAX_LINK = 24000;
 const nomeLugar = (l) => l?.rotulo || l?.nome || (l?.cidade && l.uf ? l.cidade + '/' + l.uf : 'Local');
 const dataValida = (v) => typeof v === 'string' && /^(?:\d{4}-\d{2}-\d{2})?$/.test(v);
@@ -77,15 +80,54 @@ export function lerRotaCompartilhada(hash) {
   }
 }
 
+function base64Url(bytes) {
+  return btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join('')).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+}
+
+export async function linkViagemCompleta(arquivo) {
+  if (typeof CompressionStream !== 'function') return '';
+  const stream = arquivo.stream().pipeThrough(new CompressionStream('gzip'));
+  const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
+  if (bytes.length > LIMITE_LINK_VIAGEM) return '';
+  const codigo = base64Url(bytes);
+  return codigo.length <= LIMITE_LINK_VIAGEM ? SITE_APP + PREFIXO_VIAGEM + codigo : '';
+}
+
+export async function lerViagemCompartilhada(hash) {
+  const codigo = hash.startsWith(PREFIXO_VIAGEM) ? hash.slice(PREFIXO_VIAGEM.length) : '';
+  if (!codigo || codigo.length > LIMITE_LINK_VIAGEM || !/^[a-zA-Z0-9_-]+$/.test(codigo)) throw new Error('O link da viagem está incompleto ou inválido.');
+  if (typeof DecompressionStream !== 'function') throw new Error('Este navegador precisa ser atualizado para abrir o link.');
+  const bytes = Uint8Array.from(atob(codigo.replaceAll('-', '+').replaceAll('_', '/')), (c) => c.charCodeAt(0));
+  const leitor = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')).getReader();
+  const decodificador = new TextDecoder('utf-8', { fatal: true });
+  let tamanho = 0;
+  let texto = '';
+  while (true) {
+    const { done, value } = await leitor.read();
+    if (done) break;
+    tamanho += value.length;
+    if (tamanho > LIMITE_BYTES) {
+      await leitor.cancel();
+      throw new Error('A viagem ultrapassa o limite de importação.');
+    }
+    texto += decodificador.decode(value, { stream: true });
+  }
+  const { viagens } = await conferirImportacao(texto + decodificador.decode());
+  if (viagens.length !== 1) throw new Error('Este link deve conter apenas uma viagem.');
+  return viagens[0];
+}
+
 /** A cópia completa usa o mesmo formato com verificação de integridade por hash da importação do app. */
 export async function compartilharViagemCompleta(v) {
   const conteudo = await exportar([v]);
   const arquivo = new File([conteudo], 'viagem-planejar-rotas.json', { type: 'application/json' });
   if (arquivo.size > LIMITE_BYTES) return 'arquivo-grande';
-  const { url } = textoDaRota(v);
-  const texto = 'Abra Planejar Rotas → Configurações → Salvar, Importar ou Restaurar e escolha o arquivo recebido.'
-    + (url ? '\n\nVer a rota e as paradas no app:\n' + url : '');
-  return compartilharArquivo(arquivo, 'Viagem completa', texto);
+  const url = await linkViagemCompleta(arquivo);
+  if (url) {
+    const resultado = await compartilharTexto('Viagem completa', 'Toque para abrir e importar a viagem no Planejar Rotas:\n' + url);
+    if (resultado !== 'indisponivel') return resultado;
+  }
+  return compartilharArquivo(arquivo, 'Viagem completa', 'Abra o link e escolha o arquivo recebido para importar a viagem:\n' + LINK_IMPORTAR);
 }
 
 async function compartilharArquivo(arquivo, titulo, texto) {
@@ -116,6 +158,10 @@ export async function compartilharRota(v) {
     const resultado = await compartilharArquivo(arquivo, titulo, 'Rotas e paradas da viagem');
     return resultado === 'baixado' ? 'baixado-roteiro' : resultado;
   }
+  return compartilharTexto(titulo, texto);
+}
+
+async function compartilharTexto(titulo, texto) {
   if (navigator.share) {
     try {
       await navigator.share({ title: titulo, text: texto });
