@@ -2,7 +2,7 @@
 // Service Worker (Seção 13). Cache versionado; ativa na próxima abertura; o antigo só sai depois.
 // A linha abaixo é reescrita por scripts/gerar_manifesto: o nome muda sempre que um arquivo do app muda,
 // o que faz o navegador instalar a nova versão.
-const CACHE = 'app-v13.0.0-e6801645f33a';
+const CACHE = 'app-v13.0.0-8888f0e8d6fa';
 
 self.addEventListener('install', (evento) => {
   evento.waitUntil((async () => {
