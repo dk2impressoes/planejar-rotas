@@ -1,8 +1,8 @@
 {
   "versao_app": "13.0.0",
-  "versao_conjunto": "2026.11.27-7c82376ce4a2",
-  "cache_app": "app-v13.0.0-79e216efa8f3",
-  "gerado_em": "2026-11-27T20:50:25Z",
+  "versao_conjunto": "2026.11.28-e5da2ccfdd90",
+  "cache_app": "app-v13.0.0-daf0b9048258",
+  "gerado_em": "2026-11-28T10:09:13Z",
   "arquivos": [
     {
       "caminho": "dados/anp.json",
@@ -22,14 +22,14 @@
       "caminho": "dados/feriados.json",
       "tipo": "dados",
       "tamanho": 3291,
-      "sha256": "b68f0b89a0f3c24010ed56d78507480d24b833ae692a15cc3f6cea42f1cdea2a",
+      "sha256": "6ddfe52f53a53df3ef66d6c2484dc0782c1d4b7fa9a784dd2f422eb4ce86bb68",
       "esquema": "esquemas/feriados.schema.json"
     },
     {
       "caminho": "dados/pedagios.json",
       "tipo": "dados",
-      "tamanho": 811230,
-      "sha256": "17d8e3fa92741ece210f1e05c0cbf80422b7a6829f58e8039689fbaf2fe18eac",
+      "tamanho": 758715,
+      "sha256": "899aa6acab331349b93a835c0dfcebc864b2a5f9681172b2eaff4032fad185b9",
       "esquema": "esquemas/pedagios.schema.json"
     },
     {
@@ -43,7 +43,7 @@
       "caminho": "dados/rodizio-suspensoes.json",
       "tipo": "dados",
       "tamanho": 254,
-      "sha256": "4b520cefe8fdf5bd180cc6b8f2b3bebbe1cfb186cfff1a05fd1fa58f2cd6a212",
+      "sha256": "bb2cad0405d46dcdd519166263e8b4ab7e84cd5356cb18821a4646d0d88a7a05",
       "esquema": "esquemas/rodizio-suspensoes.schema.json"
     },
     {
@@ -157,8 +157,8 @@
     {
       "caminho": "js/app.js",
       "tipo": "app",
-      "tamanho": 55366,
-      "sha256": "53e8409603f88ce55fbf20ef075e32a9677ca9539b973b76bc0cb114891f0f4f"
+      "tamanho": 56356,
+      "sha256": "2dec41ddd53781d856c4f57a6ce8bc68b062042b9a3b63aaef87814a4756087e"
     },
     {
       "caminho": "js/armazenamento/db.js",
@@ -169,8 +169,8 @@
     {
       "caminho": "js/armazenamento/exportacao.js",
       "tipo": "app",
-      "tamanho": 8597,
-      "sha256": "9b1811ce48719fe7a6a566476af3855f6b6f370aeeaabe62fc1bac7290beecae"
+      "tamanho": 8712,
+      "sha256": "b803c182ed05f1f0949287b80ea2520f99dc8d24bc5e7a8f1300b439dbfbab35"
     },
     {
       "caminho": "js/dominio/calculo.js",
@@ -277,8 +277,8 @@
     {
       "caminho": "js/interface/revisao.js",
       "tipo": "app",
-      "tamanho": 46535,
-      "sha256": "3db731034324039781610b5c7246cd6d0691a7d625ba937c32fc5219ab2b23c5"
+      "tamanho": 47222,
+      "sha256": "ab6740e84549531fac4e6372994de08f6178e8d7d20602513fe269fcdc45cf22"
     },
     {
       "caminho": "js/interface/telas.js",
@@ -307,8 +307,8 @@
     {
       "caminho": "js/servicos/buscador.js",
       "tipo": "app",
-      "tamanho": 7720,
-      "sha256": "bf0b5b233a190d907d180f97ee94ee5bf1c6d781f8feea26dbc59825df0ac196"
+      "tamanho": 7873,
+      "sha256": "de056a1cb2d6877f32354ddb0ae4a006594558b586f770ddc4a90646e9878289"
     },
     {
       "caminho": "js/servicos/esquema.js",
