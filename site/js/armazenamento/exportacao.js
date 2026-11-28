@@ -16,7 +16,7 @@ const lugar = {
 const parada = {
   type: 'object', required: ['id', 'tipo'],
   properties: {
-    id: txt(60), tipo: txt(30), lugar, duracaoMin: numOuNulo, preco: numOuNulo,
+    id: txt(60), tipo: txt(30), lugar, duracaoMin: numOuNulo, preco: numOuNulo, custoAlimentacao: numOuNulo,
     saidaAgendada: { type: ['object', 'null'], properties: dataHora.properties },
     abastecer: { type: ['object', 'null'], properties: { modo: { type: 'string', enum: ['completar', 'parcial'] }, litros: numOuNulo } },
   },
