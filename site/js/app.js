@@ -133,6 +133,16 @@ function registrarAbastecimento(dados) {
   anunciar('Abastecimento registrado. Os próximos pontos foram recalculados.');
 }
 
+function editarAbastecimento(id, dados) {
+  const registro = estado.viagem.abastecimentosReais?.find((a) => a.id === id);
+  if (!registro) {
+    anunciar('Este abastecimento não está mais disponível.');
+    return;
+  }
+  alterar(() => Object.assign(registro, dados), { render: true, manterPreparo: true, foco: 'editar-abast-' + id });
+  anunciar('Abastecimento atualizado. Os custos e os próximos pontos foram recalculados.');
+}
+
 function desfazerAbastecimento(id) {
   alterar((vv) => { vv.abastecimentosReais = (vv.abastecimentosReais || []).filter((a) => a.id !== id); }, { render: true, manterPreparo: true });
 }
@@ -442,7 +452,7 @@ function vistaAssistente() {
     irPara: (t) => abrirAssistente(t), render: (opcoes) => render(opcoes),
     lugaresUsados, salvarAgora: async () => { await salvar(); anunciar('Viagem salva no aparelho.'); },
     precoAutomatico: (lugar) => precoAutomatico(bases, v.veiculo.combustivel, lugar),
-    registrarAbastecimento, desfazerAbastecimento,
+    registrarAbastecimento, editarAbastecimento, desfazerAbastecimento,
     atualizarDados, atualizacao: estado.atualizacao,
     ondeEstouNaRota: () => ondeEstouNaRota(ctx.resultado),
     escolherAlternativa: (s, i) => alterar((vv) => {
