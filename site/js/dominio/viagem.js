@@ -82,7 +82,7 @@ export function novaViagem() {
 }
 
 export function novaParada() {
-  return { id: novoId(), tipo: 'Parada rápida', lugar: null, duracaoMin: 15, saidaAgendada: null, abastecer: null, preco: null };
+  return { id: novoId(), tipo: 'Parada rápida', lugar: null, duracaoMin: 15, saidaAgendada: null, abastecer: null, preco: null, custoAlimentacao: null };
 }
 
 export function novoViajante() {
@@ -212,6 +212,9 @@ export function validarTela(v, tela) {
           if (!dataValida(p.saidaAgendada.data) || !horaValida(p.saidaAgendada.hora)) e[`${k}.saida`] = 'Informe data e hora da saída agendada.';
         } else if (!(Number(p.duracaoMin) >= 0) || p.duracaoMin === '' || p.duracaoMin === null) {
           e[`${k}.duracao`] = 'A duração deve ser zero ou mais minutos.';
+        }
+        if (p.custoAlimentacao != null && !(Number.isFinite(p.custoAlimentacao) && p.custoAlimentacao >= 0)) {
+          e[`${k}.alimentacao`] = 'Informe um custo de alimentação válido ou deixe em branco.';
         }
         if (p.abastecer?.modo === 'parcial' && !(Number(p.abastecer.litros) > 0)) e[`${k}.litros`] = 'Informe os litros (maior que zero).';
         if (p.preco !== null && p.preco !== '' && !(Number(p.preco) >= 0)) e[`${k}.preco`] = 'O preço não pode ser negativo.';
