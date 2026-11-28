@@ -155,6 +155,9 @@ function blocoParada(ctx, sentido, p, i, total) {
           campo({ id: `${k}.saida.data`, explicacao: EXPLICA.saidaPernoite, rotulo: 'Dia', tipo: 'data', valor: p.saidaAgendada.data, erro: erros[`${k}.saida`], aoMudar: (x) => mudar((pp) => { pp.saidaAgendada.data = x; }) }),
           campo({ id: `${k}.saida.hora`, rotulo: 'Hora', tipo: 'hora', valor: p.saidaAgendada.hora, aoMudar: (x) => mudar((pp) => { pp.saidaAgendada.hora = x; }) })))
       : campo({ id: `${k}.duracao`, explicacao: EXPLICA.duracaoParada, rotulo: 'Quantos minutos vai ficar?', tipo: 'number', valor: p.duracaoMin, erro: erros[`${k}.duracao`], attrs: { inputmode: 'numeric' }, aoMudar: (x) => mudar((pp) => { pp.duracaoMin = x; }) }),
+    campo({ id: `${k}.alimentacao`, rotulo: 'Custo com alimentação (R$) · opcional', tipo: 'dinheiro', casasDecimais: 2,
+      valor: p.custoAlimentacao, erro: erros[`${k}.alimentacao`], ajuda: 'Informe o valor total da alimentação nesta parada.',
+      aoMudar: (x) => mudar((pp) => { pp.custoAlimentacao = x; }) }),
     campo({ id: `${k}.abastecer`, explicacao: EXPLICA.abastecerParada, rotulo: '⛽ Já sei que vou abastecer aqui (opcional)', tipo: 'checkbox', valor: !!p.abastecer, aoMudar: (x) => mudar((pp) => { pp.abastecer = x ? { modo: 'completar', litros: null } : null; }, true) }),
     p.abastecer ? precoDaParada(ctx, p, k, mudar) : null,
     p.abastecer ? recolhido(`r-abast-${p.id}`, 'Mais opções do abastecimento (pode pular)',

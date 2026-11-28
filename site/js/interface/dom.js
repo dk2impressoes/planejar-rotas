@@ -103,7 +103,7 @@ export function explicar(id, rotulo, texto) {
  * Campo com rótulo, ajuda e erro ao lado.
  * opcoes: { rotulo, tipo, valor, aoMudar, erro, ajuda, attrs, lista (para select, já em ordem alfabética) }
  */
-export function campo({ rotulo, tipo = 'text', valor = '', aoMudar, erro, ajuda, attrs = {}, lista, id = novoIdDom('f'), passado = false, explicacao }) {
+export function campo({ rotulo, tipo = 'text', valor = '', aoMudar, erro, ajuda, attrs = {}, lista, id = novoIdDom('f'), passado = false, explicacao, casasDecimais = 3 }) {
   if (tipo === 'data' || tipo === 'hora') return campoDataHora({ rotulo, tipo, valor, aoMudar, erro, ajuda, id, passado, explicacao });
   if (tipo === 'dinheiro') ajuda = [ajuda, 'Digite 629 ou 6,29 para informar R$ 6,29.'].filter(Boolean).join(' ');
   const [btExplica, painelExplica] = explicar(id, rotulo, explicacao);
@@ -126,10 +126,10 @@ export function campo({ rotulo, tipo = 'text', valor = '', aoMudar, erro, ajuda,
     const monetario = tipo === 'dinheiro';
     const numerico = tipo === 'number' || monetario;
     entrada = el('input', {
-      ...comum, type: numerico ? 'text' : tipo, value: monetario ? formatarDinheiro(valor, 3) : (valor ?? ''),
+      ...comum, type: numerico ? 'text' : tipo, value: monetario ? formatarDinheiro(valor, casasDecimais) : (valor ?? ''),
       inputmode: numerico ? 'decimal' : attrs.inputmode, autocomplete: attrs.autocomplete || 'off',
     });
-    if (monetario) configurarCampoDinheiro(entrada, 3, aoMudar);
+    if (monetario) configurarCampoDinheiro(entrada, casasDecimais, aoMudar);
     else entrada.addEventListener('input', () => aoMudar(numerico ? lerNumero(entrada.value) : entrada.value));
   }
   return el('div', { class: 'campo' }, el('div', { class: 'rotulo-linha' }, el('label', { for: id }, rotulo), btExplica), painelExplica,

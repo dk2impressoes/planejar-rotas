@@ -159,7 +159,7 @@ function tabelaItinerario(r, s) {
       el('td', {}, formatarDataHora(e.chegadaUTC, e.fusoChegada)),
       el('td', {}, km(e.km)),
       el('td', {}, formatarDuracao(e.duracao_s)),
-      el('td', {}, e.parada ? `${e.parada.tipo}${e.saidaParadaUTC ? `, sai ${formatarDataHora(e.saidaParadaUTC, e.fusoChegada)}` : ''}${e.parada.abastecer ? ', abastecimento' : ''}` : '—')))));
+      el('td', {}, e.parada ? `${e.parada.tipo}${e.saidaParadaUTC ? `, sai ${formatarDataHora(e.saidaParadaUTC, e.fusoChegada)}` : ''}${e.parada.abastecer ? ', abastecimento' : ''}${Number.isFinite(e.parada.custoAlimentacao) ? ' · alimentação ' + reais(e.parada.custoAlimentacao) : ''}` : '—')))));
 }
 
 function blocoDescansos(r) {
@@ -210,35 +210,36 @@ function descreverPonto(x) {
  * Formulário "Abasteci": a pessoa informa só os litros (ou marca "completei o tanque").
  * O preço já vem preenchido com o automático da ANP no ponto; sem ele, o preço é obrigatório.
  */
-function formAbasteci(ctx, onde, fechar, sugestao) {
+function formAbasteci(ctx, onde, fechar, sugestao, salvo = null) {
   const id = `ab-${Math.random().toString(36).slice(2, 8)}`;
-  let completou = false, litrosInf = null;
+  let completou = salvo?.modo === 'completar', litrosInf = salvo?.litros ?? null;
   const temAuto = sugestao && Number.isFinite(sugestao.preco);
-  let preco = temAuto ? Number(sugestao.preco.toFixed(3)) : null;
+  let preco = salvo?.preco ?? (temAuto ? Number(sugestao.preco.toFixed(3)) : null);
   const erroForm = el('p', { class: 'erro', role: 'alert', hidden: true });
-  const campoLitros = campo({ id: `${id}-l`, rotulo: 'Quantos litros você colocou?', tipo: 'number', valor: '', ajuda: 'Está no recibo ou no visor da bomba.', aoMudar: (x) => { litrosInf = x; } });
-  return el('div', { class: 'form-abasteci' },
+  const campoLitros = campo({ id: `${id}-l`, rotulo: 'Quantos litros você colocou?', tipo: 'number', valor: litrosInf, ajuda: 'Está no recibo ou no visor da bomba.', aoMudar: (x) => { litrosInf = x; } });
+  campoLitros.hidden = completou;
+  return el('div', { class: 'form-abasteci nao-imprimir' },
     campoLitros,
-    campo({ id: `${id}-c`, rotulo: 'Completei o tanque (não sei os litros)', tipo: 'checkbox', valor: false, aoMudar: (x) => { completou = x; campoLitros.hidden = x; } }),
+    campo({ id: `${id}-c`, rotulo: 'Completei o tanque (não sei os litros)', tipo: 'checkbox', valor: completou, aoMudar: (x) => { completou = x; campoLitros.hidden = x; } }),
     campo({
-      id: `${id}-p`, rotulo: temAuto ? 'Preço do litro (R$) — já preenchido' : 'Preço do litro (R$) — obrigatório',
+      id: `${id}-p`, rotulo: temAuto ? 'Preço do litro (R$) — já preenchido' : 'Preço do litro (R$)',
       tipo: 'dinheiro', valor: preco,
-      ajuda: temAuto ? `Preço automático: ${sugestao.origemPreco}. Se pagou outro valor, corrija.` : 'Não conseguimos o preço automático aqui. Informe quanto pagou por litro (está no recibo).',
+      ajuda: salvo ? 'Informe o preço por litro que consta no recibo.' : temAuto ? `Preço automático: ${sugestao.origemPreco}. Se pagou outro valor, corrija.` : 'Não conseguimos o preço automático aqui. Informe quanto pagou por litro (está no recibo).',
       aoMudar: (x) => { preco = x; },
     }),
     erroForm,
     el('div', { class: 'acoes' },
-      botao('Salvar abastecimento', () => {
-        const falta = !completou && !(Number(litrosInf) > 0)
+      botao(salvo ? 'Salvar correção' : 'Salvar abastecimento', () => {
+        const falta = !completou && !(Number.isFinite(litrosInf) && litrosInf > 0)
           ? 'Informe quantos litros colocou, ou marque "Completei o tanque".'
-          : !(Number(preco) >= 0 && preco !== null && preco !== '') ? 'Informe o preço do litro.' : '';
+          : !(Number.isFinite(preco) && preco >= 0) ? 'Informe o preço do litro.' : '';
         erroForm.hidden = !falta;
         erroForm.textContent = falta ? `✖ ${falta}` : '';
         if (falta) { anunciar(falta); return; }
+        const dados = { modo: completou ? 'completar' : 'parcial', litros: completou ? null : litrosInf, preco };
+        if (salvo) { ctx.editarAbastecimento(salvo.id, dados); return; }
         ctx.registrarAbastecimento({
-          sentido: onde.sentido, trechoDoSentido: onde.trechoDoSentido, kmNoTrecho: onde.kmNoTrecho,
-          modo: completou ? 'completar' : 'parcial', litros: completou ? null : Number(litrosInf),
-          preco: Number(preco),
+          ...dados, sentido: onde.sentido, trechoDoSentido: onde.trechoDoSentido, kmNoTrecho: onde.kmNoTrecho,
           lugar: onde.lugar ? `${onde.lugar.cidade}${onde.lugar.uf ? ' — ' + onde.lugar.uf : ''}` : '',
         });
       }),
@@ -279,8 +280,17 @@ function blocoAbastecer(ctx, r, { resumo = false } = {}) {
         el('ul', { class: 'lista-abastecer' }, ...recs.map(itemRec))]
       : el('p', {}, feitos.length ? '✔ Com o que você já abasteceu, o combustível chega até o fim sem outra parada.' : '✔ O tanque dá para a viagem toda sem abastecer (com a reserva guardada).'),
     feitos.length ? [el('p', { class: 'rotulo-campo' }, 'Já abastecido:'),
-      el('ul', { class: 'lista-abastecer' }, ...feitos.map((x) => el('li', {}, `✔ ${x.real && x.litros ? litros(x.litros) : ''} — ${descreverPonto(x)}${x.preco !== null ? `, ${reais(x.preco)}/L` : ''} `,
-        botao('Desfazer', () => ctx.desfazerAbastecimento(x.id), { classe: 'pequeno perigo nao-imprimir', rotuloAcessivel: 'Desfazer este abastecimento' }))))] : null,
+      el('ul', { class: 'lista-abastecer' }, ...feitos.map((x) => {
+        const salvo = ctx.v.abastecimentosReais?.find((a) => a.id === x.id);
+        const area = el('div', {});
+        const editar = salvo ? botao('Editar abastecimento', () => {
+          area.replaceChildren(formAbasteci(ctx, null, () => { area.replaceChildren(); editar.focus(); }, null, salvo));
+          area.querySelector('input:not([type="checkbox"]):not([hidden])')?.focus();
+        }, { classe: 'pequeno secundario nao-imprimir' }) : null;
+        if (editar) editar.id = 'editar-abast-' + x.id;
+        return el('li', {}, `✔ ${x.real && x.litros ? litros(x.litros) : ''} — ${descreverPonto(x)}${x.preco !== null ? `, ${reais(x.preco)}/L` : ''} `,
+          editar, ' ', botao('Desfazer', () => ctx.desfazerAbastecimento(x.id), { classe: 'pequeno perigo nao-imprimir', rotuloAcessivel: 'Desfazer este abastecimento' }), area);
+      }))] : null,
     el('p', { class: 'ajuda nao-imprimir' }, 'Abasteceu na estrada? Registre aqui: o app refaz as contas e os próximos pontos.'),
     gps, estado, gpsArea);
 }
@@ -563,6 +573,7 @@ function linhaSentido(r, v, s) {
 
 function resumoSimples(ctx, r) {
   const v = ctx.v;
+  const alimentacao = ['ida', 'volta'].flatMap((s) => v.paradas[s]).map((p) => p.custoAlimentacao).filter(Number.isFinite);
   const c = r.combustivel;
   const sim = c?.simulacao;
   const p = r.pedagios;
@@ -613,7 +624,8 @@ function resumoSimples(ctx, r) {
         c?.precoOrigem ? el('small', { class: 'linha-menor' }, 'Referência na origem: ', c.precoOrigem.premissa) : null,
         c?.precoOrigem && anpDesatualizada ? el('small', { class: 'linha-menor aviso' },
           'Pesquisa da ANP desatualizada. Confira o preço do posto para melhorar a estimativa.') : null),
-      el('dt', {}, '🚧 Pedágios'), el('dd', {}, pedagio)),
+      el('dt', {}, '🚧 Pedágios'), el('dd', {}, pedagio),
+      alimentacao.length ? [el('dt', {}, 'Alimentação nas paradas'), el('dd', {}, reais(alimentacao.reduce((total, valor) => total + valor, 0)))] : null),
     el('p', { class: 'ajuda' }, 'Valores aproximados, sem trânsito em tempo real. Confira as regras e os preços antes de sair.'));
 }
 
