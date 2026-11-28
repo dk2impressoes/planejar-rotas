@@ -133,13 +133,13 @@ function registrarAbastecimento(dados) {
   anunciar('Abastecimento registrado. Os próximos pontos foram recalculados.');
 }
 
-function editarAbastecimento(id, dados) {
+function editarAbastecimento(id, dados, foco = 'editar-abast-' + id) {
   const registro = estado.viagem.abastecimentosReais?.find((a) => a.id === id);
   if (!registro) {
     anunciar('Este abastecimento não está mais disponível.');
     return;
   }
-  alterar(() => Object.assign(registro, dados), { render: true, manterPreparo: true, foco: 'editar-abast-' + id });
+  alterar(() => Object.assign(registro, dados), { render: true, manterPreparo: true, foco });
   anunciar('Abastecimento atualizado. Os custos e os próximos pontos foram recalculados.');
 }
 
