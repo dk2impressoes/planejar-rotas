@@ -4,14 +4,14 @@ import { el, botao, selo, reais, km, litros, campo, recolhido, anunciar, lerDinh
 import { formatarDataHora, formatarDuracao } from '../dominio/tempo.js';
 import { SITUACAO, COBRANCA } from '../dominio/situacao.js';
 import { pontosDaRota, separadorDaLista, TELA } from '../dominio/viagem.js';
-import { distanciaM } from '../dominio/geo.js';
+import { distanciaM, localizarNaRota } from '../dominio/geo.js';
 import { situacaoDasBases } from '../servicos/bases.js';
 import { resumoAlternativas } from '../dominio/calculo.js';
 import { reverso } from '../servicos/buscador.js';
 import { online } from '../servicos/http.js';
 import { congelamentoValido } from '../dominio/congelamento.js';
 import { isoParaBr } from './datas.js';
-import { imprimirListaIndividual } from './telas.js';
+import { imprimirListaIndividual, seletorLugar } from './telas.js';
 
 // Aviso curto dos Termos de Uso (topo do roteiro, impressão e exportação).
 import { AVISO_CURTO_TERMOS } from './termos.js';
@@ -219,6 +219,7 @@ function formAbasteci(ctx, onde, fechar, sugestao, salvo = null) {
   const campoLitros = campo({ id: `${id}-l`, rotulo: 'Quantos litros você colocou?', tipo: 'number', valor: litrosInf, ajuda: 'Está no recibo ou no visor da bomba.', aoMudar: (x) => { litrosInf = x; } });
   campoLitros.hidden = completou;
   return el('div', { class: 'form-abasteci nao-imprimir' },
+    onde?.lugar?.rotulo ? el('p', {}, 'Local do abastecimento: ' + onde.lugar.rotulo) : null,
     campoLitros,
     campo({ id: `${id}-c`, rotulo: 'Completei o tanque (não sei os litros)', tipo: 'checkbox', valor: completou, aoMudar: (x) => { completou = x; campoLitros.hidden = x; } }),
     campo({
@@ -240,7 +241,7 @@ function formAbasteci(ctx, onde, fechar, sugestao, salvo = null) {
         if (salvo) { ctx.editarAbastecimento(salvo.id, dados); return; }
         ctx.registrarAbastecimento({
           ...dados, sentido: onde.sentido, trechoDoSentido: onde.trechoDoSentido, kmNoTrecho: onde.kmNoTrecho,
-          lugar: onde.lugar ? `${onde.lugar.cidade}${onde.lugar.uf ? ' — ' + onde.lugar.uf : ''}` : '',
+          lugar: (onde.lugar?.rotulo || onde.lugar?.nome || (onde.lugar?.cidade ? `${onde.lugar.cidade}${onde.lugar.uf ? ' — ' + onde.lugar.uf : ''}` : '')).slice(0, 200),
         });
       }),
       botao('Cancelar', fechar, { classe: 'secundario' })));
@@ -254,10 +255,16 @@ function blocoAbastecer(ctx, r, { resumo = false } = {}) {
   const itemRec = (x) => {
     const li = el('li', {}, el('span', {}, `⛽ ${descreverPonto(x)}`));
     const area = el('div', {});
-    li.append(' ', botao('✔ Abasteci aqui', () => {
-      area.replaceChildren(formAbasteci(ctx, x, () => area.replaceChildren(), x.preco !== null ? { preco: x.preco, origemPreco: x.origemPreco } : null));
+    const abrirRegistro = (onde, preco) => {
+      area.replaceChildren(formAbasteci(ctx, onde, () => area.replaceChildren(), preco));
       area.querySelector('input')?.focus();
-    }, { classe: 'pequeno secundario nao-imprimir', rotuloAcessivel: `Registrar que abasteceu: ${descreverPonto(x)}` }), area);
+    };
+    li.append(' ',
+      botao('✔ Abasteci aqui', () => abrirRegistro(x, x.preco !== null ? { preco: x.preco, origemPreco: x.origemPreco } : null),
+        { classe: 'pequeno secundario nao-imprimir', rotuloAcessivel: `Registrar que abasteceu: ${descreverPonto(x)}` }),
+      ' ', botao('Editar localização', () => escolherLocalAbastecimento(ctx, r, x.sentido, descreverPonto(x), 'Usar localização', (onde, local) => {
+        abrirRegistro({ ...onde, lugar: local }, c.precoEm?.(onde.sentido, onde.trechoDoSentido, onde.kmNoTrecho));
+      }), { classe: 'pequeno secundario nao-imprimir' }), area);
     return li;
   };
   const gpsArea = el('div', {});
@@ -288,11 +295,54 @@ function blocoAbastecer(ctx, r, { resumo = false } = {}) {
           area.querySelector('input:not([type="checkbox"]):not([hidden])')?.focus();
         }, { classe: 'pequeno secundario nao-imprimir' }) : null;
         if (editar) editar.id = 'editar-abast-' + x.id;
-        return el('li', {}, `✔ ${x.real && x.litros ? litros(x.litros) : ''} — ${descreverPonto(x)}${x.preco !== null ? `, ${reais(x.preco)}/L` : ''} `,
+        return el('li', {}, `✔ ${x.real && x.litros ? litros(x.litros) : ''} — ${salvo?.lugar || descreverPonto(x)}${x.preco !== null ? `, ${reais(x.preco)}/L` : ''} `,
           editar, ' ', botao('Desfazer', () => ctx.desfazerAbastecimento(x.id), { classe: 'pequeno perigo nao-imprimir', rotuloAcessivel: 'Desfazer este abastecimento' }), area);
       }))] : null,
     el('p', { class: 'ajuda nao-imprimir' }, 'Abasteceu na estrada? Registre aqui: o app refaz as contas e os próximos pontos.'),
     gps, estado, gpsArea);
+}
+
+function editarLocalAbastecimento(ctx, r, salvo) {
+  escolherLocalAbastecimento(ctx, r, salvo.sentido, salvo.lugar, 'Salvar localização', (onde, local) => {
+    ctx.editarAbastecimento(salvo.id, { ...onde, lugar: (local.rotulo || local.nome).slice(0, 200) },
+      'editar-local-abast-' + salvo.id);
+  });
+}
+
+function escolherLocalAbastecimento(ctx, r, sentidoInicial, localAnterior, rotuloSalvar, aoEscolher) {
+  let sentido = sentidoInicial;
+  let local = null;
+  let ponto = null;
+  const area = el('div', {});
+  const status = el('p', { class: 'ajuda', role: 'status' });
+  const guardar = botao(rotuloSalvar, () => {
+    if (!ponto || !local) return;
+    janela.close();
+    aoEscolher({ sentido, trechoDoSentido: ponto.trecho, kmNoTrecho: ponto.kmNoTrecho }, local);
+  }, { classe: 'largo', desativado: true });
+  const conferir = () => {
+    ponto = local ? localizarNaRota(r.sentidos[sentido].trechos, [local.lon, local.lat]) : null;
+    guardar.disabled = !ponto;
+    status.textContent = !local ? '' : !ponto ? 'Calcule o caminho deste sentido para localizar o abastecimento na rota.'
+      : 'O abastecimento ficará no ponto mais próximo do trajeto, a aproximadamente ' + km(ponto.distanciaM / 1000) + ' do endereço escolhido.';
+  };
+  const mostrarBusca = () => area.replaceChildren(seletorLugar({
+    id: 'novo-local-abast', rotulo: 'Novo endereço ou nome do posto', valor: local, ctx,
+    aoEscolher: (resultado) => { local = resultado; conferir(); mostrarBusca(); },
+  }));
+  const janela = el('dialog', { class: 'aviso-versao nao-imprimir', 'aria-labelledby': 'titulo-local-abast' },
+    el('h2', { id: 'titulo-local-abast' }, 'Editar localização do abastecimento'),
+    localAnterior ? el('p', {}, 'Local atual: ' + localAnterior) : null,
+    campo({ id: 'sentido-local-abast', rotulo: 'Sentido da viagem', tipo: 'select', lista: ['Ida', 'Volta'],
+      valor: sentido === 'volta' ? 'Volta' : 'Ida', aoMudar: (valor) => {
+        sentido = valor === 'Volta' ? 'volta' : 'ida';
+        conferir();
+      } }),
+    area, status, guardar, botao('Cancelar', () => janela.close(), { classe: 'secundario' }));
+  mostrarBusca();
+  janela.addEventListener('close', () => janela.remove(), { once: true });
+  document.body.append(janela);
+  janela.showModal();
 }
 
 function blocoCombustivel(ctx, r) {
@@ -311,6 +361,14 @@ function blocoCombustivel(ctx, r) {
       el('dt', {}, '(C) Sobra no tanque ao chegar'),
       el('dd', {}, `${litros(sim.sobraL)} · ${reais(sim.sobraValor)}`)),
     el('p', { class: 'ajuda' }, 'Os três números nunca são somados: A e B contam o mesmo combustível de formas diferentes.'),
+    ctx.v.abastecimentosReais?.length ? el('div', { class: 'nao-imprimir' },
+      el('h3', {}, 'Locais dos abastecimentos registrados'),
+      el('ul', {}, ...ctx.v.abastecimentosReais.map((salvo) => {
+        const editar = botao('Editar localização', () => editarLocalAbastecimento(ctx, r, salvo), { classe: 'secundario pequeno' });
+        editar.id = 'editar-local-abast-' + salvo.id;
+        const ponto = c.feitos?.find((x) => x.id === salvo.id);
+        return el('li', {}, salvo.lugar || (ponto ? descreverPonto(ponto) : 'Local do abastecimento'), ' ', editar);
+      }))) : null,
     el('details', {}, el('summary', {}, 'Trilha do cálculo'),
       el('p', {}, premissa),
       el('ul', {}, ...sim.passos.map((p) => el('li', {}, `${p.rotulo}: ${km(p.km)}, consome ${litros(p.consumidos)}; saldo ${litros(p.saldoAntes)} → ${litros(p.saldoDepois)}`)),
